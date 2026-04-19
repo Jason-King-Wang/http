@@ -350,36 +350,43 @@ function renderPublicScope() {
 function renderSummaryCards() {
   const summary = state.data.summary || {};
   const checks = state.data.checks || [];
+  const history = getDailyHistory();
   const metrics = [
     {
       label: "峰值命中率",
       value: formatPercent(summary.peak_hit_rate),
-      note: `${formatInteger(summary.verified_stock_count)} 檔驗證樣本`
+      note: `${formatInteger(summary.verified_stock_count)} 檔驗證樣本`,
+      comparison: buildSummaryMetricComparison(summary, history, "peak_hit_rate", "percent")
     },
     {
       label: "Top10 命中率",
       value: formatPercent(summary.top10_hit_rate),
-      note: `Top20 ${formatPercent(summary.top20_hit_rate)} / Top30 ${formatPercent(summary.top30_hit_rate)}`
+      note: `Top20 ${formatPercent(summary.top20_hit_rate)} / Top30 ${formatPercent(summary.top30_hit_rate)}`,
+      comparison: buildSummaryMetricComparison(summary, history, "top10_hit_rate", "percent")
     },
     {
       label: "價格 MAE",
       value: formatDecimal(summary.pred_peak_mae, 2),
-      note: "預測高點與實際高點的平均絕對誤差"
+      note: "預測高點與實際高點的平均絕對誤差",
+      comparison: buildSummaryMetricComparison(summary, history, "pred_peak_mae", "decimal", { lowerIsBetter: true })
     },
     {
       label: "時間命中率",
       value: formatPercent(summary.pred_peak_time_bucket_hit_rate),
-      note: "高點時間區間是否預測正確"
+      note: "高點時間區間是否預測正確",
+      comparison: buildSummaryMetricComparison(summary, history, "pred_peak_time_bucket_hit_rate", "percent")
     },
     {
       label: "50 點分數",
       value: formatDecimal(summary.fifty_point_score, 2),
-      note: `${countWhere(checks, (item) => item.status === "pass")} pass / ${countWhere(checks, (item) => item.status === "fail")} fail`
+      note: `${countWhere(checks, (item) => item.status === "pass")} pass / ${countWhere(checks, (item) => item.status === "fail")} fail`,
+      comparison: buildSummaryMetricComparison(summary, history, "fifty_point_score", "decimal")
     },
     {
       label: "規則候選數",
       value: formatInteger(summary.rule_candidate_count),
-      note: "僅顯示數量，不公開內部判斷來源"
+      note: "僅顯示數量，不公開內部判斷來源",
+      comparison: buildSummaryMetricComparison(summary, history, "rule_candidate_count", "integer")
     }
   ];
 
@@ -388,10 +395,57 @@ function renderSummaryCards() {
       <article class="metric-card">
         <span class="metric-label">${escapeHtml(metric.label)}</span>
         <strong class="metric-value">${escapeHtml(metric.value)}</strong>
+        <p class="metric-compare ${escapeHtml(metric.comparison.tone)}">${escapeHtml(metric.comparison.text)}</p>
         <p class="metric-note">${escapeHtml(metric.note)}</p>
       </article>
     `)
     .join("");
+}
+
+function buildSummaryMetricComparison(summary, history, field, format, options = {}) {
+  const latestValue = summary?.[field];
+  const immediatePrevious = history[1] || null;
+
+  if (!hasNumericValue(latestValue)) {
+    return {
+      text: "最新資料待驗證，暫時不比較。",
+      tone: "metric-compare-flat"
+    };
+  }
+
+  const comparisonBase = findMetricComparisonBase(history, field);
+  if (!comparisonBase) {
+    if (immediatePrevious?.trade_date) {
+      return {
+        text: `前一交易日 ${immediatePrevious.trade_date} 待驗證，暫時無法比較。`,
+        tone: "metric-compare-flat"
+      };
+    }
+
+    return {
+      text: "目前沒有前一交易日可比較。",
+      tone: "metric-compare-flat"
+    };
+  }
+
+  return {
+    text: buildDeltaNote(latestValue, comparisonBase[field], comparisonBase.trade_date, format, options),
+    tone: toMetricCompareTone(buildDeltaTone(latestValue, comparisonBase[field], options))
+  };
+}
+
+function findMetricComparisonBase(history, field) {
+  return history.slice(1).find((entry) => hasNumericValue(entry?.[field])) || null;
+}
+
+function toMetricCompareTone(trend) {
+  if (trend === "trend-positive") {
+    return "metric-compare-positive";
+  }
+  if (trend === "trend-negative") {
+    return "metric-compare-negative";
+  }
+  return "metric-compare-flat";
 }
 
 function renderStories(rows) {
