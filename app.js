@@ -1,5 +1,5 @@
 const state = {
-  data: window.__PUBLIC_SELL_MODEL_DATA__ || { summary: {}, checks: [], stocks: [] },
+  data: window.__PUBLIC_SELL_MODEL_DATA__ || { summary: {}, daily_history: [], checks: [], stocks: [] },
   filters: {
     search: "",
     theme: "",
@@ -11,8 +11,12 @@ const state = {
 
 const DATA_JSON_URL = "./data/public-sell-model.json";
 const LIVE_REFRESH_INTERVAL_MS = 60 * 1000;
+const MAX_DAILY_HISTORY_ITEMS = 30;
 
 const elements = {
+  dailySummaryNote: document.querySelector("#daily-summary-note"),
+  dailyComparison: document.querySelector("#daily-comparison"),
+  dailyHistoryList: document.querySelector("#daily-history-list"),
   heroMeta: document.querySelector("#hero-meta"),
   sourceSummary: document.querySelector("#source-summary"),
   publicScope: document.querySelector("#public-scope"),
@@ -65,6 +69,7 @@ function renderDashboard() {
     state.selectedStockId = filteredRows[0]?.stock_id || rows[0]?.stock_id || null;
   }
 
+  renderDailyOverview();
   renderHero();
   renderPublicScope();
   renderSummaryCards();
@@ -79,12 +84,14 @@ function renderDashboard() {
 function renderHero() {
   const summary = state.data.summary || {};
   const rows = state.data.stocks || [];
+  const dailyHistory = getDailyHistory();
 
   const tags = [
     `最新資料日 ${summary.target_trade_date || "未提供"}`,
     `${formatInteger(summary.verified_stock_count)} 檔驗證樣本`,
     `${formatInteger(rows.length)} 檔公開個股`,
-    `公開整理 ${formatDateTime(summary.generated_at)}`
+    `公開整理 ${formatDateTime(summary.generated_at)}`,
+    `逐日摘要 ${formatInteger(dailyHistory.length)} 天`
   ];
 
   elements.heroMeta.innerHTML = tags.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
@@ -93,6 +100,235 @@ function renderHero() {
     `最後公開整理 ${formatDateTime(summary.generated_at)}。`,
     "頁面開著時會自動檢查更新。"
   ].join(" ");
+}
+
+function renderDailyOverview() {
+  const history = getDailyHistory();
+  if (!history.length) {
+    elements.dailySummaryNote.textContent = "最近 30 個交易日內還沒有可公開的逐日摘要。";
+    elements.dailyComparison.innerHTML = `<div class="empty-state">等第一批逐日資料進來後，這裡會顯示整理後的比較摘要。</div>`;
+    elements.dailyHistoryList.innerHTML = `<div class="empty-state">目前沒有逐日資料。</div>`;
+    return;
+  }
+
+  const latest = history[0];
+  const previous = history[1] || null;
+  const comparisonBase = findComparisonBase(history);
+  const metrics = buildDailyComparisonMetrics(latest, comparisonBase);
+
+  elements.dailySummaryNote.textContent = buildDailySummaryNote(latest, previous, comparisonBase, history.length);
+  elements.dailyComparison.innerHTML = metrics
+    .map((metric) => `
+      <article class="daily-mini-metric">
+        <span class="metric-label">${escapeHtml(metric.label)}</span>
+        <strong class="metric-value ${escapeHtml(metric.tone || "trend-flat")}">${escapeHtml(metric.value)}</strong>
+        <p class="metric-note">${escapeHtml(metric.note)}</p>
+      </article>
+    `)
+    .join("");
+
+  elements.dailyHistoryList.innerHTML = history
+    .map((entry, index) => renderDailyHistoryCard(entry, index === 0))
+    .join("");
+}
+
+function buildDailySummaryNote(latest, previous, comparisonBase, historyCount) {
+  if (!comparisonBase) {
+    return `目前已整理 ${historyCount} 個交易日摘要，最新日期是 ${latest.trade_date}。`;
+  }
+
+  if (comparisonBase.trade_date === previous?.trade_date) {
+    if (hasVerifiedMetrics(latest) && hasVerifiedMetrics(comparisonBase)) {
+      return `最新交易日 ${latest.trade_date} 已可直接和前一交易日 ${comparisonBase.trade_date} 比較。`;
+    }
+
+    return `最新交易日 ${latest.trade_date} 與前一交易日 ${comparisonBase.trade_date} 先比較公開個股數、平均分數與預測摘要；驗證指標會在資料補齊後更新。`;
+  }
+
+  return `前一交易日 ${previous?.trade_date || "未提供"} 目前仍是待驗證狀態，所以這裡先拿最近可比較的 ${comparisonBase.trade_date} 當基準。`;
+}
+
+function buildDailyComparisonMetrics(latest, comparisonBase) {
+  const metrics = [
+    {
+      label: "公開個股",
+      value: formatInteger(latest.stock_count),
+      note: buildDeltaNote(latest.stock_count, comparisonBase?.stock_count, comparisonBase?.trade_date, "integer"),
+      tone: buildDeltaTone(latest.stock_count, comparisonBase?.stock_count)
+    },
+    {
+      label: "平均分數",
+      value: formatDecimal(latest.avg_model_score, 2),
+      note: buildDeltaNote(latest.avg_model_score, comparisonBase?.avg_model_score, comparisonBase?.trade_date, "decimal"),
+      tone: buildDeltaTone(latest.avg_model_score, comparisonBase?.avg_model_score)
+    }
+  ];
+
+  if (hasNumericValue(latest.avg_confidence)) {
+    metrics.push({
+      label: "平均信心",
+      value: formatPercent(latest.avg_confidence),
+      note: buildDeltaNote(latest.avg_confidence, comparisonBase?.avg_confidence, comparisonBase?.trade_date, "percent"),
+      tone: buildDeltaTone(latest.avg_confidence, comparisonBase?.avg_confidence)
+    });
+  } else {
+    metrics.push({
+      label: "領先股",
+      value: latest.lead_stock || "-",
+      note: `${latest.source_label || "逐日摘要"} / ${latest.top_theme || "未分類"} ${formatInteger(latest.top_theme_count)} 檔`,
+      tone: "trend-flat"
+    });
+  }
+
+  if (hasVerifiedMetrics(latest)) {
+    metrics.push({
+      label: "峰值命中率",
+      value: formatPercent(latest.peak_hit_rate),
+      note: buildDeltaNote(latest.peak_hit_rate, comparisonBase?.peak_hit_rate, comparisonBase?.trade_date, "percent"),
+      tone: buildDeltaTone(latest.peak_hit_rate, comparisonBase?.peak_hit_rate)
+    });
+    metrics.push({
+      label: "價格 MAE",
+      value: formatDecimal(latest.pred_peak_mae, 2),
+      note: buildDeltaNote(latest.pred_peak_mae, comparisonBase?.pred_peak_mae, comparisonBase?.trade_date, "decimal", { lowerIsBetter: true }),
+      tone: buildDeltaTone(latest.pred_peak_mae, comparisonBase?.pred_peak_mae, { lowerIsBetter: true })
+    });
+  } else {
+    metrics.push({
+      label: "主題焦點",
+      value: latest.top_theme || "未分類",
+      note: `${formatInteger(latest.top_theme_count)} 檔 / ${latest.status_label || "待處理"}`,
+      tone: "trend-flat"
+    });
+  }
+
+  return metrics;
+}
+
+function renderDailyHistoryCard(entry, isLatest) {
+  const metricChips = [
+    `${formatInteger(entry.stock_count)} 檔公開`,
+    `候選 ${formatInteger(entry.candidate_count)}`,
+    hasVerifiedMetrics(entry)
+      ? `命中 ${formatPercent(entry.peak_hit_rate)}`
+      : hasNumericValue(entry.avg_confidence)
+        ? `信心 ${formatPercent(entry.avg_confidence)}`
+        : entry.source_label || "摘要"
+  ];
+
+  return `
+    <article class="daily-history-item ${isLatest ? "is-latest" : ""}">
+      <div class="daily-history-head">
+        <div class="daily-history-title">
+          <strong>${escapeHtml(entry.trade_date || "未提供")}</strong>
+          <span class="mini-note">${escapeHtml(entry.summary_note || "目前沒有逐日摘要。")}</span>
+        </div>
+        <div class="daily-status-row">
+          <span class="status-badge ${escapeHtml(resolveStatusClass(entry.status))}">${escapeHtml(entry.status_label || "未提供")}</span>
+          <span class="tag tag-neutral">${escapeHtml(entry.source_label || "摘要")}</span>
+        </div>
+      </div>
+      <div class="daily-inline-metrics">
+        ${metricChips
+          .map((text) => `<span class="pill">${escapeHtml(text)}</span>`)
+          .join("")}
+      </div>
+      <p class="daily-history-note">
+        主題焦點 ${escapeHtml(entry.top_theme || "未分類")} (${escapeHtml(formatInteger(entry.top_theme_count))} 檔)
+        / 領先股 ${escapeHtml(entry.lead_stock || "-")}
+      </p>
+    </article>
+  `;
+}
+
+function getDailyHistory() {
+  return Array.isArray(state.data.daily_history)
+    ? state.data.daily_history.slice(0, MAX_DAILY_HISTORY_ITEMS)
+    : [];
+}
+
+function findComparisonBase(history) {
+  const latest = history[0];
+  if (!latest) {
+    return null;
+  }
+
+  const immediatePrevious = history[1] || null;
+  if (hasVerifiedMetrics(latest)) {
+    return history.slice(1).find((entry) => hasVerifiedMetrics(entry)) || immediatePrevious;
+  }
+
+  return immediatePrevious;
+}
+
+function hasVerifiedMetrics(entry) {
+  return hasNumericValue(entry?.peak_hit_rate) && hasNumericValue(entry?.pred_peak_mae);
+}
+
+function hasNumericValue(value) {
+  return Number.isFinite(toMaybeNumber(value));
+}
+
+function resolveStatusClass(status) {
+  return status === "verified" ? "status-pass" : "status-neutral";
+}
+
+function buildDeltaNote(latestValue, previousValue, previousDate, format, options = {}) {
+  const latestNumber = toMaybeNumber(latestValue);
+  const previousNumber = toMaybeNumber(previousValue);
+  if (!previousDate) {
+    return "目前沒有前一交易日可比較。";
+  }
+  if (!Number.isFinite(latestNumber) || !Number.isFinite(previousNumber)) {
+    return `${previousDate} 暫時沒有可直接比較的數值。`;
+  }
+
+  const delta = latestNumber - previousNumber;
+  if (Math.abs(delta) < 0.0001) {
+    return `和 ${previousDate} 持平。`;
+  }
+
+  const direction = describeDelta(delta, options);
+  return `比 ${previousDate} ${formatSignedChange(delta, format)} (${direction})`;
+}
+
+function buildDeltaTone(latestValue, previousValue, options = {}) {
+  const latestNumber = toMaybeNumber(latestValue);
+  const previousNumber = toMaybeNumber(previousValue);
+  if (!Number.isFinite(latestNumber) || !Number.isFinite(previousNumber)) {
+    return "trend-flat";
+  }
+
+  const delta = latestNumber - previousNumber;
+  if (Math.abs(delta) < 0.0001) {
+    return "trend-flat";
+  }
+
+  const isPositive = options.lowerIsBetter ? delta < 0 : delta > 0;
+  return isPositive ? "trend-positive" : "trend-negative";
+}
+
+function describeDelta(delta, { lowerIsBetter = false } = {}) {
+  if (Math.abs(delta) < 0.0001) {
+    return "持平";
+  }
+
+  if (lowerIsBetter) {
+    return delta < 0 ? "更低" : "更高";
+  }
+
+  return delta > 0 ? "增加" : "減少";
+}
+
+function formatSignedChange(delta, format) {
+  const sign = delta > 0 ? "+" : "";
+  if (format === "percent") {
+    return `${sign}${(delta * 100).toFixed(2)}%`;
+  }
+  if (format === "integer") {
+    return `${sign}${Math.round(delta)}`;
+  }
+  return `${sign}${delta.toFixed(2)}`;
 }
 
 function renderPublicScope() {
@@ -491,8 +727,16 @@ function toNumber(value) {
   if (typeof value === "number") {
     return value;
   }
-  const number = Number(String(value ?? "").replace(/,/g, ""));
+  const normalized = String(value ?? "").trim().replace(/,/g, "");
+  if (!normalized) {
+    return Number.NaN;
+  }
+  const number = Number(normalized);
   return Number.isFinite(number) ? number : Number.NaN;
+}
+
+function toMaybeNumber(value) {
+  return toNumber(value);
 }
 
 function formatInteger(value) {

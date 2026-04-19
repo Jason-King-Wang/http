@@ -23,6 +23,30 @@
       <div class="ambient ambient-c" aria-hidden="true"></div>
 
       <main class="dashboard">
+        <section class="top-strip">
+          <article class="card daily-summary-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Daily Compare</p>
+                <h2>逐日狀況</h2>
+              </div>
+              <span class="mini-note">最近 30 個交易日內有資料的摘要</span>
+            </div>
+            <p class="daily-summary-note" id="daily-summary-note"></p>
+            <div class="daily-metric-grid" id="daily-comparison"></div>
+          </article>
+
+          <article class="card daily-history-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Recent Days</p>
+                <h2>逐日比較</h2>
+              </div>
+            </div>
+            <div class="daily-history-list" id="daily-history-list"></div>
+          </article>
+        </section>
+
         <section class="hero card">
           <div class="hero-copy">
             <p class="eyebrow">Latest Sell Model Data</p>
