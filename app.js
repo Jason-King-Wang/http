@@ -14,9 +14,9 @@ const LIVE_REFRESH_INTERVAL_MS = 60 * 1000;
 const MAX_DAILY_HISTORY_ITEMS = 30;
 
 const elements = {
-  dailySummaryNote: document.querySelector("#daily-summary-note"),
-  dailyComparison: document.querySelector("#daily-comparison"),
-  dailyHistoryList: document.querySelector("#daily-history-list"),
+  dailySummaryNote: document.querySelector("#summary-daily-summary-note"),
+  dailyComparison: document.querySelector("#summary-daily-comparison"),
+  dailyHistoryList: document.querySelector("#summary-daily-history-list"),
   heroMeta: document.querySelector("#hero-meta"),
   sourceSummary: document.querySelector("#source-summary"),
   publicScope: document.querySelector("#public-scope"),
@@ -103,6 +103,10 @@ function renderHero() {
 }
 
 function renderDailyOverview() {
+  if (!elements.dailySummaryNote || !elements.dailyComparison || !elements.dailyHistoryList) {
+    return;
+  }
+
   const history = getDailyHistory();
   if (!history.length) {
     elements.dailySummaryNote.textContent = "最近 30 個交易日內還沒有可公開的逐日摘要。";

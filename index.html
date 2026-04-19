@@ -23,7 +23,7 @@
       <div class="ambient ambient-c" aria-hidden="true"></div>
 
       <main class="dashboard">
-        <section class="top-strip">
+        <section class="top-strip legacy-top-strip" aria-hidden="true">
           <article class="card daily-summary-card">
             <div class="section-heading compact">
               <div>
@@ -78,7 +78,30 @@
               <p class="eyebrow">Snapshot</p>
               <h2>整體摘要</h2>
             </div>
+            <span class="mini-note">?餈?30 ?漱??扳?鞈???閬?/span>
           </div>
+          <section class="top-strip top-strip-inline">
+            <article class="card daily-summary-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Daily Compare</p>
+                  <h3>??瘜?/h3>
+                </div>
+              </div>
+              <p class="daily-summary-note" id="summary-daily-summary-note"></p>
+              <div class="daily-metric-grid" id="summary-daily-comparison"></div>
+            </article>
+
+            <article class="card daily-history-card">
+              <div class="section-heading compact">
+                <div>
+                  <p class="eyebrow">Recent Days</p>
+                  <h3>?瘥?</h3>
+                </div>
+              </div>
+              <div class="daily-history-list" id="summary-daily-history-list"></div>
+            </article>
+          </section>
           <div class="metric-grid" id="summary-cards"></div>
         </section>
 
