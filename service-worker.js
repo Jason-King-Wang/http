@@ -1,4 +1,4 @@
-const CACHE_NAME = "sell-model-dashboard-public-v5";
+const CACHE_NAME = "sell-model-dashboard-public-v6";
 const ASSETS = [
   "./",
   "./index.html",
@@ -34,6 +34,17 @@ self.addEventListener("fetch", (event) => {
   }
 
   const requestUrl = new URL(event.request.url);
+  if (
+    event.request.mode === "navigate"
+    || requestUrl.pathname.endsWith("/")
+    || requestUrl.pathname.endsWith("/index.html")
+    || requestUrl.pathname.endsWith("/styles.css")
+    || requestUrl.pathname.endsWith("/app.js")
+  ) {
+    event.respondWith(networkFirst(event.request));
+    return;
+  }
+
   if (
     requestUrl.pathname.endsWith("/data/public-sell-model.js")
     || requestUrl.pathname.endsWith("/data/public-sell-model.json")

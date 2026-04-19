@@ -647,9 +647,23 @@ function registerServiceWorker() {
   }
 
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./service-worker.js").catch(() => {
-      // Ignore optional offline support errors.
+    let hasReloadedForServiceWorker = false;
+
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (hasReloadedForServiceWorker) {
+        return;
+      }
+      hasReloadedForServiceWorker = true;
+      window.location.reload();
     });
+
+    navigator.serviceWorker.register("./service-worker.js")
+      .then((registration) => {
+        void registration.update();
+      })
+      .catch(() => {
+        // Ignore optional offline support errors.
+      });
   });
 }
 
