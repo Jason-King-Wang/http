@@ -397,7 +397,10 @@ function renderSummaryCards() {
       <article class="metric-card">
         <span class="metric-label">${escapeHtml(metric.label)}</span>
         <strong class="metric-value">${escapeHtml(metric.value)}</strong>
-        <p class="metric-compare ${escapeHtml(metric.comparison.tone)}">${escapeHtml(metric.comparison.text)}</p>
+        <div class="metric-compare-block">
+          <span class="metric-compare-label">${escapeHtml(metric.comparison.label)}</span>
+          <strong class="metric-compare-value ${escapeHtml(metric.comparison.tone)}">${escapeHtml(metric.comparison.value)}</strong>
+        </div>
         <p class="metric-note">${escapeHtml(metric.note)}</p>
       </article>
     `)
@@ -410,7 +413,8 @@ function buildSummaryMetricComparison(summary, history, field, format, options =
 
   if (!hasNumericValue(latestValue)) {
     return {
-      text: "最新資料待驗證，暫時不比較。",
+      label: "最新資料",
+      value: "待驗證",
       tone: "metric-compare-flat"
     };
   }
@@ -419,19 +423,41 @@ function buildSummaryMetricComparison(summary, history, field, format, options =
   if (!comparisonBase) {
     if (immediatePrevious?.trade_date) {
       return {
-        text: `前一交易日 ${immediatePrevious.trade_date} 待驗證，暫時無法比較。`,
+        label: `前日 ${immediatePrevious.trade_date}`,
+        value: "待驗證",
         tone: "metric-compare-flat"
       };
     }
 
     return {
-      text: "目前沒有前一交易日可比較。",
+      label: "前日資料",
+      value: "暫無可比",
+      tone: "metric-compare-flat"
+    };
+  }
+
+  const latestNumber = toMaybeNumber(latestValue);
+  const previousNumber = toMaybeNumber(comparisonBase[field]);
+  if (!Number.isFinite(latestNumber) || !Number.isFinite(previousNumber)) {
+    return {
+      label: `比 ${comparisonBase.trade_date}`,
+      value: "無法比較",
+      tone: "metric-compare-flat"
+    };
+  }
+
+  const delta = latestNumber - previousNumber;
+  if (Math.abs(delta) < 0.0001) {
+    return {
+      label: `比 ${comparisonBase.trade_date}`,
+      value: "持平",
       tone: "metric-compare-flat"
     };
   }
 
   return {
-    text: buildDeltaNote(latestValue, comparisonBase[field], comparisonBase.trade_date, format, options),
+    label: `比 ${comparisonBase.trade_date}`,
+    value: formatSignedChange(delta, format),
     tone: toMetricCompareTone(buildDeltaTone(latestValue, comparisonBase[field], options))
   };
 }
