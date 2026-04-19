@@ -22,7 +22,7 @@
       <div class="ambient ambient-b" aria-hidden="true"></div>
       <div class="ambient ambient-c" aria-hidden="true"></div>
 
-      <main class="dashboard">
+      <main class="dashboard" id="page-top">
         <section class="top-strip legacy-top-strip" aria-hidden="true">
           <article class="card daily-summary-card">
             <div class="section-heading compact">
@@ -47,7 +47,18 @@
           </article>
         </section>
 
-        <section class="hero card">
+        <nav class="card jump-nav" aria-label="頁面快速跳轉">
+          <div class="jump-links">
+            <a class="jump-link" href="#overview">總覽</a>
+            <a class="jump-link" href="#summary">整體摘要</a>
+            <a class="jump-link" href="#daily-table">逐日比較表</a>
+            <a class="jump-link" href="#insights">今日重點</a>
+            <a class="jump-link" href="#checks">公開檢查</a>
+            <a class="jump-link" href="#stocks">個股明細</a>
+          </div>
+        </nav>
+
+        <section class="hero card" id="overview">
           <div class="hero-copy">
             <p class="eyebrow">Latest Sell Model Data</p>
             <h1>賣價模型最新資料</h1>
@@ -72,7 +83,7 @@
           </aside>
         </section>
 
-        <section class="section-block">
+        <section class="section-block" id="summary">
           <div class="section-heading">
             <div>
               <p class="eyebrow">Snapshot</p>
@@ -103,7 +114,7 @@
             </article>
           </section>
           <div class="metric-grid" id="summary-cards"></div>
-          <article class="card daily-compare-table-card">
+          <article class="card daily-compare-table-card" id="daily-table">
             <div class="section-heading compact">
               <div>
                 <p class="eyebrow">Daily Table</p>
@@ -132,7 +143,7 @@
           </article>
         </section>
 
-        <section class="insight-grid">
+        <section class="insight-grid" id="insights">
           <article class="card insight-card">
             <div class="section-heading compact">
               <div>
@@ -155,7 +166,7 @@
         </section>
 
         <section class="board-grid">
-          <article class="card checks-card">
+          <article class="card checks-card" id="checks">
             <div class="section-heading compact">
               <div>
                 <p class="eyebrow">Checklist</p>
@@ -166,7 +177,7 @@
             <div class="check-groups" id="check-groups"></div>
           </article>
 
-          <article class="card stock-card">
+          <article class="card stock-card" id="stocks">
             <div class="section-heading compact">
               <div>
                 <p class="eyebrow">Stock Review</p>

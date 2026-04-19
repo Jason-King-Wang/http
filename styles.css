@@ -34,6 +34,10 @@ html {
   scroll-behavior: smooth;
 }
 
+[id] {
+  scroll-margin-top: 5.75rem;
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -122,6 +126,49 @@ select {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
   backdrop-filter: blur(24px);
+}
+
+.jump-nav {
+  position: sticky;
+  top: 0.85rem;
+  z-index: 6;
+  margin-bottom: 1rem;
+  padding: 0.8rem 0.9rem;
+}
+
+.jump-links {
+  display: flex;
+  gap: 0.7rem;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.jump-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-decoration: none;
+  padding: 0.65rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(22, 33, 46, 0.08);
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 700;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.jump-link:hover,
+.jump-link:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(12, 143, 122, 0.45);
+  box-shadow: 0 12px 24px rgba(12, 143, 122, 0.12);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .top-strip {
