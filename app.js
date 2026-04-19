@@ -21,6 +21,7 @@ const elements = {
   sourceSummary: document.querySelector("#source-summary"),
   publicScope: document.querySelector("#public-scope"),
   summaryCards: document.querySelector("#summary-cards"),
+  dailyCompareTableBody: document.querySelector("#daily-compare-table-body"),
   storyList: document.querySelector("#story-list"),
   themeBoard: document.querySelector("#theme-board"),
   checkStats: document.querySelector("#check-stats"),
@@ -73,6 +74,7 @@ function renderDashboard() {
   renderHero();
   renderPublicScope();
   renderSummaryCards();
+  renderDailyComparisonTable();
   renderStories(rows);
   renderThemes(rows);
   renderChecks();
@@ -488,6 +490,68 @@ function renderStories(rows) {
       </article>
     `)
     .join("");
+}
+
+function renderDailyComparisonTable() {
+  if (!elements.dailyCompareTableBody) {
+    return;
+  }
+
+  const history = getDailyHistory();
+  if (!history.length) {
+    elements.dailyCompareTableBody.innerHTML = `
+      <tr>
+        <td colspan="9">
+          <div class="empty-state">目前沒有逐日比較資料。</div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  elements.dailyCompareTableBody.innerHTML = history
+    .map((entry, index) => `
+      <tr class="${index === 0 ? "is-latest" : ""}">
+        <td>
+          <div class="stacked">
+            <strong>${escapeHtml(entry.trade_date || "未提供")}</strong>
+            <span class="metric-sub">${escapeHtml(entry.source_label || "摘要")}</span>
+          </div>
+        </td>
+        <td><span class="status-badge ${escapeHtml(resolveStatusClass(entry.status))}">${escapeHtml(entry.status_label || "未提供")}</span></td>
+        <td>${escapeHtml(formatInteger(entry.verified_stock_count ?? entry.stock_count))}</td>
+        <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
+        <td>${renderHistoryMetricCell(entry, "top10_hit_rate", "percent")}</td>
+        <td>${renderHistoryMetricCell(entry, "pred_peak_mae", "decimal", { lowerIsBetter: true })}</td>
+        <td>${renderHistoryMetricCell(entry, "pred_peak_time_bucket_hit_rate", "percent")}</td>
+        <td>${renderHistoryMetricCell(entry, "fifty_point_score", "decimal")}</td>
+        <td>${renderHistoryMetricCell(entry, "rule_candidate_count", "integer", { fallbackValue: entry.candidate_count })}</td>
+      </tr>
+    `)
+    .join("");
+}
+
+function renderHistoryMetricCell(entry, field, format, options = {}) {
+  const fallbackValue = options.fallbackValue;
+  const value = entry?.[field] ?? fallbackValue;
+  if (!hasNumericValue(value)) {
+    if (entry?.status !== "verified") {
+      return `<span class="metric-sub">待驗證</span>`;
+    }
+    return `<span class="metric-sub">-</span>`;
+  }
+
+  return `<strong>${escapeHtml(formatMetricValue(value, format))}</strong>`;
+}
+
+function formatMetricValue(value, format) {
+  if (format === "percent") {
+    return formatPercent(value);
+  }
+  if (format === "integer") {
+    return formatInteger(value);
+  }
+  return formatDecimal(value, 2);
 }
 
 function renderThemes(rows) {

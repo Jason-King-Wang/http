@@ -477,6 +477,37 @@ h2 {
   line-height: 1.55;
 }
 
+.daily-compare-table-card {
+  margin-top: 1rem;
+  padding: 1.2rem;
+}
+
+.daily-compare-wrap {
+  margin-top: 0.35rem;
+}
+
+.daily-compare-wrap table {
+  min-width: 980px;
+}
+
+.daily-compare-wrap tbody tr {
+  cursor: default;
+  transform: none;
+}
+
+.daily-compare-wrap tbody tr:hover {
+  transform: none;
+}
+
+.daily-compare-wrap tbody tr.is-latest,
+.daily-compare-wrap tbody tr:hover {
+  background: rgba(12, 143, 122, 0.08);
+}
+
+.daily-compare-table td strong {
+  font-family: var(--font-display);
+}
+
 .insight-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;

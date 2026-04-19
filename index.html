@@ -78,7 +78,7 @@
               <p class="eyebrow">Snapshot</p>
               <h2>整體摘要</h2>
             </div>
-            <span class="mini-note">下方 6 張卡會對照最近可比較交易日</span>
+            <span class="mini-note">6 張卡看最新比較，表格看近 30 日變化</span>
           </div>
           <section class="top-strip top-strip-inline">
             <article class="card daily-summary-card">
@@ -103,6 +103,33 @@
             </article>
           </section>
           <div class="metric-grid" id="summary-cards"></div>
+          <article class="card daily-compare-table-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">Daily Table</p>
+                <h3>逐日比較表</h3>
+              </div>
+              <span class="mini-note">近 30 個交易日</span>
+            </div>
+            <div class="table-wrap daily-compare-wrap">
+              <table class="daily-compare-table">
+                <thead>
+                  <tr>
+                    <th>交易日</th>
+                    <th>狀態</th>
+                    <th>樣本數</th>
+                    <th>峰值命中率</th>
+                    <th>Top10 命中率</th>
+                    <th>價格 MAE</th>
+                    <th>時間命中率</th>
+                    <th>50 點分數</th>
+                    <th>規則候選數</th>
+                  </tr>
+                </thead>
+                <tbody id="daily-compare-table-body"></tbody>
+              </table>
+            </div>
+          </article>
         </section>
 
         <section class="insight-grid">
