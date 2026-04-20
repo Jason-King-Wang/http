@@ -12,6 +12,7 @@ const state = {
 const DATA_JSON_URL = "./data/public-sell-model.json";
 const LIVE_REFRESH_INTERVAL_MS = 60 * 1000;
 const MAX_DAILY_HISTORY_ITEMS = 30;
+const MAX_DAILY_HISTORY_CARDS = 3;
 
 const elements = {
   dailySummaryNote: document.querySelector("#summary-daily-summary-note"),
@@ -134,6 +135,7 @@ function renderDailyOverview() {
     .join("");
 
   elements.dailyHistoryList.innerHTML = history
+    .slice(0, MAX_DAILY_HISTORY_CARDS)
     .map((entry, index) => renderDailyHistoryCard(entry, index === 0))
     .join("");
 }
