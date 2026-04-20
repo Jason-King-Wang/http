@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026-04-20 SinoPac Auto Trading</title>
+  <style>
+    :root {
+      --bg: #f3f0e8;
+      --panel: #fffdf7;
+      --ink: #1e2b2f;
+      --muted: #65767a;
+      --line: #d9d0bf;
+      --accent: #244c5a;
+      --accent-2: #b85c38;
+      --ok: #2f6a44;
+      --warn: #8d5b2d;
+      --shadow: 0 12px 24px rgba(46, 49, 44, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(184,92,56,0.12), transparent 32%),
+        linear-gradient(180deg, #f7f4ec 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+      line-height: 1.5;
+    }
+    .shell {
+      width: min(1280px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    .hero {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(36,76,90,0.94), rgba(77,117,124,0.92));
+      color: #f8f5ee;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+    }
+    .hero p {
+      margin: 0;
+      color: rgba(248,245,238,0.86);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .card, .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card {
+      padding: 16px;
+      min-height: 108px;
+    }
+    .card .label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .card .value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      word-break: break-word;
+    }
+    .layout {
+      display: grid;
+      gap: 18px;
+    }
+    .panel {
+      padding: 18px 18px 14px;
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .panel h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ece5d6;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .chart-panel .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .chart {
+      width: 100%;
+      border-radius: 14px;
+      background: #fcfaf4;
+      border: 1px solid #ebe3d2;
+    }
+    .grid {
+      stroke: #e6ddcb;
+      stroke-width: 1;
+    }
+    .axis {
+      fill: var(--muted);
+      font-size: 10px;
+      text-anchor: middle;
+    }
+    .empty {
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+    .warning {
+      border-color: rgba(141, 91, 45, 0.35);
+      background: #fff8ef;
+    }
+    .warning ul,
+    .plain-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100vw - 20px, 100%);
+      }
+      .hero {
+        padding: 22px;
+      }
+      th, td {
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <h1>2026-04-20 SinoPac Auto Trading</h1>
+      <p>Execution dashboard / reporting site for the independent trading framework.</p>
+    </section>
+    <div class='layout'><section class='card-grid'><article class='card'><div class='label'>week_id</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>trade_date</div><div class='value'>2026-04-20</div></article><article class='card'><div class='label'>last_update</div><div class='value'>2026-04-20T23:23:42+08:00</div></article><article class='card'><div class='label'>mode</div><div class='value'>dry_run</div></article><article class='card'><div class='label'>provider</div><div class='value'>manual_csv</div></article><article class='card'><div class='label'>today_status</div><div class='value'>tracking</div></article><article class='card'><div class='label'>weekly_budget</div><div class='value'>0.00</div></article><article class='card'><div class='label'>hard_budget</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>used_cash</div><div class='value'>0.00</div></article><article class='card'><div class='label'>remaining_cash</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>current_equity</div><div class='value'>0.00</div></article><article class='card'><div class='label'>strategy_return</div><div class='value'>0.00%</div></article></section><section class='panel warning'><div class='panel-head'><h2>Warnings / Notes</h2></div><ul><li>No selection rows were loaded for this trade date.</li></ul></section><section class='panel'><div class='panel-head'><h2>Selection Source And Finalization</h2></div><p class='empty'>No selection rows available.</p></section><section class='panel'><div class='panel-head'><h2>Buy Execution</h2></div><p class='empty'>No buy execution rows yet.</p></section><section class='panel'><div class='panel-head'><h2>Positions</h2></div><p class='empty'>No positions yet.</p></section><section class='panel'><div class='panel-head'><h2>Sell Status</h2></div><p class='empty'>No sell rows yet.</p></section><section class='panel'><div class='panel-head'><h2>Basket Summary</h2></div><div class='table-wrap'><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>basket_market_value</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl_pct</td><td>0.00%</td></tr><tr><td>basket_conservative_profit</td><td>0.00</td></tr><tr><td>basket_threshold</td><td>3,000.00</td></tr><tr><td>basket_recommendation</td><td>hold</td></tr><tr><td>loser_loss_ratio</td><td>0.00%</td></tr></tbody></table></div></section><section class='panel chart-panel'><div class='panel-head'><h2>Strategy vs TAIEX vs 2330</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Strategy</span><span><i style='background:#b85c38'></i>TAIEX</span><span><i style='background:#5a7d4d'></i>2330</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,212.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#5a7d4d' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-20</text></svg></section><section class='panel chart-panel'><div class='panel-head'><h2>Cash vs Deployed Capital</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Cash</span><span><i style='background:#b85c38'></i>Deployed</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,28.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-20</text></svg></section><section class='panel'><div class='panel-head'><h2>Events / Log</h2></div><p class='empty'>No events recorded yet.</p></section><section class='panel'><div class='panel-head'><h2>Next Actions</h2></div><ul class='plain-list'><li>Run render_report every 5 minutes during market hours to refresh the current dashboard.</li><li>After market close, rerun render_report and settle_week for daily/weekly snapshots.</li></ul></section></div>
+  </main>
+</body>
+</html>

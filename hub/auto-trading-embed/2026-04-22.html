@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026-04-22 SinoPac Auto Trading</title>
+  <style>
+    :root {
+      --bg: #f3f0e8;
+      --panel: #fffdf7;
+      --ink: #1e2b2f;
+      --muted: #65767a;
+      --line: #d9d0bf;
+      --accent: #244c5a;
+      --accent-2: #b85c38;
+      --ok: #2f6a44;
+      --warn: #8d5b2d;
+      --shadow: 0 12px 24px rgba(46, 49, 44, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top right, rgba(184,92,56,0.12), transparent 32%),
+        linear-gradient(180deg, #f7f4ec 0%, var(--bg) 100%);
+      color: var(--ink);
+      font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+      line-height: 1.5;
+    }
+    .shell {
+      width: min(1280px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+    .hero {
+      padding: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(36,76,90,0.94), rgba(77,117,124,0.92));
+      color: #f8f5ee;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: 0.02em;
+    }
+    .hero p {
+      margin: 0;
+      color: rgba(248,245,238,0.86);
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .card, .panel {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    .card {
+      padding: 16px;
+      min-height: 108px;
+    }
+    .card .label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .card .value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      word-break: break-word;
+    }
+    .layout {
+      display: grid;
+      gap: 18px;
+    }
+    .panel {
+      padding: 18px 18px 14px;
+    }
+    .panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .panel h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    .sort-btn {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      padding: 0;
+      text-align: left;
+    }
+    .sort-btn::after {
+      content: " ↕";
+      color: #9aa7aa;
+      font-size: 12px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ece5d6;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .chart-panel .legend {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend i {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .chart {
+      width: 100%;
+      border-radius: 14px;
+      background: #fcfaf4;
+      border: 1px solid #ebe3d2;
+    }
+    .grid {
+      stroke: #e6ddcb;
+      stroke-width: 1;
+    }
+    .axis {
+      fill: var(--muted);
+      font-size: 10px;
+      text-anchor: middle;
+    }
+    .empty {
+      color: var(--muted);
+      margin: 4px 0 0;
+    }
+    .warning {
+      border-color: rgba(141, 91, 45, 0.35);
+      background: #fff8ef;
+    }
+    .warning ul,
+    .plain-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100vw - 20px, 100%);
+      }
+      .hero {
+        padding: 22px;
+      }
+      th, td {
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <h1>2026-04-22 SinoPac Auto Trading</h1>
+      <p>Execution dashboard / reporting site for the independent trading framework.</p>
+    </section>
+    <div class='layout'><section class='card-grid'><article class='card'><div class='label'>week_id</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>trade_date</div><div class='value'>2026-04-22</div></article><article class='card'><div class='label'>last_update</div><div class='value'>2026-04-20T23:33:53+08:00</div></article><article class='card'><div class='label'>mode</div><div class='value'>dry_run</div></article><article class='card'><div class='label'>provider</div><div class='value'>manual_csv</div></article><article class='card'><div class='label'>today_status</div><div class='value'>buying</div></article><article class='card'><div class='label'>weekly_budget</div><div class='value'>0.00</div></article><article class='card'><div class='label'>hard_budget</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>used_cash</div><div class='value'>0.00</div></article><article class='card'><div class='label'>remaining_cash</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>current_equity</div><div class='value'>0.00</div></article><article class='card'><div class='label'>strategy_return</div><div class='value'>0.00%</div></article></section><section class='panel'><div class='panel-head'><h2>Selection Source And Finalization</h2></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>Stock</button></th><th><button class='sort-btn' type='button' data-index='1'>Name</button></th><th><button class='sort-btn' type='button' data-index='2'>Source</button></th><th><button class='sort-btn' type='button' data-index='3'>Weight</button></th><th><button class='sort-btn' type='button' data-index='4'>Preselect</button></th><th><button class='sort-btn' type='button' data-index='5'>Final</button></th><th><button class='sort-btn' type='button' data-index='6'>Role</button></th><th><button class='sort-btn' type='button' data-index='7'>Theme</button></th><th><button class='sort-btn' type='button' data-index='8'>Model</button></th><th><button class='sort-btn' type='button' data-index='9'>Finalizer</button></th><th><button class='sort-btn' type='button' data-index='10'>Include</button></th><th><button class='sort-btn' type='button' data-index='11'>Exclude</button></th><th><button class='sort-btn' type='button' data-index='12'>Provider</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>A+B</td><td>2.0</td><td>true</td><td>true</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>manual_csv</td></tr><tr><td>2454</td><td>MediaTek</td><td>manual</td><td>1.0</td><td>true</td><td>true</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>manual_csv</td></tr><tr><td>2317</td><td>Hon Hai</td><td>B</td><td>1.0</td><td>true</td><td>false</td><td></td><td></td><td></td><td></td><td></td><td></td><td>manual_csv</td></tr></tbody></table></div></section><section class='panel'><div class='panel-head'><h2>Buy Execution</h2></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>Stock</button></th><th><button class='sort-btn' type='button' data-index='1'>Name</button></th><th><button class='sort-btn' type='button' data-index='2'>Target</button></th><th><button class='sort-btn' type='button' data-index='3'>Bought</button></th><th><button class='sort-btn' type='button' data-index='4'>Remaining</button></th><th><button class='sort-btn' type='button' data-index='5'>Order ID</button></th><th><button class='sort-btn' type='button' data-index='6'>Order Price</button></th><th><button class='sort-btn' type='button' data-index='7'>Order Qty</button></th><th><button class='sort-btn' type='button' data-index='8'>Order Age</button></th><th><button class='sort-btn' type='button' data-index='9'>Mode</button></th><th><button class='sort-btn' type='button' data-index='10'>Last</button></th><th><button class='sort-btn' type='button' data-index='11'>Bid1</button></th><th><button class='sort-btn' type='button' data-index='12'>Ask1</button></th><th><button class='sort-btn' type='button' data-index='13'>Tick Dist</button></th><th><button class='sort-btn' type='button' data-index='14'>Next Check</button></th><th><button class='sort-btn' type='button' data-index='15'>Status</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>2</td><td>0</td><td>2</td><td>DRY-0001</td><td>997.0</td><td>2</td><td></td><td>super_add</td><td>997.0</td><td></td><td></td><td>0</td><td>2026-04-20T23:33+08:00</td><td>dry_run</td></tr><tr><td>2454</td><td>MediaTek</td><td>1</td><td>0</td><td>1</td><td>DRY-0002</td><td>1225.0</td><td>1</td><td></td><td>super_add</td><td>1225.0</td><td></td><td></td><td>0</td><td>2026-04-20T23:33+08:00</td><td>dry_run</td></tr></tbody></table></div></section><section class='panel'><div class='panel-head'><h2>Positions</h2></div><p class='empty'>No positions yet.</p></section><section class='panel'><div class='panel-head'><h2>Sell Status</h2></div><p class='empty'>No sell rows yet.</p></section><section class='panel'><div class='panel-head'><h2>Basket Summary</h2></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>Metric</button></th><th><button class='sort-btn' type='button' data-index='1'>Value</button></th></tr></thead><tbody><tr><td>basket_market_value</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl_pct</td><td>0.00%</td></tr><tr><td>basket_conservative_profit</td><td>0.00</td></tr><tr><td>basket_threshold</td><td>3,000.00</td></tr><tr><td>basket_recommendation</td><td>hold</td></tr><tr><td>loser_loss_ratio</td><td>0.00%</td></tr></tbody></table></div></section><section class='panel chart-panel'><div class='panel-head'><h2>Strategy vs TAIEX vs 2330</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Strategy</span><span><i style='background:#b85c38'></i>TAIEX</span><span><i style='background:#5a7d4d'></i>2330</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,212.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#5a7d4d' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-22</text></svg></section><section class='panel chart-panel'><div class='panel-head'><h2>Cash vs Deployed Capital</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Cash</span><span><i style='background:#b85c38'></i>Deployed</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,28.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-22</text></svg></section><section class='panel'><div class='panel-head'><h2>Events / Log</h2></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>Time</button></th><th><button class='sort-btn' type='button' data-index='1'>Event</button></th><th><button class='sort-btn' type='button' data-index='2'>Stock</button></th><th><button class='sort-btn' type='button' data-index='3'>Action</button></th><th><button class='sort-btn' type='button' data-index='4'>Price</button></th><th><button class='sort-btn' type='button' data-index='5'>Qty</button></th><th><button class='sort-btn' type='button' data-index='6'>Result</button></th><th><button class='sort-btn' type='button' data-index='7'>Warning / Error</button></th></tr></thead><tbody><tr><td>2026-04-20T23:17:35.858990+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 0 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:17:35.871765+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 0 symbols.</td><td></td></tr><tr><td>2026-04-20T23:17:57.796686+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 3 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:18:02.687871+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 2 symbols.</td><td></td></tr><tr><td>2026-04-20T23:18:06.149810+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.266640+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 3 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:26:04.448169+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 2 symbols.</td><td></td></tr><tr><td>2026-04-20T23:26:04.634170+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.637890+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.649387+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:05.035681+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:26:21.624579+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:33:16.228156+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.231672+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.243910+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.288996+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:33:16.302320+08:00</td><td>refresh_dashboard</td><td></td><td>refresh_dashboard</td><td></td><td></td><td>Dashboard refresh completed with 3 steps.</td><td></td></tr></tbody></table></div></section><section class='panel'><div class='panel-head'><h2>Next Actions</h2></div><ul class='plain-list'><li>Run render_report every 5 minutes during market hours to refresh the current dashboard.</li><li>After market close, rerun render_report and settle_week for daily/weekly snapshots.</li></ul></section></div>
+  </main>
+  <script>
+    (() => {
+      const tables = document.querySelectorAll('.sortable-table');
+      tables.forEach((table) => {
+        const headers = table.querySelectorAll('.sort-btn');
+        headers.forEach((button) => {
+          button.addEventListener('click', () => {
+            const tbody = table.querySelector('tbody');
+            if (!tbody) return;
+            const columnIndex = Number(button.dataset.index || 0);
+            const currentDirection = button.dataset.direction === 'asc' ? 'asc' : 'desc';
+            const nextDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+            headers.forEach((header) => {
+              if (header !== button) {
+                header.dataset.direction = '';
+              }
+            });
+            button.dataset.direction = nextDirection;
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.sort((rowA, rowB) => {
+              const a = rowA.children[columnIndex]?.textContent?.trim() || '';
+              const b = rowB.children[columnIndex]?.textContent?.trim() || '';
+              const aNum = Number(a.replace(/,/g, '').replace(/%/g, ''));
+              const bNum = Number(b.replace(/,/g, '').replace(/%/g, ''));
+              const bothNumeric = !Number.isNaN(aNum) && !Number.isNaN(bNum) && a !== '' && b !== '';
+              let result = 0;
+              if (bothNumeric) {
+                result = aNum - bNum;
+              } else {
+                result = a.localeCompare(b, 'zh-Hant');
+              }
+              return nextDirection === 'asc' ? result : -result;
+            });
+            rows.forEach((row) => tbody.appendChild(row));
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

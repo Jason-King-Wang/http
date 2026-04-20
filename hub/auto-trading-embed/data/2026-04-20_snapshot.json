@@ -1,0 +1,88 @@
+{
+  "trade_date": "2026-04-20",
+  "week_id": "2026-04-20_2026-04-24",
+  "run_id": "auto-2026-04-20",
+  "mode": "dry_run",
+  "provider_name": "manual_csv",
+  "overview": {
+    "last_update_time": "2026-04-20T23:23:42+08:00",
+    "weekly_budget": 0.0,
+    "hard_budget": 50000.0,
+    "used_cash": 0,
+    "remaining_cash": 50000.0,
+    "current_equity": 0,
+    "strategy_pnl_after_fee_tax": 0,
+    "strategy_return": 0.0,
+    "today_status": "tracking"
+  },
+  "selection_rows": [],
+  "buy_execution_rows": [],
+  "positions_rows": [],
+  "sell_rows": [],
+  "basket_summary": {
+    "basket_market_value": 0,
+    "basket_unrealized_pnl": 0,
+    "basket_unrealized_pnl_pct": 0.0,
+    "basket_conservative_profit": 0,
+    "basket_threshold": 3000.0,
+    "basket_recommendation": "hold",
+    "loser_loss_ratio": 0.0
+  },
+  "comparison_chart": {
+    "x_labels": [
+      "2026-04-20"
+    ],
+    "series": [
+      {
+        "label": "Strategy",
+        "color": "#244c5a",
+        "values": [
+          0.0
+        ]
+      },
+      {
+        "label": "TAIEX",
+        "color": "#b85c38",
+        "values": [
+          0.0
+        ]
+      },
+      {
+        "label": "2330",
+        "color": "#5a7d4d",
+        "values": [
+          0.0
+        ]
+      }
+    ]
+  },
+  "capital_chart": {
+    "x_labels": [
+      "2026-04-20"
+    ],
+    "series": [
+      {
+        "label": "Cash",
+        "color": "#244c5a",
+        "values": [
+          50000.0
+        ]
+      },
+      {
+        "label": "Deployed",
+        "color": "#b85c38",
+        "values": [
+          0.0
+        ]
+      }
+    ]
+  },
+  "events": [],
+  "warnings": [
+    "No selection rows were loaded for this trade date."
+  ],
+  "next_actions": [
+    "Run render_report every 5 minutes during market hours to refresh the current dashboard.",
+    "After market close, rerun render_report and settle_week for daily/weekly snapshots."
+  ]
+}

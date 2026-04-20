@@ -1,0 +1,178 @@
+{
+  "week_id": "2026-04-20_2026-04-24",
+  "start_date": "2026-04-20",
+  "end_date": "2026-04-24",
+  "mode": "dry_run",
+  "provider_name": "manual_csv",
+  "last_update_time": "2026-04-20T23:23:43+08:00",
+  "weekly_totals": {
+    "weekly_budget": 0.0,
+    "hard_budget": 50000.0,
+    "total_buy_cost": 0.0,
+    "final_market_value": 0.0,
+    "total_profit": 0.0,
+    "strategy_return": 0.0
+  },
+  "benchmark_summary": {
+    "twii_return": 0.0,
+    "tsmc_return": 0.0,
+    "strategy_excess_vs_twii": 0.0,
+    "strategy_excess_vs_tsmc": 0.0
+  },
+  "daily_rows": [
+    {
+      "date": "2026-04-20",
+      "twii": "0.00%",
+      "tsmc": "0.00%",
+      "preselect": 0,
+      "a_preselect": 0,
+      "b_preselect": 0,
+      "final_list": 0,
+      "a_final": 0,
+      "b_final": 0,
+      "equal_weight_version": 0,
+      "weighted_version": 0,
+      "monday_plan": 0,
+      "secondary_add": "N/A",
+      "actual_combined": 0
+    },
+    {
+      "date": "2026-04-21",
+      "twii": "0.00%",
+      "tsmc": "0.00%",
+      "preselect": 0,
+      "a_preselect": 0,
+      "b_preselect": 0,
+      "final_list": 0,
+      "a_final": 0,
+      "b_final": 0,
+      "equal_weight_version": 0,
+      "weighted_version": 0,
+      "monday_plan": "N/A",
+      "secondary_add": "N/A",
+      "actual_combined": 0
+    },
+    {
+      "date": "2026-04-22",
+      "twii": "0.00%",
+      "tsmc": "0.00%",
+      "preselect": 3,
+      "a_preselect": 0,
+      "b_preselect": 1,
+      "final_list": 2,
+      "a_final": 0,
+      "b_final": 0,
+      "equal_weight_version": 2,
+      "weighted_version": 3,
+      "monday_plan": "N/A",
+      "secondary_add": "N/A",
+      "actual_combined": 0
+    },
+    {
+      "date": "2026-04-23",
+      "twii": "0.00%",
+      "tsmc": "0.00%",
+      "preselect": 0,
+      "a_preselect": 0,
+      "b_preselect": 0,
+      "final_list": 0,
+      "a_final": 0,
+      "b_final": 0,
+      "equal_weight_version": 0,
+      "weighted_version": 0,
+      "monday_plan": "N/A",
+      "secondary_add": "N/A",
+      "actual_combined": 0
+    },
+    {
+      "date": "2026-04-24",
+      "twii": "0.00%",
+      "tsmc": "0.00%",
+      "preselect": 0,
+      "a_preselect": 0,
+      "b_preselect": 0,
+      "final_list": 0,
+      "a_final": 0,
+      "b_final": 0,
+      "equal_weight_version": 0,
+      "weighted_version": 0,
+      "monday_plan": "N/A",
+      "secondary_add": "N/A",
+      "actual_combined": 0
+    }
+  ],
+  "excluded_positions": [],
+  "trade_results": [
+    {
+      "label": "weekly_budget",
+      "value": 0.0
+    },
+    {
+      "label": "hard_budget",
+      "value": 50000.0
+    },
+    {
+      "label": "used_cash",
+      "value": 0.0
+    },
+    {
+      "label": "current_equity",
+      "value": 0.0
+    },
+    {
+      "label": "strategy_pnl_after_fee_tax",
+      "value": 0.0
+    }
+  ],
+  "sell_model_vs_actual": [],
+  "expired_unfilled": [],
+  "tuning_suggestions": [
+    "Review overrun_tolerance currently set to 50,000 TWD.",
+    "Validate conservative sell thresholds against real fills once live sell loop is wired.",
+    "Keep 2330 and TAIEX as fixed benchmark lines on all dashboard views."
+  ],
+  "comparison_chart": {
+    "x_labels": [
+      "2026-04-20",
+      "2026-04-21",
+      "2026-04-22",
+      "2026-04-23",
+      "2026-04-24"
+    ],
+    "series": [
+      {
+        "label": "Strategy",
+        "color": "#244c5a",
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "label": "TAIEX",
+        "color": "#b85c38",
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      {
+        "label": "2330",
+        "color": "#5a7d4d",
+        "values": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    ]
+  }
+}
