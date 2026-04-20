@@ -5,7 +5,7 @@
   "mode": "dry_run",
   "provider_name": "manual_csv",
   "overview": {
-    "last_update_time": "2026-04-20T23:33:53+08:00",
+    "last_update_time": "2026-04-21T00:12:42+08:00",
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
     "used_cash": 0,
@@ -84,7 +84,7 @@
       "bid1": "",
       "ask1": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-20T23:33+08:00",
+      "next_check_time": "2026-04-21T00:12+08:00",
       "order_status_summary": "dry_run"
     },
     {
@@ -102,7 +102,7 @@
       "bid1": "",
       "ask1": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-20T23:33+08:00",
+      "next_check_time": "2026-04-21T00:12+08:00",
       "order_status_summary": "dry_run"
     }
   ],

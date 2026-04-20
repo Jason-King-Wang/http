@@ -29,12 +29,13 @@ Linked publish path:
 - `sell-model-dashboard-sync/publish_public_data.ps1` now also refreshes this unified portal
 - that means the existing public sell-model publish schedule can keep the portal in sync
 - on this machine, the scheduled task name is `SellModelPublicPublish`
+- the public repo deploys the unified portal under the `hub/` subpath
 
 Current deployment reality:
 
-- The site structure is ready for external hosting.
-- This machine does not currently have a git repo configured for this site.
-- Until a repo / Pages target exists, this remains an external-ready local build rather than a live public URL.
+- The local site structure is still kept in `market-dashboard-site`.
+- The live public route is now published through the existing `sell-model-dashboard-public` repo under `hub/`.
+- Public URL: `https://jason-king-wang.github.io/http/hub/`
 
 Local-open compatibility:
 
