@@ -1,7 +1,8 @@
-async function fetchPortalManifest() {
+﻿async function fetchPortalManifest() {
   if (window.__PORTAL_MANIFEST__) {
     return window.__PORTAL_MANIFEST__;
   }
+
   try {
     const response = await fetch("./data/portal-manifest.json", { cache: "no-store" });
     if (!response.ok) {
@@ -13,10 +14,14 @@ async function fetchPortalManifest() {
   }
 }
 
+function fallbackText(value) {
+  return value === undefined || value === null || value === "" ? "--" : value;
+}
+
 function formatPct(value) {
   const number = Number(value);
   if (Number.isNaN(number)) {
-    return "無資料";
+    return "--";
   }
   return `${(number * 100).toFixed(2)}%`;
 }
@@ -24,52 +29,55 @@ function formatPct(value) {
 function formatMoney(value) {
   const number = Number(value);
   if (Number.isNaN(number)) {
-    return "無資料";
+    return "--";
   }
   return number.toLocaleString("zh-TW", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+}
+
+function renderMetricCards(target, rows) {
+  if (!target) {
+    return;
+  }
+
+  target.innerHTML = rows
+    .map(([label, value]) => `<article class="metric"><span>${label}</span><strong>${fallbackText(value)}</strong></article>`)
+    .join("");
 }
 
 function renderPortalHome(manifest) {
   const meta = document.querySelector("#portal-meta");
   const sell = manifest?.sell_model || {};
   const auto = manifest?.auto_trading || {};
-  const status = [
-    `賣價模型 ${sell.target_trade_date || "無資料"}`,
-    `自動交易 ${auto.trade_date || "無資料"}`,
-    `更新時間 ${manifest?.generated_at || "無資料"}`
-  ];
+
   if (meta) {
-    meta.innerHTML = status.map((item) => `<span class="pill">${item}</span>`).join("");
-  }
-
-  const sellMetrics = document.querySelector("#sell-model-metrics");
-  if (sellMetrics) {
-    sellMetrics.innerHTML = [
-      ["目標交易日", sell.target_trade_date || "無資料"],
-      ["驗證股票數", sell.verified_stock_count ?? "無資料"],
-      ["高點命中率", formatPct(sell.peak_hit_rate)],
-      ["資料範圍", sell.source_scope || "public"]
+    meta.innerHTML = [
+      `賣價模型日期 ${fallbackText(sell.target_trade_date)}`,
+      `自動交易日期 ${fallbackText(auto.trade_date)}`,
+      `最後同步 ${fallbackText(manifest?.generated_at)}`,
     ]
-      .map(([label, value]) => `<article class="metric"><span>${label}</span><strong>${value}</strong></article>`)
+      .map((item) => `<span class="pill">${item}</span>`)
       .join("");
   }
 
-  const autoMetrics = document.querySelector("#auto-trading-metrics");
-  if (autoMetrics) {
-    autoMetrics.innerHTML = [
-      ["交易日", auto.trade_date || "無資料"],
-      ["今日狀態", auto.today_status || "無資料"],
-      ["策略報酬", formatPct(auto.strategy_return)],
-      ["目前權益", formatMoney(auto.current_equity)]
-    ]
-      .map(([label, value]) => `<article class="metric"><span>${label}</span><strong>${value}</strong></article>`)
-      .join("");
-  }
+  renderMetricCards(document.querySelector("#sell-model-metrics"), [
+    ["目標交易日", sell.target_trade_date],
+    ["驗證股票數", sell.verified_stock_count],
+    ["Peak 命中率", formatPct(sell.peak_hit_rate)],
+    ["資料範圍", sell.source_scope || "public"],
+  ]);
+
+  renderMetricCards(document.querySelector("#auto-trading-metrics"), [
+    ["交易日", auto.trade_date],
+    ["今日狀態", auto.today_status],
+    ["策略報酬率", formatPct(auto.strategy_return)],
+    ["目前權益", formatMoney(auto.current_equity)],
+  ]);
 
   const deployState = document.querySelector("#deploy-state");
   if (deployState) {
     deployState.textContent =
-      "這個站台已經 external-ready，接上 git repo 與託管目標後才會變成公開網址。";
+      manifest?.deployment_note ||
+      "公開入口站已上線，並掛在 Sell Model 的同一條發布鏈下。";
   }
 }
 
@@ -108,10 +116,10 @@ function wireAutoTradingFrame(manifest) {
   });
 
   meta.innerHTML = [
-    `交易日 ${data.trade_date || "無資料"}`,
-    `模式 ${data.mode || "無資料"}`,
-    `狀態 ${data.today_status || "無資料"}`,
-    `來源 ${data.provider_name || "無資料"}`
+    `交易日 ${fallbackText(data.trade_date)}`,
+    `模式 ${fallbackText(data.mode)}`,
+    `狀態 ${fallbackText(data.today_status)}`,
+    `資料來源 ${fallbackText(data.provider_name)}`,
   ]
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
@@ -119,9 +127,11 @@ function wireAutoTradingFrame(manifest) {
 
 async function bootstrapPortal() {
   const manifest = await fetchPortalManifest();
+
   if (document.body.dataset.page === "portal-home") {
     renderPortalHome(manifest);
   }
+
   if (document.body.dataset.page === "auto-trading-wrapper") {
     wireAutoTradingFrame(manifest);
   }

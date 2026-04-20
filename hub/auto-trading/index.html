@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="永豐自動交易儀表板的統一包裝頁。" />
+    <meta name="description" content="永豐自動交易頁面，整合進交易儀表板總入口。" />
     <title>自動交易 | 交易儀表板總入口</title>
     <link rel="stylesheet" href="../assets/portal.css" />
   </head>
@@ -17,9 +17,9 @@
         <header class="topbar">
           <div class="brand">
             <strong>交易儀表板總入口</strong>
-            <span>永豐自動交易包裝頁</span>
+            <span>永豐自動交易分頁</span>
           </div>
-          <nav class="nav-links" aria-label="網站導覽">
+          <nav class="nav-links" aria-label="主站導覽">
             <a href="../index.html">首頁</a>
             <a href="../sell-model/index.html">賣價模型</a>
             <a class="active" href="./index.html">自動交易</a>
@@ -28,24 +28,20 @@
 
         <section class="hero">
           <div>
-            <p class="eyebrow">執行儀表板</p>
-            <h1>自動交易嵌入視圖</h1>
+            <p class="eyebrow">自動交易</p>
+            <h1>永豐自動交易整合頁</h1>
             <p>
-              這個包裝頁讓你在同一個地方切換 current、最新 daily 與最新 weekly。
+              這裡集中顯示 current、latest daily 與 latest weekly，方便在同一個入口切換查看。
             </p>
             <div class="pill-row" id="auto-page-meta"></div>
           </div>
           <aside class="hero-panel">
-            <p class="eyebrow">快速操作</p>
-            <h2>切換嵌入頁面</h2>
+            <p class="eyebrow">快速切換</p>
+            <h2>切換不同頁面</h2>
             <div class="frame-actions">
-              <a class="action-link" id="link-current" href="../auto-trading-embed/current.html">目前頁</a>
-              <a class="action-link" id="link-daily" href="../auto-trading-embed/current.html"
-                >最新日報</a
-              >
-              <a class="action-link" id="link-weekly" href="../auto-trading-embed/current.html"
-                >最新週報</a
-              >
+              <a class="action-link" id="link-current" href="../auto-trading-embed/current.html">目前看板</a>
+              <a class="action-link" id="link-daily" href="../auto-trading-embed/current.html">最新日報</a>
+              <a class="action-link" id="link-weekly" href="../auto-trading-embed/current.html">最新週報</a>
             </div>
           </aside>
         </section>

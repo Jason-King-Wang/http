@@ -1,11 +1,11 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="整合 Sell Model 與 SinoPac Auto Trading 的統一入口網站。"
+      content="Sell Model 與永豐自動交易的統一入口網站，可在同一個地方切換兩套系統。"
     />
     <title>交易儀表板總入口</title>
     <link rel="stylesheet" href="./assets/portal.css" />
@@ -22,7 +22,7 @@
             <strong>交易儀表板總入口</strong>
             <span>Sell Model 與永豐自動交易的統一入口</span>
           </div>
-          <nav class="nav-links" aria-label="網站導覽">
+          <nav class="nav-links" aria-label="主站導覽">
             <a class="active" href="./index.html">首頁</a>
             <a href="./sell-model/index.html">賣價模型</a>
             <a href="./auto-trading/index.html">自動交易</a>
@@ -31,11 +31,11 @@
 
         <section class="hero">
           <div>
-            <p class="eyebrow">統一外部網站骨架</p>
+            <p class="eyebrow">統一入口</p>
             <h1>一個入口，切換兩套系統。</h1>
             <p>
-              這個入口把 Sell Model 與 SinoPac Auto Trading 整合在一起。
-              你可以從同一個地方切換兩邊，首頁也會同步顯示兩邊最新的摘要資訊。
+              這個入口把 Sell Model 與 SinoPac Auto Trading 整合在一起。你可以從同一個地方切換兩邊，
+              首頁也會同步顯示兩套系統的最新摘要資訊。
             </p>
             <div class="pill-row" id="portal-meta"></div>
           </div>
@@ -43,7 +43,7 @@
           <aside class="hero-panel">
             <p class="eyebrow">部署現況</p>
             <h2>目前狀態</h2>
-            <p class="meta-line" id="deploy-state">載入部署說明中...</p>
+            <p class="meta-line" id="deploy-state">讀取部署資訊中...</p>
             <div class="frame-actions">
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
@@ -86,21 +86,19 @@
             <p class="eyebrow">整合方式</p>
             <h2>這個入口站怎麼運作</h2>
             <ul class="list">
-              <li>
-                首頁會讀取共用 manifest，顯示兩套系統的最新摘要。
-              </li>
-              <li>
-                賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。
-              </li>
-              <li>
-                同步腳本會重建嵌入內容，之後就能再往外部靜態網站部署。
-              </li>
+              <li>首頁會讀取共用 manifest，顯示兩套系統的最新摘要。</li>
+              <li>賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。</li>
+              <li>同步腳本會重建嵌入內容，之後由同一條公開發布鏈把入口站一起推上去。</li>
             </ul>
           </section>
         </section>
 
         <p class="footer-note">
-          這是一個 external-ready 的站台骨架。等接上 git repo 與 GitHub Pages 之類的託管目標後，才會真正變成公開網址。
+          目前公開網址為
+          <a href="https://jason-king-wang.github.io/http/hub/" target="_blank" rel="noreferrer">
+            https://jason-king-wang.github.io/http/hub/
+          </a>
+          ，本機來源仍維持在 <code>market-dashboard-site</code>。
         </p>
       </main>
     </div>

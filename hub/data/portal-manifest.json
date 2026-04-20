@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-21T00:13:13+08:00",
-  "deployment_note": "External-ready unified site. Not truly public until connected to a git repo and hosting target.",
+  "generated_at": "2026-04-21T00:16:52+08:00",
+  "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-04-20",
     "verified_stock_count": 30,
