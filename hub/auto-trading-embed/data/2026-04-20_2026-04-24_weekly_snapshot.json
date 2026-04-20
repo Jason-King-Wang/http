@@ -4,7 +4,7 @@
   "end_date": "2026-04-24",
   "mode": "dry_run",
   "provider_name": "manual_csv",
-  "last_update_time": "2026-04-21T06:22:12+08:00",
+  "last_update_time": "2026-04-21T06:23:21+08:00",
   "weekly_totals": {
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
@@ -122,6 +122,26 @@
     {
       "label": "strategy_pnl_after_fee_tax",
       "value": 0.0
+    },
+    {
+      "label": "buy_fill_qty",
+      "value": 0
+    },
+    {
+      "label": "sell_fill_qty",
+      "value": 0
+    },
+    {
+      "label": "realized_pnl",
+      "value": 0
+    },
+    {
+      "label": "unrealized_pnl",
+      "value": 0.0
+    },
+    {
+      "label": "excluded_positions_count",
+      "value": 0
     }
   ],
   "sell_model_vs_actual": [],
