@@ -139,6 +139,11 @@ function renderDailyOverview() {
 }
 
 function buildDailySummaryNote(latest, previous, comparisonBase, historyCount) {
+  const accuracySummary = buildAccuracySummarySentence(latest);
+  if (accuracySummary) {
+    return accuracySummary;
+  }
+
   if (!comparisonBase) {
     return `目前已整理 ${historyCount} 個交易日摘要，最新日期是 ${latest.trade_date}。`;
   }
@@ -186,6 +191,8 @@ function buildDailyComparisonMetrics(latest, comparisonBase) {
     });
   }
 
+  metrics.push(buildAccuracyOverviewMetric(latest));
+
   if (hasVerifiedMetrics(latest)) {
     metrics.push({
       label: "峰值命中率",
@@ -209,6 +216,43 @@ function buildDailyComparisonMetrics(latest, comparisonBase) {
   }
 
   return metrics;
+}
+
+function buildAccuracySummarySentence(entry) {
+  if (!entry) {
+    return "";
+  }
+
+  const tradeDate = entry.trade_date || "未提供";
+  const referenceDate = entry.accuracy_reference_date;
+  const label = getAccuracyLabel(entry);
+  const note = entry.accuracy_note || buildAccuracyFallbackNote(entry);
+
+  if (entry.accuracy_status === "baseline") {
+    return `最新交易日 ${tradeDate} 是目前第一筆已驗證資料，還沒有更早的已驗證交易日可比較。`;
+  }
+
+  if (entry.accuracy_status === "pending") {
+    if (referenceDate) {
+      return `最新交易日 ${tradeDate} 還在等驗證資料，之後會再和 ${referenceDate} 比較有沒有更準。`;
+    }
+    return `最新交易日 ${tradeDate} 還在等驗證資料，之後再判斷有沒有更準。`;
+  }
+
+  if (referenceDate) {
+    return `最新交易日 ${tradeDate} 和 ${referenceDate} 相比，有沒有更準：${label}。${note}`;
+  }
+
+  return `最新交易日 ${tradeDate} 的準度比較：${label}。${note}`;
+}
+
+function buildAccuracyOverviewMetric(entry) {
+  return {
+    label: "有沒有更準",
+    value: getAccuracyLabel(entry),
+    note: entry?.accuracy_note || buildAccuracyFallbackNote(entry),
+    tone: toAccuracyTrendTone(entry?.accuracy_status)
+  };
 }
 
 function renderDailyHistoryCard(entry, isLatest) {
@@ -238,6 +282,10 @@ function renderDailyHistoryCard(entry, isLatest) {
         ${metricChips
           .map((text) => `<span class="pill">${escapeHtml(text)}</span>`)
           .join("")}
+      </div>
+      <div class="daily-accuracy-row">
+        <span class="status-badge ${escapeHtml(buildAccuracyBadgeClass(entry.accuracy_status))}">有沒有更準：${escapeHtml(getAccuracyLabel(entry))}</span>
+        <span class="mini-note">${escapeHtml(entry.accuracy_note || buildAccuracyFallbackNote(entry))}</span>
       </div>
       <p class="daily-history-note">
         主題焦點 ${escapeHtml(entry.top_theme || "未分類")} (${escapeHtml(formatInteger(entry.top_theme_count))} 檔)
@@ -277,6 +325,58 @@ function hasNumericValue(value) {
 
 function resolveStatusClass(status) {
   return status === "verified" ? "status-pass" : "status-neutral";
+}
+
+function getAccuracyLabel(entry) {
+  return entry?.accuracy_label || (entry?.status === "verified" ? "未提供" : "待驗證");
+}
+
+function buildAccuracyFallbackNote(entry) {
+  if (entry?.accuracy_status === "baseline") {
+    return "目前沒有更早的已驗證交易日可比較。";
+  }
+  if (entry?.status !== "verified") {
+    return "這天還沒有實際高點回顧，之後再判斷有沒有更準。";
+  }
+  if (entry?.accuracy_reference_date) {
+    return `比 ${entry.accuracy_reference_date} 的準度資料尚未整理。`;
+  }
+  return "目前沒有可比較的資料。";
+}
+
+function buildAccuracyBadgeClass(status) {
+  if (status === "better") {
+    return "status-pass";
+  }
+  if (status === "worse") {
+    return "status-fail";
+  }
+  return "status-neutral";
+}
+
+function toAccuracyTrendTone(status) {
+  if (status === "better") {
+    return "trend-positive";
+  }
+  if (status === "worse") {
+    return "trend-negative";
+  }
+  return "trend-flat";
+}
+
+function buildAccuracyReferenceText(entry) {
+  if (entry?.accuracy_status === "baseline") {
+    return "目前最早的已驗證日";
+  }
+  if (entry?.accuracy_status === "pending") {
+    return entry?.accuracy_reference_date
+      ? `等回顧後再比 ${entry.accuracy_reference_date}`
+      : "等回顧資料補齊";
+  }
+  if (entry?.accuracy_reference_date) {
+    return `比 ${entry.accuracy_reference_date}`;
+  }
+  return "暫無可比資料";
 }
 
 function buildDeltaNote(latestValue, previousValue, previousDate, format, options = {}) {
@@ -478,6 +578,7 @@ function toMetricCompareTone(trend) {
 
 function renderStories(rows) {
   const summary = state.data.summary || {};
+  const history = getDailyHistory();
   const strongestRow = [...rows]
     .filter((row) => toNumber(row.peak_hit) === 1)
     .sort((left, right) => toNumber(left.model_rank) - toNumber(right.model_rank))[0];
@@ -493,6 +594,10 @@ function renderStories(rows) {
     {
       title: "排名前段表現",
       text: `Top10 命中率 ${formatPercent(summary.top10_hit_rate)}，Top30 命中率 ${formatPercent(summary.top30_hit_rate)}。`
+    },
+    {
+      title: "近幾天有沒有更準",
+      text: buildRecentAccuracyStory(history)
     },
     {
       title: strongestRow ? `最亮眼個股：${strongestRow.stock_name}` : "最亮眼個股",
@@ -518,6 +623,44 @@ function renderStories(rows) {
     .join("");
 }
 
+function buildRecentAccuracyStory(history) {
+  const comparableEntries = history
+    .filter((entry) => ["better", "worse", "mixed", "same"].includes(entry?.accuracy_status))
+    .slice(0, 5);
+
+  if (!comparableEntries.length) {
+    return history[0]
+      ? buildAccuracySummarySentence(history[0])
+      : "最近幾天還沒有足夠的資料可比較。";
+  }
+
+  const counts = comparableEntries.reduce((result, entry) => {
+    result[entry.accuracy_status] = (result[entry.accuracy_status] || 0) + 1;
+    return result;
+  }, { better: 0, worse: 0, mixed: 0, same: 0 });
+
+  const parts = [];
+  if (counts.better) {
+    parts.push(`更準 ${counts.better} 天`);
+  }
+  if (counts.worse) {
+    parts.push(`沒更準 ${counts.worse} 天`);
+  }
+  if (counts.mixed) {
+    parts.push(`有些更準 ${counts.mixed} 天`);
+  }
+  if (counts.same) {
+    parts.push(`差不多 ${counts.same} 天`);
+  }
+
+  const latestComparable = comparableEntries[0];
+  const latestTail = latestComparable?.accuracy_reference_date
+    ? `最新一天 ${latestComparable.trade_date} 比 ${latestComparable.accuracy_reference_date} 有沒有更準：${getAccuracyLabel(latestComparable)}。`
+    : `最新一天 ${latestComparable.trade_date} 有沒有更準：${getAccuracyLabel(latestComparable)}。`;
+
+  return `最近 ${comparableEntries.length} 個可比較交易日裡，${parts.join("、")}。${latestTail}`;
+}
+
 function renderDailyComparisonTable() {
   if (!elements.dailyCompareTableBody) {
     return;
@@ -527,7 +670,7 @@ function renderDailyComparisonTable() {
   if (!history.length) {
     elements.dailyCompareTableBody.innerHTML = `
       <tr>
-        <td colspan="9">
+        <td colspan="10">
           <div class="empty-state">目前沒有逐日比較資料。</div>
         </td>
       </tr>
@@ -545,6 +688,7 @@ function renderDailyComparisonTable() {
           </div>
         </td>
         <td><span class="status-badge ${escapeHtml(resolveStatusClass(entry.status))}">${escapeHtml(entry.status_label || "未提供")}</span></td>
+        <td>${renderAccuracyCell(entry)}</td>
         <td>${escapeHtml(formatInteger(entry.verified_stock_count ?? entry.stock_count))}</td>
         <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "top10_hit_rate", "percent")}</td>
@@ -555,6 +699,15 @@ function renderDailyComparisonTable() {
       </tr>
     `)
     .join("");
+}
+
+function renderAccuracyCell(entry) {
+  return `
+    <div class="stacked accuracy-cell">
+      <span class="status-badge ${escapeHtml(buildAccuracyBadgeClass(entry?.accuracy_status))}">${escapeHtml(getAccuracyLabel(entry))}</span>
+      <span class="metric-sub">${escapeHtml(buildAccuracyReferenceText(entry))}</span>
+    </div>
+  `;
 }
 
 function renderHistoryMetricCell(entry, field, format, options = {}) {

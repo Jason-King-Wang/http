@@ -290,6 +290,20 @@ select {
   line-height: 1.6;
 }
 
+.daily-accuracy-row {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.daily-accuracy-row .status-badge,
+.accuracy-cell .status-badge {
+  width: fit-content;
+}
+
+.daily-accuracy-row .mini-note {
+  line-height: 1.55;
+}
+
 .trend-positive {
   color: #8af0c0;
 }
@@ -557,7 +571,7 @@ h2 {
 }
 
 .daily-compare-wrap table {
-  min-width: 980px;
+  min-width: 1120px;
 }
 
 .daily-compare-wrap tbody tr {
