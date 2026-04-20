@@ -4,7 +4,7 @@
   "end_date": "2026-04-24",
   "mode": "dry_run",
   "provider_name": "manual_csv",
-  "last_update_time": "2026-04-21T00:13:01+08:00",
+  "last_update_time": "2026-04-21T06:17:25+08:00",
   "weekly_totals": {
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,

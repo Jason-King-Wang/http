@@ -1,11 +1,11 @@
 {
-  "trade_date": "2026-04-24",
+  "trade_date": "2026-04-22",
   "week_id": "2026-04-20_2026-04-24",
-  "run_id": "auto-2026-04-24",
+  "run_id": "auto-2026-04-22",
   "mode": "dry_run",
   "provider_name": "manual_csv",
   "overview": {
-    "last_update_time": "2026-04-21T00:33:48+08:00",
+    "last_update_time": "2026-04-21T06:17:23+08:00",
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
     "used_cash": 0,
@@ -13,11 +13,101 @@
     "current_equity": 0,
     "strategy_pnl_after_fee_tax": 0,
     "strategy_return": 0.0,
-    "today_status": "tracking"
+    "today_status": "buying"
   },
-  "selection_rows": [],
-  "buy_execution_rows": [],
+  "selection_rows": [
+    {
+      "stock_id": "2330",
+      "stock_name": "TSMC",
+      "source": "A+B",
+      "source_weight": 2.0,
+      "preselect_flag": true,
+      "final_flag": true,
+      "role_level": "",
+      "theme": "",
+      "model_score": "",
+      "finalizer_score": "",
+      "include_reason": "manual_final_list",
+      "exclude_reason": "",
+      "provider_name": "manual_csv",
+      "target_qty": 2,
+      "estimated_buy_price": 995.0,
+      "projected_cost": 2040.1499999999999
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "MediaTek",
+      "source": "manual",
+      "source_weight": 1.0,
+      "preselect_flag": true,
+      "final_flag": true,
+      "role_level": "",
+      "theme": "",
+      "model_score": "",
+      "finalizer_score": "",
+      "include_reason": "manual_final_list",
+      "exclude_reason": "",
+      "provider_name": "manual_csv",
+      "target_qty": 1,
+      "estimated_buy_price": 1215.0,
+      "projected_cost": 1253.5249999999999
+    },
+    {
+      "stock_id": "2317",
+      "stock_name": "Hon Hai",
+      "source": "B",
+      "source_weight": 1.0,
+      "preselect_flag": true,
+      "final_flag": false,
+      "role_level": "",
+      "theme": "",
+      "model_score": "",
+      "finalizer_score": "",
+      "include_reason": "",
+      "exclude_reason": "",
+      "provider_name": "manual_csv"
+    }
+  ],
+  "buy_execution_rows": [
+    {
+      "stock_id": "2330",
+      "stock_name": "TSMC",
+      "target_qty": 2,
+      "bought_qty": 0,
+      "remaining_qty": 2,
+      "active_order_id": "DRY-0001",
+      "active_order_price": 995.0,
+      "active_order_qty": 2,
+      "order_age": "",
+      "current_mode": "normal",
+      "last_price": 995.0,
+      "bid1": "994.0",
+      "ask1": "995.0",
+      "tick_distance_to_target": 0,
+      "next_check_time": "2026-04-21T06:17+08:00",
+      "order_status_summary": "dry_run"
+    },
+    {
+      "stock_id": "2454",
+      "stock_name": "MediaTek",
+      "target_qty": 1,
+      "bought_qty": 0,
+      "remaining_qty": 1,
+      "active_order_id": "DRY-0002",
+      "active_order_price": 1215.0,
+      "active_order_qty": 1,
+      "order_age": "",
+      "current_mode": "normal",
+      "last_price": 1215.0,
+      "bid1": "1210.0",
+      "ask1": "1215.0",
+      "tick_distance_to_target": 0,
+      "next_check_time": "2026-04-21T06:17+08:00",
+      "order_status_summary": "dry_run"
+    }
+  ],
   "positions_rows": [],
+  "excluded_positions_rows": [],
   "sell_rows": [],
   "basket_summary": {
     "basket_market_value": 0,
@@ -30,7 +120,7 @@
   },
   "comparison_chart": {
     "x_labels": [
-      "2026-04-24"
+      "2026-04-22"
     ],
     "series": [
       {
@@ -58,7 +148,7 @@
   },
   "capital_chart": {
     "x_labels": [
-      "2026-04-24"
+      "2026-04-22"
     ],
     "series": [
       {
@@ -79,19 +169,207 @@
   },
   "events": [
     {
-      "time": "2026-04-21T00:33:44.887186+08:00",
-      "event_type": "sell_loop",
+      "time": "2026-04-20T23:17:35.858990+08:00",
+      "event_type": "prepare_week",
       "stock_id": "",
-      "action": "sell_loop",
+      "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "No strategy positions were available for sell-loop evaluation.",
+      "result": "Loaded 0 preselect items from manual_csv",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:17:35.871765+08:00",
+      "event_type": "finalize",
+      "stock_id": "",
+      "action": "finalize",
+      "price": "",
+      "qty": "",
+      "result": "Finalized 0 symbols.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:17:57.796686+08:00",
+      "event_type": "prepare_week",
+      "stock_id": "",
+      "action": "prepare_week",
+      "price": "",
+      "qty": "",
+      "result": "Loaded 3 preselect items from manual_csv",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:18:02.687871+08:00",
+      "event_type": "finalize",
+      "stock_id": "",
+      "action": "finalize",
+      "price": "",
+      "qty": "",
+      "result": "Finalized 2 symbols.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:18:06.149810+08:00",
+      "event_type": "buy_loop",
+      "stock_id": "",
+      "action": "buy_loop",
+      "price": "",
+      "qty": "",
+      "result": "Processed 2 buy-loop rows in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:04.266640+08:00",
+      "event_type": "prepare_week",
+      "stock_id": "",
+      "action": "prepare_week",
+      "price": "",
+      "qty": "",
+      "result": "Loaded 3 preselect items from manual_csv",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:04.448169+08:00",
+      "event_type": "finalize",
+      "stock_id": "",
+      "action": "finalize",
+      "price": "",
+      "qty": "",
+      "result": "Finalized 2 symbols.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:04.634170+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2330",
+      "action": "place",
+      "price": "",
+      "qty": "",
+      "result": "buy_loop place for 2330 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:04.637890+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2454",
+      "action": "place",
+      "price": "",
+      "qty": "",
+      "result": "buy_loop place for 2454 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:04.649387+08:00",
+      "event_type": "buy_loop",
+      "stock_id": "",
+      "action": "buy_loop",
+      "price": "",
+      "qty": "",
+      "result": "Processed 2 buy-loop rows in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:05.035681+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "Rendered workflow status with 11 checklist rows.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:26:21.624579+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "Rendered workflow status with 11 checklist rows.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:33:16.228156+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2330",
+      "action": "place",
+      "price": "",
+      "qty": "",
+      "result": "buy_loop place for 2330 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:33:16.231672+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2454",
+      "action": "place",
+      "price": "",
+      "qty": "",
+      "result": "buy_loop place for 2454 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:33:16.243910+08:00",
+      "event_type": "buy_loop",
+      "stock_id": "",
+      "action": "buy_loop",
+      "price": "",
+      "qty": "",
+      "result": "Processed 2 buy-loop rows in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:33:16.288996+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "Rendered workflow status with 11 checklist rows.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-20T23:33:16.302320+08:00",
+      "event_type": "refresh_dashboard",
+      "stock_id": "",
+      "action": "refresh_dashboard",
+      "price": "",
+      "qty": "",
+      "result": "Dashboard refresh completed with 3 steps.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-21T00:29:31.094085+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2330",
+      "action": "place",
+      "price": 995.0,
+      "qty": 2,
+      "result": "buy_loop place for 2330 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-21T00:29:31.097419+08:00",
+      "event_type": "buy_loop_stock",
+      "stock_id": "2454",
+      "action": "place",
+      "price": 1215.0,
+      "qty": 1,
+      "result": "buy_loop place for 2454 in dry_run mode.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-21T00:29:31.107336+08:00",
+      "event_type": "buy_loop",
+      "stock_id": "",
+      "action": "buy_loop",
+      "price": "",
+      "qty": "",
+      "result": "Processed 2 buy-loop rows in dry_run mode.",
       "warning_or_error": ""
     }
   ],
-  "warnings": [
-    "No selection rows were loaded for this trade date."
-  ],
+  "warnings": [],
   "next_actions": [
     "Run render_report every 5 minutes during market hours to refresh the current dashboard.",
     "After market close, rerun render_report and settle_week for daily/weekly snapshots."

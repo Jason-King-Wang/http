@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-21T00:34:22+08:00",
+  "generated_at": "2026-04-21T06:17:42+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-04-20",
@@ -8,11 +8,11 @@
     "source_scope": "public"
   },
   "auto_trading": {
-    "trade_date": "2026-04-24",
+    "trade_date": "2026-04-22",
     "week_id": "2026-04-20_2026-04-24",
     "mode": "dry_run",
     "provider_name": "manual_csv",
-    "today_status": "tracking",
+    "today_status": "buying",
     "strategy_return": 0.0,
     "current_equity": 0,
     "latest_daily_html": "2026-04-24.html",

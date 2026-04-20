@@ -5,7 +5,7 @@
   "mode": "dry_run",
   "provider_name": "manual_csv",
   "overview": {
-    "last_update_time": "2026-04-21T00:29:37+08:00",
+    "last_update_time": "2026-04-21T06:17:23+08:00",
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
     "used_cash": 0,
@@ -84,7 +84,7 @@
       "bid1": "994.0",
       "ask1": "995.0",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-21T00:29+08:00",
+      "next_check_time": "2026-04-21T06:17+08:00",
       "order_status_summary": "dry_run"
     },
     {
@@ -102,11 +102,12 @@
       "bid1": "1210.0",
       "ask1": "1215.0",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-21T00:29+08:00",
+      "next_check_time": "2026-04-21T06:17+08:00",
       "order_status_summary": "dry_run"
     }
   ],
   "positions_rows": [],
+  "excluded_positions_rows": [],
   "sell_rows": [],
   "basket_summary": {
     "basket_market_value": 0,
