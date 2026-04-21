@@ -99,7 +99,8 @@ function renderHero() {
 
   elements.heroMeta.innerHTML = tags.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
   elements.sourceSummary.textContent = [
-    "目前只展示最新賣價模型資料，不包含內部分流規則、邏輯標記與判斷文字。",
+    "目前公開版以 sell model v2 為主，正式高點預測使用 P80，而不是保守中心值。",
+    "頁面會保留結果與結論，但不公開內部分流規則、關聯標記與判斷來源。",
     `最後公開整理 ${formatDateTime(summary.generated_at)}。`,
     "頁面開著時會自動檢查更新。"
   ].join(" ");
@@ -179,7 +180,7 @@ function buildDailyComparisonMetrics(latest, comparisonBase) {
 
   if (hasNumericValue(latest.avg_confidence)) {
     metrics.push({
-      label: "平均信心",
+      label: "平均可靠度",
       value: formatPercent(latest.avg_confidence),
       note: buildDeltaNote(latest.avg_confidence, comparisonBase?.avg_confidence, comparisonBase?.trade_date, "percent"),
       tone: buildDeltaTone(latest.avg_confidence, comparisonBase?.avg_confidence)
@@ -197,16 +198,22 @@ function buildDailyComparisonMetrics(latest, comparisonBase) {
 
   if (hasVerifiedMetrics(latest)) {
     metrics.push({
-      label: "峰值命中率",
-      value: formatPercent(latest.peak_hit_rate),
-      note: buildDeltaNote(latest.peak_hit_rate, comparisonBase?.peak_hit_rate, comparisonBase?.trade_date, "percent"),
-      tone: buildDeltaTone(latest.peak_hit_rate, comparisonBase?.peak_hit_rate)
+      label: "全體低估率",
+      value: formatPercent(latest.under_rate),
+      note: buildDeltaNote(latest.under_rate, comparisonBase?.under_rate, comparisonBase?.trade_date, "percent"),
+      tone: buildDeltaTone(latest.under_rate, comparisonBase?.under_rate, { lowerIsBetter: true })
     });
     metrics.push({
-      label: "價格 MAE",
-      value: formatDecimal(latest.pred_peak_mae, 2),
-      note: buildDeltaNote(latest.pred_peak_mae, comparisonBase?.pred_peak_mae, comparisonBase?.trade_date, "decimal", { lowerIsBetter: true }),
-      tone: buildDeltaTone(latest.pred_peak_mae, comparisonBase?.pred_peak_mae, { lowerIsBetter: true })
+      label: "P80 Pinball",
+      value: formatPercentFromPoints(latest.p80_pinball_loss_mean),
+      note: buildDeltaNote(
+        latest.p80_pinball_loss_mean,
+        comparisonBase?.p80_pinball_loss_mean,
+        comparisonBase?.trade_date,
+        "percentPoints",
+        { lowerIsBetter: true }
+      ),
+      tone: buildDeltaTone(latest.p80_pinball_loss_mean, comparisonBase?.p80_pinball_loss_mean, { lowerIsBetter: true })
     });
   } else {
     metrics.push({
@@ -433,6 +440,9 @@ function formatSignedChange(delta, format) {
   if (format === "percent") {
     return `${sign}${(delta * 100).toFixed(2)}%`;
   }
+  if (format === "percentPoints") {
+    return `${sign}${delta.toFixed(2)}%`;
+  }
   if (format === "integer") {
     return `${sign}${Math.round(delta)}`;
   }
@@ -441,9 +451,9 @@ function formatSignedChange(delta, format) {
 
 function renderPublicScope() {
   const items = [
-    "保留最新 sell model 的整體摘要與個股結果。",
-    "移除內部分流邏輯、關聯標記與內部規則來源。",
-    "移除會透露模型判斷來源的訊號摘要與邏輯標記。"
+    "公開版現在以 v2 high-forecast model 為主，正式高點預測使用 P80。",
+    "頁面會展示 dynamic cap、forecast regime、reliability 與時段機率，不再只看單一保守高點。",
+    "會保留結果與結論，但仍移除內部分流邏輯、關聯標記與規則來源。"
   ];
 
   elements.publicScope.innerHTML = items
@@ -453,7 +463,6 @@ function renderPublicScope() {
 
 function renderSummaryCards() {
   const summary = state.data.summary || {};
-  const checks = state.data.checks || [];
   const history = getDailyHistory();
   const metrics = [
     {
@@ -463,16 +472,22 @@ function renderSummaryCards() {
       comparison: buildSummaryMetricComparison(summary, history, "peak_hit_rate", "percent")
     },
     {
-      label: "Top10 命中率",
-      value: formatPercent(summary.top10_hit_rate),
-      note: `Top20 ${formatPercent(summary.top20_hit_rate)} / Top30 ${formatPercent(summary.top30_hit_rate)}`,
-      comparison: buildSummaryMetricComparison(summary, history, "top10_hit_rate", "percent")
+      label: "全體低估率",
+      value: formatPercent(summary.under_rate),
+      note: `Top10 ${formatPercent(summary.top10_under_rate)} / Top20 ${formatPercent(summary.top20_under_rate)}`,
+      comparison: buildSummaryMetricComparison(summary, history, "under_rate", "percent", { lowerIsBetter: true })
     },
     {
-      label: "價格 MAE",
-      value: formatDecimal(summary.pred_peak_mae, 2),
-      note: "預測高點與實際高點的平均絕對誤差",
-      comparison: buildSummaryMetricComparison(summary, history, "pred_peak_mae", "decimal", { lowerIsBetter: true })
+      label: "高點 MAPE",
+      value: formatPercentFromPoints(summary.pred_peak_mape),
+      note: `中位誤差 ${formatPercentFromPoints(summary.median_abs_error_pct)} / 平均 signed ${formatSignedPoints(summary.mean_signed_error_pct)}`,
+      comparison: buildSummaryMetricComparison(summary, history, "pred_peak_mape", "percentPoints", { lowerIsBetter: true })
+    },
+    {
+      label: "P80 Pinball",
+      value: formatPercentFromPoints(summary.p80_pinball_loss_mean),
+      note: "越低表示對極值高點的分位數預測越穩",
+      comparison: buildSummaryMetricComparison(summary, history, "p80_pinball_loss_mean", "percentPoints", { lowerIsBetter: true })
     },
     {
       label: "時間命中率",
@@ -481,16 +496,10 @@ function renderSummaryCards() {
       comparison: buildSummaryMetricComparison(summary, history, "pred_peak_time_bucket_hit_rate", "percent")
     },
     {
-      label: "50 點分數",
-      value: formatDecimal(summary.fifty_point_score, 2),
-      note: `${countWhere(checks, (item) => item.status === "pass")} pass / ${countWhere(checks, (item) => item.status === "fail")} fail`,
-      comparison: buildSummaryMetricComparison(summary, history, "fifty_point_score", "decimal")
-    },
-    {
-      label: "規則候選數",
-      value: formatInteger(summary.rule_candidate_count),
-      note: "僅顯示數量，不公開內部判斷來源",
-      comparison: buildSummaryMetricComparison(summary, history, "rule_candidate_count", "integer")
+      label: "Objective",
+      value: formatDecimal(summary.objective_loss, 2),
+      note: `Over ${formatPercent(summary.over_rate)} / 核心低估 ${formatPercent(summary.core_under_rate)}`,
+      comparison: buildSummaryMetricComparison(summary, history, "objective_loss", "decimal", { lowerIsBetter: true })
     }
   ];
 
@@ -585,8 +594,12 @@ function renderStories(rows) {
     .filter((row) => toNumber(row.peak_hit) === 1)
     .sort((left, right) => toNumber(left.model_rank) - toNumber(right.model_rank))[0];
   const worstRow = [...rows]
-    .filter((row) => Number.isFinite(toNumber(row.pred_peak_error_abs)))
-    .sort((left, right) => toNumber(right.pred_peak_error_abs) - toNumber(left.pred_peak_error_abs))[0];
+    .filter((row) => Number.isFinite(toNumber(row.pred_peak_error_pct_abs)) || Number.isFinite(toNumber(row.pred_peak_error_abs)))
+    .sort((left, right) => {
+      const rightValue = Number.isFinite(toNumber(right.pred_peak_error_pct_abs)) ? toNumber(right.pred_peak_error_pct_abs) : toNumber(right.pred_peak_error_abs);
+      const leftValue = Number.isFinite(toNumber(left.pred_peak_error_pct_abs)) ? toNumber(left.pred_peak_error_pct_abs) : toNumber(left.pred_peak_error_abs);
+      return rightValue - leftValue;
+    })[0];
 
   const storyItems = [
     {
@@ -594,23 +607,27 @@ function renderStories(rows) {
       text: summary.summary_note || "目前沒有額外的文字摘要。"
     },
     {
-      title: "排名前段表現",
-      text: `Top10 命中率 ${formatPercent(summary.top10_hit_rate)}，Top30 命中率 ${formatPercent(summary.top30_hit_rate)}。`
+      title: "低估壓力",
+      text: `全體低估率 ${formatPercent(summary.under_rate)}，Top20 低估率 ${formatPercent(summary.top20_under_rate)}，核心低估率 ${formatPercent(summary.core_under_rate)}。`
     },
     {
       title: "近幾天有沒有更準",
       text: buildRecentAccuracyStory(history)
     },
     {
+      title: "分位數表現",
+      text: `P80 pinball ${formatPercentFromPoints(summary.p80_pinball_loss_mean)}，高點 MAPE ${formatPercentFromPoints(summary.pred_peak_mape)}，objective ${formatDecimal(summary.objective_loss, 2)}。`
+    },
+    {
       title: strongestRow ? `最亮眼個股：${strongestRow.stock_name}` : "最亮眼個股",
       text: strongestRow
-        ? `${strongestRow.stock_name} 排名第 ${formatInteger(strongestRow.model_rank)}，預測高點 ${formatNumber(strongestRow.pred_peak_price)}，實際高點 ${formatNumber(strongestRow.actual_high)}。`
+        ? `${strongestRow.stock_name} 排名第 ${formatInteger(strongestRow.model_rank)}，正式預測高點 ${formatNumber(strongestRow.pred_peak_price)}，forecast regime ${formatForecastRegime(strongestRow.forecast_regime)}。`
         : "目前沒有足夠資料。"
     },
     {
-      title: worstRow ? `誤差最大：${worstRow.stock_name}` : "誤差追蹤",
+      title: worstRow ? `失真最大：${worstRow.stock_name}` : "誤差追蹤",
       text: worstRow
-        ? `${worstRow.stock_name} 的高點絕對誤差為 ${formatDecimal(worstRow.pred_peak_error_abs, 2)}。`
+        ? `${worstRow.stock_name} 的高點百分比誤差為 ${formatPercentFromPoints(worstRow.pred_peak_error_pct_abs)}，signed ${formatSignedPoints(worstRow.pred_peak_error_pct_signed)}。`
         : "目前沒有足夠資料。"
     }
   ];
@@ -693,11 +710,11 @@ function renderDailyComparisonTable() {
         <td>${renderAccuracyCell(entry)}</td>
         <td>${escapeHtml(formatInteger(entry.verified_stock_count ?? entry.stock_count))}</td>
         <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "top10_hit_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "pred_peak_mae", "decimal", { lowerIsBetter: true })}</td>
+        <td>${renderHistoryMetricCell(entry, "under_rate", "percent")}</td>
+        <td>${renderHistoryMetricCell(entry, "pred_peak_mape", "percentPoints", { lowerIsBetter: true })}</td>
+        <td>${renderHistoryMetricCell(entry, "p80_pinball_loss_mean", "percentPoints", { lowerIsBetter: true })}</td>
         <td>${renderHistoryMetricCell(entry, "pred_peak_time_bucket_hit_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "fifty_point_score", "decimal")}</td>
-        <td>${renderHistoryMetricCell(entry, "rule_candidate_count", "integer", { fallbackValue: entry.candidate_count })}</td>
+        <td>${renderHistoryMetricCell(entry, "objective_loss", "decimal", { lowerIsBetter: true })}</td>
       </tr>
     `)
     .join("");
@@ -728,6 +745,9 @@ function renderHistoryMetricCell(entry, field, format, options = {}) {
 function formatMetricValue(value, format) {
   if (format === "percent") {
     return formatPercent(value);
+  }
+  if (format === "percentPoints") {
+    return formatPercentFromPoints(value);
   }
   if (format === "integer") {
     return formatInteger(value);
@@ -838,24 +858,34 @@ function renderTable(rows) {
         <td>
           <div class="stacked">
             <strong>${escapeHtml(formatDecimal(row.model_score, 2))}</strong>
-            <span class="metric-sub">${escapeHtml(row.role_level || "未分層")}</span>
+            <span class="metric-sub">${escapeHtml(row.role_level || "未分層")} / ${escapeHtml(formatForecastRegime(row.forecast_regime))}</span>
           </div>
         </td>
         <td>
           <div class="stacked">
             <strong>${escapeHtml(formatNumber(row.pred_peak_price))}</strong>
-            <span class="metric-sub">${escapeHtml(row.pred_peak_time_bucket || "未提供")} / upside ${escapeHtml(formatPercentFromPoints(row.pred_remaining_upside_from_now))}</span>
+            <span class="metric-sub">P80 ${escapeHtml(formatPercentFromPoints(row.pred_peak_p80_pct || row.pred_remaining_upside_from_now))} / cap ${escapeHtml(formatPercentFromPoints(row.forecast_cap_pct))} / ${escapeHtml(row.pred_peak_time_bucket || "未提供")}</span>
           </div>
         </td>
         <td>
           <div class="stacked">
             <strong>${escapeHtml(formatNumber(row.actual_high))}</strong>
-            <span class="metric-sub">${escapeHtml(row.actual_high_time_bucket || "未提供")}</span>
+            <span class="metric-sub">${escapeHtml(row.actual_high_time_bucket || "未提供")} / ${escapeHtml(buildOutcomeSummary(row))}</span>
           </div>
         </td>
-        <td><strong>${escapeHtml(formatDecimal(row.pred_peak_error_abs, 2))}</strong></td>
+        <td>
+          <div class="stacked">
+            <strong>${escapeHtml(formatPercentFromPoints(row.pred_peak_error_pct_abs))}</strong>
+            <span class="metric-sub">signed ${escapeHtml(formatSignedPoints(row.pred_peak_error_pct_signed))} / 價差 ${escapeHtml(formatDecimal(row.pred_peak_error_abs, 2))}</span>
+          </div>
+        </td>
         <td><span class="tag ${toNumber(row.peak_hit) === 1 ? "tag-pass" : "tag-fail"}">${toNumber(row.peak_hit) === 1 ? "命中" : "未命中"}</span></td>
-        <td>${escapeHtml(row.review_tag || "未標記")}</td>
+        <td>
+          <div class="stacked">
+            <strong>${escapeHtml(row.review_tag || "未標記")}</strong>
+            <span class="metric-sub">reliability ${escapeHtml(formatPercent(row.forecast_reliability || row.pred_confidence))} / uncertainty ${escapeHtml(formatPercentFromPoints(row.dynamic_uncertainty_pct))}</span>
+          </div>
+        </td>
       </tr>
     `)
     .join("");
@@ -877,6 +907,13 @@ function renderDetailPanel(filteredRows, rows) {
     return;
   }
 
+  const bucketProbabilityMarkup = renderBucketProbabilityMarkup(selectedRow);
+  const forecastComponentMarkup = renderForecastComponentMarkup(selectedRow);
+  const reliabilityValue = selectedRow.forecast_reliability || selectedRow.pred_confidence;
+  const p50Value = selectedRow.pred_peak_p50_pct;
+  const p80Value = selectedRow.pred_peak_p80_pct || selectedRow.pred_remaining_upside_from_now;
+  const p95Value = selectedRow.pred_peak_p95_pct;
+
   elements.detailPanel.innerHTML = `
     <div class="detail-head">
       <div>
@@ -887,6 +924,9 @@ function renderDetailPanel(filteredRows, rows) {
       <div class="detail-tags">
         <span class="tag">${escapeHtml(selectedRow.theme || "未分類主題")}</span>
         <span class="tag">${escapeHtml(selectedRow.role_level || "未分層")}</span>
+        <span class="tag">${escapeHtml(formatForecastRegime(selectedRow.forecast_regime))}</span>
+        <span class="tag">${escapeHtml(buildReliabilityLabel(reliabilityValue))}</span>
+        <span class="tag ${toNumber(selectedRow.underestimation_flag) === 1 ? "tag-fail" : toNumber(selectedRow.overestimation_flag) === 1 ? "tag-neutral" : "tag-pass"}">${escapeHtml(buildOutcomeSummary(selectedRow))}</span>
         <span class="tag">${toNumber(selectedRow.peak_hit) === 1 ? "命中高點" : "未命中"}</span>
       </div>
     </div>
@@ -894,22 +934,63 @@ function renderDetailPanel(filteredRows, rows) {
       <div class="detail-metric">
         <small>模型分數</small>
         <strong>${escapeHtml(formatDecimal(selectedRow.model_score, 2))}</strong>
+        <span class="detail-metric-note">${escapeHtml(selectedRow.role_level || "未分層")}</span>
+      </div>
+      <div class="detail-metric">
+        <small>正式高點預測</small>
+        <strong>${escapeHtml(formatNumber(selectedRow.pred_peak_price))}</strong>
+        <span class="detail-metric-note">P80 upside ${escapeHtml(formatPercentFromPoints(p80Value))}</span>
+      </div>
+      <div class="detail-metric">
+        <small>P50 / P80 / P95</small>
+        <strong>${escapeHtml(formatPercentFromPoints(p50Value))} / ${escapeHtml(formatPercentFromPoints(p80Value))} / ${escapeHtml(formatPercentFromPoints(p95Value))}</strong>
+        <span class="detail-metric-note">分位數高點預測</span>
+      </div>
+      <div class="detail-metric">
+        <small>可靠度 / 不確定性</small>
+        <strong>${escapeHtml(formatPercent(reliabilityValue))} / ${escapeHtml(formatPercentFromPoints(selectedRow.dynamic_uncertainty_pct))}</strong>
+        <span class="detail-metric-note">forecast reliability / dynamic uncertainty</span>
+      </div>
+      <div class="detail-metric">
+        <small>Dynamic Cap</small>
+        <strong>${escapeHtml(formatPercentFromPoints(selectedRow.forecast_cap_pct))}</strong>
+        <span class="detail-metric-note">${escapeHtml(formatForecastRegime(selectedRow.forecast_regime))}</span>
       </div>
       <div class="detail-metric">
         <small>預測區間</small>
         <strong>${escapeHtml(selectedRow.pred_peak_range || "未提供")}</strong>
+        <span class="detail-metric-note">${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}</span>
       </div>
       <div class="detail-metric">
         <small>階段賣點</small>
         <strong>${escapeHtml(formatNumber(selectedRow.stage_1_price))} / ${escapeHtml(formatNumber(selectedRow.stage_2_price))}</strong>
+        <span class="detail-metric-note">legacy execution reference</span>
       </div>
       <div class="detail-metric">
         <small>高點誤差</small>
-        <strong>${escapeHtml(formatDecimal(selectedRow.pred_peak_error_abs, 2))}</strong>
+        <strong>${escapeHtml(formatPercentFromPoints(selectedRow.pred_peak_error_pct_abs))}</strong>
+        <span class="detail-metric-note">signed ${escapeHtml(formatSignedPoints(selectedRow.pred_peak_error_pct_signed))} / 價差 ${escapeHtml(formatDecimal(selectedRow.pred_peak_error_abs, 2))}</span>
       </div>
     </div>
+    <div class="detail-sections">
+      <section class="detail-section">
+        <div class="detail-section-head">
+          <h3>高點時段機率</h3>
+          <span class="mini-note">bucket probability</span>
+        </div>
+        ${bucketProbabilityMarkup}
+      </section>
+      <section class="detail-section">
+        <div class="detail-section-head">
+          <h3>預測拆解</h3>
+          <span class="mini-note">forecast components</span>
+        </div>
+        ${forecastComponentMarkup}
+      </section>
+    </div>
     <div class="detail-copy">
-      <p>預測高點 ${escapeHtml(formatNumber(selectedRow.pred_peak_price))}，實際高點 ${escapeHtml(formatNumber(selectedRow.actual_high))}，預測時段 ${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}，實際時段 ${escapeHtml(selectedRow.actual_high_time_bucket || "未提供")}。</p>
+      <p>正式預測使用 P80。這檔預測高點 ${escapeHtml(formatNumber(selectedRow.pred_peak_price))}，實際高點 ${escapeHtml(formatNumber(selectedRow.actual_high))}，預測時段 ${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}，實際時段 ${escapeHtml(selectedRow.actual_high_time_bucket || "未提供")}。</p>
+      <p>狀態：${escapeHtml(buildOutcomeSummary(selectedRow))}，forecast regime ${escapeHtml(formatForecastRegime(selectedRow.forecast_regime))}，reliability ${escapeHtml(buildReliabilityLabel(reliabilityValue))}。</p>
       <p>模型評語：${escapeHtml(selectedRow.review_note || "目前沒有額外備註。")}</p>
     </div>
   `;
@@ -1085,6 +1166,141 @@ function formatPercent(value) {
 function formatPercentFromPoints(value) {
   const number = toNumber(value);
   return Number.isFinite(number) ? `${number.toFixed(2)}%` : "-";
+}
+
+function formatSignedPoints(value, digits = 2) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number)) {
+    return "-";
+  }
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toFixed(digits)}%`;
+}
+
+function formatForecastRegime(value) {
+  const mapping = {
+    normal: "一般",
+    hot: "熱主題",
+    runaway: "Runaway"
+  };
+  return mapping[String(value || "").trim().toLowerCase()] || "未提供";
+}
+
+function buildReliabilityLabel(value) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number)) {
+    return "可靠度未提供";
+  }
+  if (number >= 0.8) {
+    return "高可靠";
+  }
+  if (number >= 0.65) {
+    return "中高可靠";
+  }
+  if (number >= 0.5) {
+    return "中性可靠";
+  }
+  return "高波動";
+}
+
+function buildOutcomeSummary(row) {
+  if (toNumber(row.underestimation_flag) === 1 || String(row.review_tag || "").includes("低估")) {
+    return "偏低估";
+  }
+  if (toNumber(row.overestimation_flag) === 1 || String(row.review_tag || "").includes("高估")) {
+    return "偏高估";
+  }
+  if (toNumber(row.peak_hit) === 1) {
+    return "高點接近";
+  }
+  return row.review_tag || "待觀察";
+}
+
+function parseJsonRecord(value) {
+  const text = String(value ?? "").trim();
+  if (!text) {
+    return null;
+  }
+  try {
+    const parsed = JSON.parse(text);
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function renderBucketProbabilityMarkup(row) {
+  const bucketMap = parseJsonRecord(row.pred_peak_time_bucket_probs);
+  const entries = bucketMap
+    ? Object.entries(bucketMap)
+      .map(([label, probability]) => [label, toNumber(probability)])
+      .filter(([, probability]) => Number.isFinite(probability))
+      .sort((left, right) => right[1] - left[1])
+    : [];
+
+  if (!entries.length) {
+    return `<div class="empty-state subtle-empty">目前沒有公開的 bucket probability。</div>`;
+  }
+
+  return `
+    <div class="probability-list">
+      ${entries
+        .map(([label, probability]) => `
+          <div class="probability-row">
+            <div class="probability-meta">
+              <strong>${escapeHtml(label)}</strong>
+              <span>${escapeHtml(formatPercent(probability))}</span>
+            </div>
+            <div class="probability-track">
+              <span class="probability-fill" style="width:${Math.max(0, Math.min(100, probability * 100)).toFixed(1)}%"></span>
+            </div>
+          </div>
+        `)
+        .join("")}
+    </div>
+  `;
+}
+
+function renderForecastComponentMarkup(row) {
+  const componentMap = parseJsonRecord(row.forecast_components);
+  if (!componentMap) {
+    return `<div class="empty-state subtle-empty">目前沒有公開的 forecast components。</div>`;
+  }
+
+  const labelMap = {
+    base_score_upside: "Base",
+    rank_adj: "Rank",
+    theme_adj: "Theme",
+    role_adj: "Role",
+    market_adj: "Market",
+    review_state_adj: "Review",
+    stock_override_adj: "Stock Override",
+    dynamic_uncertainty_pct: "Uncertainty",
+    cap_pct: "Cap",
+    final_pct_before_cap: "Before Cap",
+    final_pct_after_cap: "After Cap"
+  };
+
+  const entries = Object.entries(componentMap)
+    .map(([key, rawValue]) => [key, toNumber(rawValue)])
+    .filter(([, numericValue]) => Number.isFinite(numericValue));
+
+  if (!entries.length) {
+    return `<div class="empty-state subtle-empty">目前沒有可顯示的 component 數值。</div>`;
+  }
+
+  return `
+    <div class="component-grid">
+      ${entries
+        .map(([key, numericValue]) => `
+          <article class="component-chip">
+            <span class="component-label">${escapeHtml(labelMap[key] || key)}</span>
+            <strong>${escapeHtml(formatSignedPoints(numericValue))}</strong>
+          </article>
+        `)
+        .join("")}
+    </div>
+  `;
 }
 
 function formatDateTime(value) {
