@@ -4,7 +4,7 @@
   "end_date": "2026-04-24",
   "mode": "dry_run",
   "provider_name": "manual_csv",
-  "last_update_time": "2026-04-21T06:23:21+08:00",
+  "last_update_time": "2026-04-22T02:12:58+08:00",
   "weekly_totals": {
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
@@ -124,6 +124,18 @@
       "value": 0.0
     },
     {
+      "label": "strategy_lot_count",
+      "value": 2
+    },
+    {
+      "label": "open_lot_count",
+      "value": 0
+    },
+    {
+      "label": "settled_lot_count",
+      "value": 2
+    },
+    {
       "label": "buy_fill_qty",
       "value": 0
     },
@@ -142,6 +154,60 @@
     {
       "label": "excluded_positions_count",
       "value": 0
+    }
+  ],
+  "lot_ledger_rows": [
+    {
+      "strategy_lot_id": "auto-2026-04-22:2330",
+      "stock_id": "2330",
+      "stock_name": "TSMC",
+      "source": "",
+      "source_trade_date": "2026-04-22",
+      "last_seen_trade_date": "2026-04-22",
+      "buy_order_ids": "DRY-0001",
+      "buy_order_statuses": "dry_run",
+      "sell_order_ids": "",
+      "sell_order_statuses": "",
+      "fill_order_ids": "",
+      "buy_fill_qty": 0,
+      "buy_fill_avg_price": 0.0,
+      "sell_fill_qty": 0,
+      "sell_fill_avg_price": 0.0,
+      "allocated_buy_cost": 0.0,
+      "realized_pnl": 0.0,
+      "conservative_profit": 0.0,
+      "closing_qty": 0,
+      "closing_buy_total_cost": 0.0,
+      "closing_buy_avg_price": 0.0,
+      "position_status": "",
+      "latest_sell_order_status": "",
+      "lot_status": "closed"
+    },
+    {
+      "strategy_lot_id": "auto-2026-04-22:2454",
+      "stock_id": "2454",
+      "stock_name": "MediaTek",
+      "source": "",
+      "source_trade_date": "2026-04-22",
+      "last_seen_trade_date": "2026-04-22",
+      "buy_order_ids": "DRY-0002",
+      "buy_order_statuses": "dry_run",
+      "sell_order_ids": "",
+      "sell_order_statuses": "",
+      "fill_order_ids": "",
+      "buy_fill_qty": 0,
+      "buy_fill_avg_price": 0.0,
+      "sell_fill_qty": 0,
+      "sell_fill_avg_price": 0.0,
+      "allocated_buy_cost": 0.0,
+      "realized_pnl": 0.0,
+      "conservative_profit": 0.0,
+      "closing_qty": 0,
+      "closing_buy_total_cost": 0.0,
+      "closing_buy_avg_price": 0.0,
+      "position_status": "",
+      "latest_sell_order_status": "",
+      "lot_status": "closed"
     }
   ],
   "sell_model_vs_actual": [],
