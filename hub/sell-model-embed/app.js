@@ -1,5 +1,5 @@
 const state = {
-  data: window.__PUBLIC_SELL_MODEL_DATA__ || { summary: {}, daily_history: [], checks: [], stocks: [] },
+  data: window.__PUBLIC_SELL_MODEL_DATA__ || { summary: {}, daily_history: [], checks: [], stocks: [], actions: {} },
   filters: {
     search: "",
     theme: "",
@@ -24,6 +24,9 @@ const elements = {
   summaryCards: document.querySelector("#summary-cards"),
   dailyCompareTableBody: document.querySelector("#daily-compare-table-body"),
   storyList: document.querySelector("#story-list"),
+  actionSummary: document.querySelector("#action-summary"),
+  actionPills: document.querySelector("#action-pills"),
+  actionList: document.querySelector("#action-list"),
   themeBoard: document.querySelector("#theme-board"),
   checkStats: document.querySelector("#check-stats"),
   checkGroups: document.querySelector("#check-groups"),
@@ -77,6 +80,7 @@ function renderDashboard() {
   renderSummaryCards();
   renderDailyComparisonTable();
   renderStories(rows);
+  renderActions();
   renderThemes(rows);
   renderChecks();
   renderFilterOptions(rows);
@@ -86,6 +90,7 @@ function renderDashboard() {
 
 function renderHero() {
   const summary = state.data.summary || {};
+  const actions = state.data.actions || {};
   const rows = state.data.stocks || [];
   const dailyHistory = getDailyHistory();
 
@@ -93,13 +98,17 @@ function renderHero() {
     `最新資料日 ${summary.target_trade_date || "未提供"}`,
     `${formatInteger(summary.verified_stock_count)} 檔驗證樣本`,
     `${formatInteger(rows.length)} 檔公開個股`,
+    hasNumericValue(actions.total_actions) && toNumber(actions.total_actions) > 0
+      ? `今日回寫 ${formatInteger(actions.total_actions)} 動作`
+      : null,
     `公開整理 ${formatDateTime(summary.generated_at)}`,
     `逐日摘要 ${formatInteger(dailyHistory.length)} 天`
-  ];
+  ].filter(Boolean);
 
   elements.heroMeta.innerHTML = tags.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
   elements.sourceSummary.textContent = [
     "目前公開版以 sell model v2 為主，正式高點預測使用 P80，而不是保守中心值。",
+    actions.headline || "收盤後若有回寫動作，頁面會整理成今天模型怎麼修。",
     "頁面會保留結果與結論，但不公開內部分流規則、關聯標記與判斷來源。",
     `最後公開整理 ${formatDateTime(summary.generated_at)}。`,
     "頁面開著時會自動檢查更新。"
@@ -274,6 +283,9 @@ function renderDailyHistoryCard(entry, isLatest) {
         ? `信心 ${formatPercent(entry.avg_confidence)}`
         : entry.source_label || "摘要"
   ];
+  if (hasNumericValue(entry.action_count) && toNumber(entry.action_count) > 0) {
+    metricChips.push(`回寫 ${formatInteger(entry.action_count)} 動作`);
+  }
 
   return `
     <article class="daily-history-item ${isLatest ? "is-latest" : ""}">
@@ -453,6 +465,7 @@ function renderPublicScope() {
   const items = [
     "公開版現在以 v2 high-forecast model 為主，正式高點預測使用 P80。",
     "頁面會展示 dynamic cap、forecast regime、reliability 與時段機率，不再只看單一保守高點。",
+    "每天收盤後若有 review actions，會整理成今天模型怎麼修，直接顯示主題、個股與時段修正。",
     "會保留結果與結論，但仍移除內部分流邏輯、關聯標記與規則來源。"
   ];
 
@@ -637,6 +650,53 @@ function renderStories(rows) {
       <article class="story-item">
         <h3 class="story-title">${escapeHtml(item.title)}</h3>
         <p class="story-text">${escapeHtml(item.text)}</p>
+      </article>
+    `)
+    .join("");
+}
+
+function renderActions() {
+  if (!elements.actionSummary || !elements.actionPills || !elements.actionList) {
+    return;
+  }
+
+  const actions = state.data.actions || {};
+  const highlights = Array.isArray(actions.highlights) ? actions.highlights : [];
+  const recentRunDates = Array.isArray(actions.recent_run_dates) ? actions.recent_run_dates : [];
+  const pills = [];
+
+  if (hasNumericValue(actions.total_actions)) {
+    pills.push(`<span class="pill"><strong>${formatInteger(actions.total_actions)}</strong> 個動作</span>`);
+  }
+  if (recentRunDates.length) {
+    pills.push(`<span class="pill">最近 ${escapeHtml(formatInteger(recentRunDates.length))} 日：${escapeHtml(recentRunDates.join(" / "))}</span>`);
+  }
+  if (hasNumericValue(actions.review_count) && toNumber(actions.review_count) > 0) {
+    pills.push(`<span class="pill">${escapeHtml(formatInteger(actions.review_count))} 檔 review evidence</span>`);
+  }
+
+  elements.actionSummary.textContent = [actions.headline, actions.focus_note]
+    .filter(Boolean)
+    .join(" ");
+  elements.actionPills.innerHTML = pills.join("");
+
+  if (!highlights.length) {
+    elements.actionList.innerHTML = `<div class="empty-state">今天沒有新的回寫動作，模型暫時沿用目前 state。</div>`;
+    return;
+  }
+
+  elements.actionList.innerHTML = highlights
+    .map((item) => `
+      <article class="action-item ${escapeHtml(item.tone || "tone-neutral")}">
+        <div class="action-head">
+          <div class="stacked">
+            <span class="tag tag-neutral">${escapeHtml(item.group_label || "回寫")}</span>
+            <h3 class="story-title">${escapeHtml(item.title || "未命名動作")}</h3>
+          </div>
+          <strong class="action-value">${escapeHtml(item.value || "未提供")}</strong>
+        </div>
+        <p class="action-meta">${escapeHtml(item.detail || "目前沒有補充。")}</p>
+        <p class="story-text">${escapeHtml(item.note || "目前沒有補充。")}</p>
       </article>
     `)
     .join("");
