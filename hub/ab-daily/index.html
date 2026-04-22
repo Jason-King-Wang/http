@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="每日版本的 AB 選股模型輸出頁面，整合進交易儀表板總入口。" />
+    <title>每日 AB | 交易儀表板總入口</title>
+    <link rel="stylesheet" href="../assets/portal.css" />
+  </head>
+  <body data-page="ab-daily-wrapper">
+    <div class="page-shell">
+      <div class="ambient ambient-a" aria-hidden="true"></div>
+      <div class="ambient ambient-b" aria-hidden="true"></div>
+      <div class="ambient ambient-c" aria-hidden="true"></div>
+
+      <main class="site">
+        <header class="topbar">
+          <div class="brand">
+            <strong>交易儀表板總入口</strong>
+            <span>每日版本的 AB 選股模型輸出</span>
+          </div>
+          <nav class="nav-links" aria-label="主站導覽">
+            <a href="../index.html">首頁</a>
+            <a class="active" href="./index.html">每日 AB</a>
+            <a href="../sell-model/index.html">賣價模型</a>
+            <a href="../auto-trading/index.html">自動交易</a>
+          </nav>
+        </header>
+
+        <section class="hero">
+          <div>
+            <p class="eyebrow">AB Daily</p>
+            <h1>每日版本的 AB 選股模型輸出</h1>
+            <p>
+              這頁專門看每天的 AB 名單。最新一天放最上面，下面保留逐日歷史，並記錄 A、B、
+              開盤價、收盤價、漲跌幅，以及全部各買一張的統計。
+            </p>
+            <div class="pill-row" id="ab-page-meta"></div>
+          </div>
+          <aside class="hero-panel">
+            <p class="eyebrow">更新節點</p>
+            <h2>自動更新</h2>
+            <p class="meta-line">平日 09:00 寫開盤版，13:30 更新收盤版。</p>
+            <div class="frame-actions">
+              <a class="action-link" href="../sell-model/index.html">回賣價模型</a>
+              <a class="action-link" href="../index.html">回入口首頁</a>
+            </div>
+          </aside>
+        </section>
+
+        <section class="card ab-latest-shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Latest</p>
+              <h2>最新一天</h2>
+            </div>
+          </div>
+          <p class="section-copy" id="ab-latest-summary">讀取最新資料中...</p>
+          <div class="pill-row" id="ab-latest-pills"></div>
+          <div class="table-wrap">
+            <table class="ab-history-table">
+              <thead>
+                <tr>
+                  <th>股號</th>
+                  <th>股名</th>
+                  <th>分類</th>
+                  <th>A</th>
+                  <th>B</th>
+                  <th>主題</th>
+                  <th>開盤價</th>
+                  <th>收盤價</th>
+                  <th>漲跌幅%</th>
+                  <th>漲跌實際</th>
+                  <th>一張損益</th>
+                </tr>
+              </thead>
+              <tbody id="ab-latest-table-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card ab-history-shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">History</p>
+              <h2>逐日歷史</h2>
+            </div>
+          </div>
+          <div class="history-stack" id="ab-history-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../data/portal-manifest.js"></script>
+    <script src="../assets/portal.js"></script>
+  </body>
+</html>

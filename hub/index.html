@@ -24,6 +24,7 @@
           </div>
           <nav class="nav-links" aria-label="主站導覽">
             <a class="active" href="./index.html">首頁</a>
+            <a href="./ab-daily/index.html">每日 AB</a>
             <a href="./sell-model/index.html">賣價模型</a>
             <a href="./auto-trading/index.html">自動交易</a>
           </nav>
@@ -45,6 +46,7 @@
             <h2>目前狀態</h2>
             <p class="meta-line" id="deploy-state">讀取部署資訊中...</p>
             <div class="frame-actions">
+              <a class="action-link" href="./ab-daily/index.html">打開每日 AB</a>
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
             </div>
@@ -56,6 +58,20 @@
             <article class="card site-card">
               <div>
                 <p class="eyebrow">站台 A</p>
+                <h2>每日版本的 AB 選股模型輸出</h2>
+              </div>
+              <p class="section-copy">
+                專門看每日 AB 名單、A/B 分類、開收盤價、漲跌幅，以及全部各買一張的統計。
+              </p>
+              <div class="metric-grid" id="ab-daily-metrics"></div>
+              <div class="actions">
+                <a class="action-link" href="./ab-daily/index.html">查看頁面</a>
+              </div>
+            </article>
+
+            <article class="card site-card">
+              <div>
+                <p class="eyebrow">站台 B</p>
                 <h2>賣價模型儀表板</h2>
               </div>
               <p class="section-copy">
@@ -69,7 +85,7 @@
 
             <article class="card site-card">
               <div>
-                <p class="eyebrow">站台 B</p>
+                <p class="eyebrow">站台 C</p>
                 <h2>永豐自動交易</h2>
               </div>
               <p class="section-copy">
@@ -87,6 +103,7 @@
             <h2>這個入口站怎麼運作</h2>
             <ul class="list">
               <li>首頁會讀取共用 manifest，顯示兩套系統的最新摘要。</li>
+              <li>每日 AB 選股模型輸出獨立成一頁，最新一天放最上面，下面保留歷史。</li>
               <li>賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。</li>
               <li>同步腳本會重建嵌入內容，之後由同一條公開發布鏈把入口站一起推上去。</li>
             </ul>
