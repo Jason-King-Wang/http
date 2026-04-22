@@ -18,6 +18,9 @@ const elements = {
   dailySummaryNote: document.querySelector("#summary-daily-summary-note"),
   dailyComparison: document.querySelector("#summary-daily-comparison"),
   dailyHistoryList: document.querySelector("#summary-daily-history-list"),
+  abDailySummary: document.querySelector("#ab-daily-summary"),
+  abDailyMeta: document.querySelector("#ab-daily-meta"),
+  abDailyTableBody: document.querySelector("#ab-daily-table-body"),
   heroMeta: document.querySelector("#hero-meta"),
   sourceSummary: document.querySelector("#source-summary"),
   publicScope: document.querySelector("#public-scope"),
@@ -79,6 +82,7 @@ function renderDashboard() {
   renderPublicScope();
   renderSummaryCards();
   renderDailyComparisonTable();
+  renderAbDaily();
   renderStories(rows);
   renderActions();
   renderThemes(rows);
@@ -86,6 +90,88 @@ function renderDashboard() {
   renderFilterOptions(rows);
   renderTable(filteredRows);
   renderDetailPanel(filteredRows, rows);
+}
+
+function renderAbDaily() {
+  if (!elements.abDailySummary || !elements.abDailyMeta || !elements.abDailyTableBody) {
+    return;
+  }
+
+  const data = state.data.ab_daily || {};
+  const rows = Array.isArray(data.rows) ? data.rows : [];
+
+  if (!rows.length) {
+    elements.abDailySummary.textContent = "目前還沒有每日 AB 模型輸出資料。";
+    elements.abDailyMeta.innerHTML = "";
+    elements.abDailyTableBody.innerHTML = `
+      <tr>
+        <td class="empty-cell" colspan="11">等第一筆每日 AB 模型輸出跑完後，這裡會直接顯示開盤版與收盤版資料。</td>
+      </tr>
+    `;
+    return;
+  }
+
+  const phaseLabel = data.phase_label || (String(data.phase || "").trim().toLowerCase() === "close" ? "收盤版" : "開盤版");
+  const hasPortfolioReturn = hasNumericValue(data.equal_lot_return_pct);
+  const hasPortfolioPnl = hasNumericValue(data.equal_lot_pnl_twd);
+  const summaryBits = [
+    `${data.trade_date || "-"} ${phaseLabel}`,
+    `共 ${formatInteger(data.stock_count)} 檔`,
+    `A ${formatInteger(data.a_count)}`,
+    `B ${formatInteger(data.b_count)}`,
+    `AB ${formatInteger(data.ab_count)}`
+  ];
+
+  if (hasPortfolioReturn) {
+    summaryBits.push(`全部各買一張 ${formatSignedPercentPoints(data.equal_lot_return_pct)}`);
+  }
+  if (hasPortfolioPnl) {
+    summaryBits.push(`損益 ${formatSignedCurrency(data.equal_lot_pnl_twd)}`);
+  }
+
+  elements.abDailyMeta.innerHTML = summaryBits
+    .map((text) => `<span class="pill">${escapeHtml(text)}</span>`)
+    .join("");
+
+  if (hasPortfolioReturn && hasPortfolioPnl) {
+    elements.abDailySummary.textContent =
+      `這版是 ${data.trade_date} 的 ${phaseLabel}。如果全部各買一張，合計報酬 ${formatSignedPercentPoints(data.equal_lot_return_pct)}，實際損益 ${formatSignedCurrency(data.equal_lot_pnl_twd)}。`;
+  } else {
+    elements.abDailySummary.textContent =
+      `這版是 ${data.trade_date} 的 ${phaseLabel}。目前先記錄開盤名單與價格，收盤後會補上漲跌幅和全部各買一張的統計。`;
+  }
+
+  elements.abDailyTableBody.innerHTML = rows
+    .map(
+      (row) => `
+        <tr>
+          <td>${escapeHtml(row.stock_id)}</td>
+          <td>${escapeHtml(row.stock_name)}</td>
+          <td>${renderSelectionTag(row.selection_tag)}</td>
+          <td>${safeFlagLabel(row.a_flag)}</td>
+          <td>${safeFlagLabel(row.b_flag)}</td>
+          <td>${escapeHtml(row.theme || "-")}</td>
+          <td>${escapeHtml(formatNumber(row.open_price))}</td>
+          <td>${escapeHtml(formatNumber(row.close_price))}</td>
+          <td>${escapeHtml(formatSignedPercentPoints(row.change_pct))}</td>
+          <td>${escapeHtml(formatSignedNumber(row.change_amount))}</td>
+          <td>${escapeHtml(formatSignedCurrency(row.lot_pnl_twd))}</td>
+        </tr>
+      `
+    )
+    .join("");
+}
+
+function renderSelectionTag(tag) {
+  const normalized = String(tag || "").trim().toUpperCase();
+  if (!normalized) {
+    return '<span class="ab-tag ab-tag-empty">-</span>';
+  }
+  return `<span class="ab-tag ab-tag-${normalized.toLowerCase()}">${escapeHtml(normalized)}</span>`;
+}
+
+function safeFlagLabel(value) {
+  return toNumber(value) === 1 ? "是" : "-";
 }
 
 function renderHero() {
@@ -1218,6 +1304,24 @@ function formatNumber(value) {
   });
 }
 
+function formatSignedNumber(value, digits = 2) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number)) {
+    return "-";
+  }
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toFixed(digits)}`;
+}
+
+function formatSignedCurrency(value) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number)) {
+    return "-";
+  }
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${Math.round(number).toLocaleString("zh-TW")}`;
+}
+
 function formatPercent(value) {
   const number = toNumber(value);
   return Number.isFinite(number) ? `${(number * 100).toFixed(2)}%` : "-";
@@ -1226,6 +1330,15 @@ function formatPercent(value) {
 function formatPercentFromPoints(value) {
   const number = toNumber(value);
   return Number.isFinite(number) ? `${number.toFixed(2)}%` : "-";
+}
+
+function formatSignedPercentPoints(value) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number)) {
+    return "-";
+  }
+  const sign = number > 0 ? "+" : "";
+  return `${sign}${number.toFixed(2)}%`;
 }
 
 function formatSignedPoints(value, digits = 2) {

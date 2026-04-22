@@ -49,6 +49,7 @@
 
         <nav class="card jump-nav" aria-label="頁面快速跳轉">
           <div class="jump-links">
+            <a class="jump-link" href="#ab-daily">AB 日表</a>
             <a class="jump-link" href="#overview">總覽</a>
             <a class="jump-link" href="#summary">整體摘要</a>
             <a class="jump-link" href="#daily-table">逐日比較表</a>
@@ -140,6 +141,40 @@
                   </tr>
                 </thead>
                 <tbody id="daily-compare-table-body"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <section class="section-block" id="ab-daily">
+          <article class="card ab-daily-card">
+            <div class="section-heading compact">
+              <div>
+                <p class="eyebrow">AB Daily</p>
+                <h2>每日 AB 模型輸出</h2>
+              </div>
+              <span class="mini-note">開盤版 09:00，收盤版 13:30 更新</span>
+            </div>
+            <p class="action-summary" id="ab-daily-summary"></p>
+            <div class="pill-row action-pills" id="ab-daily-meta"></div>
+            <div class="table-wrap">
+              <table class="ab-daily-table">
+                <thead>
+                  <tr>
+                    <th>股號</th>
+                    <th>股名</th>
+                    <th>分類</th>
+                    <th>A</th>
+                    <th>B</th>
+                    <th>主題</th>
+                    <th>開盤價</th>
+                    <th>收盤價</th>
+                    <th>漲跌幅%</th>
+                    <th>漲跌實際</th>
+                    <th>一張損益</th>
+                  </tr>
+                </thead>
+                <tbody id="ab-daily-table-body"></tbody>
               </table>
             </div>
           </article>
