@@ -312,6 +312,38 @@ function hasVisibleAbRows(entry) {
   return Array.isArray(entry?.rows) && entry.rows.length > 0;
 }
 
+function renderHistoryToggleButton() {
+  return `
+    <button class="history-toggle" type="button" data-history-toggle aria-expanded="true">
+      收起
+    </button>
+  `;
+}
+
+function wireAbHistoryToggles(historyList) {
+  if (!historyList || historyList.dataset.toggleBound === "true") {
+    return;
+  }
+
+  historyList.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-history-toggle]");
+    if (!button) {
+      return;
+    }
+
+    const card = button.closest(".history-card");
+    if (!card) {
+      return;
+    }
+
+    const collapsed = card.classList.toggle("is-collapsed");
+    button.textContent = collapsed ? "展開" : "收起";
+    button.setAttribute("aria-expanded", collapsed ? "false" : "true");
+  });
+
+  historyList.dataset.toggleBound = "true";
+}
+
 function renderAbDailyPage(payload) {
   const history = (Array.isArray(payload?.history) ? payload.history : []).filter((entry) => hasVisibleAbRows(entry));
   const latest = hasVisibleAbRows(payload?.latest) ? payload.latest : history[0] || {};
@@ -365,17 +397,24 @@ function renderAbDailyPage(payload) {
               <p class="eyebrow">History</p>
               <h3>${escapeHtml(entry.trade_date || "--")} ${escapeHtml(entry.phase_label || "")}</h3>
             </div>
-            <div class="pill-row compact-pills">
-              ${buildAbPills(entry)
-                .map((item) => `<span class="pill">${item}</span>`)
-                .join("")}
+            <div class="history-head-actions">
+              <div class="pill-row compact-pills">
+                ${buildAbPills(entry)
+                  .map((item) => `<span class="pill">${item}</span>`)
+                  .join("")}
+              </div>
+              ${renderHistoryToggleButton()}
             </div>
           </div>
-          <div class="pool-grid">${renderPoolGrid(entry)}</div>
+          <div class="history-body">
+            <div class="pool-grid">${renderPoolGrid(entry)}</div>
+          </div>
         </article>
       `
     )
     .join("");
+
+  wireAbHistoryToggles(historyList);
 }
 
 function wireAutoTradingFrame(manifest) {

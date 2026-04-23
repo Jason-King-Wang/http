@@ -383,8 +383,49 @@ h2 {
   margin-bottom: 0.9rem;
 }
 
+.history-head-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
 .compact-pills {
   margin-top: 0;
+}
+
+.history-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 5rem;
+  padding: 0.65rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(22, 33, 46, 0.08);
+  background: rgba(255, 255, 255, 0.84);
+  color: var(--ink);
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.history-toggle:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px rgba(22, 33, 46, 0.12);
+  border-color: rgba(12, 143, 122, 0.24);
+}
+
+.history-toggle:focus-visible {
+  outline: 2px solid rgba(12, 143, 122, 0.4);
+  outline-offset: 2px;
+}
+
+.history-body {
+  display: block;
+}
+
+.history-card.is-collapsed .history-body {
+  display: none;
 }
 
 .table-wrap {
