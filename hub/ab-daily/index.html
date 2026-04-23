@@ -32,15 +32,15 @@
             <p class="eyebrow">AB Daily</p>
             <h1>每日版本的 AB 選股模型輸出</h1>
             <p>
-              這頁專門看每天的 AB 名單。最新一天放最上面，下面保留逐日歷史，並記錄 A、B、
-              開盤價、收盤價、漲跌幅，以及全部各買一張的統計。
+              這頁專門看每天的 LLM A 預選與 B 預選。最新一天放最上面，下面保留逐日歷史；
+              這裡不再收斂成 AB 定版，只記錄兩個預選池與當天表現。
             </p>
             <div class="pill-row" id="ab-page-meta"></div>
           </div>
           <aside class="hero-panel">
             <p class="eyebrow">更新節點</p>
             <h2>自動更新</h2>
-            <p class="meta-line">平日 09:00 寫開盤版，13:30 更新收盤版。</p>
+            <p class="meta-line">平日早上先產生 A/B 預選，09:00 寫開盤版，13:30 更新收盤版。</p>
             <div class="frame-actions">
               <a class="action-link" href="../sell-model/index.html">回賣價模型</a>
               <a class="action-link" href="../index.html">回入口首頁</a>
@@ -57,26 +57,7 @@
           </div>
           <p class="section-copy" id="ab-latest-summary">讀取最新資料中...</p>
           <div class="pill-row" id="ab-latest-pills"></div>
-          <div class="table-wrap">
-            <table class="ab-history-table">
-              <thead>
-                <tr>
-                  <th>股號</th>
-                  <th>股名</th>
-                  <th>分類</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>主題</th>
-                  <th>開盤價</th>
-                  <th>收盤價</th>
-                  <th>漲跌幅%</th>
-                  <th>漲跌實際</th>
-                  <th>一張損益</th>
-                </tr>
-              </thead>
-              <tbody id="ab-latest-table-body"></tbody>
-            </table>
-          </div>
+          <div class="pool-grid" id="ab-latest-pools"></div>
         </section>
 
         <section class="card ab-history-shell">

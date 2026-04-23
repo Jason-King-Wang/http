@@ -3,8 +3,9 @@ async function fetchPortalManifest() {
     return window.__PORTAL_MANIFEST__;
   }
 
+  const basePath = document.body.dataset.page === "portal-home" ? "./" : "../";
   try {
-    const response = await fetch(`./data/portal-manifest.json?v=${Date.now()}`, { cache: "no-store" });
+    const response = await fetch(`${basePath}data/portal-manifest.json?v=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`Manifest request failed: ${response.status}`);
     }
@@ -37,34 +38,27 @@ function fallbackText(value) {
   return value === undefined || value === null || value === "" ? "--" : value;
 }
 
-function formatPct(value) {
+function asNumber(value) {
   if (value === undefined || value === null || value === "") {
-    return "--";
+    return null;
   }
   const number = Number(value);
-  if (Number.isNaN(number)) {
-    return "--";
-  }
-  return `${(number * 100).toFixed(2)}%`;
+  return Number.isNaN(number) ? null : number;
+}
+
+function formatPct(value) {
+  const number = asNumber(value);
+  return number === null ? "--" : `${(number * 100).toFixed(2)}%`;
 }
 
 function formatPctPoints(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
-    return "--";
-  }
-  return `${number.toFixed(2)}%`;
+  const number = asNumber(value);
+  return number === null ? "--" : `${number.toFixed(2)}%`;
 }
 
 function formatSignedPctPoints(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
+  const number = asNumber(value);
+  if (number === null) {
     return "--";
   }
   const sign = number > 0 ? "+" : "";
@@ -72,22 +66,16 @@ function formatSignedPctPoints(value) {
 }
 
 function formatMoney(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
+  const number = asNumber(value);
+  if (number === null) {
     return "--";
   }
   return number.toLocaleString("zh-TW", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
 }
 
 function formatSignedMoney(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
+  const number = asNumber(value);
+  if (number === null) {
     return "--";
   }
   const sign = number > 0 ? "+" : "";
@@ -95,22 +83,16 @@ function formatSignedMoney(value) {
 }
 
 function formatNumber(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
+  const number = asNumber(value);
+  if (number === null) {
     return "--";
   }
   return number.toLocaleString("zh-TW", { minimumFractionDigits: 0, maximumFractionDigits: 2 });
 }
 
 function formatSignedNumber(value) {
-  if (value === undefined || value === null || value === "") {
-    return "--";
-  }
-  const number = Number(value);
-  if (Number.isNaN(number)) {
+  const number = asNumber(value);
+  if (number === null) {
     return "--";
   }
   const sign = number > 0 ? "+" : "";
@@ -122,7 +104,7 @@ function escapeHtml(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
-    .replaceAll("\"", "&quot;")
+    .replaceAll('"', "&quot;")
     .replaceAll("'", "&#39;");
 }
 
@@ -156,8 +138,8 @@ function renderPortalHome(manifest) {
   renderMetricCards(document.querySelector("#ab-daily-metrics"), [
     ["交易日", ab.trade_date],
     ["版本", ab.phase_label],
-    ["股票數", ab.stock_count],
-    ["各買一張報酬", formatPctPoints(ab.equal_lot_return_pct)],
+    ["A 預選", ab.a_count],
+    ["B 預選", ab.b_count],
   ]);
 
   renderMetricCards(document.querySelector("#sell-model-metrics"), [
@@ -190,25 +172,109 @@ function renderSelectionTag(tag) {
   return `<span class="tag-chip tag-chip-${normalized.toLowerCase()}">${escapeHtml(normalized)}</span>`;
 }
 
-function yesNoLabel(value) {
-  return Number(value) === 1 ? "是" : "-";
+function rowsForPool(entry, pool) {
+  const rows = Array.isArray(entry?.rows) ? entry.rows : [];
+  const flag = pool === "a" ? "a_flag" : "b_flag";
+  return rows.filter((row) => Number(row?.[flag]) === 1);
 }
 
-function renderAbRow(row) {
+function summarizePool(rows) {
+  let totalCost = 0;
+  let totalValue = 0;
+  let completeRows = 0;
+
+  rows.forEach((row) => {
+    const open = asNumber(row.open_price);
+    const close = asNumber(row.close_price);
+    if (open === null) {
+      return;
+    }
+    totalCost += open * 1000;
+    if (close === null) {
+      return;
+    }
+    totalValue += close * 1000;
+    completeRows += 1;
+  });
+
+  if (!rows.length || completeRows !== rows.length || !totalCost) {
+    return {
+      cost: null,
+      value: null,
+      pnl: null,
+      returnPct: null,
+    };
+  }
+
+  const pnl = totalValue - totalCost;
+  return {
+    cost: totalCost,
+    value: totalValue,
+    pnl,
+    returnPct: (pnl / totalCost) * 100,
+  };
+}
+
+function reasonForPool(row, pool) {
+  return pool === "a" ? row.a_reason || "" : row.b_reason || "";
+}
+
+function renderAbRow(row, pool) {
   return `
     <tr>
       <td>${escapeHtml(row.stock_id)}</td>
       <td>${escapeHtml(row.stock_name)}</td>
       <td>${renderSelectionTag(row.selection_tag)}</td>
-      <td>${yesNoLabel(row.a_flag)}</td>
-      <td>${yesNoLabel(row.b_flag)}</td>
       <td>${escapeHtml(row.theme || "--")}</td>
       <td>${escapeHtml(formatNumber(row.open_price))}</td>
       <td>${escapeHtml(formatNumber(row.close_price))}</td>
       <td>${escapeHtml(formatSignedPctPoints(row.change_pct))}</td>
       <td>${escapeHtml(formatSignedNumber(row.change_amount))}</td>
       <td>${escapeHtml(formatSignedMoney(row.lot_pnl_twd))}</td>
+      <td class="reason-cell">${escapeHtml(reasonForPool(row, pool) || "--")}</td>
     </tr>
+  `;
+}
+
+function renderPoolTable(title, pool, rows) {
+  const summary = summarizePool(rows);
+  const body = rows.length
+    ? rows.map((row) => renderAbRow(row, pool)).join("")
+    : '<tr><td class="empty-cell" colspan="10">這一池目前沒有預選股。</td></tr>';
+
+  return `
+    <article class="pool-card pool-card-${pool}">
+      <div class="pool-head">
+        <div>
+          <p class="eyebrow">${pool === "a" ? "A Preselect" : "B Preselect"}</p>
+          <h3>${title}</h3>
+        </div>
+        <div class="pill-row compact-pills">
+          <span class="pill">${rows.length} 檔</span>
+          <span class="pill">各買一張 ${formatSignedPctPoints(summary.returnPct)}</span>
+          <span class="pill">損益 ${formatSignedMoney(summary.pnl)}</span>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="ab-history-table">
+          <thead>
+            <tr>
+              <th>股號</th>
+              <th>股名</th>
+              <th>重疊</th>
+              <th>主題</th>
+              <th>開盤價</th>
+              <th>收盤價</th>
+              <th>漲跌幅%</th>
+              <th>漲跌實際</th>
+              <th>一張損益</th>
+              <th>LLM 理由</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+    </article>
   `;
 }
 
@@ -216,58 +282,64 @@ function buildAbPills(entry) {
   return [
     `交易日 ${fallbackText(entry.trade_date)}`,
     `${fallbackText(entry.phase_label)}`,
-    `${fallbackText(entry.stock_count)} 檔`,
-    `A ${fallbackText(entry.a_count)}`,
-    `B ${fallbackText(entry.b_count)}`,
-    `AB ${fallbackText(entry.ab_count)}`,
-    `各買一張 ${formatSignedPctPoints(entry.equal_lot_return_pct)}`,
-    `損益 ${formatSignedMoney(entry.equal_lot_pnl_twd)}`
+    `A 預選 ${fallbackText(entry.a_count)}`,
+    `B 預選 ${fallbackText(entry.b_count)}`,
+    `重疊 ${fallbackText(entry.ab_count)}`,
   ];
+}
+
+function renderPoolGrid(entry) {
+  const aRows = rowsForPool(entry, "a");
+  const bRows = rowsForPool(entry, "b");
+  return [
+    renderPoolTable("A 預選", "a", aRows),
+    renderPoolTable("B 預選", "b", bRows),
+  ].join("");
 }
 
 function renderAbDailyPage(payload) {
   const latest = payload?.latest || {};
   const history = Array.isArray(payload?.history) ? payload.history : [];
-  const latestTableBody = document.querySelector("#ab-latest-table-body");
+  const latestPools = document.querySelector("#ab-latest-pools");
   const latestSummary = document.querySelector("#ab-latest-summary");
   const latestPills = document.querySelector("#ab-latest-pills");
   const historyList = document.querySelector("#ab-history-list");
   const pageMeta = document.querySelector("#ab-page-meta");
 
-  if (!latestTableBody || !latestSummary || !latestPills || !historyList || !pageMeta) {
+  if (!latestPools || !latestSummary || !latestPills || !historyList || !pageMeta) {
     return;
   }
 
   if (!history.length) {
     pageMeta.innerHTML = '<span class="pill">目前沒有資料</span>';
-    latestSummary.textContent = "目前還沒有每日版本的 AB 選股模型輸出資料。";
+    latestSummary.textContent = "目前還沒有每日版本的 A/B 預選資料。";
     latestPills.innerHTML = "";
-    latestTableBody.innerHTML = '<tr><td class="empty-cell" colspan="11">等第一筆資料生成後，這裡會自動顯示。</td></tr>';
+    latestPools.innerHTML = "";
     historyList.innerHTML = '<div class="empty-state">目前還沒有歷史資料。</div>';
     return;
   }
+
+  const sourceLabel = latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
+    ? "LLM 規則預選"
+    : "候選檔 flag 備援";
 
   pageMeta.innerHTML = [
     `最後同步 ${fallbackText(payload.generated_at)}`,
     `最新交易日 ${fallbackText(latest.trade_date)}`,
     `${fallbackText(latest.phase_label)}`,
+    sourceLabel,
   ]
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
 
-  if (Number.isFinite(Number(latest.equal_lot_return_pct)) && Number.isFinite(Number(latest.equal_lot_pnl_twd))) {
-    latestSummary.textContent =
-      `${latest.trade_date} 的 ${latest.phase_label} 已更新。全部各買一張的合計報酬是 ${formatSignedPctPoints(latest.equal_lot_return_pct)}，實際損益 ${formatSignedMoney(latest.equal_lot_pnl_twd)}。`;
-  } else {
-    latestSummary.textContent =
-      `${latest.trade_date} 的 ${latest.phase_label} 已更新。這一版還在等完整價格，所以目前先保留名單與分類。`;
-  }
+  latestSummary.textContent =
+    `${latest.trade_date} 的 ${latest.phase_label} 已更新。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
 
   latestPills.innerHTML = buildAbPills(latest)
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
 
-  latestTableBody.innerHTML = (Array.isArray(latest.rows) ? latest.rows : []).map(renderAbRow).join("");
+  latestPools.innerHTML = renderPoolGrid(latest);
 
   historyList.innerHTML = history
     .map(
@@ -284,28 +356,7 @@ function renderAbDailyPage(payload) {
                 .join("")}
             </div>
           </div>
-          <div class="table-wrap">
-            <table class="ab-history-table">
-              <thead>
-                <tr>
-                  <th>股號</th>
-                  <th>股名</th>
-                  <th>分類</th>
-                  <th>A</th>
-                  <th>B</th>
-                  <th>主題</th>
-                  <th>開盤價</th>
-                  <th>收盤價</th>
-                  <th>漲跌幅%</th>
-                  <th>漲跌實際</th>
-                  <th>一張損益</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${(Array.isArray(entry.rows) ? entry.rows : []).map(renderAbRow).join("")}
-              </tbody>
-            </table>
-          </div>
+          <div class="pool-grid">${renderPoolGrid(entry)}</div>
         </article>
       `
     )
