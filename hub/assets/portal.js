@@ -4,7 +4,7 @@ async function fetchPortalManifest() {
   }
 
   try {
-    const response = await fetch("./data/portal-manifest.json", { cache: "no-store" });
+    const response = await fetch(`./data/portal-manifest.json?v=${Date.now()}`, { cache: "no-store" });
     if (!response.ok) {
       throw new Error(`Manifest request failed: ${response.status}`);
     }
@@ -21,7 +21,9 @@ async function fetchAbDailyData() {
 
   const basePath = document.body.dataset.page === "portal-home" ? "./" : "../";
   try {
-    const response = await fetch(`${basePath}sell-model-embed/data/public-ab-daily.json`, { cache: "no-store" });
+    const response = await fetch(`${basePath}sell-model-embed/data/public-ab-daily.json?v=${Date.now()}`, {
+      cache: "no-store",
+    });
     if (!response.ok) {
       throw new Error(`AB daily request failed: ${response.status}`);
     }
