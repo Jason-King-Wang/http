@@ -178,22 +178,24 @@ function rowsForPool(entry, pool) {
   return rows.filter((row) => Number(row?.[flag]) === 1);
 }
 
-function summarizePool(rows) {
+function summarizePool(rows, baseline = "open") {
   let totalCost = 0;
   let totalValue = 0;
   let completeRows = 0;
 
   rows.forEach((row) => {
-    const open = asNumber(row.open_price);
-    const close = asNumber(row.close_price);
-    if (open === null) {
+    const entry = baseline === "week" ? asNumber(row.week_entry_price) : asNumber(row.open_price);
+    const current = baseline === "week"
+      ? asNumber(row.close_price) ?? asNumber(row.open_price)
+      : asNumber(row.close_price);
+    if (entry === null) {
       return;
     }
-    totalCost += open * 1000;
-    if (close === null) {
+    totalCost += entry * 1000;
+    if (current === null) {
       return;
     }
-    totalValue += close * 1000;
+    totalValue += current * 1000;
     completeRows += 1;
   });
 
@@ -226,6 +228,9 @@ function renderAbRow(row, pool) {
       <td>${escapeHtml(row.stock_name)}</td>
       <td>${renderSelectionTag(row.selection_tag)}</td>
       <td>${escapeHtml(row.theme || "--")}</td>
+      <td>${escapeHtml(formatNumber(row.week_entry_price))}</td>
+      <td>${escapeHtml(formatSignedPctPoints(row.week_entry_return_pct))}</td>
+      <td>${escapeHtml(formatSignedMoney(row.week_entry_pnl_twd))}</td>
       <td>${escapeHtml(formatNumber(row.open_price))}</td>
       <td>${escapeHtml(formatNumber(row.close_price))}</td>
       <td>${escapeHtml(formatSignedPctPoints(row.change_pct))}</td>
@@ -238,9 +243,10 @@ function renderAbRow(row, pool) {
 
 function renderPoolTable(title, pool, rows) {
   const summary = summarizePool(rows);
+  const weekSummary = summarizePool(rows, "week");
   const body = rows.length
     ? rows.map((row) => renderAbRow(row, pool)).join("")
-    : '<tr><td class="empty-cell" colspan="10">這一池目前沒有預選股。</td></tr>';
+    : '<tr><td class="empty-cell" colspan="13">這一池目前沒有預選股。</td></tr>';
 
   return `
     <article class="pool-card pool-card-${pool}">
@@ -253,6 +259,8 @@ function renderPoolTable(title, pool, rows) {
           <span class="pill">${rows.length} 檔</span>
           <span class="pill">各買一張 ${formatSignedPctPoints(summary.returnPct)}</span>
           <span class="pill">損益 ${formatSignedMoney(summary.pnl)}</span>
+          <span class="pill">周一9.10分買的話 ${formatSignedPctPoints(weekSummary.returnPct)}</span>
+          <span class="pill">損益 ${formatSignedMoney(weekSummary.pnl)}</span>
         </div>
       </div>
       <div class="table-wrap">
@@ -263,6 +271,9 @@ function renderPoolTable(title, pool, rows) {
               <th>股名</th>
               <th>重疊</th>
               <th>主題</th>
+              <th>周一9:10價</th>
+              <th>周一9.10分買的話%</th>
+              <th>周一9.10損益</th>
               <th>開盤價</th>
               <th>收盤價</th>
               <th>漲跌幅%</th>
