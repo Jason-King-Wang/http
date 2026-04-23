@@ -3,9 +3,9 @@
   "week_id": "2026-04-20_2026-04-24",
   "run_id": "auto-2026-04-24",
   "mode": "dry_run",
-  "provider_name": "manual_csv",
+  "provider_name": "ab_llm_preselect_json",
   "overview": {
-    "last_update_time": "2026-04-23T22:32:53+08:00",
+    "last_update_time": "2026-04-24T00:41:19+08:00",
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
     "used_cash": 0.0,
@@ -250,6 +250,46 @@
       "price": "",
       "qty": "",
       "result": "Checked sell-loop readiness: no_strategy_positions.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-23T22:32:53.440421+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "Rendered workflow status with 17 checklist rows.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T00:39:20.319440+08:00",
+      "event_type": "prepare_week",
+      "stock_id": "",
+      "action": "prepare_week",
+      "price": "",
+      "qty": "",
+      "result": "Loaded 0 preselect items from ab_llm_preselect_json",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T00:39:23.533413+08:00",
+      "event_type": "finalize",
+      "stock_id": "",
+      "action": "finalize",
+      "price": "",
+      "qty": "",
+      "result": "Finalized 0 symbols.",
+      "warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T00:39:54.236715+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "Rendered workflow status with 17 checklist rows.",
       "warning_or_error": ""
     }
   ],
