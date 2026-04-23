@@ -308,9 +308,13 @@ function renderPoolGrid(entry) {
   ].join("");
 }
 
+function hasVisibleAbRows(entry) {
+  return Array.isArray(entry?.rows) && entry.rows.length > 0;
+}
+
 function renderAbDailyPage(payload) {
-  const latest = payload?.latest || {};
-  const history = Array.isArray(payload?.history) ? payload.history : [];
+  const history = (Array.isArray(payload?.history) ? payload.history : []).filter((entry) => hasVisibleAbRows(entry));
+  const latest = hasVisibleAbRows(payload?.latest) ? payload.latest : history[0] || {};
   const latestPools = document.querySelector("#ab-latest-pools");
   const latestSummary = document.querySelector("#ab-latest-summary");
   const latestPills = document.querySelector("#ab-latest-pills");
@@ -332,7 +336,7 @@ function renderAbDailyPage(payload) {
 
   const sourceLabel = latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
     ? "LLM 規則預選"
-    : "候選檔 flag 備援";
+    : "LLM 預選";
 
   pageMeta.innerHTML = [
     `最後同步 ${fallbackText(payload.generated_at)}`,
