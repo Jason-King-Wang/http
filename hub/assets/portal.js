@@ -38,6 +38,9 @@ function fallbackText(value) {
 }
 
 function formatPct(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -46,6 +49,9 @@ function formatPct(value) {
 }
 
 function formatPctPoints(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -54,6 +60,9 @@ function formatPctPoints(value) {
 }
 
 function formatSignedPctPoints(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -63,6 +72,9 @@ function formatSignedPctPoints(value) {
 }
 
 function formatMoney(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -71,6 +83,9 @@ function formatMoney(value) {
 }
 
 function formatSignedMoney(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -80,6 +95,9 @@ function formatSignedMoney(value) {
 }
 
 function formatNumber(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
@@ -88,6 +106,9 @@ function formatNumber(value) {
 }
 
 function formatSignedNumber(value) {
+  if (value === undefined || value === null || value === "") {
+    return "--";
+  }
   const number = Number(value);
   if (Number.isNaN(number)) {
     return "--";
