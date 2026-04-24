@@ -2,9 +2,9 @@
   "week_id": "2026-04-20_2026-04-24",
   "start_date": "2026-04-20",
   "end_date": "2026-04-24",
-  "mode": "dry_run",
-  "provider_name": "manual_csv",
-  "last_update_time": "2026-04-22T02:12:58+08:00",
+  "mode": "live_guarded",
+  "provider_name": "ab_llm_preselect_json",
+  "last_update_time": "2026-04-24T13:41:34+08:00",
   "weekly_totals": {
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
@@ -34,7 +34,16 @@
       "weighted_version": 0,
       "monday_plan": 0,
       "secondary_add": "N/A",
-      "actual_combined": 0
+      "actual_combined": 0,
+      "position_data_quality": "direct",
+      "fallback_lot_count": 0,
+      "ambiguous_fill_guard_count": 0,
+      "excluded_position_guard_count": 0,
+      "broker_underheld_guard_count": 0,
+      "positions_source_date": "",
+      "strategy_return_value": 0.0,
+      "twii_return_value": 0.0,
+      "tsmc_return_value": 0.0
     },
     {
       "date": "2026-04-21",
@@ -50,7 +59,16 @@
       "weighted_version": 0,
       "monday_plan": "N/A",
       "secondary_add": "N/A",
-      "actual_combined": 0
+      "actual_combined": 0,
+      "position_data_quality": "direct",
+      "fallback_lot_count": 0,
+      "ambiguous_fill_guard_count": 0,
+      "excluded_position_guard_count": 0,
+      "broker_underheld_guard_count": 0,
+      "positions_source_date": "",
+      "strategy_return_value": 0.0,
+      "twii_return_value": 0.0,
+      "tsmc_return_value": 0.0
     },
     {
       "date": "2026-04-22",
@@ -66,42 +84,70 @@
       "weighted_version": 3,
       "monday_plan": "N/A",
       "secondary_add": "N/A",
-      "actual_combined": 0
+      "actual_combined": 0,
+      "position_data_quality": "direct",
+      "fallback_lot_count": 0,
+      "ambiguous_fill_guard_count": 0,
+      "excluded_position_guard_count": 0,
+      "broker_underheld_guard_count": 0,
+      "positions_source_date": "",
+      "strategy_return_value": 0.0,
+      "twii_return_value": 0.0,
+      "tsmc_return_value": 0.0
     },
     {
       "date": "2026-04-23",
       "twii": "0.00%",
       "tsmc": "0.00%",
-      "preselect": 0,
-      "a_preselect": 0,
+      "preselect": 10,
+      "a_preselect": 10,
       "b_preselect": 0,
-      "final_list": 0,
-      "a_final": 0,
+      "final_list": 10,
+      "a_final": 10,
       "b_final": 0,
-      "equal_weight_version": 0,
-      "weighted_version": 0,
+      "equal_weight_version": 10,
+      "weighted_version": 20,
       "monday_plan": "N/A",
       "secondary_add": "N/A",
-      "actual_combined": 0
+      "actual_combined": 0,
+      "position_data_quality": "direct",
+      "fallback_lot_count": 0,
+      "ambiguous_fill_guard_count": 0,
+      "excluded_position_guard_count": 0,
+      "broker_underheld_guard_count": 0,
+      "positions_source_date": "",
+      "strategy_return_value": 0.0,
+      "twii_return_value": 0.0,
+      "tsmc_return_value": 0.0
     },
     {
       "date": "2026-04-24",
       "twii": "0.00%",
       "tsmc": "0.00%",
-      "preselect": 0,
-      "a_preselect": 0,
+      "preselect": 10,
+      "a_preselect": 10,
       "b_preselect": 0,
-      "final_list": 0,
-      "a_final": 0,
+      "final_list": 10,
+      "a_final": 10,
       "b_final": 0,
-      "equal_weight_version": 0,
-      "weighted_version": 0,
+      "equal_weight_version": 10,
+      "weighted_version": 20,
       "monday_plan": "N/A",
       "secondary_add": "N/A",
-      "actual_combined": 0
+      "actual_combined": 0,
+      "position_data_quality": "direct",
+      "fallback_lot_count": 0,
+      "ambiguous_fill_guard_count": 0,
+      "excluded_position_guard_count": 0,
+      "broker_underheld_guard_count": 0,
+      "positions_source_date": "",
+      "strategy_return_value": 0.0,
+      "twii_return_value": 0.0,
+      "tsmc_return_value": 0.0
     }
   ],
   "excluded_positions": [],
+  "broker_underheld_rows": [],
   "trade_results": [
     {
       "label": "weekly_budget",
@@ -145,7 +191,7 @@
     },
     {
       "label": "realized_pnl",
-      "value": 0
+      "value": 0.0
     },
     {
       "label": "unrealized_pnl",
@@ -153,6 +199,42 @@
     },
     {
       "label": "excluded_positions_count",
+      "value": 0
+    },
+    {
+      "label": "ambiguous_fill_count",
+      "value": 0
+    },
+    {
+      "label": "ambiguous_fill_guard_day_count",
+      "value": 0
+    },
+    {
+      "label": "ambiguous_fill_guard_lot_count",
+      "value": 0
+    },
+    {
+      "label": "excluded_position_guard_day_count",
+      "value": 0
+    },
+    {
+      "label": "excluded_position_guard_lot_count",
+      "value": 0
+    },
+    {
+      "label": "broker_underheld_guard_day_count",
+      "value": 0
+    },
+    {
+      "label": "broker_underheld_guard_lot_count",
+      "value": 0
+    },
+    {
+      "label": "fallback_day_count",
+      "value": 0
+    },
+    {
+      "label": "fallback_position_lot_count",
       "value": 0
     }
   ],
@@ -162,13 +244,17 @@
       "stock_id": "2330",
       "stock_name": "TSMC",
       "source": "",
+      "basket_tag": "main",
       "source_trade_date": "2026-04-22",
       "last_seen_trade_date": "2026-04-22",
       "buy_order_ids": "DRY-0001",
+      "buy_custom_fields": "",
       "buy_order_statuses": "dry_run",
       "sell_order_ids": "",
+      "sell_custom_fields": "",
       "sell_order_statuses": "",
       "fill_order_ids": "",
+      "fill_custom_fields": "",
       "buy_fill_qty": 0,
       "buy_fill_avg_price": 0.0,
       "sell_fill_qty": 0,
@@ -188,13 +274,17 @@
       "stock_id": "2454",
       "stock_name": "MediaTek",
       "source": "",
+      "basket_tag": "main",
       "source_trade_date": "2026-04-22",
       "last_seen_trade_date": "2026-04-22",
       "buy_order_ids": "DRY-0002",
+      "buy_custom_fields": "",
       "buy_order_statuses": "dry_run",
       "sell_order_ids": "",
+      "sell_custom_fields": "",
       "sell_order_statuses": "",
       "fill_order_ids": "",
+      "fill_custom_fields": "",
       "buy_fill_qty": 0,
       "buy_fill_avg_price": 0.0,
       "sell_fill_qty": 0,
@@ -210,6 +300,7 @@
       "lot_status": "closed"
     }
   ],
+  "ambiguous_fill_rows": [],
   "sell_model_vs_actual": [],
   "expired_unfilled": [],
   "tuning_suggestions": [
