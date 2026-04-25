@@ -18,7 +18,7 @@
   "workflow_pending_steps": 0,
   "workflow_closed_steps": 5,
   "overview": {
-    "last_update_time": "2026-04-24T15:44:39+08:00",
+    "last_update_time": "2026-04-24T21:25:24+08:00",
     "weekly_budget": 0.0,
     "hard_budget": 50000.0,
     "used_cash": 0.0,
@@ -44,7 +44,7 @@
     "selection_source_path": "../data/ab_llm_preselect/2026-04-24.json",
     "selection_source_last_modified": "2026-04-24T08:54:10+08:00",
     "selection_source_status": "same_day_a_preselect_loaded",
-    "selection_source_note": "同日 A 預選來源已同步成目前本地 basket 產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
+    "selection_source_note": "同日 A 預選來源已同步成目前本地整包產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
     "dashboard_refresh_status": "report_only_refresh",
     "dashboard_refresh_steps": "render_report, workflow_status",
     "dashboard_refresh_note": "最近一次 refresh_dashboard 只重跑了 render_report, workflow_status，沒有重做 prepare_week / finalize。",
@@ -57,49 +57,107 @@
     "selection_materialization_open": false,
     "selection_materialization_status": "local_materialization_current",
     "selection_materialization_missing_artifacts": "",
-    "selection_materialization_note": "同日 A 預選來源已同步成目前本地 basket 產物。",
+    "selection_materialization_note": "同日 A 預選來源已同步成目前本地整包產物。",
     "selection_materialization_next_action": "materialization_current_no_action_required",
-    "selection_materialization_next_action_note": "本地 basket 產物已就緒；是否能送出新買單，改看買窗與風控。",
+    "selection_materialization_next_action_note": "本地整包產物已就緒；是否能送出新買單，改看買窗與風控。",
     "weekly_settlement_open": false,
     "weekly_settlement_status": "weekly_settlement_current",
     "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
-    "weekly_settlement_note": "Weekly settlement artifacts are current for 2026-04-20 to 2026-04-24.",
+    "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
     "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
-    "weekly_settlement_next_action_note": "Weekly settlement artifacts are already current for this week; no additional weekly snapshot action is required unless you want to regenerate them.",
+    "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
     "guarded_post_check_status": "skipped_config_live_disabled",
     "guarded_post_check_recommendation": "enable_live_in_config_before_next_scheduled_run",
     "guarded_post_check_effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "guarded_post_check_effective_recommendation_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+    "guarded_post_check_effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
     "guarded_post_check_reconciled": false,
     "guarded_post_check_fills_count": 0,
     "guarded_post_check_positions_count": 0,
     "guarded_post_check_next_run_guard_status": "scheduled_task_time_passed",
-    "guarded_post_check_next_run_guard_message": "Guard settings look fixed now, but the Windows scheduled task time already passed at 2026-04-24T09:10:00+08:00; missed guarded orders do not backfill automatically.",
+    "guarded_post_check_next_run_guard_message": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
+    "guarded_post_check_config_timing_status": "live_enabled_fixed_after_scheduled_run",
+    "guarded_post_check_config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "guarded_post_check_config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+    "guarded_post_check_config_last_modified": "2026-04-24T11:18:15+08:00",
+    "guarded_post_check_task_recorded_at": "2026-04-24T09:10:00+08:00",
     "sell_loop_readiness_blocking_reason": "no_strategy_positions",
     "sell_loop_readiness_next_action": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "sell_loop_readiness_next_action_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+    "sell_loop_readiness_next_action_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
     "sell_loop_readiness_positions_ready": false,
     "sell_loop_readiness_positions_count": 0,
     "sell_loop_readiness_positions_source_date": "",
     "sell_loop_readiness_post_guarded_effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "sell_loop_readiness_post_guarded_effective_recommendation_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+    "sell_loop_readiness_post_guarded_effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
     "sell_loop_readiness_post_guarded_next_run_guard_status": "scheduled_task_time_passed",
+    "sell_loop_readiness_post_guarded_config_timing_status": "live_enabled_fixed_after_scheduled_run",
+    "sell_loop_readiness_post_guarded_config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "sell_loop_readiness_post_guarded_config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+    "sell_loop_readiness_post_guarded_config_last_modified": "2026-04-24T11:18:15+08:00",
+    "sell_loop_readiness_post_guarded_task_recorded_at": "2026-04-24T09:10:00+08:00",
     "today_ordering_status": "guarded_time_passed_no_backfill+basket_a_loaded+basket_buy_window_closed_last_trade_day",
-    "today_ordering_note": "2330 guarded 單的 guard 已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地 basket 產物。 今天是本週最後交易日（2026-04-24），basket buy_loop 不再開新買單。",
+    "today_ordering_note": "2330 受保護下單的保護條件已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地整包產物。 今天是本週最後交易日（2026-04-24），整包買進迴圈不再開新買單。",
     "today_ordering_conflict_status": "same_day_a_source_arrived_after_basket_buy_window_closed",
-    "today_ordering_conflict_note": "同日 A 預選來源在 2026-04-24 才到位，但 basket buy_loop 到了最後交易日已不再開新買單；這是上下游規則衝突。",
+    "today_ordering_conflict_note": "同日 A 預選來源在 2026-04-24 才到位，但整包買進迴圈到了最後交易日已不再開新買單；這是上下游規則衝突。",
     "today_ordering_conflict_resolution_status": "requires_rule_alignment",
     "today_ordering_conflict_resolution_action": "align_a_source_timing_or_basket_buy_window_rule",
-    "today_ordering_conflict_resolution_note": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在 basket 可買的交易日/買窗內先到，要嘛調整 basket 買窗規則，讓 same-day A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
+    "today_ordering_conflict_resolution_note": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在整包可買的交易日/買窗內先到，要嘛調整整包買窗規則，讓同日 A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
     "today_new_order_submission_open": false,
     "today_new_order_submission_status": "no_auto_new_buy_paths_remaining_today",
-    "today_new_order_submission_note": "今天已沒有任何自動新買單路徑可送出；guarded 2330 與 basket 買入路徑都已關閉。",
+    "today_new_order_submission_note": "今天已沒有任何自動新買單路徑可送出；2330 受保護下單路徑與整包買進路徑都已關閉。",
     "today_status": "buy_window_closed",
-    "today_status_note": "Selection and sizing artifacts exist, but all automatic new buy submission paths are closed for today.",
+    "today_status_note": "選股與 sizing 產物已存在，但今天所有自動新買單送出路徑都已關閉。",
     "selection_source_carry_forward_open": false,
     "selection_source_carry_forward_status": "same_day_source_expires_after_trade_date",
     "selection_source_carry_forward_next_trade_day": "2026-04-27",
-    "selection_source_carry_forward_note": "這份 A 預選來源遵守 same-day only；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次 basket 主線要等 2026-04-27 的同日 A 預選檔。"
+    "selection_source_carry_forward_note": "這份 A 預選來源遵守同日限定；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次整包主線要等 2026-04-27 的同日 A 預選檔。",
+    "today_status_label": "買窗已關閉",
+    "selection_source_status_label": "同日 A 預選已載入",
+    "dashboard_refresh_status_label": "僅重跑報表",
+    "dashboard_last_materialization_status_label": "已物化但未進入買進迴圈",
+    "dashboard_last_materialization_trigger_status_label": "歷史物化原因未記錄",
+    "weekly_settlement_status_label": "週結算已是最新",
+    "selection_source_carry_forward_status_label": "同日來源僅限當日，不延用到下個交易日",
+    "selection_materialization_status_label": "本地整包產物已對齊",
+    "today_ordering_status_label": "受保護下單時間已過且不補單 + 整包 A 已載入 + 整包最後交易日買窗已關閉",
+    "today_ordering_conflict_status_label": "同日 A 來源晚於整包買窗",
+    "today_ordering_conflict_resolution_status_label": "需要對齊規則",
+    "today_new_order_submission_status_label": "今天已無自動新買單路徑",
+    "guarded_post_check_status_label": "因設定未開啟真實下單而略過",
+    "guarded_post_check_effective_recommendation_label": "保護條件已修好但今日時段已過不補單",
+    "guarded_post_check_next_run_guard_status_label": "排程時間已過",
+    "guarded_post_check_config_timing_status_label": "live_enabled 參數在排程後才修正",
+    "sell_loop_readiness_blocking_reason_label": "沒有策略部位",
+    "sell_loop_readiness_next_action_label": "保護條件已修好但今日時段已過不補單",
+    "sell_loop_readiness_post_guarded_next_run_guard_status_label": "排程時間已過",
+    "sell_loop_readiness_post_guarded_config_timing_status_label": "live_enabled 參數在排程後才修正",
+    "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+    "selection_materialization_next_action_label": "本地整包產物已對齊，今天不需額外展開",
+    "today_ordering_conflict_resolution_action_label": "對齊 A 來源時間或 basket 買窗規則",
+    "guarded_post_check_recommendation_label": "下次排程前先啟用 auto_trading.live_enabled",
+    "sell_loop_readiness_post_guarded_effective_recommendation_label": "保護條件已修好但今日時段已過不補單",
+    "position_data_quality_label": "直接策略部位",
+    "today_status_note_display": "選股與 sizing 產物已存在，但今天所有自動新買單送出路徑都已關閉。",
+    "selection_source_note_display": "同日 A 預選來源已同步成目前本地整包產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
+    "dashboard_refresh_steps_display": "輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+    "dashboard_refresh_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 只重跑了 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，沒有重做 載入預選 (prepare_week) / 完成訂版 (finalize)。",
+    "dashboard_last_materialization_steps_display": "載入預選 (prepare_week), 完成訂版 (finalize), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+    "dashboard_last_materialization_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 重跑了 載入預選 (prepare_week), 完成訂版 (finalize), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，但沒有進入 買進迴圈 (buy_loop)。",
+    "dashboard_last_materialization_trigger_note_display": "這次 物化刷新 的 觸發原因 沒有在當時被記錄下來；目前只能從已有產物反推。",
+    "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+    "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+    "selection_source_carry_forward_note_display": "這份 A 預選來源遵守同日限定；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次整包主線要等 2026-04-27 的同日 A 預選檔。",
+    "selection_materialization_note_display": "同日 A 預選來源已同步成目前本地整包產物。",
+    "selection_materialization_next_action_note_display": "本地整包產物已就緒；是否能送出新買單，改看買窗與風控。",
+    "today_ordering_note_display": "2330 受保護下單的保護條件已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地整包產物。 今天是本週最後交易日（2026-04-24），整包買進迴圈不再開新買單。",
+    "today_ordering_conflict_note_display": "同日 A 預選來源在 2026-04-24 才到位，但整包買進迴圈到了最後交易日已不再開新買單；這是上下游規則衝突。",
+    "today_ordering_conflict_resolution_note_display": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在整包可買的交易日/買窗內先到，要嘛調整整包買窗規則，讓同日 A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
+    "today_new_order_submission_note_display": "今天已沒有任何自動新買單路徑可送出；2330 受保護下單路徑與整包買進路徑都已關閉。",
+    "guarded_post_check_effective_recommendation_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+    "guarded_post_check_next_run_guard_message_display": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
+    "guarded_post_check_config_timing_message_display": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "sell_loop_readiness_next_action_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+    "sell_loop_readiness_post_guarded_effective_recommendation_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+    "sell_loop_readiness_post_guarded_config_timing_message_display": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。"
   },
   "dashboard_refresh": {
     "steps_run": [
@@ -143,7 +201,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2060.0,
-      "projected_cost": 4202.099999999999
+      "projected_cost": 4202.099999999999,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2317",
@@ -162,7 +223,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 222.0,
-      "projected_cost": 470.96
+      "projected_cost": 470.96,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2330",
@@ -181,7 +245,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2175.0,
-      "projected_cost": 4435.549999999999
+      "projected_cost": 4435.549999999999,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2345",
@@ -200,7 +267,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2145.0,
-      "projected_cost": 4374.65
+      "projected_cost": 4374.65,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2368",
@@ -219,7 +289,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 1390.0,
-      "projected_cost": 2841.9999999999995
+      "projected_cost": 2841.9999999999995,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2383",
@@ -238,7 +311,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 4465.0,
-      "projected_cost": 9084.25
+      "projected_cost": 9084.25,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "2454",
@@ -257,7 +333,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2425.0,
-      "projected_cost": 4943.049999999999
+      "projected_cost": 4943.049999999999,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "3017",
@@ -276,7 +355,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2930.0,
-      "projected_cost": 5968.2
+      "projected_cost": 5968.2,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "3324",
@@ -295,7 +377,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 1215.0,
-      "projected_cost": 2486.7499999999995
+      "projected_cost": 2486.7499999999995,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     },
     {
       "stock_id": "3665",
@@ -314,7 +399,10 @@
       "provider_name": "ab_llm_preselect_json",
       "target_qty": 2,
       "estimated_buy_price": 2765.0,
-      "projected_cost": 5633.249999999999
+      "projected_cost": 5633.249999999999,
+      "provider_name_label": "同日 A 預選 JSON",
+      "provider_name_display_inline": "ab_llm_preselect_json (同日 A 預選 JSON)",
+      "provider_name_display": "同日 A 預選 JSON (ab_llm_preselect_json)"
     }
   ],
   "buy_execution_rows": [
@@ -337,8 +425,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2317",
@@ -359,8 +453,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2330",
@@ -381,8 +481,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2345",
@@ -403,8 +509,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2368",
@@ -425,8 +537,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2383",
@@ -447,8 +565,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:2454",
@@ -469,8 +593,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:3017",
@@ -491,8 +621,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:3324",
@@ -513,8 +649,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     },
     {
       "strategy_lot_id": "auto-2026-04-24:3665",
@@ -535,8 +677,14 @@
       "quote_timestamp": "",
       "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-24T15:44+08:00",
-      "order_status_summary": "not_submitted"
+      "next_check_time": "2026-04-24T21:25+08:00",
+      "order_status_summary": "not_submitted",
+      "current_mode_label": "超級追價",
+      "current_mode_display_inline": "super_add (超級追價)",
+      "current_mode_display": "超級追價 (super_add)",
+      "order_status_summary_label": "未送單",
+      "order_status_summary_display_inline": "not_submitted (未送單)",
+      "order_status_summary_display": "未送單 (not_submitted)"
     }
   ],
   "positions_rows": [],
@@ -547,7 +695,7 @@
   "guarded_live_task_evidence": {
     "status": "success",
     "exit_code": "0",
-    "message": "task log found",
+    "message": "已找到任務日誌",
     "path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\data\\task_logs\\allowed_2330_live_order\\2026-04-24_091000.log"
   },
   "post_guarded_order_check": {
@@ -561,12 +709,12 @@
     "reports_rendered": true,
     "workflow_status_rendered": true,
     "recommendation": "enable_live_in_config_before_next_scheduled_run",
-    "recommendation_note": "下次排程前先把 auto_trading.live_enabled 打開。",
+    "recommendation_note": "下次排程前，先在設定中啟用 auto_trading.live_enabled。",
     "effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "effective_recommendation_note": "guard 現在已修好，但今天排程時間已過；今天不會自動補單。",
+    "effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
     "task_log_status": "success",
     "task_log_exit_code": "0",
-    "task_log_message": "task log found",
+    "task_log_message": "已找到任務日誌",
     "task_log_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\data\\task_logs\\allowed_2330_live_order\\2026-04-24_091000.log",
     "schedule_task_name": "\\SinoPac2330BuyIntradayOdd0910",
     "schedule_status": "ready",
@@ -574,14 +722,21 @@
     "schedule_next_run_time": "2026-04-24T09:10:00+08:00",
     "schedule_last_run_time": "",
     "schedule_last_task_result": "",
-    "schedule_description": "Run the only allowed SinoPac live order automation on 2026-04-24: 2330 Buy IntradayOdd 1 share at 09:10 with price cap 2100, with duplicate-order guard.",
-    "schedule_message": "scheduled task query ok via task xml (powershell fallback: permission_denied; schtasks fallback failed: path_not_found)",
+    "schedule_description": "只允許的永豐真實下單自動化：2026-04-24，2330 買進盤中零股 1 股，09:10，價格上限 2100，含重複單保護。",
+    "schedule_message": "已透過 task xml 讀到排程狀態 (powershell fallback: permission_denied; schtasks fallback failed: path_not_found)",
     "next_run_guard_status": "scheduled_task_time_passed",
-    "next_run_guard_message": "Guard settings look fixed now, but the Windows scheduled task time already passed at 2026-04-24T09:10:00+08:00; missed guarded orders do not backfill automatically.",
+    "next_run_guard_message": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
     "next_run_guard_runner_script_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\scripts\\run_allowed_2330_live_order_task.ps1",
     "next_run_guard_runner_sets_auto_trade_live": true,
     "next_run_guard_allow_live_submit": true,
-    "next_run_guard_live_enabled": true
+    "next_run_guard_live_enabled": true,
+    "config_timing_status": "live_enabled_fixed_after_scheduled_run",
+    "config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+    "config_last_modified": "2026-04-24T11:18:15+08:00",
+    "task_recorded_at": "2026-04-24T09:10:00+08:00",
+    "config_fixed_after_task_recorded": true,
+    "config_fixed_after_scheduled_run": true
   },
   "sell_loop_readiness": {
     "trade_date": "2026-04-24",
@@ -592,16 +747,21 @@
     "positions_source_date": "",
     "post_guarded_status": "skipped_config_live_disabled",
     "post_guarded_recommendation": "enable_live_in_config_before_next_scheduled_run",
-    "post_guarded_recommendation_note": "下次排程前先把 auto_trading.live_enabled 打開。",
+    "post_guarded_recommendation_note": "下次排程前，先在設定中啟用 auto_trading.live_enabled。",
     "post_guarded_effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "post_guarded_effective_recommendation_note": "guard 現在已修好，但今天排程時間已過；今天不會自動補單。",
+    "post_guarded_effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
     "post_guarded_next_run_guard_status": "scheduled_task_time_passed",
-    "post_guarded_next_run_guard_message": "Guard settings look fixed now, but the Windows scheduled task time already passed at 2026-04-24T09:10:00+08:00; missed guarded orders do not backfill automatically.",
+    "post_guarded_next_run_guard_message": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
     "fills_count": 0,
     "sell_decisions_count": 0,
     "blocking_reason": "no_strategy_positions",
     "next_action": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-    "next_action_note": "guard 現在已修好，但今天排程時間已過；今天不會自動補單。"
+    "next_action_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+    "post_guarded_config_timing_status": "live_enabled_fixed_after_scheduled_run",
+    "post_guarded_config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "post_guarded_config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+    "post_guarded_config_last_modified": "2026-04-24T11:18:15+08:00",
+    "post_guarded_task_recorded_at": "2026-04-24T09:10:00+08:00"
   },
   "basket_summary": {
     "basket_market_value": 0.0,
@@ -671,8 +831,12 @@
       "action": "sell_loop",
       "price": "",
       "qty": "",
-      "result": "No strategy positions were available for sell-loop evaluation.",
-      "warning_or_error": ""
+      "result": "目前沒有可用的策略部位可進行賣出迴圈評估。",
+      "warning_or_error": "",
+      "display_event_type": "賣出迴圈",
+      "display_action": "評估賣出迴圈",
+      "display_result": "目前沒有可用的策略部位可進行賣出迴圈評估。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-21T06:19:10.716337+08:00",
@@ -681,8 +845,12 @@
       "action": "sell_loop",
       "price": "",
       "qty": "",
-      "result": "No strategy positions were available for sell-loop evaluation.",
-      "warning_or_error": ""
+      "result": "目前沒有可用的策略部位可進行賣出迴圈評估。",
+      "warning_or_error": "",
+      "display_event_type": "賣出迴圈",
+      "display_action": "評估賣出迴圈",
+      "display_result": "目前沒有可用的策略部位可進行賣出迴圈評估。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:13:51.697230+08:00",
@@ -691,8 +859,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:17:39.738589+08:00",
@@ -701,8 +873,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:18:09.752391+08:00",
@@ -711,8 +887,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 16 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 16 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 16 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:20:15.951586+08:00",
@@ -721,8 +901,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:20:16.259474+08:00",
@@ -731,8 +915,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 16 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 16 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 16 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:20:56.035357+08:00",
@@ -741,8 +929,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:27:11.219562+08:00",
@@ -751,8 +943,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:27:36.523980+08:00",
@@ -761,8 +957,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:32:53.104322+08:00",
@@ -771,8 +971,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:32:53.119335+08:00",
@@ -781,8 +985,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-23T22:32:53.440421+08:00",
@@ -791,8 +999,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:39:20.319440+08:00",
@@ -801,8 +1013,12 @@
       "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "Loaded 0 preselect items from ab_llm_preselect_json",
-      "warning_or_error": ""
+      "result": "已載入 0 筆預選名單，來源提供者=ab_llm_preselect_json。",
+      "warning_or_error": "",
+      "display_event_type": "預選載入",
+      "display_action": "載入預選名單",
+      "display_result": "已載入 0 筆預選名單，來源提供者=ab_llm_preselect_json。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:39:23.533413+08:00",
@@ -811,8 +1027,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 0 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 0 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 0 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:39:54.236715+08:00",
@@ -821,8 +1041,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:41:20.244636+08:00",
@@ -831,8 +1055,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:42:09.790646+08:00",
@@ -841,8 +1069,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:44:35.319071+08:00",
@@ -851,8 +1083,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 0 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 0 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 0 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T00:45:55.299999+08:00",
@@ -861,8 +1097,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 0 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 0 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 0 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T09:10:00.851026+08:00",
@@ -871,8 +1111,12 @@
       "action": "allowed_live_order_task",
       "price": "",
       "qty": "",
-      "result": "Skipped allowed live order task: Live submit is blocked because auto_trading.live_enabled is false in config.",
-      "warning_or_error": ""
+      "result": "已略過受保護下單任務：因為設定中的 auto_trading.live_enabled=false，真實下單被擋下。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單任務",
+      "display_action": "執行受保護下單任務",
+      "display_result": "已略過受保護下單任務：因為設定中的 auto_trading.live_enabled=false，真實下單被擋下。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:08:07.686483+08:00",
@@ -881,8 +1125,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:10:32.328463+08:00",
@@ -891,8 +1139,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:11:54.922541+08:00",
@@ -901,8 +1153,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:12:07.076744+08:00",
@@ -911,8 +1167,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:12:07.094071+08:00",
@@ -921,8 +1181,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:12:07.419896+08:00",
@@ -931,8 +1195,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:16:04.164984+08:00",
@@ -941,8 +1209,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:17:58.934431+08:00",
@@ -951,8 +1223,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:18:35.876861+08:00",
@@ -961,8 +1237,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:18:35.906757+08:00",
@@ -971,8 +1251,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:18:36.250050+08:00",
@@ -981,8 +1265,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:22:48.110419+08:00",
@@ -991,8 +1279,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:22:53.779491+08:00",
@@ -1001,8 +1293,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:22:53.808062+08:00",
@@ -1011,8 +1307,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:22:54.147126+08:00",
@@ -1021,8 +1321,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:30:31.669067+08:00",
@@ -1031,8 +1335,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:30:31.684913+08:00",
@@ -1041,8 +1349,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:30:32.040619+08:00",
@@ -1051,8 +1363,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:32:54.340693+08:00",
@@ -1061,8 +1377,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:32:54.360619+08:00",
@@ -1071,8 +1391,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:32:54.710116+08:00",
@@ -1081,8 +1405,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:35:49.426146+08:00",
@@ -1091,8 +1419,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:35:49.442400+08:00",
@@ -1101,8 +1433,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:35:49.805866+08:00",
@@ -1111,8 +1447,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:39:06.842455+08:00",
@@ -1121,8 +1461,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:39:06.853867+08:00",
@@ -1131,8 +1475,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:39:07.187873+08:00",
@@ -1141,8 +1489,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:42:33.274451+08:00",
@@ -1151,8 +1503,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:42:33.286567+08:00",
@@ -1161,8 +1517,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:42:33.640938+08:00",
@@ -1171,8 +1531,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:46:47.960617+08:00",
@@ -1181,8 +1545,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:46:47.980810+08:00",
@@ -1191,8 +1559,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:46:48.304601+08:00",
@@ -1201,8 +1573,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:53:53.582546+08:00",
@@ -1211,8 +1587,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:53:53.601010+08:00",
@@ -1221,8 +1601,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:53:53.923094+08:00",
@@ -1231,8 +1615,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:00.652576+08:00",
@@ -1241,8 +1629,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:00.669298+08:00",
@@ -1251,8 +1643,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:01.002371+08:00",
@@ -1261,8 +1657,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:54.511585+08:00",
@@ -1271,8 +1671,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:54.526538+08:00",
@@ -1281,8 +1685,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: no_strategy_positions.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：no_strategy_positions。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：no_strategy_positions (沒有策略部位)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:55:54.860507+08:00",
@@ -1291,8 +1699,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:03.777984+08:00",
@@ -1301,8 +1713,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:03.792828+08:00",
@@ -1311,8 +1727,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:04.118011+08:00",
@@ -1321,8 +1741,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:19.061049+08:00",
@@ -1331,8 +1755,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:19.075533+08:00",
@@ -1341,8 +1769,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T11:58:19.397360+08:00",
@@ -1351,8 +1783,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:02:07.969143+08:00",
@@ -1361,8 +1797,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:02:07.980871+08:00",
@@ -1371,8 +1811,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:02:08.304086+08:00",
@@ -1381,8 +1825,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:04:25.974962+08:00",
@@ -1391,8 +1839,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:07:33.110187+08:00",
@@ -1401,8 +1853,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:07:33.128901+08:00",
@@ -1411,8 +1867,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:07:33.458160+08:00",
@@ -1421,8 +1881,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:12:12.092471+08:00",
@@ -1431,8 +1895,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:14:07.005218+08:00",
@@ -1441,8 +1909,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:23:17.608733+08:00",
@@ -1451,8 +1923,12 @@
       "action": "post_guarded_order_check",
       "price": "",
       "qty": "",
-      "result": "Checked guarded live order artifacts: after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled, current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:23:17.624614+08:00",
@@ -1461,8 +1937,12 @@
       "action": "sell_loop_readiness",
       "price": "",
       "qty": "",
-      "result": "Checked sell-loop readiness: blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill.",
-      "warning_or_error": ""
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:23:17.949500+08:00",
@@ -1471,8 +1951,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:28:45.421053+08:00",
@@ -1481,8 +1965,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:31:38.708132+08:00",
@@ -1491,8 +1979,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:35:18.840308+08:00",
@@ -1501,8 +1993,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:37:36.620977+08:00",
@@ -1511,8 +2007,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:39:11.834806+08:00",
@@ -1521,8 +2021,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:41:42.578116+08:00",
@@ -1531,8 +2035,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:44:26.987350+08:00",
@@ -1541,8 +2049,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:47:29.316845+08:00",
@@ -1551,8 +2063,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:50:21.250857+08:00",
@@ -1561,8 +2077,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T12:58:56.515029+08:00",
@@ -1571,8 +2091,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:07:11.027943+08:00",
@@ -1581,8 +2105,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:07:46.985912+08:00",
@@ -1591,8 +2119,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:10:56.208812+08:00",
@@ -1601,8 +2133,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:16:09.576021+08:00",
@@ -1611,8 +2147,12 @@
       "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "Loaded 10 preselect items from ab_llm_preselect_json",
-      "warning_or_error": ""
+      "result": "已載入 10 筆預選名單，來源提供者=ab_llm_preselect_json。",
+      "warning_or_error": "",
+      "display_event_type": "預選載入",
+      "display_action": "載入預選名單",
+      "display_result": "已載入 10 筆預選名單，來源提供者=ab_llm_preselect_json。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:16:09.592641+08:00",
@@ -1621,8 +2161,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 10 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 10 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 10 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:16:09.964410+08:00",
@@ -1631,8 +2175,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:16:09.977737+08:00",
@@ -1641,8 +2189,12 @@
       "action": "refresh_dashboard",
       "price": "",
       "qty": "",
-      "result": "Dashboard refresh completed with 4 steps.",
-      "warning_or_error": ""
+      "result": "已完成儀表板刷新，共 4 個步驟。",
+      "warning_or_error": "",
+      "display_event_type": "儀表板更新",
+      "display_action": "更新儀表板",
+      "display_result": "已完成儀表板刷新，共 4 個步驟。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:19:06.356459+08:00",
@@ -1651,8 +2203,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:23:27.589346+08:00",
@@ -1661,8 +2217,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:28:05.670500+08:00",
@@ -1671,8 +2231,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:31:22.296104+08:00",
@@ -1681,8 +2245,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:34:14.970156+08:00",
@@ -1691,8 +2259,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:37:54.270685+08:00",
@@ -1701,8 +2273,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:38:34.214404+08:00",
@@ -1711,8 +2287,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:41:35.287779+08:00",
@@ -1721,8 +2301,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:46:16.208737+08:00",
@@ -1731,8 +2315,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:49:54.029504+08:00",
@@ -1741,8 +2329,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:54:16.569545+08:00",
@@ -1751,8 +2343,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 10 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 10 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 10 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T13:54:16.955217+08:00",
@@ -1761,8 +2357,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:00:33.589270+08:00",
@@ -1771,8 +2371,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 10 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 10 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 10 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:00:38.524265+08:00",
@@ -1781,8 +2385,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:06:43.249435+08:00",
@@ -1791,8 +2399,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:08:11.762068+08:00",
@@ -1801,8 +2413,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:08:27.699749+08:00",
@@ -1811,8 +2427,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:14:23.498612+08:00",
@@ -1821,8 +2441,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:19:24.205051+08:00",
@@ -1831,8 +2455,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:23:28.272677+08:00",
@@ -1841,8 +2469,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:26:31.249367+08:00",
@@ -1851,8 +2483,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:29:59.231177+08:00",
@@ -1861,8 +2497,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:29:59.246009+08:00",
@@ -1871,8 +2511,12 @@
       "action": "refresh_dashboard",
       "price": "",
       "qty": "",
-      "result": "Dashboard refresh completed with 2 steps.",
-      "warning_or_error": ""
+      "result": "已完成儀表板刷新，共 2 個步驟。",
+      "warning_or_error": "",
+      "display_event_type": "儀表板更新",
+      "display_action": "更新儀表板",
+      "display_result": "已完成儀表板刷新，共 2 個步驟。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:35:05.484343+08:00",
@@ -1881,8 +2525,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:35:05.498763+08:00",
@@ -1891,8 +2539,12 @@
       "action": "refresh_dashboard",
       "price": "",
       "qty": "",
-      "result": "Dashboard refresh completed with 2 steps.",
-      "warning_or_error": ""
+      "result": "已完成儀表板刷新，共 2 個步驟。",
+      "warning_or_error": "",
+      "display_event_type": "儀表板更新",
+      "display_action": "更新儀表板",
+      "display_result": "已完成儀表板刷新，共 2 個步驟。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:35:51.751368+08:00",
@@ -1901,8 +2553,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:35:51.765067+08:00",
@@ -1911,8 +2567,12 @@
       "action": "refresh_dashboard",
       "price": "",
       "qty": "",
-      "result": "Dashboard refresh completed with 2 steps.",
-      "warning_or_error": ""
+      "result": "已完成儀表板刷新，共 2 個步驟。",
+      "warning_or_error": "",
+      "display_event_type": "儀表板更新",
+      "display_action": "更新儀表板",
+      "display_result": "已完成儀表板刷新，共 2 個步驟。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T14:48:31.992388+08:00",
@@ -1921,8 +2581,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T15:07:42.806102+08:00",
@@ -1931,8 +2595,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T15:18:19.462913+08:00",
@@ -1941,8 +2609,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-24T15:30:49.192538+08:00",
@@ -1951,26 +2623,843 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 17 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T15:44:40.211717+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:08:08.676166+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:39:28.130416+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:41:57.768875+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:45:39.332043+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:47:26.821500+08:00",
+      "event_type": "sell_loop_readiness",
+      "stock_id": "",
+      "action": "sell_loop_readiness",
+      "price": "",
+      "qty": "",
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions, next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:52:32.089347+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:55:09.317460+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:55:55.094712+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:58:46.060596+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T16:59:23.001705+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:02:50.637256+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:24:59.276060+08:00",
+      "event_type": "post_guarded_order_check",
+      "stock_id": "",
+      "action": "post_guarded_order_check",
+      "price": "",
+      "qty": "",
+      "result": "已檢查 guarded 下單 artifact：after=skipped_config_live_disabled，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:24:59.296059+08:00",
+      "event_type": "sell_loop_readiness",
+      "stock_id": "",
+      "action": "sell_loop_readiness",
+      "price": "",
+      "qty": "",
+      "result": "已檢查 sell-loop readiness：blocking=no_strategy_positions，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:24:59.636962+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:39:37.604320+08:00",
+      "event_type": "sell_loop_readiness",
+      "stock_id": "",
+      "action": "sell_loop_readiness",
+      "price": "",
+      "qty": "",
+      "result": "已檢查 sell-loop readiness：blocking=no_strategy_positions，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:39:38.193424+08:00",
+      "event_type": "post_guarded_order_check",
+      "stock_id": "",
+      "action": "post_guarded_order_check",
+      "price": "",
+      "qty": "",
+      "result": "已檢查 guarded 下單 artifact：after=skipped_config_live_disabled，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:39:38.207642+08:00",
+      "event_type": "sell_loop_readiness",
+      "stock_id": "",
+      "action": "sell_loop_readiness",
+      "price": "",
+      "qty": "",
+      "result": "已檢查 sell-loop readiness：blocking=no_strategy_positions，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:39:38.552422+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:42:02.937284+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:53:34.557115+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:54:14.444241+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T17:58:25.138725+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T18:04:36.776296+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T18:28:01.969125+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T18:33:01.535465+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T18:39:16.425947+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T18:42:54.472403+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:17:40.006342+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:22:12.577982+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:23:57.429934+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:26:45.533226+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:29:40.918244+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T19:47:51.412387+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:05:21.166572+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:10:30.266185+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:19:53.653173+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:23:07.994834+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:23:29.959854+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:26:37.542487+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:28:28.814703+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:44:46.152273+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:49:15.429400+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:51:48.013348+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:56:04.077056+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T20:58:50.347046+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:06:24.674699+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:07:14.095239+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:08:00.854305+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:08:21.603608+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:08:50.981625+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:13:33.157663+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:13:46.672160+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:14:02.591901+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:20:53.331724+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:22:06.004042+08:00",
+      "event_type": "post_guarded_order_check",
+      "stock_id": "",
+      "action": "post_guarded_order_check",
+      "price": "",
+      "qty": "",
+      "result": "已檢查受保護下單產物：after=skipped_config_live_disabled，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "受保護下單後檢查",
+      "display_action": "檢查受保護下單產物",
+      "display_result": "已檢查受保護下單產物：after=skipped_config_live_disabled (因設定未開啟真實下單而略過)，current_step=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:22:06.023811+08:00",
+      "event_type": "sell_loop_readiness",
+      "stock_id": "",
+      "action": "sell_loop_readiness",
+      "price": "",
+      "qty": "",
+      "result": "已檢查賣出就緒狀態：blocking=no_strategy_positions，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill。",
+      "warning_or_error": "",
+      "display_event_type": "賣出就緒檢查",
+      "display_action": "檢查賣出就緒狀態",
+      "display_result": "已檢查賣出就緒狀態：blocking=no_strategy_positions (沒有策略部位)，next_action=historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill (保護條件已修好但今日時段已過不補單)。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-24T21:22:06.374940+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 17 筆清單列。",
+      "display_warning_or_error": ""
     }
   ],
   "warnings": [
-    "同日 A 預選來源在 2026-04-24 才到位，但 basket buy_loop 到了最後交易日已不再開新買單；這是上下游規則衝突。",
-    "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在 basket 可買的交易日/買窗內先到，要嘛調整 basket 買窗規則，讓 same-day A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
-    "同日 A 預選來源已同步成目前本地 basket 產物。",
-    "Guarded post-run check says the live-submit guard issue is fixed now, but today's guarded schedule window already passed; today's order will not backfill automatically.",
-    "Next guarded-run readiness: Guard settings look fixed now, but the Windows scheduled task time already passed at 2026-04-24T09:10:00+08:00; missed guarded orders do not backfill automatically.",
-    "Sell-loop readiness is blocked because today's guarded window already passed without creating strategy positions; no automatic backfill will happen for today."
+    "同日 A 預選來源在 2026-04-24 才到位，但整包買進迴圈到了最後交易日已不再開新買單；這是上下游規則衝突。",
+    "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在整包可買的交易日/買窗內先到，要嘛調整整包買窗規則，讓同日 A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
+    "同日 A 預選來源已同步成目前本地整包產物。",
+    "受保護下單後檢查顯示：真實下單保護條件問題現在已修好，但今天的受保護下單排程時段已過；今天這筆單不會自動補單。",
+    "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+    "下一次受保護下單排程就緒狀態：保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
+    "賣出就緒狀態被擋住，因為今天的受保護下單視窗已過，且沒有建立任何策略部位；今天不會自動補單。"
   ],
   "next_actions": [
-    "Do not expect additional automatic new buy submissions today; the remaining guarded and basket buy paths are closed.",
-    "Before 2026-04-27, resolve the same-day A-source vs basket buy-window conflict and wait for a fresh same-day A file.",
-    "本地 basket 產物已就緒；是否能送出新買單，改看買窗與風控。",
-    "這份 A 預選來源遵守 same-day only；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次 basket 主線要等 2026-04-27 的同日 A 預選檔。",
-    "Weekly settlement artifacts are already current for this week; no additional weekly snapshot action is required unless you want to regenerate them."
+    "今天不會再有新的自動買單；剩餘的受保護下單與整包買進路徑都已關閉。",
+    "在 2026-04-27 前，先處理「同日 A 來源」與整包買窗的規則衝突，並等待新的同日 A 檔。",
+    "本地整包產物已就緒；是否能送出新買單，改看買窗與風控。",
+    "這份 A 預選來源遵守同日限定；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次整包主線要等 2026-04-27 的同日 A 預選檔。",
+    "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。"
   ],
-  "last_update_time": "2026-04-24T15:44:39+08:00",
+  "last_update_time": "2026-04-24T21:25:24+08:00",
   "weekly_budget": 0.0,
   "hard_budget": 50000.0,
   "used_cash": 0.0,
@@ -1993,7 +3482,7 @@
   "selection_source_path": "../data/ab_llm_preselect/2026-04-24.json",
   "selection_source_last_modified": "2026-04-24T08:54:10+08:00",
   "selection_source_status": "same_day_a_preselect_loaded",
-  "selection_source_note": "同日 A 預選來源已同步成目前本地 basket 產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
+  "selection_source_note": "同日 A 預選來源已同步成目前本地整包產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
   "dashboard_refresh_status": "report_only_refresh",
   "dashboard_refresh_steps": "render_report, workflow_status",
   "dashboard_refresh_note": "最近一次 refresh_dashboard 只重跑了 render_report, workflow_status，沒有重做 prepare_week / finalize。",
@@ -2006,50 +3495,111 @@
   "selection_materialization_open": false,
   "selection_materialization_status": "local_materialization_current",
   "selection_materialization_missing_artifacts": "",
-  "selection_materialization_note": "同日 A 預選來源已同步成目前本地 basket 產物。",
+  "selection_materialization_note": "同日 A 預選來源已同步成目前本地整包產物。",
   "selection_materialization_next_action": "materialization_current_no_action_required",
-  "selection_materialization_next_action_note": "本地 basket 產物已就緒；是否能送出新買單，改看買窗與風控。",
+  "selection_materialization_next_action_note": "本地整包產物已就緒；是否能送出新買單，改看買窗與風控。",
   "weekly_settlement_open": false,
   "weekly_settlement_status": "weekly_settlement_current",
   "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
-  "weekly_settlement_note": "Weekly settlement artifacts are current for 2026-04-20 to 2026-04-24.",
+  "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
   "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
-  "weekly_settlement_next_action_note": "Weekly settlement artifacts are already current for this week; no additional weekly snapshot action is required unless you want to regenerate them.",
+  "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
   "guarded_post_check_status": "skipped_config_live_disabled",
   "guarded_post_check_recommendation": "enable_live_in_config_before_next_scheduled_run",
   "guarded_post_check_effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-  "guarded_post_check_effective_recommendation_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+  "guarded_post_check_effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
   "guarded_post_check_reconciled": false,
   "guarded_post_check_fills_count": 0,
   "guarded_post_check_positions_count": 0,
   "guarded_post_check_next_run_guard_status": "scheduled_task_time_passed",
-  "guarded_post_check_next_run_guard_message": "Guard settings look fixed now, but the Windows scheduled task time already passed at 2026-04-24T09:10:00+08:00; missed guarded orders do not backfill automatically.",
+  "guarded_post_check_next_run_guard_message": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
+  "guarded_post_check_config_timing_status": "live_enabled_fixed_after_scheduled_run",
+  "guarded_post_check_config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+  "guarded_post_check_config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+  "guarded_post_check_config_last_modified": "2026-04-24T11:18:15+08:00",
+  "guarded_post_check_task_recorded_at": "2026-04-24T09:10:00+08:00",
   "sell_loop_readiness_blocking_reason": "no_strategy_positions",
   "sell_loop_readiness_next_action": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-  "sell_loop_readiness_next_action_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+  "sell_loop_readiness_next_action_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
   "sell_loop_readiness_positions_ready": false,
   "sell_loop_readiness_positions_count": 0,
   "sell_loop_readiness_positions_source_date": "",
   "sell_loop_readiness_post_guarded_effective_recommendation": "historical_guard_issue_fixed_but_scheduled_time_passed_no_backfill",
-  "sell_loop_readiness_post_guarded_effective_recommendation_note": "guard 問題已修好，但今天排程時間已過，不會補單。",
+  "sell_loop_readiness_post_guarded_effective_recommendation_note": "保護條件問題已修好，但今天排程時間已過，不會補單。",
   "sell_loop_readiness_post_guarded_next_run_guard_status": "scheduled_task_time_passed",
+  "sell_loop_readiness_post_guarded_config_timing_status": "live_enabled_fixed_after_scheduled_run",
+  "sell_loop_readiness_post_guarded_config_timing_message": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+  "sell_loop_readiness_post_guarded_config_path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\config\\auto_trading.yaml",
+  "sell_loop_readiness_post_guarded_config_last_modified": "2026-04-24T11:18:15+08:00",
+  "sell_loop_readiness_post_guarded_task_recorded_at": "2026-04-24T09:10:00+08:00",
   "today_ordering_status": "guarded_time_passed_no_backfill+basket_a_loaded+basket_buy_window_closed_last_trade_day",
-  "today_ordering_note": "2330 guarded 單的 guard 已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地 basket 產物。 今天是本週最後交易日（2026-04-24），basket buy_loop 不再開新買單。",
+  "today_ordering_note": "2330 受保護下單的保護條件已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地整包產物。 今天是本週最後交易日（2026-04-24），整包買進迴圈不再開新買單。",
   "today_ordering_conflict_status": "same_day_a_source_arrived_after_basket_buy_window_closed",
-  "today_ordering_conflict_note": "同日 A 預選來源在 2026-04-24 才到位，但 basket buy_loop 到了最後交易日已不再開新買單；這是上下游規則衝突。",
+  "today_ordering_conflict_note": "同日 A 預選來源在 2026-04-24 才到位，但整包買進迴圈到了最後交易日已不再開新買單；這是上下游規則衝突。",
   "today_ordering_conflict_resolution_status": "requires_rule_alignment",
   "today_ordering_conflict_resolution_action": "align_a_source_timing_or_basket_buy_window_rule",
-  "today_ordering_conflict_resolution_note": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在 basket 可買的交易日/買窗內先到，要嘛調整 basket 買窗規則，讓 same-day A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
+  "today_ordering_conflict_resolution_note": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在整包可買的交易日/買窗內先到，要嘛調整整包買窗規則，讓同日 A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
   "today_new_order_submission_open": false,
   "today_new_order_submission_status": "no_auto_new_buy_paths_remaining_today",
-  "today_new_order_submission_note": "今天已沒有任何自動新買單路徑可送出；guarded 2330 與 basket 買入路徑都已關閉。",
+  "today_new_order_submission_note": "今天已沒有任何自動新買單路徑可送出；2330 受保護下單路徑與整包買進路徑都已關閉。",
   "today_status": "buy_window_closed",
-  "today_status_note": "Selection and sizing artifacts exist, but all automatic new buy submission paths are closed for today.",
+  "today_status_note": "選股與 sizing 產物已存在，但今天所有自動新買單送出路徑都已關閉。",
   "selection_source_carry_forward_open": false,
   "selection_source_carry_forward_status": "same_day_source_expires_after_trade_date",
   "selection_source_carry_forward_next_trade_day": "2026-04-27",
-  "selection_source_carry_forward_note": "這份 A 預選來源遵守 same-day only；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次 basket 主線要等 2026-04-27 的同日 A 預選檔。",
+  "selection_source_carry_forward_note": "這份 A 預選來源遵守同日限定；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次整包主線要等 2026-04-27 的同日 A 預選檔。",
+  "today_status_label": "買窗已關閉",
+  "selection_source_status_label": "同日 A 預選已載入",
+  "dashboard_refresh_status_label": "僅重跑報表",
+  "dashboard_last_materialization_status_label": "已物化但未進入買進迴圈",
+  "dashboard_last_materialization_trigger_status_label": "歷史物化原因未記錄",
+  "weekly_settlement_status_label": "週結算已是最新",
+  "selection_source_carry_forward_status_label": "同日來源僅限當日，不延用到下個交易日",
+  "selection_materialization_status_label": "本地整包產物已對齊",
+  "today_ordering_status_label": "受保護下單時間已過且不補單 + 整包 A 已載入 + 整包最後交易日買窗已關閉",
+  "today_ordering_conflict_status_label": "同日 A 來源晚於整包買窗",
+  "today_ordering_conflict_resolution_status_label": "需要對齊規則",
+  "today_new_order_submission_status_label": "今天已無自動新買單路徑",
+  "guarded_post_check_status_label": "因設定未開啟真實下單而略過",
+  "guarded_post_check_effective_recommendation_label": "保護條件已修好但今日時段已過不補單",
+  "guarded_post_check_next_run_guard_status_label": "排程時間已過",
+  "guarded_post_check_config_timing_status_label": "live_enabled 參數在排程後才修正",
+  "sell_loop_readiness_blocking_reason_label": "沒有策略部位",
+  "sell_loop_readiness_next_action_label": "保護條件已修好但今日時段已過不補單",
+  "sell_loop_readiness_post_guarded_next_run_guard_status_label": "排程時間已過",
+  "sell_loop_readiness_post_guarded_config_timing_status_label": "live_enabled 參數在排程後才修正",
+  "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+  "selection_materialization_next_action_label": "本地整包產物已對齊，今天不需額外展開",
+  "today_ordering_conflict_resolution_action_label": "對齊 A 來源時間或 basket 買窗規則",
+  "guarded_post_check_recommendation_label": "下次排程前先啟用 auto_trading.live_enabled",
+  "sell_loop_readiness_post_guarded_effective_recommendation_label": "保護條件已修好但今日時段已過不補單",
+  "position_data_quality_label": "直接策略部位",
+  "today_status_note_display": "選股與 sizing 產物已存在，但今天所有自動新買單送出路徑都已關閉。",
+  "selection_source_note_display": "同日 A 預選來源已同步成目前本地整包產物；來源檔：../data/ab_llm_preselect/2026-04-24.json。",
+  "dashboard_refresh_steps_display": "輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+  "dashboard_refresh_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 只重跑了 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，沒有重做 載入預選 (prepare_week) / 完成訂版 (finalize)。",
+  "dashboard_last_materialization_steps_display": "載入預選 (prepare_week), 完成訂版 (finalize), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+  "dashboard_last_materialization_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 重跑了 載入預選 (prepare_week), 完成訂版 (finalize), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，但沒有進入 買進迴圈 (buy_loop)。",
+  "dashboard_last_materialization_trigger_note_display": "這次 物化刷新 的 觸發原因 沒有在當時被記錄下來；目前只能從已有產物反推。",
+  "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+  "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+  "selection_source_carry_forward_note_display": "這份 A 預選來源遵守同日限定；2026-04-24 的 A 預選不能沿用到 2026-04-27，下次整包主線要等 2026-04-27 的同日 A 預選檔。",
+  "selection_materialization_note_display": "同日 A 預選來源已同步成目前本地整包產物。",
+  "selection_materialization_next_action_note_display": "本地整包產物已就緒；是否能送出新買單，改看買窗與風控。",
+  "today_ordering_note_display": "2330 受保護下單的保護條件已修好，但今天 09:10 已過，不會自動補單。 同日 A 預選已同步成目前本地整包產物。 今天是本週最後交易日（2026-04-24），整包買進迴圈不再開新買單。",
+  "today_ordering_conflict_note_display": "同日 A 預選來源在 2026-04-24 才到位，但整包買進迴圈到了最後交易日已不再開新買單；這是上下游規則衝突。",
+  "today_ordering_conflict_resolution_note_display": "要避免重演 2026-04-24 這種情況，需對齊上下游規則：要嘛讓同日 A 預選在整包可買的交易日/買窗內先到，要嘛調整整包買窗規則，讓同日 A 主線可在符合風控的情況下建立買單。下次觀察點是 2026-04-27。",
+  "today_new_order_submission_note_display": "今天已沒有任何自動新買單路徑可送出；2330 受保護下單路徑與整包買進路徑都已關閉。",
+  "guarded_post_check_effective_recommendation_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+  "guarded_post_check_next_run_guard_message_display": "保護條件設定現在看起來已修好，但 Windows 排程時間 2026-04-24T09:10:00+08:00 已過；錯過的受保護下單不會自動補單。",
+  "guarded_post_check_config_timing_message_display": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
+  "sell_loop_readiness_next_action_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+  "sell_loop_readiness_post_guarded_effective_recommendation_note_display": "保護條件問題已修好，但今天排程時間已過，不會補單。",
+  "sell_loop_readiness_post_guarded_config_timing_message_display": "設定檔在 2026-04-24T11:18:15+08:00 才改成 auto_trading.live_enabled=true，晚於本次排程時間 2026-04-24T09:10:00+08:00；所以今天這次受保護下單執行仍被略過。",
   "dashboard_refresh_trigger_status": "",
   "dashboard_refresh_trigger_artifacts": "",
-  "dashboard_refresh_trigger_note": ""
+  "dashboard_refresh_trigger_note": "",
+  "status_label": "已輸出工作流狀態",
+  "mode_label": "受保護下單真實模式",
+  "provider_name_label": "同日 A 預選 JSON"
 }
