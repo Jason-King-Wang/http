@@ -1097,7 +1097,7 @@ function registerServiceWorker() {
       window.location.reload();
     });
 
-    navigator.serviceWorker.register("./service-worker.js")
+    navigator.serviceWorker.register("./service-worker-v12.js")
       .then((registration) => {
         void registration.update();
       })
