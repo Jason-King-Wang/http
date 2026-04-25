@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-25T16:00:02+08:00",
+  "generated_at": "2026-04-25T21:00:37+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-04-24",
@@ -10,13 +10,13 @@
   "ab_daily": {
     "trade_date": "2026-04-25",
     "phase_label": "開盤版",
-    "stock_count": 16,
-    "a_count": 11,
+    "stock_count": 21,
+    "a_count": 12,
     "b_count": 12,
-    "ab_count": 7,
+    "ab_count": 3,
     "equal_lot_return_pct": null,
     "equal_lot_pnl_twd": null,
-    "updated_at": "2026-04-25T14:39:21+08:00"
+    "updated_at": "2026-04-25T20:53:01+08:00"
   },
   "auto_trading": {
     "trade_date": "2026-04-24",
