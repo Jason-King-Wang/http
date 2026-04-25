@@ -38,7 +38,14 @@ function fallbackText(value) {
   return value === undefined || value === null || value === "" ? "--" : value;
 }
 
+function isNA(value) {
+  return String(value ?? "").trim().toUpperCase() === "NA";
+}
+
 function asNumber(value) {
+  if (isNA(value)) {
+    return null;
+  }
   if (value === undefined || value === null || value === "") {
     return null;
   }
@@ -47,16 +54,25 @@ function asNumber(value) {
 }
 
 function formatPct(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   return number === null ? "--" : `${(number * 100).toFixed(2)}%`;
 }
 
 function formatPctPoints(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   return number === null ? "--" : `${number.toFixed(2)}%`;
 }
 
 function formatSignedPctPoints(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   if (number === null) {
     return "--";
@@ -66,6 +82,9 @@ function formatSignedPctPoints(value) {
 }
 
 function formatMoney(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   if (number === null) {
     return "--";
@@ -74,6 +93,9 @@ function formatMoney(value) {
 }
 
 function formatSignedMoney(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   if (number === null) {
     return "--";
@@ -83,6 +105,9 @@ function formatSignedMoney(value) {
 }
 
 function formatNumber(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   if (number === null) {
     return "--";
@@ -91,6 +116,9 @@ function formatNumber(value) {
 }
 
 function formatSignedNumber(value) {
+  if (isNA(value)) {
+    return "NA";
+  }
   const number = asNumber(value);
   if (number === null) {
     return "--";
@@ -241,12 +269,17 @@ function renderAbRow(row, pool) {
   `;
 }
 
-function renderPoolTable(title, pool, rows) {
+function renderPoolTable(title, pool, rows, options = {}) {
+  const nonTradingSelectionDay = options.nonTradingSelectionDay === true;
   const summary = summarizePool(rows);
   const weekSummary = summarizePool(rows, "week");
   const body = rows.length
     ? rows.map((row) => renderAbRow(row, pool)).join("")
     : '<tr><td class="empty-cell" colspan="13">這一池目前沒有預選股。</td></tr>';
+  const summaryReturnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(summary.returnPct);
+  const summaryPnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(summary.pnl);
+  const weekReturnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(weekSummary.returnPct);
+  const weekPnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(weekSummary.pnl);
 
   return `
     <article class="pool-card pool-card-${pool}">
@@ -257,10 +290,10 @@ function renderPoolTable(title, pool, rows) {
         </div>
         <div class="pill-row compact-pills">
           <span class="pill">${rows.length} 檔</span>
-          <span class="pill">各買一張 ${formatSignedPctPoints(summary.returnPct)}</span>
-          <span class="pill">損益 ${formatSignedMoney(summary.pnl)}</span>
-          <span class="pill">周一9.10分買的話 ${formatSignedPctPoints(weekSummary.returnPct)}</span>
-          <span class="pill">損益 ${formatSignedMoney(weekSummary.pnl)}</span>
+          <span class="pill">各買一張 ${summaryReturnText}</span>
+          <span class="pill">損益 ${summaryPnlText}</span>
+          <span class="pill">周一9.10分買的話 ${weekReturnText}</span>
+          <span class="pill">損益 ${weekPnlText}</span>
         </div>
       </div>
       <div class="table-wrap">
@@ -303,8 +336,8 @@ function renderPoolGrid(entry) {
   const aRows = rowsForPool(entry, "a");
   const bRows = rowsForPool(entry, "b");
   return [
-    renderPoolTable("A 預選", "a", aRows),
-    renderPoolTable("B 預選", "b", bRows),
+    renderPoolTable("A 預選", "a", aRows, { nonTradingSelectionDay: entry?.non_trading_selection_day === true }),
+    renderPoolTable("B 預選", "b", bRows, { nonTradingSelectionDay: entry?.non_trading_selection_day === true }),
   ].join("");
 }
 
