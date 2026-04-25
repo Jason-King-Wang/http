@@ -323,9 +323,13 @@ function renderPoolTable(title, pool, rows, options = {}) {
 }
 
 function buildAbPills(entry) {
+  const poolHealthLabel = entry?.candidate_pool_health_label || (
+    entry?.external_scan_status === "completed" ? "選池正常" : entry?.external_scan_status
+  );
   return [
     `交易日 ${fallbackText(entry.trade_date)}`,
     `${fallbackText(entry.phase_label)}`,
+    `選池 ${fallbackText(poolHealthLabel)}`,
     `A 預選 ${fallbackText(entry.a_count)}`,
     `B 預選 ${fallbackText(entry.b_count)}`,
     `重疊 ${fallbackText(entry.ab_count)}`,
