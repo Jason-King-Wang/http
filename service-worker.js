@@ -1,4 +1,4 @@
-const CACHE_NAME = "sell-model-dashboard-public-v11";
+const CACHE_NAME = "sell-model-dashboard-public-v12";
 const ASSETS = [
   "./",
   "./index.html",
@@ -48,6 +48,10 @@ self.addEventListener("fetch", (event) => {
   if (
     requestUrl.pathname.endsWith("/data/public-sell-model.js")
     || requestUrl.pathname.endsWith("/data/public-sell-model.json")
+    || requestUrl.pathname.endsWith("/data/public-ab-daily.js")
+    || requestUrl.pathname.endsWith("/data/public-ab-daily.json")
+    || requestUrl.pathname.endsWith("/hub/data/portal-manifest.js")
+    || requestUrl.pathname.endsWith("/hub/data/portal-manifest.json")
     || requestUrl.pathname.endsWith("/latest-date.txt")
   ) {
     event.respondWith(networkFirst(event.request));
