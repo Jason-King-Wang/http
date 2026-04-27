@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="永豐自動交易頁面，整合進交易儀表板總入口。" />
     <title>自動交易 | 交易儀表板總入口</title>
-    <link rel="stylesheet" href="../assets/portal.css" />
+    <link rel="stylesheet" href="../assets/portal.css?v=20260427-auto-layout" />
   </head>
   <body data-page="auto-trading-wrapper">
     <div class="page-shell">
@@ -27,18 +27,17 @@
           </nav>
         </header>
 
-        <section class="hero">
+        <section class="hero auto-hero">
           <div>
             <p class="eyebrow">自動交易</p>
-            <h1>永豐自動交易整合頁</h1>
+            <h1>永豐自動交易工作台</h1>
             <p>
-              這裡集中顯示 current、latest daily 與 latest weekly，方便在同一個入口切換查看。
+              集中查看目前看板、最新日報與週報，保留交易狀態、資金與執行紀錄的完整操作視野。
             </p>
             <div class="pill-row" id="auto-page-meta"></div>
           </div>
-          <aside class="hero-panel">
+          <aside class="hero-panel auto-switcher">
             <p class="eyebrow">快速切換</p>
-            <h2>切換不同頁面</h2>
             <div class="frame-actions">
               <a class="action-link" id="link-current" href="../auto-trading-embed/current.html">目前看板</a>
               <a class="action-link" id="link-daily" href="../auto-trading-embed/current.html">最新日報</a>
@@ -47,8 +46,8 @@
           </aside>
         </section>
 
-        <section class="card frame-shell">
-          <div>
+        <section class="card frame-shell auto-frame-shell">
+          <div class="auto-frame-head">
             <p class="eyebrow">嵌入內容</p>
             <h2>自動交易頁面</h2>
           </div>
@@ -56,6 +55,7 @@
             <iframe
               id="auto-trading-frame"
               src="../auto-trading-embed/current.html"
+              scrolling="no"
               title="Auto Trading Embedded Dashboard"
             ></iframe>
           </div>
@@ -63,7 +63,7 @@
       </main>
     </div>
 
-    <script src="../data/portal-manifest.js"></script>
-    <script src="../assets/portal.js"></script>
+    <script src="../data/portal-manifest.js?v=20260427-auto-layout"></script>
+    <script src="../assets/portal.js?v=20260427-auto-layout"></script>
   </body>
 </html>

@@ -469,23 +469,64 @@ function wireAutoTradingFrame(manifest) {
   const currentPath = "../auto-trading-embed/current.html";
   const dailyPath = data.latest_daily_html ? `../auto-trading-embed/daily/${data.latest_daily_html}` : currentPath;
   const weeklyPath = data.latest_weekly_html ? `../auto-trading-embed/weeks/${data.latest_weekly_html}` : currentPath;
+  const cacheKey = encodeURIComponent(data.trade_date || String(Date.now()));
+  const framePath = (path) => `${path}?v=${cacheKey}`;
+  const resizeFrame = () => {
+    try {
+      const frameDocument = frame.contentDocument;
+      if (!frameDocument) {
+        return;
+      }
+      const height = Math.max(
+        900,
+        frameDocument.documentElement?.scrollHeight || 0,
+        frameDocument.body?.scrollHeight || 0
+      );
+      frame.style.height = `${height + 48}px`;
+    } catch (_error) {
+      frame.style.height = "";
+    }
+  };
+  const scheduleResizeFrame = () => {
+    resizeFrame();
+    window.setTimeout(resizeFrame, 120);
+    window.setTimeout(resizeFrame, 600);
+  };
+  const showFrame = (path) => {
+    frame.style.height = "";
+    frame.src = framePath(path);
+  };
 
-  frame.src = currentPath;
+  frame.addEventListener("load", scheduleResizeFrame);
+  showFrame(currentPath);
   currentButton.href = currentPath;
   dailyButton.href = dailyPath;
   weeklyButton.href = weeklyPath;
 
+  const frameButtons = [currentButton, dailyButton, weeklyButton];
+  const selectFrameButton = (activeButton) => {
+    frameButtons.forEach((button) => {
+      const isActive = button === activeButton;
+      button.classList.toggle("is-selected", isActive);
+      button.setAttribute("aria-current", isActive ? "page" : "false");
+    });
+  };
+  selectFrameButton(currentButton);
+
   currentButton.addEventListener("click", (event) => {
     event.preventDefault();
-    frame.src = currentPath;
+    showFrame(currentPath);
+    selectFrameButton(currentButton);
   });
   dailyButton.addEventListener("click", (event) => {
     event.preventDefault();
-    frame.src = dailyPath;
+    showFrame(dailyPath);
+    selectFrameButton(dailyButton);
   });
   weeklyButton.addEventListener("click", (event) => {
     event.preventDefault();
-    frame.src = weeklyPath;
+    showFrame(weeklyPath);
+    selectFrameButton(weeklyButton);
   });
 
   meta.innerHTML = [

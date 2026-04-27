@@ -4,10 +4,10 @@
   "end_date": "2026-04-24",
   "mode": "live_guarded",
   "provider_name": "ab_llm_preselect_json",
-  "last_update_time": "2026-04-24T13:41:34+08:00",
+  "last_update_time": "2026-04-27T22:44:39+08:00",
   "weekly_totals": {
-    "weekly_budget": 0.0,
-    "hard_budget": 50000.0,
+    "weekly_budget": 60000.0,
+    "hard_budget": 60000.0,
     "total_buy_cost": 0.0,
     "final_market_value": 0.0,
     "total_profit": 0.0,
@@ -151,11 +151,11 @@
   "trade_results": [
     {
       "label": "weekly_budget",
-      "value": 0.0
+      "value": 60000.0
     },
     {
       "label": "hard_budget",
-      "value": 50000.0
+      "value": 60000.0
     },
     {
       "label": "used_cash",
@@ -304,7 +304,7 @@
   "sell_model_vs_actual": [],
   "expired_unfilled": [],
   "tuning_suggestions": [
-    "Review overrun_tolerance currently set to 50,000 TWD.",
+    "Review overrun_tolerance currently set to 0 TWD.",
     "Validate conservative sell thresholds against real fills once live sell loop is wired.",
     "Keep 2330 and TAIEX as fixed benchmark lines on all dashboard views."
   ],

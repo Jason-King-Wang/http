@@ -324,6 +324,119 @@ h2 {
   background: white;
 }
 
+body[data-page="auto-trading-wrapper"] {
+  background: #f5f7f8;
+}
+
+body[data-page="auto-trading-wrapper"] .ambient {
+  display: none;
+}
+
+body[data-page="auto-trading-wrapper"] .site {
+  width: min(1600px, calc(100% - 2rem));
+  padding-top: 1rem;
+}
+
+body[data-page="auto-trading-wrapper"] .topbar,
+body[data-page="auto-trading-wrapper"] .hero,
+body[data-page="auto-trading-wrapper"] .card,
+body[data-page="auto-trading-wrapper"] .hero-panel,
+body[data-page="auto-trading-wrapper"] .nav-links a,
+body[data-page="auto-trading-wrapper"] .action-link {
+  border-radius: 8px;
+}
+
+body[data-page="auto-trading-wrapper"] .topbar {
+  margin-bottom: 0.8rem;
+  padding: 0.8rem 0.95rem;
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(22, 33, 46, 0.08);
+  box-shadow: 0 8px 20px rgba(22, 33, 46, 0.06);
+}
+
+body[data-page="auto-trading-wrapper"] .auto-hero {
+  grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.55fr);
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  padding: 1.15rem;
+  background: #ffffff;
+  border-color: rgba(22, 33, 46, 0.08);
+  box-shadow: 0 8px 22px rgba(22, 33, 46, 0.06);
+  backdrop-filter: none;
+}
+
+body[data-page="auto-trading-wrapper"] h1 {
+  max-width: none;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.05;
+}
+
+body[data-page="auto-trading-wrapper"] .auto-hero p {
+  max-width: 62rem;
+}
+
+body[data-page="auto-trading-wrapper"] .auto-switcher {
+  align-content: center;
+  padding: 1rem;
+  background: #f8fbfb;
+  border-color: rgba(12, 143, 122, 0.14);
+}
+
+body[data-page="auto-trading-wrapper"] .frame-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+body[data-page="auto-trading-wrapper"] .action-link {
+  min-height: 2.7rem;
+  padding: 0.72rem 0.85rem;
+  background: #ffffff;
+  border-color: rgba(22, 33, 46, 0.1);
+  white-space: nowrap;
+}
+
+body[data-page="auto-trading-wrapper"] .action-link.is-selected {
+  background: #0c8f7a;
+  border-color: #0c8f7a;
+  color: #ffffff;
+  box-shadow: 0 12px 24px rgba(12, 143, 122, 0.18);
+}
+
+body[data-page="auto-trading-wrapper"] .auto-frame-shell {
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-color: rgba(22, 33, 46, 0.08);
+  box-shadow: 0 8px 22px rgba(22, 33, 46, 0.06);
+  backdrop-filter: none;
+}
+
+.auto-frame-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-bottom: 1px solid rgba(22, 33, 46, 0.08);
+}
+
+.auto-frame-head .eyebrow {
+  margin: 0;
+}
+
+body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
+  min-height: max(860px, calc(100vh - 280px));
+  border: 0;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
+  min-height: max(860px, calc(100vh - 280px));
+}
+
 .ab-latest-shell,
 .ab-history-shell {
   display: grid;
@@ -541,5 +654,22 @@ h2 {
   .section-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  body[data-page="auto-trading-wrapper"] .site {
+    width: min(100% - 1rem, 100%);
+  }
+
+  body[data-page="auto-trading-wrapper"] .auto-hero {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="auto-trading-wrapper"] .frame-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .auto-frame-head {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
