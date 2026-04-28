@@ -3,111 +3,208 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2026-04-20 SinoPac Auto Trading</title>
+  <title>2026-04-20 永豐自動交易</title>
   <style>
     :root {
-      --bg: #f3f0e8;
-      --panel: #fffdf7;
-      --ink: #1e2b2f;
-      --muted: #65767a;
-      --line: #d9d0bf;
-      --accent: #244c5a;
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --panel-muted: #f9fafb;
+      --ink: #172029;
+      --muted: #66717c;
+      --line: #dbe2ea;
+      --accent: #1f5a68;
       --accent-2: #b85c38;
       --ok: #2f6a44;
       --warn: #8d5b2d;
-      --shadow: 0 12px 24px rgba(46, 49, 44, 0.08);
+      --shadow: 0 8px 20px rgba(23, 32, 41, 0.06);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at top right, rgba(184,92,56,0.12), transparent 32%),
-        linear-gradient(180deg, #f7f4ec 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--ink);
       font-family: "Segoe UI", "Noto Sans TC", sans-serif;
       line-height: 1.5;
     }
     .shell {
-      width: min(1280px, calc(100vw - 32px));
+      width: min(1520px, calc(100vw - 24px));
       margin: 0 auto;
-      padding: 28px 0 56px;
+      padding: 16px 0 36px;
     }
     .hero {
-      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
       border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(36,76,90,0.94), rgba(77,117,124,0.92));
-      color: #f8f5ee;
-      border-radius: 24px;
+      background: linear-gradient(135deg, #213f49, #315c67);
+      color: #f8fbfc;
+      border-radius: 10px;
       box-shadow: var(--shadow);
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
     .hero h1 {
       margin: 0 0 6px;
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: 0.02em;
+      font-size: clamp(24px, 2.4vw, 34px);
+      letter-spacing: 0;
+      line-height: 1.12;
     }
     .hero p {
       margin: 0;
-      color: rgba(248,245,238,0.86);
+      color: rgba(248,251,252,0.82);
     }
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
     }
     .card, .panel {
       border: 1px solid var(--line);
       background: var(--panel);
-      border-radius: 18px;
+      border-radius: 10px;
       box-shadow: var(--shadow);
+      min-width: 0;
     }
     .card {
-      padding: 16px;
-      min-height: 108px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-height: 76px;
+      padding: 11px 12px;
     }
     .card .label {
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 0;
     }
     .card .value {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: clamp(17px, 1.25vw, 20px);
+      font-weight: 750;
       color: var(--accent);
-      word-break: break-word;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+    .card.is-long .value {
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.42;
+      color: #263842;
+    }
+    .card.is-wide {
+      grid-column: span 2;
     }
     .layout {
       display: grid;
-      gap: 18px;
+      gap: 12px;
+      min-width: 0;
+    }
+    .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 4;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 12px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(245, 247, 248, 0.94);
+      backdrop-filter: blur(10px);
+    }
+    .nav-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--accent);
+      background: rgba(36, 76, 90, 0.08);
+      border: 1px solid rgba(36, 76, 90, 0.12);
+      font-size: 13px;
+      font-weight: 600;
     }
     .panel {
-      padding: 18px 18px 14px;
+      padding: 14px;
+      scroll-margin-top: 16px;
     }
     .panel-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 12px;
     }
     .panel h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: 17px;
+    }
+    .panel-tools {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+    .search-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .table-search {
+      min-width: 180px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel-muted);
+      color: var(--ink);
+    }
+    .table-count {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
     }
     .table-wrap {
+      width: 100%;
+      max-width: 100%;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-wrap table {
+      width: max-content;
+      min-width: 100%;
+    }
+    .sort-btn {
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      padding: 0;
+      text-align: left;
+    }
+    .sort-btn::after {
+      content: " ↕";
+      color: #9aa7aa;
+      font-size: 12px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 13px;
     }
     th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #ece5d6;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e9eef3;
       text-align: left;
       vertical-align: top;
     }
@@ -128,6 +225,10 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid #d9e1e8;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
     }
     .legend i {
       width: 12px;
@@ -135,24 +236,141 @@
       border-radius: 999px;
       display: inline-block;
     }
+    .legend b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .legend em {
+      color: var(--muted);
+      font-style: normal;
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-caption {
+      margin: -2px 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
     .chart {
       width: 100%;
-      border-radius: 14px;
-      background: #fcfaf4;
-      border: 1px solid #ebe3d2;
+      max-width: 100%;
+      border-radius: 8px;
+      background: var(--panel-muted);
+      border: 1px solid var(--line);
     }
     .grid {
-      stroke: #e6ddcb;
+      stroke: #e5ebf1;
       stroke-width: 1;
+    }
+    .zero-line {
+      stroke: rgba(15, 23, 42, 0.34);
+      stroke-width: 1.2;
+      stroke-dasharray: 5 5;
     }
     .axis {
       fill: var(--muted);
       font-size: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .x-axis {
       text-anchor: middle;
+    }
+    .y-axis {
+      text-anchor: end;
+    }
+    .single-point-label,
+    .allocation-total {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .point-bars {
+      display: grid;
+      gap: 12px;
+    }
+    .point-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 150px) 1fr minmax(72px, auto);
+      align-items: center;
+      gap: 12px;
+    }
+    .point-name,
+    .allocation-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .point-name i,
+    .allocation-row i {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .point-track {
+      position: relative;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5ebf1;
+      overflow: hidden;
+    }
+    .point-zero {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(15, 23, 42, 0.34);
+    }
+    .point-bar {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      border-radius: 999px;
+    }
+    .point-row strong,
+    .allocation-row strong,
+    .allocation-total strong {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+    .allocation-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .allocation-bar {
+      display: flex;
+      height: 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e5ebf1;
+      border: 1px solid var(--line);
+      margin-bottom: 14px;
+    }
+    .allocation-bar span {
+      display: block;
+      min-width: 2px;
+    }
+    .allocation-rows {
+      display: grid;
+      gap: 8px;
+    }
+    .allocation-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-top: 1px solid #e5ebf1;
+      padding-top: 8px;
     }
     .empty {
       color: var(--muted);
       margin: 4px 0 0;
+    }
+    .filtered-empty {
+      margin-top: 14px;
     }
     .warning {
       border-color: rgba(141, 91, 45, 0.35);
@@ -168,7 +386,19 @@
         width: min(100vw - 20px, 100%);
       }
       .hero {
+        align-items: flex-start;
+        flex-direction: column;
         padding: 22px;
+      }
+      .card.is-wide {
+        grid-column: auto;
+      }
+      .panel-tools {
+        width: 100%;
+      }
+      .table-search {
+        min-width: 0;
+        width: 100%;
       }
       th, td {
         padding: 8px 10px;
@@ -179,10 +409,83 @@
 <body>
   <main class="shell">
     <section class="hero">
-      <h1>2026-04-20 SinoPac Auto Trading</h1>
-      <p>Execution dashboard / reporting site for the independent trading framework.</p>
+      <h1>2026-04-20 永豐自動交易</h1>
+      <p>永豐自動交易執行儀表板與報告頁。</p>
     </section>
-    <div class='layout'><section class='card-grid'><article class='card'><div class='label'>week_id</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>trade_date</div><div class='value'>2026-04-20</div></article><article class='card'><div class='label'>last_update</div><div class='value'>2026-04-20T23:23:42+08:00</div></article><article class='card'><div class='label'>mode</div><div class='value'>dry_run</div></article><article class='card'><div class='label'>provider</div><div class='value'>manual_csv</div></article><article class='card'><div class='label'>today_status</div><div class='value'>tracking</div></article><article class='card'><div class='label'>weekly_budget</div><div class='value'>0.00</div></article><article class='card'><div class='label'>hard_budget</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>used_cash</div><div class='value'>0.00</div></article><article class='card'><div class='label'>remaining_cash</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>current_equity</div><div class='value'>0.00</div></article><article class='card'><div class='label'>strategy_return</div><div class='value'>0.00%</div></article></section><section class='panel warning'><div class='panel-head'><h2>Warnings / Notes</h2></div><ul><li>No selection rows were loaded for this trade date.</li></ul></section><section class='panel'><div class='panel-head'><h2>Selection Source And Finalization</h2></div><p class='empty'>No selection rows available.</p></section><section class='panel'><div class='panel-head'><h2>Buy Execution</h2></div><p class='empty'>No buy execution rows yet.</p></section><section class='panel'><div class='panel-head'><h2>Positions</h2></div><p class='empty'>No positions yet.</p></section><section class='panel'><div class='panel-head'><h2>Sell Status</h2></div><p class='empty'>No sell rows yet.</p></section><section class='panel'><div class='panel-head'><h2>Basket Summary</h2></div><div class='table-wrap'><table><thead><tr><th>Metric</th><th>Value</th></tr></thead><tbody><tr><td>basket_market_value</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl</td><td>0.00</td></tr><tr><td>basket_unrealized_pnl_pct</td><td>0.00%</td></tr><tr><td>basket_conservative_profit</td><td>0.00</td></tr><tr><td>basket_threshold</td><td>3,000.00</td></tr><tr><td>basket_recommendation</td><td>hold</td></tr><tr><td>loser_loss_ratio</td><td>0.00%</td></tr></tbody></table></div></section><section class='panel chart-panel'><div class='panel-head'><h2>Strategy vs TAIEX vs 2330</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Strategy</span><span><i style='background:#b85c38'></i>TAIEX</span><span><i style='background:#5a7d4d'></i>2330</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,212.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#5a7d4d' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-20</text></svg></section><section class='panel chart-panel'><div class='panel-head'><h2>Cash vs Deployed Capital</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Cash</span><span><i style='background:#b85c38'></i>Deployed</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,28.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-20</text></svg></section><section class='panel'><div class='panel-head'><h2>Events / Log</h2></div><p class='empty'>No events recorded yet.</p></section><section class='panel'><div class='panel-head'><h2>Next Actions</h2></div><ul class='plain-list'><li>Run render_report every 5 minutes during market hours to refresh the current dashboard.</li><li>After market close, rerun render_report and settle_week for daily/weekly snapshots.</li></ul></section></div>
+    <section class='card-grid'><article class='card'><div class='label'>週別</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>交易日</div><div class='value'>2026-04-20</div></article><article class='card is-long'><div class='label'>最後更新</div><div class='value'>2026-04-29T00:43:13+08:00</div></article><article class='card'><div class='label'>模式</div><div class='value'>乾跑模式 (dry_run)</div></article><article class='card is-long'><div class='label'>選股來源</div><div class='value'>同日 A 預選 JSON (ab_llm_preselect_json)</div></article><article class='card'><div class='label'>今日狀態</div><div class='value'>tracking</div></article><article class='card'><div class='label'>每週預算</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>硬上限</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>已用資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>剩餘資金</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>目前權益</div><div class='value'>0.00</div></article><article class='card'><div class='label'>策略報酬率</div><div class='value'>0.00%</div></article><article class='card is-long'><div class='label'>選股來源狀態</div><div class='value'>同日 A 預選缺失並直接 pass (same_day_a_preselect_missing_pass)</div></article><article class='card'><div class='label'>今日狀態說明</div><div class='value'>系統正在監看實際產物，並等待下一個可執行步驟。</div></article><article class='card'><div class='label'>Workflow 完成</div><div class='value'>2</div></article><article class='card'><div class='label'>Workflow 待辦</div><div class='value'>9</div></article><article class='card'><div class='label'>Workflow 關閉</div><div class='value'>0</div></article><article class='card is-long is-wide'><div class='label'>選股來源說明</div><div class='value'>今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。</div></article><article class='card is-long'><div class='label'>選股來源路徑</div><div class='value'>../data/ab_llm_preselect/2026-04-20.json</div></article><article class='card is-long'><div class='label'>週結算狀態</div><div class='value'>週結算已是最新 (weekly_settlement_current)</div></article><article class='card is-long'><div class='label'>週結算說明</div><div class='value'>本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。</div></article><article class='card is-long is-wide'><div class='label'>週結算產物</div><div class='value'>C:\Users\User\Documents\New project\SinoPac Auto Trading\notes\weeks\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\Users\User\Documents\New project\SinoPac Auto Trading\reports\auto_trading\weeks\2026-04-20_2026-04-24.html, C:\Users\User\Documents\New project\SinoPac Auto Trading\reports\auto_trading\data\2026-04-20_2026-04-24_weekly_snapshot.json</div></article><article class='card is-long'><div class='label'>週結算下一步</div><div class='value'>本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。</div></article><article class='card is-long'><div class='label'>今日下單狀態</div><div class='value'>整包 A 同日 JSON 缺失並直接略過 (basket_a_same_day_json_missing_pass)</div></article><article class='card is-long'><div class='label'>今日下單說明</div><div class='value'>今天沒有同日 A 預選 JSON，所以整包 A 主線直接 pass，不回退前一天。</div></article><article class='card'><div class='label'>部位資料</div><div class='value'>直接策略部位 (direct)</div></article></section><nav class='page-nav' aria-label='區塊導覽'><a class='nav-chip' href='#warnings-notes'>警告 / 備註</a><a class='nav-chip' href='#selection-finalization'>選股來源與訂版</a><a class='nav-chip' href='#buy-execution'>買進執行</a><a class='nav-chip' href='#positions'>持倉</a><a class='nav-chip' href='#excluded-positions'>排除部位</a><a class='nav-chip' href='#broker-underheld'>缺股風險</a><a class='nav-chip' href='#ambiguous-fills'>待對帳成交</a><a class='nav-chip' href='#sell-status'>賣出狀態</a><a class='nav-chip' href='#basket-summary'>整包分析</a><a class='nav-chip' href='#benchmark-chart'>累積報酬率：策略 vs 加權 vs 2330</a><a class='nav-chip' href='#capital-chart'>資金配置：現金 vs 已投入資金</a><a class='nav-chip' href='#events-log'>事件紀錄</a><a class='nav-chip' href='#next-actions'>後續動作</a></nav><div class='layout'><section class='panel warning' id='warnings-notes'><div class='panel-head'><h2>警告 / 備註</h2></div><ul><li>今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。</li><li>這個 trade date 尚未載入任何 selection rows。</li></ul></section><section class='panel' id='selection-finalization'><div class='panel-head'><h2>選股來源與訂版</h2></div><p class='empty'>尚無選股資料。</p></section><section class='panel' id='buy-execution'><div class='panel-head'><h2>買進執行</h2></div><p class='empty'>尚無買進執行資料。</p></section><section class='panel' id='positions'><div class='panel-head'><h2>持倉</h2></div><p class='empty'>尚無持倉資料。</p></section><section class='panel' id='excluded-positions'><div class='panel-head'><h2>排除部位</h2></div><p class='empty'>無排除部位。</p></section><section class='panel' id='broker-underheld'><div class='panel-head'><h2>缺股風險</h2></div><p class='empty'>無缺股風險。</p></section><section class='panel' id='ambiguous-fills'><div class='panel-head'><h2>待對帳成交</h2></div><p class='empty'>無待對帳成交。</p></section><section class='panel' id='sell-status'><div class='panel-head'><h2>賣出狀態</h2></div><p class='empty'>尚無賣出資料。</p></section><section class='panel' id='basket-summary'><div class='panel-head'><h2>整包分析</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 整包分析' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>項目</button></th><th><button class='sort-btn' type='button' data-index='1'>數值</button></th></tr></thead><tbody><tr><td>整包範圍</td><td>combined</td></tr><tr><td>整包標籤</td><td></td></tr><tr><td>整包市值</td><td>0.00</td></tr><tr><td>整包未實現損益</td><td>0.00</td></tr><tr><td>整包未實現報酬率</td><td>0.00%</td></tr><tr><td>保守出清獲利</td><td>0.00</td></tr><tr><td>整包門檻</td><td>3,000.00</td></tr><tr><td>整包建議</td><td>hold</td></tr><tr><td>虧損股佔比</td><td>0.00%</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無整包分析資料。</p></div></section><section class='panel chart-panel' id='benchmark-chart'><div class='panel-head'><h2>累積報酬率：策略 vs 加權 vs 2330</h2></div><p class='chart-caption'>累積報酬率比較。資料只有一個時間點時，改以基準比較條呈現。</p><div class='single-point-label'>2026-04-20</div><div class='point-bars'><div class='point-row'><span class='point-name'><i style='background:#244c5a'></i>策略</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#244c5a'></span></span><strong>0.00%</strong></div><div class='point-row'><span class='point-name'><i style='background:#b85c38'></i>加權</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#b85c38'></span></span><strong>0.00%</strong></div><div class='point-row'><span class='point-name'><i style='background:#5a7d4d'></i>2330</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#5a7d4d'></span></span><strong>0.00%</strong></div></div></section><section class='panel chart-panel' id='capital-chart'><div class='panel-head'><h2>資金配置：現金 vs 已投入資金</h2></div><p class='chart-caption'>資金配置圖：看目前現金與已投入資金的占比，不是價格走勢圖。</p><div class='allocation-total'><span>2026-04-20</span><strong>6.0萬</strong></div><div class='allocation-bar'><span style='width:100.00%;background:#244c5a'></span></div><div class='allocation-rows'><div class='allocation-row'><span><i style='background:#244c5a'></i>現金</span><strong>6.0萬</strong></div><div class='allocation-row'><span><i style='background:#b85c38'></i>已投入</span><strong>0</strong></div></div></section><section class='panel' id='events-log'><div class='panel-head'><h2>事件紀錄</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 事件紀錄' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>時間</button></th><th><button class='sort-btn' type='button' data-index='1'>事件</button></th><th><button class='sort-btn' type='button' data-index='2'>股票</button></th><th><button class='sort-btn' type='button' data-index='3'>動作</button></th><th><button class='sort-btn' type='button' data-index='4'>價格</button></th><th><button class='sort-btn' type='button' data-index='5'>股數</button></th><th><button class='sort-btn' type='button' data-index='6'>結果</button></th><th><button class='sort-btn' type='button' data-index='7'>警告 / 錯誤</button></th></tr></thead><tbody><tr><td>2026-04-20T23:25:54.363464+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 11 筆清單列。</td><td></td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無事件紀錄。</p></div></section><section class='panel' id='next-actions'><div class='panel-head'><h2>後續動作</h2></div><ul class='plain-list'><li>Run 輸出日報 (render_report) every 5 minutes during market hours to refresh the current dashboard.</li><li>本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。</li></ul></section></div>
   </main>
+  <script>
+    (() => {
+      const tables = document.querySelectorAll('.sortable-table');
+      tables.forEach((table) => {
+        const headers = table.querySelectorAll('.sort-btn');
+        headers.forEach((button) => {
+          button.addEventListener('click', () => {
+            const tbody = table.querySelector('tbody');
+            if (!tbody) return;
+            const columnIndex = Number(button.dataset.index || 0);
+            const currentDirection = button.dataset.direction === 'asc' ? 'asc' : 'desc';
+            const nextDirection = currentDirection === 'asc' ? 'desc' : 'asc';
+            headers.forEach((header) => {
+              if (header !== button) {
+                header.dataset.direction = '';
+              }
+            });
+            button.dataset.direction = nextDirection;
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            rows.sort((rowA, rowB) => {
+              const a = rowA.children[columnIndex]?.textContent?.trim() || '';
+              const b = rowB.children[columnIndex]?.textContent?.trim() || '';
+              const aNum = Number(a.replace(/,/g, '').replace(/%/g, ''));
+              const bNum = Number(b.replace(/,/g, '').replace(/%/g, ''));
+              const bothNumeric = !Number.isNaN(aNum) && !Number.isNaN(bNum) && a !== '' && b !== '';
+              let result = 0;
+              if (bothNumeric) {
+                result = aNum - bNum;
+              } else {
+                result = a.localeCompare(b, 'zh-Hant');
+              }
+              return nextDirection === 'asc' ? result : -result;
+            });
+            rows.forEach((row) => tbody.appendChild(row));
+          });
+        });
+      });
+
+      const filterPanels = document.querySelectorAll('.panel');
+      filterPanels.forEach((panel) => {
+        const input = panel.querySelector('.table-search');
+        const tbody = panel.querySelector('tbody');
+        const count = panel.querySelector('.table-count');
+        const empty = panel.querySelector('.filtered-empty');
+        if (!input || !tbody || !count) {
+          return;
+        }
+
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        const total = rows.length;
+
+        const applyFilter = () => {
+          const query = input.value.trim().toLowerCase();
+          let visible = 0;
+          rows.forEach((row) => {
+            const haystack = (row.textContent || '').toLowerCase();
+            const match = !query || haystack.includes(query);
+            row.hidden = !match;
+            if (match) {
+              visible += 1;
+            }
+          });
+          count.textContent = `顯示 ${visible} / ${total}`;
+          if (empty) {
+            empty.hidden = visible !== 0;
+          }
+        };
+
+        input.addEventListener('input', applyFilter);
+        applyFilter();
+      });
+    })();
+  </script>
 </body>
 </html>

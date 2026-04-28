@@ -2,46 +2,116 @@
   "trade_date": "2026-04-20",
   "week_id": "2026-04-20_2026-04-24",
   "run_id": "auto-2026-04-20",
+  "status": "workflow_status_rendered",
   "mode": "dry_run",
-  "provider_name": "manual_csv",
-  "overview": {
-    "last_update_time": "2026-04-20T23:23:42+08:00",
-    "weekly_budget": 0.0,
-    "hard_budget": 50000.0,
-    "used_cash": 0,
-    "remaining_cash": 50000.0,
-    "current_equity": 0,
-    "strategy_pnl_after_fee_tax": 0,
-    "strategy_return": 0.0,
-    "today_status": "tracking"
+  "provider_name": "ab_llm_preselect_json",
+  "buy_cutoff_day": "2026-04-22",
+  "last_trade_day": "2026-04-24",
+  "preselect_count": 0,
+  "final_list_count": 0,
+  "workflow_status": {
+    "completed_steps": 2,
+    "pending_steps": 9
   },
+  "workflow_completed_steps": 2,
+  "workflow_pending_steps": 9,
+  "workflow_closed_steps": 0,
+  "overview": {
+    "last_update_time": "2026-04-29T00:43:13+08:00",
+    "weekly_budget": 60000.0,
+    "hard_budget": 60000.0,
+    "buy_chase_after_first_trade_day_enabled": false,
+    "effective_buy_cutoff_day": "2026-04-20",
+    "used_cash": 0.0,
+    "remaining_cash": 60000.0,
+    "current_equity": 0.0,
+    "strategy_pnl_after_fee_tax": 0.0,
+    "realized_pnl": 0,
+    "unrealized_pnl": 0.0,
+    "strategy_return": 0.0,
+    "position_data_quality": "direct",
+    "positions_source_date": "",
+    "fallback_position_lot_count": 0,
+    "ambiguous_fill_guard_count": 0,
+    "excluded_position_guard_count": 0,
+    "buy_ambiguous_fill_guard_count": 0,
+    "sell_ambiguous_fill_guard_count": 0,
+    "broker_underheld_guard_count": 0,
+    "buy_broker_underheld_guard_count": 0,
+    "sell_broker_underheld_guard_count": 0,
+    "workflow_completed_steps": 2,
+    "workflow_pending_steps": 9,
+    "workflow_closed_steps": 0,
+    "selection_source_path": "../data/ab_llm_preselect/2026-04-20.json",
+    "selection_source_last_modified": "",
+    "selection_source_status": "same_day_a_preselect_missing_pass",
+    "selection_source_note": "今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。",
+    "weekly_settlement_open": false,
+    "weekly_settlement_status": "weekly_settlement_current",
+    "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
+    "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+    "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
+    "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+    "today_ordering_status": "basket_a_same_day_json_missing_pass",
+    "today_ordering_note": "今天沒有同日 A 預選 JSON，所以整包 A 主線直接 pass，不回退前一天。",
+    "today_status": "tracking",
+    "today_status_note": "系統正在監看實際產物，並等待下一個可執行步驟。",
+    "selection_source_status_label": "同日 A 預選缺失並直接 pass",
+    "weekly_settlement_status_label": "週結算已是最新",
+    "today_ordering_status_label": "整包 A 同日 JSON 缺失並直接略過",
+    "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+    "position_data_quality_label": "直接策略部位",
+    "today_status_note_display": "系統正在監看實際產物，並等待下一個可執行步驟。",
+    "selection_source_note_display": "今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。",
+    "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+    "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+    "today_ordering_note_display": "今天沒有同日 A 預選 JSON，所以整包 A 主線直接 pass，不回退前一天。"
+  },
+  "dashboard_refresh": {},
+  "dashboard_refresh_last_materializing": null,
   "selection_rows": [],
   "buy_execution_rows": [],
   "positions_rows": [],
+  "excluded_positions_rows": [],
+  "broker_underheld_rows": [],
+  "ambiguous_fill_rows": [],
   "sell_rows": [],
+  "guarded_live_task_evidence": {},
+  "post_guarded_order_check": {
+    "next_run_guard_message": "",
+    "task_log_message": "",
+    "config_timing_message": "",
+    "schedule_description": ""
+  },
+  "sell_loop_readiness": {},
   "basket_summary": {
-    "basket_market_value": 0,
-    "basket_unrealized_pnl": 0,
+    "basket_market_value": 0.0,
+    "basket_unrealized_pnl": 0.0,
     "basket_unrealized_pnl_pct": 0.0,
     "basket_conservative_profit": 0,
     "basket_threshold": 3000.0,
     "basket_recommendation": "hold",
-    "loser_loss_ratio": 0.0
+    "loser_loss_ratio": 0.0,
+    "basket_scope": "combined",
+    "basket_tags": ""
   },
   "comparison_chart": {
     "x_labels": [
       "2026-04-20"
     ],
+    "kind": "returns",
+    "value_format": "percent",
+    "caption": "累積報酬率比較。資料只有一個時間點時，改以基準比較條呈現。",
     "series": [
       {
-        "label": "Strategy",
+        "label": "策略",
         "color": "#244c5a",
         "values": [
           0.0
         ]
       },
       {
-        "label": "TAIEX",
+        "label": "加權",
         "color": "#b85c38",
         "values": [
           0.0
@@ -60,16 +130,19 @@
     "x_labels": [
       "2026-04-20"
     ],
+    "kind": "allocation",
+    "value_format": "money",
+    "caption": "資金配置圖：看目前現金與已投入資金的占比，不是價格走勢圖。",
     "series": [
       {
-        "label": "Cash",
+        "label": "現金",
         "color": "#244c5a",
         "values": [
-          50000.0
+          60000.0
         ]
       },
       {
-        "label": "Deployed",
+        "label": "已投入",
         "color": "#b85c38",
         "values": [
           0.0
@@ -77,12 +150,94 @@
       }
     ]
   },
-  "events": [],
+  "events": [
+    {
+      "time": "2026-04-20T23:25:54.363464+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "display_warning_or_error": ""
+    }
+  ],
   "warnings": [
-    "No selection rows were loaded for this trade date."
+    "今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。",
+    "這個 trade date 尚未載入任何 selection rows。"
   ],
   "next_actions": [
     "Run render_report every 5 minutes during market hours to refresh the current dashboard.",
-    "After market close, rerun render_report and settle_week for daily/weekly snapshots."
-  ]
+    "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。"
+  ],
+  "last_update_time": "2026-04-29T00:43:13+08:00",
+  "weekly_budget": 60000.0,
+  "hard_budget": 60000.0,
+  "buy_chase_after_first_trade_day_enabled": false,
+  "effective_buy_cutoff_day": "2026-04-20",
+  "used_cash": 0.0,
+  "remaining_cash": 60000.0,
+  "current_equity": 0.0,
+  "strategy_pnl_after_fee_tax": 0.0,
+  "realized_pnl": 0,
+  "unrealized_pnl": 0.0,
+  "strategy_return": 0.0,
+  "position_data_quality": "direct",
+  "positions_source_date": "",
+  "fallback_position_lot_count": 0,
+  "ambiguous_fill_guard_count": 0,
+  "excluded_position_guard_count": 0,
+  "buy_ambiguous_fill_guard_count": 0,
+  "sell_ambiguous_fill_guard_count": 0,
+  "broker_underheld_guard_count": 0,
+  "buy_broker_underheld_guard_count": 0,
+  "sell_broker_underheld_guard_count": 0,
+  "selection_source_path": "../data/ab_llm_preselect/2026-04-20.json",
+  "selection_source_last_modified": "",
+  "selection_source_status": "same_day_a_preselect_missing_pass",
+  "selection_source_note": "今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。",
+  "weekly_settlement_open": false,
+  "weekly_settlement_status": "weekly_settlement_current",
+  "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
+  "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+  "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
+  "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+  "today_ordering_status": "basket_a_same_day_json_missing_pass",
+  "today_ordering_note": "今天沒有同日 A 預選 JSON，所以整包 A 主線直接 pass，不回退前一天。",
+  "today_status": "tracking",
+  "today_status_note": "系統正在監看實際產物，並等待下一個可執行步驟。",
+  "selection_source_status_label": "同日 A 預選缺失並直接 pass",
+  "weekly_settlement_status_label": "週結算已是最新",
+  "today_ordering_status_label": "整包 A 同日 JSON 缺失並直接略過",
+  "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+  "position_data_quality_label": "直接策略部位",
+  "today_status_note_display": "系統正在監看實際產物，並等待下一個可執行步驟。",
+  "selection_source_note_display": "今天沒有同日 A 預選 JSON：../data/ab_llm_preselect/2026-04-20.json；整包 A 主線直接 pass，不回退前一天。",
+  "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+  "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+  "today_ordering_note_display": "今天沒有同日 A 預選 JSON，所以整包 A 主線直接 pass，不回退前一天。",
+  "dashboard_refresh_status": "",
+  "dashboard_refresh_steps": "",
+  "dashboard_refresh_note": "",
+  "dashboard_refresh_trigger_status": "",
+  "dashboard_refresh_trigger_artifacts": "",
+  "dashboard_refresh_trigger_note": "",
+  "dashboard_last_materialization_status": "",
+  "dashboard_last_materialization_steps": "",
+  "dashboard_last_materialization_note": "",
+  "dashboard_last_materialization_trigger_status": "",
+  "dashboard_last_materialization_trigger_artifacts": "",
+  "dashboard_last_materialization_trigger_note": "",
+  "selection_materialization_status": "",
+  "selection_materialization_missing_artifacts": "",
+  "selection_materialization_note": "",
+  "selection_materialization_next_action": "",
+  "selection_materialization_next_action_note": "",
+  "status_label": "已輸出工作流狀態",
+  "mode_label": "乾跑模式",
+  "provider_name_label": "同日 A 預選 JSON"
 }

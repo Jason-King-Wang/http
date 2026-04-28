@@ -471,6 +471,14 @@ function wireAutoTradingFrame(manifest) {
   const weeklyPath = data.latest_weekly_html ? `../auto-trading-embed/weeks/${data.latest_weekly_html}` : currentPath;
   const cacheKey = encodeURIComponent(data.trade_date || String(Date.now()));
   const framePath = (path) => `${path}?v=${cacheKey}`;
+  let frameResizeObserver = null;
+  let frameMutationObserver = null;
+  const clearFrameObservers = () => {
+    frameResizeObserver?.disconnect();
+    frameMutationObserver?.disconnect();
+    frameResizeObserver = null;
+    frameMutationObserver = null;
+  };
   const resizeFrame = () => {
     try {
       const frameDocument = frame.contentDocument;
@@ -480,23 +488,52 @@ function wireAutoTradingFrame(manifest) {
       const height = Math.max(
         900,
         frameDocument.documentElement?.scrollHeight || 0,
-        frameDocument.body?.scrollHeight || 0
+        frameDocument.documentElement?.offsetHeight || 0,
+        frameDocument.body?.scrollHeight || 0,
+        frameDocument.body?.offsetHeight || 0
       );
-      frame.style.height = `${height + 48}px`;
+      frame.style.height = `${Math.ceil(height + 64)}px`;
     } catch (_error) {
       frame.style.height = "";
     }
   };
   const scheduleResizeFrame = () => {
     resizeFrame();
-    window.setTimeout(resizeFrame, 120);
-    window.setTimeout(resizeFrame, 600);
+    [120, 600, 1500, 3000].forEach((delay) => window.setTimeout(resizeFrame, delay));
+    try {
+      const frameDocument = frame.contentDocument;
+      if (!frameDocument) {
+        return;
+      }
+      clearFrameObservers();
+      if (typeof ResizeObserver !== "undefined") {
+        frameResizeObserver = new ResizeObserver(resizeFrame);
+        if (frameDocument.documentElement) {
+          frameResizeObserver.observe(frameDocument.documentElement);
+        }
+        if (frameDocument.body) {
+          frameResizeObserver.observe(frameDocument.body);
+        }
+      }
+      if (typeof MutationObserver !== "undefined" && frameDocument.body) {
+        frameMutationObserver = new MutationObserver(resizeFrame);
+        frameMutationObserver.observe(frameDocument.body, {
+          attributes: true,
+          childList: true,
+          subtree: true,
+        });
+      }
+    } catch (_error) {
+      clearFrameObservers();
+    }
   };
   const showFrame = (path) => {
+    clearFrameObservers();
     frame.style.height = "";
     frame.src = framePath(path);
   };
 
+  frame.setAttribute("scrolling", "auto");
   frame.addEventListener("load", scheduleResizeFrame);
   showFrame(currentPath);
   currentButton.href = currentPath;

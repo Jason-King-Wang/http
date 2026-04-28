@@ -2,24 +2,83 @@
   "trade_date": "2026-04-22",
   "week_id": "2026-04-20_2026-04-24",
   "run_id": "auto-2026-04-22",
+  "status": "weekly_settled",
   "mode": "dry_run",
   "provider_name": "manual_csv",
-  "overview": {
-    "last_update_time": "2026-04-21T06:17:23+08:00",
-    "weekly_budget": 0.0,
-    "hard_budget": 50000.0,
-    "used_cash": 0,
-    "remaining_cash": 50000.0,
-    "current_equity": 0,
-    "strategy_pnl_after_fee_tax": 0,
-    "strategy_return": 0.0,
-    "today_status": "buying"
+  "buy_cutoff_day": "2026-04-22",
+  "last_trade_day": "2026-04-24",
+  "preselect_count": 3,
+  "final_list_count": 2,
+  "workflow_status": {
+    "completed_steps": 8,
+    "pending_steps": 7
   },
+  "workflow_completed_steps": 8,
+  "workflow_pending_steps": 7,
+  "workflow_closed_steps": 0,
+  "overview": {
+    "last_update_time": "2026-04-29T00:43:13+08:00",
+    "weekly_budget": 60000.0,
+    "hard_budget": 60000.0,
+    "buy_chase_after_first_trade_day_enabled": false,
+    "effective_buy_cutoff_day": "2026-04-20",
+    "used_cash": 0.0,
+    "remaining_cash": 60000.0,
+    "current_equity": 0.0,
+    "strategy_pnl_after_fee_tax": 0.0,
+    "realized_pnl": 0,
+    "unrealized_pnl": 0.0,
+    "strategy_return": 0.0,
+    "position_data_quality": "direct",
+    "positions_source_date": "",
+    "fallback_position_lot_count": 0,
+    "ambiguous_fill_guard_count": 0,
+    "excluded_position_guard_count": 0,
+    "buy_ambiguous_fill_guard_count": 0,
+    "sell_ambiguous_fill_guard_count": 0,
+    "broker_underheld_guard_count": 0,
+    "buy_broker_underheld_guard_count": 0,
+    "sell_broker_underheld_guard_count": 0,
+    "workflow_completed_steps": 8,
+    "workflow_pending_steps": 7,
+    "workflow_closed_steps": 0,
+    "dashboard_refresh_status": "report_only_refresh",
+    "dashboard_refresh_steps": "buy_loop, render_report, workflow_status",
+    "dashboard_refresh_note": "最近一次 refresh_dashboard 只重跑了 buy_loop, render_report, workflow_status，沒有重做 prepare_week / finalize。",
+    "weekly_settlement_open": false,
+    "weekly_settlement_status": "weekly_settlement_current",
+    "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
+    "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+    "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
+    "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+    "today_status": "buying",
+    "today_status_note": "買入執行列已存在，而且今天至少還有一條自動新買單路徑可能會執行。",
+    "dashboard_refresh_status_label": "僅重跑報表",
+    "weekly_settlement_status_label": "週結算已是最新",
+    "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+    "position_data_quality_label": "直接策略部位",
+    "today_status_note_display": "買入執行列已存在，而且今天至少還有一條自動新買單路徑可能會執行。",
+    "dashboard_refresh_steps_display": "買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+    "dashboard_refresh_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 只重跑了 買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，沒有重做 載入預選 (prepare_week) / 完成訂版 (finalize)。",
+    "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+    "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。"
+  },
+  "dashboard_refresh": {
+    "steps_run": [
+      "buy_loop",
+      "render_report",
+      "workflow_status"
+    ],
+    "live": false,
+    "confirm_live": false
+  },
+  "dashboard_refresh_last_materializing": null,
   "selection_rows": [
     {
       "stock_id": "2330",
       "stock_name": "TSMC",
       "source": "A+B",
+      "basket_tag": "main",
       "source_weight": 2.0,
       "preselect_flag": true,
       "final_flag": true,
@@ -32,12 +91,16 @@
       "provider_name": "manual_csv",
       "target_qty": 2,
       "estimated_buy_price": 995.0,
-      "projected_cost": 2040.1499999999999
+      "projected_cost": 2040.1499999999999,
+      "provider_name_label": "手動 CSV",
+      "provider_name_display_inline": "manual_csv (手動 CSV)",
+      "provider_name_display": "手動 CSV (manual_csv)"
     },
     {
       "stock_id": "2454",
       "stock_name": "MediaTek",
       "source": "manual",
+      "basket_tag": "main",
       "source_weight": 1.0,
       "preselect_flag": true,
       "final_flag": true,
@@ -50,12 +113,16 @@
       "provider_name": "manual_csv",
       "target_qty": 1,
       "estimated_buy_price": 1215.0,
-      "projected_cost": 1253.5249999999999
+      "projected_cost": 1253.5249999999999,
+      "provider_name_label": "手動 CSV",
+      "provider_name_display_inline": "manual_csv (手動 CSV)",
+      "provider_name_display": "手動 CSV (manual_csv)"
     },
     {
       "stock_id": "2317",
       "stock_name": "Hon Hai",
       "source": "B",
+      "basket_tag": "main",
       "source_weight": 1.0,
       "preselect_flag": true,
       "final_flag": false,
@@ -65,13 +132,18 @@
       "finalizer_score": "",
       "include_reason": "",
       "exclude_reason": "",
-      "provider_name": "manual_csv"
+      "provider_name": "manual_csv",
+      "provider_name_label": "手動 CSV",
+      "provider_name_display_inline": "manual_csv (手動 CSV)",
+      "provider_name_display": "手動 CSV (manual_csv)"
     }
   ],
   "buy_execution_rows": [
     {
+      "strategy_lot_id": "auto-2026-04-22:2330",
       "stock_id": "2330",
       "stock_name": "TSMC",
+      "basket_tag": "main",
       "target_qty": 2,
       "bought_qty": 0,
       "remaining_qty": 2,
@@ -83,13 +155,23 @@
       "last_price": 995.0,
       "bid1": "994.0",
       "ask1": "995.0",
+      "quote_timestamp": "2026-04-21T00:29:31+08:00",
+      "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-21T06:17+08:00",
-      "order_status_summary": "dry_run"
+      "next_check_time": "2026-04-29T00:43+08:00",
+      "order_status_summary": "dry_run",
+      "current_mode_label": "一般追價",
+      "current_mode_display_inline": "normal (一般追價)",
+      "current_mode_display": "一般追價 (normal)",
+      "order_status_summary_label": "乾跑",
+      "order_status_summary_display_inline": "dry_run (乾跑)",
+      "order_status_summary_display": "乾跑 (dry_run)"
     },
     {
+      "strategy_lot_id": "auto-2026-04-22:2454",
       "stock_id": "2454",
       "stock_name": "MediaTek",
+      "basket_tag": "main",
       "target_qty": 1,
       "bought_qty": 0,
       "remaining_qty": 1,
@@ -101,37 +183,65 @@
       "last_price": 1215.0,
       "bid1": "1210.0",
       "ask1": "1215.0",
+      "quote_timestamp": "2026-04-21T00:29:31+08:00",
+      "buy_submission_gate": "",
       "tick_distance_to_target": 0,
-      "next_check_time": "2026-04-21T06:17+08:00",
-      "order_status_summary": "dry_run"
+      "next_check_time": "2026-04-29T00:43+08:00",
+      "order_status_summary": "dry_run",
+      "current_mode_label": "一般追價",
+      "current_mode_display_inline": "normal (一般追價)",
+      "current_mode_display": "一般追價 (normal)",
+      "order_status_summary_label": "乾跑",
+      "order_status_summary_display_inline": "dry_run (乾跑)",
+      "order_status_summary_display": "乾跑 (dry_run)"
     }
   ],
   "positions_rows": [],
   "excluded_positions_rows": [],
+  "broker_underheld_rows": [],
+  "ambiguous_fill_rows": [],
   "sell_rows": [],
+  "guarded_live_task_evidence": {
+    "status": "failed",
+    "exit_code": "1",
+    "message": "+ CategoryInfo          : NotSpecified: (2026-04-22 09:1...er performance.:String) [], RemoteException",
+    "path": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\data\\task_logs\\allowed_2330_live_order\\2026-04-22_091000.log"
+  },
+  "post_guarded_order_check": {
+    "next_run_guard_message": "",
+    "task_log_message": "",
+    "config_timing_message": "",
+    "schedule_description": ""
+  },
+  "sell_loop_readiness": {},
   "basket_summary": {
-    "basket_market_value": 0,
-    "basket_unrealized_pnl": 0,
+    "basket_market_value": 0.0,
+    "basket_unrealized_pnl": 0.0,
     "basket_unrealized_pnl_pct": 0.0,
     "basket_conservative_profit": 0,
     "basket_threshold": 3000.0,
     "basket_recommendation": "hold",
-    "loser_loss_ratio": 0.0
+    "loser_loss_ratio": 0.0,
+    "basket_scope": "combined",
+    "basket_tags": ""
   },
   "comparison_chart": {
     "x_labels": [
       "2026-04-22"
     ],
+    "kind": "returns",
+    "value_format": "percent",
+    "caption": "累積報酬率比較。資料只有一個時間點時，改以基準比較條呈現。",
     "series": [
       {
-        "label": "Strategy",
+        "label": "策略",
         "color": "#244c5a",
         "values": [
           0.0
         ]
       },
       {
-        "label": "TAIEX",
+        "label": "加權",
         "color": "#b85c38",
         "values": [
           0.0
@@ -150,16 +260,19 @@
     "x_labels": [
       "2026-04-22"
     ],
+    "kind": "allocation",
+    "value_format": "money",
+    "caption": "資金配置圖：看目前現金與已投入資金的占比，不是價格走勢圖。",
     "series": [
       {
-        "label": "Cash",
+        "label": "現金",
         "color": "#244c5a",
         "values": [
-          50000.0
+          60000.0
         ]
       },
       {
-        "label": "Deployed",
+        "label": "已投入",
         "color": "#b85c38",
         "values": [
           0.0
@@ -175,8 +288,12 @@
       "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "Loaded 0 preselect items from manual_csv",
-      "warning_or_error": ""
+      "result": "已載入 0 筆預選名單，來源提供者=manual_csv。",
+      "warning_or_error": "",
+      "display_event_type": "預選載入",
+      "display_action": "載入預選名單",
+      "display_result": "已載入 0 筆預選名單，來源提供者=manual_csv。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:17:35.871765+08:00",
@@ -185,8 +302,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 0 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 0 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 0 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:17:57.796686+08:00",
@@ -195,8 +316,12 @@
       "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "Loaded 3 preselect items from manual_csv",
-      "warning_or_error": ""
+      "result": "已載入 3 筆預選名單，來源提供者=manual_csv。",
+      "warning_or_error": "",
+      "display_event_type": "預選載入",
+      "display_action": "載入預選名單",
+      "display_result": "已載入 3 筆預選名單，來源提供者=manual_csv。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:18:02.687871+08:00",
@@ -205,8 +330,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 2 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 2 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 2 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:18:06.149810+08:00",
@@ -216,7 +345,11 @@
       "price": "",
       "qty": "",
       "result": "Processed 2 buy-loop rows in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop",
+      "display_action": "buy_loop",
+      "display_result": "Processed 2 buy-loop rows in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:04.266640+08:00",
@@ -225,8 +358,12 @@
       "action": "prepare_week",
       "price": "",
       "qty": "",
-      "result": "Loaded 3 preselect items from manual_csv",
-      "warning_or_error": ""
+      "result": "已載入 3 筆預選名單，來源提供者=manual_csv。",
+      "warning_or_error": "",
+      "display_event_type": "預選載入",
+      "display_action": "載入預選名單",
+      "display_result": "已載入 3 筆預選名單，來源提供者=manual_csv。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:04.448169+08:00",
@@ -235,8 +372,12 @@
       "action": "finalize",
       "price": "",
       "qty": "",
-      "result": "Finalized 2 symbols.",
-      "warning_or_error": ""
+      "result": "已完成 finalize，產出 2 檔訂版股票。",
+      "warning_or_error": "",
+      "display_event_type": "訂版完成",
+      "display_action": "完成訂版",
+      "display_result": "已完成 finalize，產出 2 檔訂版股票。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:04.634170+08:00",
@@ -246,7 +387,11 @@
       "price": "",
       "qty": "",
       "result": "buy_loop place for 2330 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2330 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:04.637890+08:00",
@@ -256,7 +401,11 @@
       "price": "",
       "qty": "",
       "result": "buy_loop place for 2454 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2454 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:04.649387+08:00",
@@ -266,7 +415,11 @@
       "price": "",
       "qty": "",
       "result": "Processed 2 buy-loop rows in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop",
+      "display_action": "buy_loop",
+      "display_result": "Processed 2 buy-loop rows in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:05.035681+08:00",
@@ -275,8 +428,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 11 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:26:21.624579+08:00",
@@ -285,8 +442,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 11 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:33:16.228156+08:00",
@@ -296,7 +457,11 @@
       "price": "",
       "qty": "",
       "result": "buy_loop place for 2330 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2330 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:33:16.231672+08:00",
@@ -306,7 +471,11 @@
       "price": "",
       "qty": "",
       "result": "buy_loop place for 2454 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2454 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:33:16.243910+08:00",
@@ -316,7 +485,11 @@
       "price": "",
       "qty": "",
       "result": "Processed 2 buy-loop rows in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop",
+      "display_action": "buy_loop",
+      "display_result": "Processed 2 buy-loop rows in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:33:16.288996+08:00",
@@ -325,8 +498,12 @@
       "action": "workflow_status",
       "price": "",
       "qty": "",
-      "result": "Rendered workflow status with 11 checklist rows.",
-      "warning_or_error": ""
+      "result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 11 筆清單列。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-20T23:33:16.302320+08:00",
@@ -335,8 +512,12 @@
       "action": "refresh_dashboard",
       "price": "",
       "qty": "",
-      "result": "Dashboard refresh completed with 3 steps.",
-      "warning_or_error": ""
+      "result": "已完成儀表板刷新，共 3 個步驟。",
+      "warning_or_error": "",
+      "display_event_type": "儀表板更新",
+      "display_action": "更新儀表板",
+      "display_result": "已完成儀表板刷新，共 3 個步驟。",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-21T00:29:31.094085+08:00",
@@ -346,7 +527,11 @@
       "price": 995.0,
       "qty": 2,
       "result": "buy_loop place for 2330 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2330 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-21T00:29:31.097419+08:00",
@@ -356,7 +541,11 @@
       "price": 1215.0,
       "qty": 1,
       "result": "buy_loop place for 2454 in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop_stock",
+      "display_action": "place",
+      "display_result": "buy_loop place for 2454 in dry_run mode.",
+      "display_warning_or_error": ""
     },
     {
       "time": "2026-04-21T00:29:31.107336+08:00",
@@ -366,12 +555,110 @@
       "price": "",
       "qty": "",
       "result": "Processed 2 buy-loop rows in dry_run mode.",
-      "warning_or_error": ""
+      "warning_or_error": "",
+      "display_event_type": "buy_loop",
+      "display_action": "buy_loop",
+      "display_result": "Processed 2 buy-loop rows in dry_run mode.",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-21T06:20:03.976924+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 15 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 15 筆清單列。",
+      "display_warning_or_error": ""
+    },
+    {
+      "time": "2026-04-22T01:16:35.481070+08:00",
+      "event_type": "workflow_status",
+      "stock_id": "",
+      "action": "workflow_status",
+      "price": "",
+      "qty": "",
+      "result": "已輸出工作流狀態，包含 15 筆清單列。",
+      "warning_or_error": "",
+      "display_event_type": "工作流狀態",
+      "display_action": "輸出工作流狀態",
+      "display_result": "已輸出工作流狀態，包含 15 筆清單列。",
+      "display_warning_or_error": ""
     }
   ],
-  "warnings": [],
+  "warnings": [
+    "Guarded live task failed for 2026-04-22 (exit_code=1): + CategoryInfo          : NotSpecified: (2026-04-22 09:1...er performance.:String) [], RemoteException. Log: C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\data\\task_logs\\allowed_2330_live_order\\2026-04-22_091000.log"
+  ],
   "next_actions": [
     "Run render_report every 5 minutes during market hours to refresh the current dashboard.",
-    "After market close, rerun render_report and settle_week for daily/weekly snapshots."
-  ]
+    "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。"
+  ],
+  "last_update_time": "2026-04-29T00:43:13+08:00",
+  "weekly_budget": 60000.0,
+  "hard_budget": 60000.0,
+  "buy_chase_after_first_trade_day_enabled": false,
+  "effective_buy_cutoff_day": "2026-04-20",
+  "used_cash": 0.0,
+  "remaining_cash": 60000.0,
+  "current_equity": 0.0,
+  "strategy_pnl_after_fee_tax": 0.0,
+  "realized_pnl": 0,
+  "unrealized_pnl": 0.0,
+  "strategy_return": 0.0,
+  "position_data_quality": "direct",
+  "positions_source_date": "",
+  "fallback_position_lot_count": 0,
+  "ambiguous_fill_guard_count": 0,
+  "excluded_position_guard_count": 0,
+  "buy_ambiguous_fill_guard_count": 0,
+  "sell_ambiguous_fill_guard_count": 0,
+  "broker_underheld_guard_count": 0,
+  "buy_broker_underheld_guard_count": 0,
+  "sell_broker_underheld_guard_count": 0,
+  "dashboard_refresh_status": "report_only_refresh",
+  "dashboard_refresh_steps": "buy_loop, render_report, workflow_status",
+  "dashboard_refresh_note": "最近一次 refresh_dashboard 只重跑了 buy_loop, render_report, workflow_status，沒有重做 prepare_week / finalize。",
+  "weekly_settlement_open": false,
+  "weekly_settlement_status": "weekly_settlement_current",
+  "weekly_settlement_artifacts": "C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\notes\\weeks\\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\weeks\\2026-04-20_2026-04-24.html, C:\\Users\\User\\Documents\\New project\\SinoPac Auto Trading\\reports\\auto_trading\\data\\2026-04-20_2026-04-24_weekly_snapshot.json",
+  "weekly_settlement_note": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+  "weekly_settlement_next_action": "weekly_settlement_current_no_action_required",
+  "weekly_settlement_next_action_note": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+  "today_status": "buying",
+  "today_status_note": "買入執行列已存在，而且今天至少還有一條自動新買單路徑可能會執行。",
+  "dashboard_refresh_status_label": "僅重跑報表",
+  "weekly_settlement_status_label": "週結算已是最新",
+  "weekly_settlement_next_action_label": "週結算已是最新，今天不需額外動作",
+  "position_data_quality_label": "直接策略部位",
+  "today_status_note_display": "買入執行列已存在，而且今天至少還有一條自動新買單路徑可能會執行。",
+  "dashboard_refresh_steps_display": "買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)",
+  "dashboard_refresh_note_display": "最近一次 刷新儀表板 (refresh_dashboard) 只重跑了 買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，沒有重做 載入預選 (prepare_week) / 完成訂版 (finalize)。",
+  "weekly_settlement_note_display": "本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。",
+  "weekly_settlement_next_action_note_display": "本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。",
+  "today_ordering_status": "",
+  "today_ordering_note": "",
+  "selection_source_status": "",
+  "selection_source_note": "",
+  "selection_source_path": "",
+  "selection_source_last_modified": "",
+  "dashboard_refresh_trigger_status": "",
+  "dashboard_refresh_trigger_artifacts": "",
+  "dashboard_refresh_trigger_note": "",
+  "dashboard_last_materialization_status": "",
+  "dashboard_last_materialization_steps": "",
+  "dashboard_last_materialization_note": "",
+  "dashboard_last_materialization_trigger_status": "",
+  "dashboard_last_materialization_trigger_artifacts": "",
+  "dashboard_last_materialization_trigger_note": "",
+  "selection_materialization_status": "",
+  "selection_materialization_missing_artifacts": "",
+  "selection_materialization_note": "",
+  "selection_materialization_next_action": "",
+  "selection_materialization_next_action_note": "",
+  "mode_label": "乾跑模式",
+  "provider_name_label": "手動 CSV"
 }

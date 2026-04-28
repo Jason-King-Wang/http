@@ -6,116 +6,143 @@
   <title>2026-04-24 永豐自動交易</title>
   <style>
     :root {
-      --bg: #f3f0e8;
-      --panel: #fffdf7;
-      --ink: #1e2b2f;
-      --muted: #65767a;
-      --line: #d9d0bf;
-      --accent: #244c5a;
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --panel-muted: #f9fafb;
+      --ink: #172029;
+      --muted: #66717c;
+      --line: #dbe2ea;
+      --accent: #1f5a68;
       --accent-2: #b85c38;
       --ok: #2f6a44;
       --warn: #8d5b2d;
-      --shadow: 0 12px 24px rgba(46, 49, 44, 0.08);
+      --shadow: 0 8px 20px rgba(23, 32, 41, 0.06);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at top right, rgba(184,92,56,0.12), transparent 32%),
-        linear-gradient(180deg, #f7f4ec 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--ink);
       font-family: "Segoe UI", "Noto Sans TC", sans-serif;
       line-height: 1.5;
     }
     .shell {
-      width: min(1280px, calc(100vw - 32px));
+      width: min(1520px, calc(100vw - 24px));
       margin: 0 auto;
-      padding: 28px 0 56px;
+      padding: 16px 0 36px;
     }
     .hero {
-      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
       border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(36,76,90,0.94), rgba(77,117,124,0.92));
-      color: #f8f5ee;
-      border-radius: 24px;
+      background: linear-gradient(135deg, #213f49, #315c67);
+      color: #f8fbfc;
+      border-radius: 10px;
       box-shadow: var(--shadow);
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
     .hero h1 {
       margin: 0 0 6px;
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: 0.02em;
+      font-size: clamp(24px, 2.4vw, 34px);
+      letter-spacing: 0;
+      line-height: 1.12;
     }
     .hero p {
       margin: 0;
-      color: rgba(248,245,238,0.86);
+      color: rgba(248,251,252,0.82);
     }
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
     }
     .card, .panel {
       border: 1px solid var(--line);
       background: var(--panel);
-      border-radius: 18px;
+      border-radius: 10px;
       box-shadow: var(--shadow);
+      min-width: 0;
     }
     .card {
-      padding: 16px;
-      min-height: 108px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-height: 76px;
+      padding: 11px 12px;
     }
     .card .label {
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 0;
     }
     .card .value {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: clamp(17px, 1.25vw, 20px);
+      font-weight: 750;
       color: var(--accent);
-      word-break: break-word;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+    .card.is-long .value {
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.42;
+      color: #263842;
+    }
+    .card.is-wide {
+      grid-column: span 2;
     }
     .layout {
       display: grid;
-      gap: 18px;
+      gap: 12px;
+      min-width: 0;
     }
     .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 4;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 20px;
+      gap: 8px;
+      margin: 0 0 12px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(245, 247, 248, 0.94);
+      backdrop-filter: blur(10px);
     }
     .nav-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
+      padding: 8px 10px;
+      border-radius: 8px;
       text-decoration: none;
       color: var(--accent);
       background: rgba(36, 76, 90, 0.08);
       border: 1px solid rgba(36, 76, 90, 0.12);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
     }
     .panel {
-      padding: 18px 18px 14px;
+      padding: 14px;
       scroll-margin-top: 16px;
     }
     .panel-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 12px;
     }
     .panel h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: 17px;
     }
     .panel-tools {
       display: inline-flex;
@@ -133,10 +160,10 @@
     }
     .table-search {
       min-width: 180px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid #ddd3c2;
-      background: #fffefb;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel-muted);
       color: var(--ink);
     }
     .table-count {
@@ -145,7 +172,14 @@
       white-space: nowrap;
     }
     .table-wrap {
+      width: 100%;
+      max-width: 100%;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-wrap table {
+      width: max-content;
+      min-width: 100%;
     }
     .sort-btn {
       appearance: none;
@@ -166,11 +200,11 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 13px;
     }
     th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #ece5d6;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e9eef3;
       text-align: left;
       vertical-align: top;
     }
@@ -191,6 +225,10 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid #d9e1e8;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
     }
     .legend i {
       width: 12px;
@@ -198,20 +236,134 @@
       border-radius: 999px;
       display: inline-block;
     }
+    .legend b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .legend em {
+      color: var(--muted);
+      font-style: normal;
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-caption {
+      margin: -2px 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
     .chart {
       width: 100%;
-      border-radius: 14px;
-      background: #fcfaf4;
-      border: 1px solid #ebe3d2;
+      max-width: 100%;
+      border-radius: 8px;
+      background: var(--panel-muted);
+      border: 1px solid var(--line);
     }
     .grid {
-      stroke: #e6ddcb;
+      stroke: #e5ebf1;
       stroke-width: 1;
+    }
+    .zero-line {
+      stroke: rgba(15, 23, 42, 0.34);
+      stroke-width: 1.2;
+      stroke-dasharray: 5 5;
     }
     .axis {
       fill: var(--muted);
       font-size: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .x-axis {
       text-anchor: middle;
+    }
+    .y-axis {
+      text-anchor: end;
+    }
+    .single-point-label,
+    .allocation-total {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .point-bars {
+      display: grid;
+      gap: 12px;
+    }
+    .point-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 150px) 1fr minmax(72px, auto);
+      align-items: center;
+      gap: 12px;
+    }
+    .point-name,
+    .allocation-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .point-name i,
+    .allocation-row i {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .point-track {
+      position: relative;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5ebf1;
+      overflow: hidden;
+    }
+    .point-zero {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(15, 23, 42, 0.34);
+    }
+    .point-bar {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      border-radius: 999px;
+    }
+    .point-row strong,
+    .allocation-row strong,
+    .allocation-total strong {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+    .allocation-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .allocation-bar {
+      display: flex;
+      height: 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e5ebf1;
+      border: 1px solid var(--line);
+      margin-bottom: 14px;
+    }
+    .allocation-bar span {
+      display: block;
+      min-width: 2px;
+    }
+    .allocation-rows {
+      display: grid;
+      gap: 8px;
+    }
+    .allocation-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-top: 1px solid #e5ebf1;
+      padding-top: 8px;
     }
     .empty {
       color: var(--muted);
@@ -234,7 +386,12 @@
         width: min(100vw - 20px, 100%);
       }
       .hero {
+        align-items: flex-start;
+        flex-direction: column;
         padding: 22px;
+      }
+      .card.is-wide {
+        grid-column: auto;
       }
       .panel-tools {
         width: 100%;
@@ -255,7 +412,7 @@
       <h1>2026-04-24 永豐自動交易</h1>
       <p>永豐自動交易執行儀表板與報告頁。</p>
     </section>
-    <section class='card-grid'><article class='card'><div class='label'>週別</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>交易日</div><div class='value'>2026-04-24</div></article><article class='card'><div class='label'>最後更新</div><div class='value'></div></article><article class='card'><div class='label'>模式</div><div class='value'>受保護下單真實模式 (live_guarded)</div></article><article class='card'><div class='label'>選股來源</div><div class='value'>同日 A 預選 JSON (ab_llm_preselect_json)</div></article><article class='card'><div class='label'>今日狀態</div><div class='value'>買窗已關閉 (buy_window_closed)</div></article><article class='card'><div class='label'>每週預算</div><div class='value'>0.00</div></article><article class='card'><div class='label'>硬上限</div><div class='value'>0.00</div></article><article class='card'><div class='label'>已用資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>剩餘資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>目前權益</div><div class='value'>0.00</div></article><article class='card'><div class='label'>策略報酬率</div><div class='value'>0.00%</div></article><article class='card'><div class='label'>Workflow 完成</div><div class='value'>12</div></article><article class='card'><div class='label'>Workflow 待辦</div><div class='value'>0</div></article><article class='card'><div class='label'>Workflow 關閉</div><div class='value'>5</div></article></section><nav class='page-nav' aria-label='區塊導覽'><a class='nav-chip' href='#selection-finalization'>選股來源與訂版</a><a class='nav-chip' href='#buy-execution'>買進執行</a><a class='nav-chip' href='#positions'>持倉</a><a class='nav-chip' href='#excluded-positions'>排除部位</a><a class='nav-chip' href='#broker-underheld'>缺股風險</a><a class='nav-chip' href='#ambiguous-fills'>待對帳成交</a><a class='nav-chip' href='#sell-status'>賣出狀態</a><a class='nav-chip' href='#basket-summary'>整包分析</a><a class='nav-chip' href='#benchmark-chart'>策略 vs 加權 vs 2330</a><a class='nav-chip' href='#capital-chart'>現金 vs 已投入資金</a><a class='nav-chip' href='#events-log'>事件紀錄</a><a class='nav-chip' href='#next-actions'>後續動作</a></nav><div class='layout'><section class='panel' id='selection-finalization'><div class='panel-head'><h2>選股來源與訂版</h2></div><p class='empty'>尚無選股資料。</p></section><section class='panel' id='buy-execution'><div class='panel-head'><h2>買進執行</h2></div><p class='empty'>尚無買進執行資料。</p></section><section class='panel' id='positions'><div class='panel-head'><h2>持倉</h2></div><p class='empty'>尚無持倉資料。</p></section><section class='panel' id='excluded-positions'><div class='panel-head'><h2>排除部位</h2></div><p class='empty'>無排除部位。</p></section><section class='panel' id='broker-underheld'><div class='panel-head'><h2>缺股風險</h2></div><p class='empty'>無缺股風險。</p></section><section class='panel' id='ambiguous-fills'><div class='panel-head'><h2>待對帳成交</h2></div><p class='empty'>無待對帳成交。</p></section><section class='panel' id='sell-status'><div class='panel-head'><h2>賣出狀態</h2></div><p class='empty'>尚無賣出資料。</p></section><section class='panel' id='basket-summary'><div class='panel-head'><h2>整包分析</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 整包分析' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>項目</button></th><th><button class='sort-btn' type='button' data-index='1'>數值</button></th></tr></thead><tbody><tr><td>整包範圍</td><td></td></tr><tr><td>整包標籤</td><td></td></tr><tr><td>整包市值</td><td>0.00</td></tr><tr><td>整包未實現損益</td><td>0.00</td></tr><tr><td>整包未實現報酬率</td><td>0.00%</td></tr><tr><td>保守出清獲利</td><td>0.00</td></tr><tr><td>整包門檻</td><td>0.00</td></tr><tr><td>整包建議</td><td></td></tr><tr><td>虧損股佔比</td><td>0.00%</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無整包分析資料。</p></div></section><section class='panel' id='benchmark-chart'><div class='panel-head'><h2>策略 vs 加權 vs 2330</h2></div><p class='empty'>尚無圖表資料。</p></section><section class='panel' id='capital-chart'><div class='panel-head'><h2>現金 vs 已投入資金</h2></div><p class='empty'>尚無圖表資料。</p></section><section class='panel' id='events-log'><div class='panel-head'><h2>事件紀錄</h2></div><p class='empty'>尚無事件紀錄。</p></section><section class='panel' id='next-actions'><div class='panel-head'><h2>後續動作</h2></div><p class='empty'>尚無後續動作。</p></section></div>
+    <section class='card-grid'><article class='card'><div class='label'>週別</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>交易日</div><div class='value'>2026-04-24</div></article><article class='card'><div class='label'>最後更新</div><div class='value'></div></article><article class='card'><div class='label'>模式</div><div class='value'>受保護下單真實模式 (live_guarded)</div></article><article class='card is-long'><div class='label'>選股來源</div><div class='value'>同日 A 預選 JSON (ab_llm_preselect_json)</div></article><article class='card is-long'><div class='label'>今日狀態</div><div class='value'>買窗已關閉 (buy_window_closed)</div></article><article class='card'><div class='label'>每週預算</div><div class='value'>0.00</div></article><article class='card'><div class='label'>硬上限</div><div class='value'>0.00</div></article><article class='card'><div class='label'>已用資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>剩餘資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>目前權益</div><div class='value'>0.00</div></article><article class='card'><div class='label'>策略報酬率</div><div class='value'>0.00%</div></article><article class='card'><div class='label'>Workflow 完成</div><div class='value'>12</div></article><article class='card'><div class='label'>Workflow 待辦</div><div class='value'>0</div></article><article class='card'><div class='label'>Workflow 關閉</div><div class='value'>5</div></article></section><nav class='page-nav' aria-label='區塊導覽'><a class='nav-chip' href='#selection-finalization'>選股來源與訂版</a><a class='nav-chip' href='#buy-execution'>買進執行</a><a class='nav-chip' href='#positions'>持倉</a><a class='nav-chip' href='#excluded-positions'>排除部位</a><a class='nav-chip' href='#broker-underheld'>缺股風險</a><a class='nav-chip' href='#ambiguous-fills'>待對帳成交</a><a class='nav-chip' href='#sell-status'>賣出狀態</a><a class='nav-chip' href='#basket-summary'>整包分析</a><a class='nav-chip' href='#benchmark-chart'>累積報酬率：策略 vs 加權 vs 2330</a><a class='nav-chip' href='#capital-chart'>資金配置：現金 vs 已投入資金</a><a class='nav-chip' href='#events-log'>事件紀錄</a><a class='nav-chip' href='#next-actions'>後續動作</a></nav><div class='layout'><section class='panel' id='selection-finalization'><div class='panel-head'><h2>選股來源與訂版</h2></div><p class='empty'>尚無選股資料。</p></section><section class='panel' id='buy-execution'><div class='panel-head'><h2>買進執行</h2></div><p class='empty'>尚無買進執行資料。</p></section><section class='panel' id='positions'><div class='panel-head'><h2>持倉</h2></div><p class='empty'>尚無持倉資料。</p></section><section class='panel' id='excluded-positions'><div class='panel-head'><h2>排除部位</h2></div><p class='empty'>無排除部位。</p></section><section class='panel' id='broker-underheld'><div class='panel-head'><h2>缺股風險</h2></div><p class='empty'>無缺股風險。</p></section><section class='panel' id='ambiguous-fills'><div class='panel-head'><h2>待對帳成交</h2></div><p class='empty'>無待對帳成交。</p></section><section class='panel' id='sell-status'><div class='panel-head'><h2>賣出狀態</h2></div><p class='empty'>尚無賣出資料。</p></section><section class='panel' id='basket-summary'><div class='panel-head'><h2>整包分析</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 整包分析' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>項目</button></th><th><button class='sort-btn' type='button' data-index='1'>數值</button></th></tr></thead><tbody><tr><td>整包範圍</td><td></td></tr><tr><td>整包標籤</td><td></td></tr><tr><td>整包市值</td><td>0.00</td></tr><tr><td>整包未實現損益</td><td>0.00</td></tr><tr><td>整包未實現報酬率</td><td>0.00%</td></tr><tr><td>保守出清獲利</td><td>0.00</td></tr><tr><td>整包門檻</td><td>0.00</td></tr><tr><td>整包建議</td><td></td></tr><tr><td>虧損股佔比</td><td>0.00%</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無整包分析資料。</p></div></section><section class='panel' id='benchmark-chart'><div class='panel-head'><h2>累積報酬率：策略 vs 加權 vs 2330</h2></div><p class='empty'>尚無圖表資料。</p></section><section class='panel' id='capital-chart'><div class='panel-head'><h2>資金配置：現金 vs 已投入資金</h2></div><p class='empty'>尚無圖表資料。</p></section><section class='panel' id='events-log'><div class='panel-head'><h2>事件紀錄</h2></div><p class='empty'>尚無事件紀錄。</p></section><section class='panel' id='next-actions'><div class='panel-head'><h2>後續動作</h2></div><p class='empty'>尚無後續動作。</p></section></div>
   </main>
   <script>
     (() => {

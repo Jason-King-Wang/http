@@ -311,9 +311,10 @@ h2 {
 .iframe-wrap {
   min-height: 72vh;
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow: auto;
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(22, 33, 46, 0.08);
+  -webkit-overflow-scrolling: touch;
 }
 
 .iframe-wrap iframe {
@@ -406,7 +407,7 @@ body[data-page="auto-trading-wrapper"] .action-link.is-selected {
 body[data-page="auto-trading-wrapper"] .auto-frame-shell {
   gap: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   background: #ffffff;
   border-color: rgba(22, 33, 46, 0.08);
   box-shadow: 0 8px 22px rgba(22, 33, 46, 0.06);

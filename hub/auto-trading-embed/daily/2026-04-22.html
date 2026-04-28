@@ -6,116 +6,143 @@
   <title>2026-04-22 永豐自動交易</title>
   <style>
     :root {
-      --bg: #f3f0e8;
-      --panel: #fffdf7;
-      --ink: #1e2b2f;
-      --muted: #65767a;
-      --line: #d9d0bf;
-      --accent: #244c5a;
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --panel-muted: #f9fafb;
+      --ink: #172029;
+      --muted: #66717c;
+      --line: #dbe2ea;
+      --accent: #1f5a68;
       --accent-2: #b85c38;
       --ok: #2f6a44;
       --warn: #8d5b2d;
-      --shadow: 0 12px 24px rgba(46, 49, 44, 0.08);
+      --shadow: 0 8px 20px rgba(23, 32, 41, 0.06);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at top right, rgba(184,92,56,0.12), transparent 32%),
-        linear-gradient(180deg, #f7f4ec 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--ink);
       font-family: "Segoe UI", "Noto Sans TC", sans-serif;
       line-height: 1.5;
     }
     .shell {
-      width: min(1280px, calc(100vw - 32px));
+      width: min(1520px, calc(100vw - 24px));
       margin: 0 auto;
-      padding: 28px 0 56px;
+      padding: 16px 0 36px;
     }
     .hero {
-      padding: 28px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 20px;
       border: 1px solid var(--line);
-      background: linear-gradient(135deg, rgba(36,76,90,0.94), rgba(77,117,124,0.92));
-      color: #f8f5ee;
-      border-radius: 24px;
+      background: linear-gradient(135deg, #213f49, #315c67);
+      color: #f8fbfc;
+      border-radius: 10px;
       box-shadow: var(--shadow);
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
     .hero h1 {
       margin: 0 0 6px;
-      font-size: clamp(28px, 4vw, 44px);
-      letter-spacing: 0.02em;
+      font-size: clamp(24px, 2.4vw, 34px);
+      letter-spacing: 0;
+      line-height: 1.12;
     }
     .hero p {
       margin: 0;
-      color: rgba(248,245,238,0.86);
+      color: rgba(248,251,252,0.82);
     }
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
     }
     .card, .panel {
       border: 1px solid var(--line);
       background: var(--panel);
-      border-radius: 18px;
+      border-radius: 10px;
       box-shadow: var(--shadow);
+      min-width: 0;
     }
     .card {
-      padding: 16px;
-      min-height: 108px;
+      display: grid;
+      align-content: start;
+      gap: 8px;
+      min-height: 76px;
+      padding: 11px 12px;
     }
     .card .label {
       font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      letter-spacing: 0.04em;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 0;
     }
     .card .value {
-      font-size: 24px;
-      font-weight: 700;
+      font-size: clamp(17px, 1.25vw, 20px);
+      font-weight: 750;
       color: var(--accent);
-      word-break: break-word;
+      line-height: 1.25;
+      overflow-wrap: anywhere;
+    }
+    .card.is-long .value {
+      font-size: 14px;
+      font-weight: 650;
+      line-height: 1.42;
+      color: #263842;
+    }
+    .card.is-wide {
+      grid-column: span 2;
     }
     .layout {
       display: grid;
-      gap: 18px;
+      gap: 12px;
+      min-width: 0;
     }
     .page-nav {
+      position: sticky;
+      top: 0;
+      z-index: 4;
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin: 0 0 20px;
+      gap: 8px;
+      margin: 0 0 12px;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(245, 247, 248, 0.94);
+      backdrop-filter: blur(10px);
     }
     .nav-chip {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
+      padding: 8px 10px;
+      border-radius: 8px;
       text-decoration: none;
       color: var(--accent);
       background: rgba(36, 76, 90, 0.08);
       border: 1px solid rgba(36, 76, 90, 0.12);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
     }
     .panel {
-      padding: 18px 18px 14px;
+      padding: 14px;
       scroll-margin-top: 16px;
     }
     .panel-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       gap: 12px;
       margin-bottom: 12px;
     }
     .panel h2 {
       margin: 0;
-      font-size: 20px;
+      font-size: 17px;
     }
     .panel-tools {
       display: inline-flex;
@@ -133,10 +160,10 @@
     }
     .table-search {
       min-width: 180px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid #ddd3c2;
-      background: #fffefb;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel-muted);
       color: var(--ink);
     }
     .table-count {
@@ -145,7 +172,14 @@
       white-space: nowrap;
     }
     .table-wrap {
+      width: 100%;
+      max-width: 100%;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-wrap table {
+      width: max-content;
+      min-width: 100%;
     }
     .sort-btn {
       appearance: none;
@@ -166,11 +200,11 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 14px;
+      font-size: 13px;
     }
     th, td {
-      padding: 10px 12px;
-      border-bottom: 1px solid #ece5d6;
+      padding: 8px 10px;
+      border-bottom: 1px solid #e9eef3;
       text-align: left;
       vertical-align: top;
     }
@@ -191,6 +225,10 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      padding: 6px 10px;
+      border: 1px solid #d9e1e8;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
     }
     .legend i {
       width: 12px;
@@ -198,20 +236,134 @@
       border-radius: 999px;
       display: inline-block;
     }
+    .legend b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .legend em {
+      color: var(--muted);
+      font-style: normal;
+      font-variant-numeric: tabular-nums;
+    }
+    .chart-caption {
+      margin: -2px 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+    }
     .chart {
       width: 100%;
-      border-radius: 14px;
-      background: #fcfaf4;
-      border: 1px solid #ebe3d2;
+      max-width: 100%;
+      border-radius: 8px;
+      background: var(--panel-muted);
+      border: 1px solid var(--line);
     }
     .grid {
-      stroke: #e6ddcb;
+      stroke: #e5ebf1;
       stroke-width: 1;
+    }
+    .zero-line {
+      stroke: rgba(15, 23, 42, 0.34);
+      stroke-width: 1.2;
+      stroke-dasharray: 5 5;
     }
     .axis {
       fill: var(--muted);
       font-size: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .x-axis {
       text-anchor: middle;
+    }
+    .y-axis {
+      text-anchor: end;
+    }
+    .single-point-label,
+    .allocation-total {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .point-bars {
+      display: grid;
+      gap: 12px;
+    }
+    .point-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 150px) 1fr minmax(72px, auto);
+      align-items: center;
+      gap: 12px;
+    }
+    .point-name,
+    .allocation-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .point-name i,
+    .allocation-row i {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .point-track {
+      position: relative;
+      height: 16px;
+      border-radius: 999px;
+      background: #e5ebf1;
+      overflow: hidden;
+    }
+    .point-zero {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(15, 23, 42, 0.34);
+    }
+    .point-bar {
+      position: absolute;
+      top: 3px;
+      bottom: 3px;
+      border-radius: 999px;
+    }
+    .point-row strong,
+    .allocation-row strong,
+    .allocation-total strong {
+      font-variant-numeric: tabular-nums;
+      color: var(--accent);
+    }
+    .allocation-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+    }
+    .allocation-bar {
+      display: flex;
+      height: 22px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e5ebf1;
+      border: 1px solid var(--line);
+      margin-bottom: 14px;
+    }
+    .allocation-bar span {
+      display: block;
+      min-width: 2px;
+    }
+    .allocation-rows {
+      display: grid;
+      gap: 8px;
+    }
+    .allocation-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      border-top: 1px solid #e5ebf1;
+      padding-top: 8px;
     }
     .empty {
       color: var(--muted);
@@ -234,7 +386,12 @@
         width: min(100vw - 20px, 100%);
       }
       .hero {
+        align-items: flex-start;
+        flex-direction: column;
         padding: 22px;
+      }
+      .card.is-wide {
+        grid-column: auto;
       }
       .panel-tools {
         width: 100%;
@@ -255,7 +412,7 @@
       <h1>2026-04-22 永豐自動交易</h1>
       <p>永豐自動交易執行儀表板與報告頁。</p>
     </section>
-    <section class='card-grid'><article class='card'><div class='label'>週別</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>交易日</div><div class='value'>2026-04-22</div></article><article class='card'><div class='label'>最後更新</div><div class='value'>2026-04-21T06:17:23+08:00</div></article><article class='card'><div class='label'>模式</div><div class='value'>dry_run</div></article><article class='card'><div class='label'>選股來源</div><div class='value'>manual_csv</div></article><article class='card'><div class='label'>今日狀態</div><div class='value'>buying</div></article><article class='card'><div class='label'>每週預算</div><div class='value'>0.00</div></article><article class='card'><div class='label'>硬上限</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>已用資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>剩餘資金</div><div class='value'>50,000.00</div></article><article class='card'><div class='label'>目前權益</div><div class='value'>0.00</div></article><article class='card'><div class='label'>策略報酬率</div><div class='value'>0.00%</div></article></section><nav class='page-nav' aria-label='區塊導覽'><a class='nav-chip' href='#selection-finalization'>選股來源與訂版</a><a class='nav-chip' href='#buy-execution'>買進執行</a><a class='nav-chip' href='#positions'>持倉</a><a class='nav-chip' href='#excluded-positions'>排除部位</a><a class='nav-chip' href='#sell-status'>賣出狀態</a><a class='nav-chip' href='#basket-summary'>整包分析</a><a class='nav-chip' href='#benchmark-chart'>策略 vs 加權 vs 2330</a><a class='nav-chip' href='#capital-chart'>現金 vs 已投入資金</a><a class='nav-chip' href='#events-log'>事件紀錄</a><a class='nav-chip' href='#next-actions'>後續動作</a></nav><div class='layout'><section class='panel' id='selection-finalization'><div class='panel-head'><h2>選股來源與訂版</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 選股來源與訂版' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>股票代號</button></th><th><button class='sort-btn' type='button' data-index='1'>股票名稱</button></th><th><button class='sort-btn' type='button' data-index='2'>來源</button></th><th><button class='sort-btn' type='button' data-index='3'>權重</button></th><th><button class='sort-btn' type='button' data-index='4'>預選</button></th><th><button class='sort-btn' type='button' data-index='5'>訂版</button></th><th><button class='sort-btn' type='button' data-index='6'>角色層級</button></th><th><button class='sort-btn' type='button' data-index='7'>主題</button></th><th><button class='sort-btn' type='button' data-index='8'>模型分數</button></th><th><button class='sort-btn' type='button' data-index='9'>訂版分數</button></th><th><button class='sort-btn' type='button' data-index='10'>保留原因</button></th><th><button class='sort-btn' type='button' data-index='11'>排除原因</button></th><th><button class='sort-btn' type='button' data-index='12'>資料來源</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>A+B</td><td>2.0</td><td>是</td><td>是</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>manual_csv</td></tr><tr><td>2454</td><td>MediaTek</td><td>manual</td><td>1.0</td><td>是</td><td>是</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>manual_csv</td></tr><tr><td>2317</td><td>Hon Hai</td><td>B</td><td>1.0</td><td>是</td><td>否</td><td></td><td></td><td></td><td></td><td></td><td></td><td>manual_csv</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無選股資料。</p></div></section><section class='panel' id='buy-execution'><div class='panel-head'><h2>買進執行</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 買進執行' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>股票代號</button></th><th><button class='sort-btn' type='button' data-index='1'>股票名稱</button></th><th><button class='sort-btn' type='button' data-index='2'>目標股數</button></th><th><button class='sort-btn' type='button' data-index='3'>已買</button></th><th><button class='sort-btn' type='button' data-index='4'>剩餘</button></th><th><button class='sort-btn' type='button' data-index='5'>委託單號</button></th><th><button class='sort-btn' type='button' data-index='6'>委託價格</button></th><th><button class='sort-btn' type='button' data-index='7'>委託股數</button></th><th><button class='sort-btn' type='button' data-index='8'>掛單時間</button></th><th><button class='sort-btn' type='button' data-index='9'>模式</button></th><th><button class='sort-btn' type='button' data-index='10'>現價</button></th><th><button class='sort-btn' type='button' data-index='11'>買一</button></th><th><button class='sort-btn' type='button' data-index='12'>賣一</button></th><th><button class='sort-btn' type='button' data-index='13'>Tick 差距</button></th><th><button class='sort-btn' type='button' data-index='14'>下次檢查</button></th><th><button class='sort-btn' type='button' data-index='15'>狀態</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>2</td><td>0</td><td>2</td><td>DRY-0001</td><td>995.0</td><td>2</td><td></td><td>normal</td><td>995.0</td><td>994.0</td><td>995.0</td><td>0</td><td>2026-04-21T06:17+08:00</td><td>dry_run</td></tr><tr><td>2454</td><td>MediaTek</td><td>1</td><td>0</td><td>1</td><td>DRY-0002</td><td>1215.0</td><td>1</td><td></td><td>normal</td><td>1215.0</td><td>1210.0</td><td>1215.0</td><td>0</td><td>2026-04-21T06:17+08:00</td><td>dry_run</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無買進執行資料。</p></div></section><section class='panel' id='positions'><div class='panel-head'><h2>持倉</h2></div><p class='empty'>尚無持倉資料。</p></section><section class='panel' id='excluded-positions'><div class='panel-head'><h2>排除部位</h2></div><p class='empty'>無排除部位。</p></section><section class='panel' id='sell-status'><div class='panel-head'><h2>賣出狀態</h2></div><p class='empty'>尚無賣出資料。</p></section><section class='panel' id='basket-summary'><div class='panel-head'><h2>整包分析</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 整包分析' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>項目</button></th><th><button class='sort-btn' type='button' data-index='1'>數值</button></th></tr></thead><tbody><tr><td>整包市值</td><td>0.00</td></tr><tr><td>整包未實現損益</td><td>0.00</td></tr><tr><td>整包未實現報酬率</td><td>0.00%</td></tr><tr><td>保守出清獲利</td><td>0.00</td></tr><tr><td>整包門檻</td><td>3,000.00</td></tr><tr><td>整包建議</td><td>hold</td></tr><tr><td>虧損股佔比</td><td>0.00%</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無整包分析資料。</p></div></section><section class='panel chart-panel' id='benchmark-chart'><div class='panel-head'><h2>策略 vs 加權 vs 2330</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Strategy</span><span><i style='background:#b85c38'></i>TAIEX</span><span><i style='background:#5a7d4d'></i>2330</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,212.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#5a7d4d' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-22</text></svg></section><section class='panel chart-panel' id='capital-chart'><div class='panel-head'><h2>現金 vs 已投入資金</h2></div><div class='legend'><span><i style='background:#244c5a'></i>Cash</span><span><i style='background:#b85c38'></i>Deployed</span></div><svg viewBox='0 0 760 240' class='chart'><line x1='28' y1='28.00' x2='732' y2='28.00' class='grid' /><line x1='28' y1='74.00' x2='732' y2='74.00' class='grid' /><line x1='28' y1='120.00' x2='732' y2='120.00' class='grid' /><line x1='28' y1='166.00' x2='732' y2='166.00' class='grid' /><line x1='28' y1='212.00' x2='732' y2='212.00' class='grid' /><polyline points='28.00,28.00' fill='none' stroke='#244c5a' stroke-width='3' /><polyline points='28.00,212.00' fill='none' stroke='#b85c38' stroke-width='3' /><text x='28.00' y='234' class='axis'>2026-04-22</text></svg></section><section class='panel' id='events-log'><div class='panel-head'><h2>事件紀錄</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 事件紀錄' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>時間</button></th><th><button class='sort-btn' type='button' data-index='1'>事件</button></th><th><button class='sort-btn' type='button' data-index='2'>股票</button></th><th><button class='sort-btn' type='button' data-index='3'>動作</button></th><th><button class='sort-btn' type='button' data-index='4'>價格</button></th><th><button class='sort-btn' type='button' data-index='5'>股數</button></th><th><button class='sort-btn' type='button' data-index='6'>結果</button></th><th><button class='sort-btn' type='button' data-index='7'>警告 / 錯誤</button></th></tr></thead><tbody><tr><td>2026-04-20T23:17:35.858990+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 0 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:17:35.871765+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 0 symbols.</td><td></td></tr><tr><td>2026-04-20T23:17:57.796686+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 3 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:18:02.687871+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 2 symbols.</td><td></td></tr><tr><td>2026-04-20T23:18:06.149810+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.266640+08:00</td><td>prepare_week</td><td></td><td>prepare_week</td><td></td><td></td><td>Loaded 3 preselect items from manual_csv</td><td></td></tr><tr><td>2026-04-20T23:26:04.448169+08:00</td><td>finalize</td><td></td><td>finalize</td><td></td><td></td><td>Finalized 2 symbols.</td><td></td></tr><tr><td>2026-04-20T23:26:04.634170+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.637890+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.649387+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:05.035681+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:26:21.624579+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:33:16.228156+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.231672+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.243910+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.288996+08:00</td><td>workflow_status</td><td></td><td>workflow_status</td><td></td><td></td><td>Rendered workflow status with 11 checklist rows.</td><td></td></tr><tr><td>2026-04-20T23:33:16.302320+08:00</td><td>refresh_dashboard</td><td></td><td>refresh_dashboard</td><td></td><td></td><td>Dashboard refresh completed with 3 steps.</td><td></td></tr><tr><td>2026-04-21T00:29:31.094085+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td>995.0</td><td>2</td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-21T00:29:31.097419+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td>1215.0</td><td>1</td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-21T00:29:31.107336+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無事件紀錄。</p></div></section><section class='panel' id='next-actions'><div class='panel-head'><h2>後續動作</h2></div><ul class='plain-list'><li>Run render_report every 5 minutes during market hours to refresh the current dashboard.</li><li>After market close, rerun render_report and settle_week for daily/weekly snapshots.</li></ul></section></div>
+    <section class='card-grid'><article class='card'><div class='label'>週別</div><div class='value'>2026-04-20_2026-04-24</div></article><article class='card'><div class='label'>交易日</div><div class='value'>2026-04-22</div></article><article class='card is-long'><div class='label'>最後更新</div><div class='value'>2026-04-29T00:43:13+08:00</div></article><article class='card'><div class='label'>模式</div><div class='value'>乾跑模式 (dry_run)</div></article><article class='card'><div class='label'>選股來源</div><div class='value'>手動 CSV (manual_csv)</div></article><article class='card'><div class='label'>今日狀態</div><div class='value'>buying</div></article><article class='card'><div class='label'>每週預算</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>硬上限</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>已用資金</div><div class='value'>0.00</div></article><article class='card'><div class='label'>剩餘資金</div><div class='value'>60,000.00</div></article><article class='card'><div class='label'>目前權益</div><div class='value'>0.00</div></article><article class='card'><div class='label'>策略報酬率</div><div class='value'>0.00%</div></article><article class='card is-long'><div class='label'>今日狀態說明</div><div class='value'>買入執行列已存在，而且今天至少還有一條自動新買單路徑可能會執行。</div></article><article class='card'><div class='label'>Workflow 完成</div><div class='value'>8</div></article><article class='card'><div class='label'>Workflow 待辦</div><div class='value'>7</div></article><article class='card'><div class='label'>Workflow 關閉</div><div class='value'>0</div></article><article class='card is-long'><div class='label'>最近刷新狀態</div><div class='value'>僅重跑報表 (report_only_refresh)</div></article><article class='card is-long is-wide'><div class='label'>最近刷新步驟</div><div class='value'>買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)</div></article><article class='card is-long is-wide'><div class='label'>最近刷新說明</div><div class='value'>最近一次 刷新儀表板 (refresh_dashboard) 只重跑了 買進迴圈 (buy_loop), 輸出日報 (render_report), 輸出工作流狀態 (workflow_status)，沒有重做 載入預選 (prepare_week) / 完成訂版 (finalize)。</div></article><article class='card is-long'><div class='label'>週結算狀態</div><div class='value'>週結算已是最新 (weekly_settlement_current)</div></article><article class='card is-long'><div class='label'>週結算說明</div><div class='value'>本週結算產物已齊備，涵蓋區間 2026-04-20 to 2026-04-24。</div></article><article class='card is-long is-wide'><div class='label'>週結算產物</div><div class='value'>C:\Users\User\Documents\New project\SinoPac Auto Trading\notes\weeks\2026-04-20_2026-04-24_auto_trading_weekly.md, C:\Users\User\Documents\New project\SinoPac Auto Trading\reports\auto_trading\weeks\2026-04-20_2026-04-24.html, C:\Users\User\Documents\New project\SinoPac Auto Trading\reports\auto_trading\data\2026-04-20_2026-04-24_weekly_snapshot.json</div></article><article class='card is-long'><div class='label'>週結算下一步</div><div class='value'>本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。</div></article><article class='card'><div class='label'>部位資料</div><div class='value'>直接策略部位 (direct)</div></article></section><nav class='page-nav' aria-label='區塊導覽'><a class='nav-chip' href='#warnings-notes'>警告 / 備註</a><a class='nav-chip' href='#selection-finalization'>選股來源與訂版</a><a class='nav-chip' href='#buy-execution'>買進執行</a><a class='nav-chip' href='#positions'>持倉</a><a class='nav-chip' href='#excluded-positions'>排除部位</a><a class='nav-chip' href='#broker-underheld'>缺股風險</a><a class='nav-chip' href='#ambiguous-fills'>待對帳成交</a><a class='nav-chip' href='#sell-status'>賣出狀態</a><a class='nav-chip' href='#basket-summary'>整包分析</a><a class='nav-chip' href='#benchmark-chart'>累積報酬率：策略 vs 加權 vs 2330</a><a class='nav-chip' href='#capital-chart'>資金配置：現金 vs 已投入資金</a><a class='nav-chip' href='#events-log'>事件紀錄</a><a class='nav-chip' href='#next-actions'>後續動作</a></nav><div class='layout'><section class='panel warning' id='warnings-notes'><div class='panel-head'><h2>警告 / 備註</h2></div><ul><li>Guarded live task failed for 2026-04-22 (exit_code=1): + CategoryInfo          : NotSpecified: (2026-04-22 09:1...er performance.:String) [], RemoteException. Log: C:\Users\User\Documents\New project\SinoPac Auto Trading\data\task_logs\allowed_2330_live_order\2026-04-22_091000.log</li></ul></section><section class='panel' id='selection-finalization'><div class='panel-head'><h2>選股來源與訂版</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 選股來源與訂版' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>股票代號</button></th><th><button class='sort-btn' type='button' data-index='1'>股票名稱</button></th><th><button class='sort-btn' type='button' data-index='2'>來源</button></th><th><button class='sort-btn' type='button' data-index='3'>權重</button></th><th><button class='sort-btn' type='button' data-index='4'>預選</button></th><th><button class='sort-btn' type='button' data-index='5'>訂版</button></th><th><button class='sort-btn' type='button' data-index='6'>角色層級</button></th><th><button class='sort-btn' type='button' data-index='7'>主題</button></th><th><button class='sort-btn' type='button' data-index='8'>模型分數</button></th><th><button class='sort-btn' type='button' data-index='9'>訂版分數</button></th><th><button class='sort-btn' type='button' data-index='10'>保留原因</button></th><th><button class='sort-btn' type='button' data-index='11'>排除原因</button></th><th><button class='sort-btn' type='button' data-index='12'>資料來源</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>A+B</td><td>2.0</td><td>是</td><td>是</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>手動 CSV (manual_csv)</td></tr><tr><td>2454</td><td>MediaTek</td><td>manual</td><td>1.0</td><td>是</td><td>是</td><td></td><td></td><td></td><td></td><td>manual_final_list</td><td></td><td>手動 CSV (manual_csv)</td></tr><tr><td>2317</td><td>Hon Hai</td><td>B</td><td>1.0</td><td>是</td><td>否</td><td></td><td></td><td></td><td></td><td></td><td></td><td>手動 CSV (manual_csv)</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無選股資料。</p></div></section><section class='panel' id='buy-execution'><div class='panel-head'><h2>買進執行</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 買進執行' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>股票代號</button></th><th><button class='sort-btn' type='button' data-index='1'>股票名稱</button></th><th><button class='sort-btn' type='button' data-index='2'>Basket</button></th><th><button class='sort-btn' type='button' data-index='3'>目標股數</button></th><th><button class='sort-btn' type='button' data-index='4'>已買</button></th><th><button class='sort-btn' type='button' data-index='5'>剩餘</button></th><th><button class='sort-btn' type='button' data-index='6'>委託單號</button></th><th><button class='sort-btn' type='button' data-index='7'>委託價格</button></th><th><button class='sort-btn' type='button' data-index='8'>委託股數</button></th><th><button class='sort-btn' type='button' data-index='9'>掛單時間</button></th><th><button class='sort-btn' type='button' data-index='10'>模式</button></th><th><button class='sort-btn' type='button' data-index='11'>現價</button></th><th><button class='sort-btn' type='button' data-index='12'>買一</button></th><th><button class='sort-btn' type='button' data-index='13'>賣一</button></th><th><button class='sort-btn' type='button' data-index='14'>報價時間</button></th><th><button class='sort-btn' type='button' data-index='15'>提交 Gate</button></th><th><button class='sort-btn' type='button' data-index='16'>Tick 差距</button></th><th><button class='sort-btn' type='button' data-index='17'>下次檢查</button></th><th><button class='sort-btn' type='button' data-index='18'>狀態</button></th></tr></thead><tbody><tr><td>2330</td><td>TSMC</td><td>main</td><td>2</td><td>0</td><td>2</td><td>DRY-0001</td><td>995.00</td><td>2</td><td></td><td>一般追價 (normal)</td><td>995.00</td><td>994.00</td><td>995.00</td><td>2026-04-21T00:29:31+08:00</td><td></td><td>0</td><td>2026-04-29T00:43+08:00</td><td>乾跑 (dry_run)</td></tr><tr><td>2454</td><td>MediaTek</td><td>main</td><td>1</td><td>0</td><td>1</td><td>DRY-0002</td><td>1,215.00</td><td>1</td><td></td><td>一般追價 (normal)</td><td>1,215.00</td><td>1,210.00</td><td>1,215.00</td><td>2026-04-21T00:29:31+08:00</td><td></td><td>0</td><td>2026-04-29T00:43+08:00</td><td>乾跑 (dry_run)</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無買進執行資料。</p></div></section><section class='panel' id='positions'><div class='panel-head'><h2>持倉</h2></div><p class='empty'>尚無持倉資料。</p></section><section class='panel' id='excluded-positions'><div class='panel-head'><h2>排除部位</h2></div><p class='empty'>無排除部位。</p></section><section class='panel' id='broker-underheld'><div class='panel-head'><h2>缺股風險</h2></div><p class='empty'>無缺股風險。</p></section><section class='panel' id='ambiguous-fills'><div class='panel-head'><h2>待對帳成交</h2></div><p class='empty'>無待對帳成交。</p></section><section class='panel' id='sell-status'><div class='panel-head'><h2>賣出狀態</h2></div><p class='empty'>尚無賣出資料。</p></section><section class='panel' id='basket-summary'><div class='panel-head'><h2>整包分析</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 整包分析' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>項目</button></th><th><button class='sort-btn' type='button' data-index='1'>數值</button></th></tr></thead><tbody><tr><td>整包範圍</td><td>combined</td></tr><tr><td>整包標籤</td><td></td></tr><tr><td>整包市值</td><td>0.00</td></tr><tr><td>整包未實現損益</td><td>0.00</td></tr><tr><td>整包未實現報酬率</td><td>0.00%</td></tr><tr><td>保守出清獲利</td><td>0.00</td></tr><tr><td>整包門檻</td><td>3,000.00</td></tr><tr><td>整包建議</td><td>hold</td></tr><tr><td>虧損股佔比</td><td>0.00%</td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無整包分析資料。</p></div></section><section class='panel chart-panel' id='benchmark-chart'><div class='panel-head'><h2>累積報酬率：策略 vs 加權 vs 2330</h2></div><p class='chart-caption'>累積報酬率比較。資料只有一個時間點時，改以基準比較條呈現。</p><div class='single-point-label'>2026-04-22</div><div class='point-bars'><div class='point-row'><span class='point-name'><i style='background:#244c5a'></i>策略</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#244c5a'></span></span><strong>0.00%</strong></div><div class='point-row'><span class='point-name'><i style='background:#b85c38'></i>加權</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#b85c38'></span></span><strong>0.00%</strong></div><div class='point-row'><span class='point-name'><i style='background:#5a7d4d'></i>2330</span><span class='point-track'><span class='point-zero'></span><span class='point-bar' style='left:50.00%;width:0.00%;background:#5a7d4d'></span></span><strong>0.00%</strong></div></div></section><section class='panel chart-panel' id='capital-chart'><div class='panel-head'><h2>資金配置：現金 vs 已投入資金</h2></div><p class='chart-caption'>資金配置圖：看目前現金與已投入資金的占比，不是價格走勢圖。</p><div class='allocation-total'><span>2026-04-22</span><strong>6.0萬</strong></div><div class='allocation-bar'><span style='width:100.00%;background:#244c5a'></span></div><div class='allocation-rows'><div class='allocation-row'><span><i style='background:#244c5a'></i>現金</span><strong>6.0萬</strong></div><div class='allocation-row'><span><i style='background:#b85c38'></i>已投入</span><strong>0</strong></div></div></section><section class='panel' id='events-log'><div class='panel-head'><h2>事件紀錄</h2><div class='panel-tools'><label class='search-wrap'><span>搜尋</span><input class='table-search' type='search' placeholder='搜尋這個區塊...' aria-label='搜尋 事件紀錄' /></label><span class='table-count'></span></div></div><div class='table-wrap'><table class='sortable-table'><thead><tr><th><button class='sort-btn' type='button' data-index='0'>時間</button></th><th><button class='sort-btn' type='button' data-index='1'>事件</button></th><th><button class='sort-btn' type='button' data-index='2'>股票</button></th><th><button class='sort-btn' type='button' data-index='3'>動作</button></th><th><button class='sort-btn' type='button' data-index='4'>價格</button></th><th><button class='sort-btn' type='button' data-index='5'>股數</button></th><th><button class='sort-btn' type='button' data-index='6'>結果</button></th><th><button class='sort-btn' type='button' data-index='7'>警告 / 錯誤</button></th></tr></thead><tbody><tr><td>2026-04-20T23:17:35.858990+08:00</td><td>預選載入</td><td></td><td>載入預選名單</td><td></td><td></td><td>已載入 0 筆預選名單，來源提供者=manual_csv。</td><td></td></tr><tr><td>2026-04-20T23:17:35.871765+08:00</td><td>訂版完成</td><td></td><td>完成訂版</td><td></td><td></td><td>已完成 finalize，產出 0 檔訂版股票。</td><td></td></tr><tr><td>2026-04-20T23:17:57.796686+08:00</td><td>預選載入</td><td></td><td>載入預選名單</td><td></td><td></td><td>已載入 3 筆預選名單，來源提供者=manual_csv。</td><td></td></tr><tr><td>2026-04-20T23:18:02.687871+08:00</td><td>訂版完成</td><td></td><td>完成訂版</td><td></td><td></td><td>已完成 finalize，產出 2 檔訂版股票。</td><td></td></tr><tr><td>2026-04-20T23:18:06.149810+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.266640+08:00</td><td>預選載入</td><td></td><td>載入預選名單</td><td></td><td></td><td>已載入 3 筆預選名單，來源提供者=manual_csv。</td><td></td></tr><tr><td>2026-04-20T23:26:04.448169+08:00</td><td>訂版完成</td><td></td><td>完成訂版</td><td></td><td></td><td>已完成 finalize，產出 2 檔訂版股票。</td><td></td></tr><tr><td>2026-04-20T23:26:04.634170+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.637890+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:04.649387+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:26:05.035681+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 11 筆清單列。</td><td></td></tr><tr><td>2026-04-20T23:26:21.624579+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 11 筆清單列。</td><td></td></tr><tr><td>2026-04-20T23:33:16.228156+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td></td><td></td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.231672+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td></td><td></td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.243910+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-20T23:33:16.288996+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 11 筆清單列。</td><td></td></tr><tr><td>2026-04-20T23:33:16.302320+08:00</td><td>儀表板更新</td><td></td><td>更新儀表板</td><td></td><td></td><td>已完成儀表板刷新，共 3 個步驟。</td><td></td></tr><tr><td>2026-04-21T00:29:31.094085+08:00</td><td>buy_loop_stock</td><td>2330</td><td>place</td><td>995.0</td><td>2</td><td>buy_loop place for 2330 in dry_run mode.</td><td></td></tr><tr><td>2026-04-21T00:29:31.097419+08:00</td><td>buy_loop_stock</td><td>2454</td><td>place</td><td>1215.0</td><td>1</td><td>buy_loop place for 2454 in dry_run mode.</td><td></td></tr><tr><td>2026-04-21T00:29:31.107336+08:00</td><td>buy_loop</td><td></td><td>buy_loop</td><td></td><td></td><td>Processed 2 buy-loop rows in dry_run mode.</td><td></td></tr><tr><td>2026-04-21T06:20:03.976924+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 15 筆清單列。</td><td></td></tr><tr><td>2026-04-22T01:16:35.481070+08:00</td><td>工作流狀態</td><td></td><td>輸出工作流狀態</td><td></td><td></td><td>已輸出工作流狀態，包含 15 筆清單列。</td><td></td></tr></tbody></table><p class='empty filtered-empty' hidden>尚無事件紀錄。</p></div></section><section class='panel' id='next-actions'><div class='panel-head'><h2>後續動作</h2></div><ul class='plain-list'><li>Run 輸出日報 (render_report) every 5 minutes during market hours to refresh the current dashboard.</li><li>本週結算產物已是最新；除非你想重新產出週報，否則不需要額外的週結算動作。</li></ul></section></div>
   </main>
   <script>
     (() => {
