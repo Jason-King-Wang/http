@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at":  "2026-04-28T23:33:35+08:00",
+    "generated_at":  "2026-04-29T00:20:00+08:00",
     "deployment_note":  "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
     "sell_model":  {
                        "target_trade_date":  "2026-04-28",
@@ -21,14 +21,14 @@
                      "candidate_pool_health_label":  "網路版選池抓取失敗，已改用永豐 API 分池"
                  },
     "auto_trading":  {
-                         "trade_date":  "2026-04-28",
+                         "trade_date":  "2026-04-27",
                          "week_id":  "2026-04-27_2026-04-30",
-                         "mode":  "dry_run",
+                         "mode":  "live",
                          "provider_name":  "ab_llm_preselect_json",
-                         "today_status":  "holding",
-                         "strategy_return":  0,
-                         "current_equity":  29592,
-                         "latest_daily_html":  "2026-04-28.html",
+                         "today_status":  "buying",
+                         "strategy_return":  6.7585834009191675E-05,
+                         "current_equity":  29594,
+                         "latest_daily_html":  "2026-04-27.html",
                          "latest_weekly_html":  "2026-04-20_2026-04-24.html"
                      }
 }
