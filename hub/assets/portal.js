@@ -357,6 +357,16 @@ function renderHistoryToggleButton() {
   `;
 }
 
+function syncHistoryCardToggle(card, collapsed) {
+  const button = card?.querySelector("[data-history-toggle]");
+  if (!button) {
+    return;
+  }
+
+  button.textContent = collapsed ? "展開" : "收起";
+  button.setAttribute("aria-expanded", collapsed ? "false" : "true");
+}
+
 function wireAbHistoryToggles(historyList) {
   if (!historyList || historyList.dataset.toggleBound === "true") {
     return;
@@ -374,11 +384,41 @@ function wireAbHistoryToggles(historyList) {
     }
 
     const collapsed = card.classList.toggle("is-collapsed");
-    button.textContent = collapsed ? "展開" : "收起";
-    button.setAttribute("aria-expanded", collapsed ? "false" : "true");
+    syncHistoryCardToggle(card, collapsed);
   });
 
   historyList.dataset.toggleBound = "true";
+}
+
+function setHistorySummaryOnly(toggleButton, historyList, enabled) {
+  if (!toggleButton || !historyList) {
+    return;
+  }
+
+  historyList.classList.toggle("is-summary-only", enabled);
+  toggleButton.classList.toggle("is-active", enabled);
+  toggleButton.textContent = enabled ? "顯示完整明細" : "只看每日摘要";
+  toggleButton.setAttribute("aria-pressed", enabled ? "true" : "false");
+
+  if (enabled) {
+    historyList.querySelectorAll(".history-card.is-collapsed").forEach((card) => {
+      card.classList.remove("is-collapsed");
+      syncHistoryCardToggle(card, false);
+    });
+  }
+}
+
+function wireAbHistorySummaryToggle(toggleButton, historyList) {
+  if (!toggleButton || !historyList || toggleButton.dataset.summaryToggleBound === "true") {
+    return;
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const enabled = !historyList.classList.contains("is-summary-only");
+    setHistorySummaryOnly(toggleButton, historyList, enabled);
+  });
+
+  toggleButton.dataset.summaryToggleBound = "true";
 }
 
 function renderAbDailyPage(payload) {
@@ -388,6 +428,7 @@ function renderAbDailyPage(payload) {
   const latestSummary = document.querySelector("#ab-latest-summary");
   const latestPills = document.querySelector("#ab-latest-pills");
   const historyList = document.querySelector("#ab-history-list");
+  const historySummaryToggle = document.querySelector("#ab-history-summary-toggle");
   const pageMeta = document.querySelector("#ab-page-meta");
 
   if (!latestPools || !latestSummary || !latestPills || !historyList || !pageMeta) {
@@ -400,7 +441,15 @@ function renderAbDailyPage(payload) {
     latestPills.innerHTML = "";
     latestPools.innerHTML = "";
     historyList.innerHTML = '<div class="empty-state">目前還沒有歷史資料。</div>';
+    if (historySummaryToggle) {
+      historySummaryToggle.disabled = true;
+      setHistorySummaryOnly(historySummaryToggle, historyList, false);
+    }
     return;
+  }
+
+  if (historySummaryToggle) {
+    historySummaryToggle.disabled = false;
   }
 
   const sourceLabel = latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
@@ -452,6 +501,8 @@ function renderAbDailyPage(payload) {
     .join("");
 
   wireAbHistoryToggles(historyList);
+  wireAbHistorySummaryToggle(historySummaryToggle, historyList);
+  setHistorySummaryOnly(historySummaryToggle, historyList, false);
 }
 
 function wireAutoTradingFrame(manifest) {

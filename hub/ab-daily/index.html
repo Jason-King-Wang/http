@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="每日版本的 AB 選股模型輸出頁面，整合進交易儀表板總入口。" />
     <title>每日 AB | 交易儀表板總入口</title>
-    <link rel="stylesheet" href="../assets/portal.css?v=20260428-textfix" />
+    <link rel="stylesheet" href="../assets/portal.css?v=20260430-history-summary" />
   </head>
   <body data-page="ab-daily-wrapper">
     <div class="page-shell">
@@ -66,13 +66,22 @@
               <p class="eyebrow">History</p>
               <h2>逐日歷史</h2>
             </div>
+            <button
+              class="history-summary-toggle"
+              type="button"
+              id="ab-history-summary-toggle"
+              aria-controls="ab-history-list"
+              aria-pressed="false"
+            >
+              只看每日摘要
+            </button>
           </div>
           <div class="history-stack" id="ab-history-list"></div>
         </section>
       </main>
     </div>
 
-    <script src="../data/portal-manifest.js?v=20260428-textfix"></script>
-    <script src="../assets/portal.js?v=20260428-textfix"></script>
+    <script src="../data/portal-manifest.js?v=20260430-history-summary"></script>
+    <script src="../assets/portal.js?v=20260430-history-summary"></script>
   </body>
 </html>

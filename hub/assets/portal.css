@@ -509,6 +509,7 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   margin-top: 0;
 }
 
+.history-summary-toggle,
 .history-toggle {
   display: inline-flex;
   align-items: center;
@@ -519,19 +520,41 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   border: 1px solid rgba(22, 33, 46, 0.08);
   background: rgba(255, 255, 255, 0.84);
   color: var(--ink);
+  font-weight: 700;
+  line-height: 1;
   cursor: pointer;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
+.history-summary-toggle {
+  min-width: 8.6rem;
+}
+
+.history-summary-toggle:hover,
 .history-toggle:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 28px rgba(22, 33, 46, 0.12);
   border-color: rgba(12, 143, 122, 0.24);
 }
 
+.history-summary-toggle:focus-visible,
 .history-toggle:focus-visible {
   outline: 2px solid rgba(12, 143, 122, 0.4);
   outline-offset: 2px;
+}
+
+.history-summary-toggle.is-active {
+  color: #ffffff;
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  box-shadow: 0 12px 26px rgba(12, 143, 122, 0.18);
+}
+
+.history-summary-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+  transform: none;
+  box-shadow: none;
 }
 
 .history-body {
@@ -539,6 +562,14 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
 }
 
 .history-card.is-collapsed .history-body {
+  display: none;
+}
+
+.history-stack.is-summary-only .pool-head {
+  margin-bottom: 0;
+}
+
+.history-stack.is-summary-only .table-wrap {
   display: none;
 }
 

@@ -6,7 +6,8 @@ const state = {
     role: "",
     review: ""
   },
-  selectedStockId: null
+  selectedStockId: null,
+  dailyHistoryCompact: true
 };
 
 const DATA_JSON_URL = "./data/public-sell-model.json";
@@ -42,6 +43,7 @@ bootstrap();
 
 async function bootstrap() {
   bindFilters();
+  bindDailyHistoryControls();
   registerServiceWorker();
   renderDashboard();
   await refreshLiveData({ silent: true });
@@ -63,6 +65,18 @@ function bindFilters() {
       state.filters[key] = event.target.value;
       renderDashboard();
     });
+  });
+}
+
+function bindDailyHistoryControls() {
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-action='toggle-daily-history-mode']");
+    if (!button) {
+      return;
+    }
+
+    state.dailyHistoryCompact = !state.dailyHistoryCompact;
+    renderDailyOverview();
   });
 }
 
@@ -120,20 +134,26 @@ function renderDailyOverview() {
     return;
   }
 
-  const history = getDailyHistory();
+  const abHistory = getAbDailyHistory();
+  const history = abHistory.length ? abHistory : getDailyHistory();
+  const usingAbHistory = abHistory.length > 0;
   if (!history.length) {
-    elements.dailySummaryNote.textContent = "最近 30 個交易日內還沒有可公開的逐日摘要。";
-    elements.dailyComparison.innerHTML = `<div class="empty-state">等第一批逐日資料進來後，這裡會顯示整理後的比較摘要。</div>`;
-    elements.dailyHistoryList.innerHTML = `<div class="empty-state">目前沒有逐日資料。</div>`;
+    elements.dailySummaryNote.textContent = "最近 30 個交易日還沒有可用的逐日資料。";
+    elements.dailyComparison.innerHTML = `<div class="empty-state">尚無逐日資料可以比較。</div>`;
+    elements.dailyHistoryList.innerHTML = `<div class="empty-state">尚無歷史紀錄。</div>`;
     return;
   }
 
   const latest = history[0];
   const previous = history[1] || null;
   const comparisonBase = findComparisonBase(history);
-  const metrics = buildDailyComparisonMetrics(latest, comparisonBase);
+  const metrics = usingAbHistory
+    ? buildAbDailySummaryMetrics(latest)
+    : buildDailyComparisonMetrics(latest, comparisonBase);
 
-  elements.dailySummaryNote.textContent = buildDailySummaryNote(latest, previous, comparisonBase, history.length);
+  elements.dailySummaryNote.textContent = usingAbHistory
+    ? buildAbDailySummaryNote(latest, previous, history.length)
+    : buildDailySummaryNote(latest, previous, comparisonBase, history.length);
   elements.dailyComparison.innerHTML = metrics
     .map((metric) => `
       <article class="daily-mini-metric">
@@ -144,10 +164,20 @@ function renderDailyOverview() {
     `)
     .join("");
 
-  elements.dailyHistoryList.innerHTML = history
-    .slice(0, MAX_DAILY_HISTORY_CARDS)
-    .map((entry, index) => renderDailyHistoryCard(entry, index === 0))
-    .join("");
+  elements.dailyHistoryList.classList.toggle("is-compact-table", usingAbHistory && state.dailyHistoryCompact);
+  elements.dailyHistoryList.innerHTML = usingAbHistory
+    ? (
+      state.dailyHistoryCompact
+        ? renderAbDailyHistorySummaryTable(history)
+        : history
+          .slice(0, MAX_DAILY_HISTORY_CARDS)
+          .map((entry, index) => renderAbDailyHistoryCard(entry, index === 0))
+          .join("")
+    )
+    : history
+      .slice(0, MAX_DAILY_HISTORY_CARDS)
+      .map((entry, index) => renderDailyHistoryCard(entry, index === 0))
+      .join("");
 }
 
 function buildDailySummaryNote(latest, previous, comparisonBase, historyCount) {
@@ -273,6 +303,48 @@ function buildAccuracyOverviewMetric(entry) {
   };
 }
 
+function buildAbDailySummaryNote(latest, previous, historyCount) {
+  const allSummary = buildAbAllSummary(latest);
+  const aSummary = buildAbSelectionSummary(latest, "a_flag");
+  const bSummary = buildAbSelectionSummary(latest, "b_flag");
+  const previousText = previous?.trade_date ? `，前一筆是 ${previous.trade_date}` : "";
+
+  return `最近 ${historyCount} 天已收成 A/B 預選表。最新 ${latest.trade_date || "未提供日期"}：A 預選各買一張 ${formatSignedPercentPoints(aSummary.equalLotReturnPct)}，損益 ${formatSignedCurrency(aSummary.equalLotPnlTwd)}；週一 9:10 ${formatSignedPercentPoints(aSummary.weekEntryReturnPct)}，損益 ${formatSignedCurrency(aSummary.weekEntryPnlTwd)}。B 預選各買一張 ${formatSignedPercentPoints(bSummary.equalLotReturnPct)}，損益 ${formatSignedCurrency(bSummary.equalLotPnlTwd)}。全部各買一張 ${formatSignedPercentPoints(allSummary.equalLotReturnPct)}，損益 ${formatSignedCurrency(allSummary.equalLotPnlTwd)}${previousText}。`;
+}
+
+function buildAbDailySummaryMetrics(latest) {
+  const allSummary = buildAbAllSummary(latest);
+  const aSummary = buildAbSelectionSummary(latest, "a_flag");
+  const bSummary = buildAbSelectionSummary(latest, "b_flag");
+
+  return [
+    {
+      label: "各買一張",
+      value: formatSignedPercentPoints(allSummary.equalLotReturnPct),
+      note: `損益 ${formatSignedCurrency(allSummary.equalLotPnlTwd)} / ${formatInteger(allSummary.count)} 檔`,
+      tone: toneForSignedNumber(allSummary.equalLotPnlTwd)
+    },
+    {
+      label: "週一 9:10 買",
+      value: formatSignedPercentPoints(allSummary.weekEntryReturnPct),
+      note: `損益 ${formatSignedCurrency(allSummary.weekEntryPnlTwd)}`,
+      tone: toneForSignedNumber(allSummary.weekEntryPnlTwd)
+    },
+    {
+      label: "A 預選",
+      value: `${formatInteger(aSummary.count)} 檔`,
+      note: `各買 ${formatSignedPercentPoints(aSummary.equalLotReturnPct)} / 週一 ${formatSignedPercentPoints(aSummary.weekEntryReturnPct)}`,
+      tone: toneForSignedNumber(aSummary.equalLotPnlTwd)
+    },
+    {
+      label: "B 預選",
+      value: `${formatInteger(bSummary.count)} 檔`,
+      note: `各買 ${formatSignedPercentPoints(bSummary.equalLotReturnPct)} / 週一 ${formatSignedPercentPoints(bSummary.weekEntryReturnPct)}`,
+      tone: toneForSignedNumber(bSummary.equalLotPnlTwd)
+    }
+  ];
+}
+
 function renderDailyHistoryCard(entry, isLatest) {
   const metricChips = [
     `${formatInteger(entry.stock_count)} 檔公開`,
@@ -314,6 +386,229 @@ function renderDailyHistoryCard(entry, isLatest) {
       </p>
     </article>
   `;
+}
+
+function renderAbDailyHistorySummaryTable(history) {
+  const rows = history.slice(0, MAX_DAILY_HISTORY_ITEMS);
+
+  return `
+    <div class="daily-history-toolbar">
+      <div>
+        <strong>歷史已收起成 A/B 表格</strong>
+        <span class="mini-note">每天只看 A 預選、B 預選、各買一張與週一 9:10 兩組損益。</span>
+      </div>
+      <button class="history-mode-toggle" type="button" data-action="toggle-daily-history-mode">展開卡片</button>
+    </div>
+    <div class="table-wrap ab-history-table-wrap">
+      <table class="ab-history-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>A 預選</th>
+            <th>A 各買一張</th>
+            <th>A 週一 9:10</th>
+            <th>B 預選</th>
+            <th>B 各買一張</th>
+            <th>B 週一 9:10</th>
+            <th>全部各買一張</th>
+            <th>全部週一 9:10</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows.map((entry, index) => renderAbDailyHistoryRow(entry, index === 0)).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function renderAbDailyHistoryRow(entry, isLatest) {
+  const aRows = getAbSelectionRows(entry, "a_flag");
+  const bRows = getAbSelectionRows(entry, "b_flag");
+  const aSummary = summarizeAbRows(aRows);
+  const bSummary = summarizeAbRows(bRows);
+  const allSummary = buildAbAllSummary(entry);
+
+  return `
+    <tr class="${isLatest ? "is-latest" : ""}">
+      <td>
+        <div class="stacked">
+          <strong>${escapeHtml(entry.trade_date || "未提供")}</strong>
+          <span class="metric-sub">${escapeHtml(entry.phase_label || entry.phase || "summary")}</span>
+        </div>
+      </td>
+      <td>${renderAbStockList(aRows, "A")}</td>
+      <td>${renderAbMetricStack(aSummary, "equal")}</td>
+      <td>${renderAbMetricStack(aSummary, "week")}</td>
+      <td>${renderAbStockList(bRows, "B")}</td>
+      <td>${renderAbMetricStack(bSummary, "equal")}</td>
+      <td>${renderAbMetricStack(bSummary, "week")}</td>
+      <td>${renderAbMetricStack(allSummary, "equal")}</td>
+      <td>${renderAbMetricStack(allSummary, "week")}</td>
+    </tr>
+  `;
+}
+
+function renderAbDailyHistoryCard(entry, isLatest) {
+  const allSummary = buildAbAllSummary(entry);
+  const aRows = getAbSelectionRows(entry, "a_flag");
+  const bRows = getAbSelectionRows(entry, "b_flag");
+
+  return `
+    <article class="daily-history-item ${isLatest ? "is-latest" : ""}">
+      <div class="daily-history-head">
+        <div class="daily-history-title">
+          <strong>${escapeHtml(entry.trade_date || "未提供")}</strong>
+          <span class="mini-note">A ${formatInteger(aRows.length)} 檔 / B ${formatInteger(bRows.length)} 檔 / AB ${formatInteger(entry.ab_count)}</span>
+        </div>
+        <button class="history-mode-toggle" type="button" data-action="toggle-daily-history-mode">收起成表格</button>
+      </div>
+      <div class="daily-inline-metrics">
+        <span class="pill">各買一張 ${escapeHtml(formatSignedPercentPoints(allSummary.equalLotReturnPct))}</span>
+        <span class="pill">損益 ${escapeHtml(formatSignedCurrency(allSummary.equalLotPnlTwd))}</span>
+        <span class="pill">週一 9:10 ${escapeHtml(formatSignedPercentPoints(allSummary.weekEntryReturnPct))}</span>
+        <span class="pill">損益 ${escapeHtml(formatSignedCurrency(allSummary.weekEntryPnlTwd))}</span>
+      </div>
+      <p class="daily-history-note">A：${escapeHtml(renderAbStockText(aRows))}</p>
+      <p class="daily-history-note">B：${escapeHtml(renderAbStockText(bRows))}</p>
+    </article>
+  `;
+}
+
+function renderAbStockList(rows, label) {
+  return `
+    <div class="ab-stock-list">
+      <span class="ab-tag ${label === "A" ? "ab-tag-a" : "ab-tag-b"}">${escapeHtml(label)}</span>
+      <span class="ab-stock-count">${escapeHtml(formatInteger(rows.length))} 檔</span>
+      <span class="ab-stock-codes">${escapeHtml(renderAbStockText(rows))}</span>
+    </div>
+  `;
+}
+
+function renderAbStockText(rows) {
+  if (!rows.length) {
+    return "-";
+  }
+
+  const codes = rows
+    .map((row) => row.stock_id || row.stock_name)
+    .filter(Boolean);
+  const visible = codes.slice(0, 5).join(" ");
+  const more = codes.length > 5 ? ` +${codes.length - 5}` : "";
+
+  return `${visible}${more}`;
+}
+
+function renderAbMetricStack(summary, mode) {
+  const returnPct = mode === "week" ? summary.weekEntryReturnPct : summary.equalLotReturnPct;
+  const pnl = mode === "week" ? summary.weekEntryPnlTwd : summary.equalLotPnlTwd;
+  const tone = toneForSignedNumber(pnl);
+
+  return `
+    <div class="ab-metric-stack">
+      <strong class="${escapeHtml(tone)}">${escapeHtml(formatSignedPercentPoints(returnPct))}</strong>
+      <span class="metric-sub">損益 ${escapeHtml(formatSignedCurrency(pnl))}</span>
+    </div>
+  `;
+}
+
+function getAbDailyHistory() {
+  const abData = window.__PUBLIC_AB_DAILY_DATA__ || {};
+  const seen = new Map();
+  const source = [
+    abData.latest,
+    ...(Array.isArray(abData.history) ? abData.history : [])
+  ].filter(Boolean);
+
+  source.forEach((entry) => {
+    if (!entry?.trade_date || seen.has(entry.trade_date)) {
+      return;
+    }
+    seen.set(entry.trade_date, entry);
+  });
+
+  return Array.from(seen.values())
+    .sort((left, right) => String(right.trade_date || "").localeCompare(String(left.trade_date || "")))
+    .slice(0, MAX_DAILY_HISTORY_ITEMS);
+}
+
+function getAbRows(entry) {
+  return Array.isArray(entry?.rows) ? entry.rows : [];
+}
+
+function getAbSelectionRows(entry, flagKey) {
+  return getAbRows(entry).filter((row) => toNumber(row?.[flagKey]) === 1);
+}
+
+function buildAbSelectionSummary(entry, flagKey) {
+  return summarizeAbRows(getAbSelectionRows(entry, flagKey));
+}
+
+function buildAbAllSummary(entry) {
+  const summary = summarizeAbRows(getAbRows(entry));
+
+  if (hasNumericValue(entry?.equal_lot_return_pct)) {
+    summary.equalLotReturnPct = toNumber(entry.equal_lot_return_pct);
+  }
+  if (hasNumericValue(entry?.equal_lot_pnl_twd)) {
+    summary.equalLotPnlTwd = toNumber(entry.equal_lot_pnl_twd);
+  }
+  if (hasNumericValue(entry?.stock_count)) {
+    summary.count = toNumber(entry.stock_count);
+  }
+
+  return summary;
+}
+
+function summarizeAbRows(rows) {
+  let equalLotPnlTwd = 0;
+  let equalLotCostTwd = 0;
+  let weekEntryPnlTwd = 0;
+  let weekEntryCostTwd = 0;
+  let hasEqualLotPnl = false;
+  let hasWeekEntryPnl = false;
+
+  rows.forEach((row) => {
+    const lotPnl = toNumber(row?.lot_pnl_twd);
+    const openPrice = toNumber(row?.open_price);
+    const weekPnl = toNumber(row?.week_entry_pnl_twd);
+    const weekEntryPrice = toNumber(row?.week_entry_price);
+
+    if (Number.isFinite(lotPnl)) {
+      equalLotPnlTwd += lotPnl;
+      hasEqualLotPnl = true;
+    }
+    if (Number.isFinite(openPrice) && openPrice > 0) {
+      equalLotCostTwd += openPrice * 1000;
+    }
+    if (Number.isFinite(weekPnl)) {
+      weekEntryPnlTwd += weekPnl;
+      hasWeekEntryPnl = true;
+    }
+    if (Number.isFinite(weekEntryPrice) && weekEntryPrice > 0) {
+      weekEntryCostTwd += weekEntryPrice * 1000;
+    }
+  });
+
+  return {
+    count: rows.length,
+    equalLotPnlTwd: hasEqualLotPnl ? equalLotPnlTwd : Number.NaN,
+    equalLotReturnPct: hasEqualLotPnl && equalLotCostTwd > 0
+      ? (equalLotPnlTwd / equalLotCostTwd) * 100
+      : Number.NaN,
+    weekEntryPnlTwd: hasWeekEntryPnl ? weekEntryPnlTwd : Number.NaN,
+    weekEntryReturnPct: hasWeekEntryPnl && weekEntryCostTwd > 0
+      ? (weekEntryPnlTwd / weekEntryCostTwd) * 100
+      : Number.NaN
+  };
+}
+
+function toneForSignedNumber(value) {
+  const number = toNumber(value);
+  if (!Number.isFinite(number) || Math.abs(number) < 0.0001) {
+    return "trend-flat";
+  }
+  return number > 0 ? "trend-positive" : "trend-negative";
 }
 
 function getDailyHistory() {
@@ -745,11 +1040,19 @@ function renderDailyComparisonTable() {
     return;
   }
 
+  const abHistory = getAbDailyHistory();
+  if (abHistory.length) {
+    elements.dailyCompareTableBody.innerHTML = abHistory
+      .map((entry, index) => renderAbDailyHistoryRow(entry, index === 0))
+      .join("");
+    return;
+  }
+
   const history = getDailyHistory();
   if (!history.length) {
     elements.dailyCompareTableBody.innerHTML = `
       <tr>
-        <td colspan="10">
+        <td colspan="9">
           <div class="empty-state">目前沒有逐日比較資料。</div>
         </td>
       </tr>
@@ -757,27 +1060,13 @@ function renderDailyComparisonTable() {
     return;
   }
 
-  elements.dailyCompareTableBody.innerHTML = history
-    .map((entry, index) => `
-      <tr class="${index === 0 ? "is-latest" : ""}">
-        <td>
-          <div class="stacked">
-            <strong>${escapeHtml(entry.trade_date || "未提供")}</strong>
-            <span class="metric-sub">${escapeHtml(entry.source_label || "摘要")}</span>
-          </div>
-        </td>
-        <td><span class="status-badge ${escapeHtml(resolveStatusClass(entry.status))}">${escapeHtml(entry.status_label || "未提供")}</span></td>
-        <td>${renderAccuracyCell(entry)}</td>
-        <td>${escapeHtml(formatInteger(entry.verified_stock_count ?? entry.stock_count))}</td>
-        <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "under_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "pred_peak_mape", "percentPoints", { lowerIsBetter: true })}</td>
-        <td>${renderHistoryMetricCell(entry, "p80_pinball_loss_mean", "percentPoints", { lowerIsBetter: true })}</td>
-        <td>${renderHistoryMetricCell(entry, "pred_peak_time_bucket_hit_rate", "percent")}</td>
-        <td>${renderHistoryMetricCell(entry, "objective_loss", "decimal", { lowerIsBetter: true })}</td>
-      </tr>
-    `)
-    .join("");
+  elements.dailyCompareTableBody.innerHTML = `
+    <tr>
+      <td colspan="9">
+        <div class="empty-state">A/B daily data 尚未載入；目前只保留摘要資料。</div>
+      </td>
+    </tr>
+  `;
 }
 
 function renderAccuracyCell(entry) {
