@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-04-29T07:00:02+08:00",
+  "generated_at": "2026-04-29T10:00:02+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
-    "target_trade_date": "2026-04-28",
-    "verified_stock_count": 30,
-    "peak_hit_rate": 0.2,
+    "target_trade_date": "2026-04-29",
+    "verified_stock_count": null,
+    "peak_hit_rate": null,
     "source_scope": "public"
   },
   "ab_daily": {
@@ -16,7 +16,7 @@
     "ab_count": 4,
     "equal_lot_return_pct": null,
     "equal_lot_pnl_twd": null,
-    "updated_at": "2026-04-29T06:04:34+08:00",
+    "updated_at": "2026-04-29T09:12:06+08:00",
     "candidate_pool_health_status": "web_failed_shioaji_primary",
     "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池"
   },
