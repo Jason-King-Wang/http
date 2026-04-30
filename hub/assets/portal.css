@@ -445,6 +445,15 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   margin-top: 1.2rem;
 }
 
+.latest-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.ab-latest-shell.is-collapsed .latest-body {
+  display: none;
+}
+
 .history-stack {
   display: grid;
   gap: 1rem;

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="每日版本的 AB 選股模型輸出頁面，整合進交易儀表板總入口。" />
     <title>每日 AB | 交易儀表板總入口</title>
-    <link rel="stylesheet" href="../assets/portal.css?v=20260430-ab-history-table" />
+    <link rel="stylesheet" href="../assets/portal.css?v=20260430-ab-latest-toggle" />
   </head>
   <body data-page="ab-daily-wrapper">
     <div class="page-shell">
@@ -54,10 +54,21 @@
               <p class="eyebrow">Latest</p>
               <h2>最新一天</h2>
             </div>
+            <button
+              class="history-toggle latest-toggle"
+              type="button"
+              id="ab-latest-toggle"
+              aria-controls="ab-latest-body"
+              aria-expanded="true"
+            >
+              收起
+            </button>
           </div>
-          <p class="section-copy" id="ab-latest-summary">讀取最新資料中...</p>
-          <div class="pill-row" id="ab-latest-pills"></div>
-          <div class="pool-grid" id="ab-latest-pools"></div>
+          <div class="latest-body" id="ab-latest-body">
+            <p class="section-copy" id="ab-latest-summary">讀取最新資料中...</p>
+            <div class="pill-row" id="ab-latest-pills"></div>
+            <div class="pool-grid" id="ab-latest-pools"></div>
+          </div>
         </section>
 
         <section class="card ab-history-shell">
@@ -81,7 +92,7 @@
       </main>
     </div>
 
-    <script src="../data/portal-manifest.js?v=20260430-ab-history-table"></script>
-    <script src="../assets/portal.js?v=20260430-ab-history-table"></script>
+    <script src="../data/portal-manifest.js?v=20260430-ab-latest-toggle"></script>
+    <script src="../assets/portal.js?v=20260430-ab-latest-toggle"></script>
   </body>
 </html>

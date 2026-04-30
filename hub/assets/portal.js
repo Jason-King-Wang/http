@@ -579,9 +579,33 @@ function wireAbHistorySummaryToggle(toggleButton, historyList, history) {
   toggleButton.dataset.summaryToggleBound = "true";
 }
 
+function syncLatestToggle(toggleButton, latestShell, collapsed) {
+  if (!toggleButton || !latestShell) {
+    return;
+  }
+
+  toggleButton.textContent = collapsed ? "展開" : "收起";
+  toggleButton.setAttribute("aria-expanded", collapsed ? "false" : "true");
+}
+
+function wireLatestToggle(toggleButton, latestShell) {
+  if (!toggleButton || !latestShell || toggleButton.dataset.latestToggleBound === "true") {
+    return;
+  }
+
+  toggleButton.addEventListener("click", () => {
+    const collapsed = latestShell.classList.toggle("is-collapsed");
+    syncLatestToggle(toggleButton, latestShell, collapsed);
+  });
+
+  toggleButton.dataset.latestToggleBound = "true";
+}
+
 function renderAbDailyPage(payload) {
   const history = (Array.isArray(payload?.history) ? payload.history : []).filter((entry) => hasVisibleAbRows(entry));
   const latest = hasVisibleAbRows(payload?.latest) ? payload.latest : history[0] || {};
+  const latestShell = document.querySelector(".ab-latest-shell");
+  const latestToggle = document.querySelector("#ab-latest-toggle");
   const latestPools = document.querySelector("#ab-latest-pools");
   const latestSummary = document.querySelector("#ab-latest-summary");
   const latestPills = document.querySelector("#ab-latest-pills");
@@ -605,11 +629,20 @@ function renderAbDailyPage(payload) {
       historySummaryToggle.textContent = "只看每日 A/B 摘要";
       historySummaryToggle.setAttribute("aria-pressed", "false");
     }
+    if (latestToggle) {
+      latestToggle.disabled = true;
+      syncLatestToggle(latestToggle, latestShell, false);
+    }
     return;
   }
 
   if (historySummaryToggle) {
     historySummaryToggle.disabled = false;
+  }
+  if (latestToggle) {
+    latestToggle.disabled = false;
+    wireLatestToggle(latestToggle, latestShell);
+    syncLatestToggle(latestToggle, latestShell, latestShell?.classList.contains("is-collapsed"));
   }
 
   const sourceLabel = latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
