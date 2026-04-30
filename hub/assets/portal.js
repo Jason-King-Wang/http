@@ -345,6 +345,133 @@ function renderPoolGrid(entry) {
   ].join("");
 }
 
+function getAbRows(entry) {
+  return Array.isArray(entry?.rows) ? entry.rows : [];
+}
+
+function renderAbStockText(rows) {
+  if (!rows.length) {
+    return "-";
+  }
+
+  const codes = rows
+    .map((row) => row.stock_id || row.stock_name)
+    .filter(Boolean);
+  const visible = codes.slice(0, 5).join(" ");
+  const more = codes.length > 5 ? ` +${codes.length - 5}` : "";
+
+  return `${visible}${more}`;
+}
+
+function renderAbStockList(rows, label) {
+  return `
+    <div class="ab-stock-list">
+      <div class="ab-stock-head">
+        <span class="tag-chip tag-chip-${label.toLowerCase()}">${escapeHtml(label)}</span>
+        <span class="ab-stock-count">${escapeHtml(formatNumber(rows.length))} 檔</span>
+      </div>
+      <span class="ab-stock-codes">${escapeHtml(renderAbStockText(rows))}</span>
+    </div>
+  `;
+}
+
+function toneForSignedNumber(value) {
+  const number = asNumber(value);
+  if (number === null || Math.abs(number) < 0.0001) {
+    return "trend-flat";
+  }
+  return number > 0 ? "trend-positive" : "trend-negative";
+}
+
+function renderAbMetricStack(summary, options = {}) {
+  const nonTradingSelectionDay = options.nonTradingSelectionDay === true;
+  const returnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(summary?.returnPct);
+  const pnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(summary?.pnl);
+  const tone = nonTradingSelectionDay ? "trend-flat" : toneForSignedNumber(summary?.pnl);
+
+  return `
+    <div class="ab-metric-stack">
+      <strong class="${tone}">${escapeHtml(returnText)}</strong>
+      <span class="metric-sub">損益 ${escapeHtml(pnlText)}</span>
+    </div>
+  `;
+}
+
+function buildAbAllSummary(entry, baseline = "open") {
+  const summary = summarizePool(getAbRows(entry), baseline);
+
+  if (baseline === "open") {
+    const returnPct = asNumber(entry?.equal_lot_return_pct);
+    const pnl = asNumber(entry?.equal_lot_pnl_twd);
+    if (returnPct !== null) {
+      summary.returnPct = returnPct;
+    }
+    if (pnl !== null) {
+      summary.pnl = pnl;
+    }
+  }
+
+  return summary;
+}
+
+function renderAbDailyHistoryRow(entry, isLatest) {
+  const aRows = rowsForPool(entry, "a");
+  const bRows = rowsForPool(entry, "b");
+  const nonTradingSelectionDay = entry?.non_trading_selection_day === true;
+
+  return `
+    <tr class="${isLatest ? "is-latest" : ""}">
+      <td>
+        <div class="stacked">
+          <strong>${escapeHtml(entry.trade_date || "--")}</strong>
+          <span class="metric-sub">${escapeHtml(entry.phase_label || entry.phase || "--")}</span>
+        </div>
+      </td>
+      <td>${renderAbStockList(aRows, "A")}</td>
+      <td>${renderAbMetricStack(summarizePool(aRows), { nonTradingSelectionDay })}</td>
+      <td>${renderAbMetricStack(summarizePool(aRows, "week"), { nonTradingSelectionDay })}</td>
+      <td>${renderAbStockList(bRows, "B")}</td>
+      <td>${renderAbMetricStack(summarizePool(bRows), { nonTradingSelectionDay })}</td>
+      <td>${renderAbMetricStack(summarizePool(bRows, "week"), { nonTradingSelectionDay })}</td>
+      <td>${renderAbMetricStack(buildAbAllSummary(entry), { nonTradingSelectionDay })}</td>
+      <td>${renderAbMetricStack(buildAbAllSummary(entry, "week"), { nonTradingSelectionDay })}</td>
+    </tr>
+  `;
+}
+
+function renderAbDailyHistorySummaryTable(history) {
+  if (!history.length) {
+    return '<div class="empty-state">目前還沒有歷史資料。</div>';
+  }
+
+  return `
+    <div class="ab-history-summary-head">
+      <strong>每日 A/B 摘要表</strong>
+      <span class="mini-note">每天只看 A 預選、B 預選、各買一張與週一 9:10 兩組損益。</span>
+    </div>
+    <div class="table-wrap ab-history-table-wrap">
+      <table class="ab-history-table ab-history-summary-table">
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>A 預選</th>
+            <th>A 各買一張</th>
+            <th>A 週一 9:10</th>
+            <th>B 預選</th>
+            <th>B 各買一張</th>
+            <th>B 週一 9:10</th>
+            <th>全部各買一張</th>
+            <th>全部週一 9:10</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${history.map((entry, index) => renderAbDailyHistoryRow(entry, index === 0)).join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 function hasVisibleAbRows(entry) {
   return Array.isArray(entry?.rows) && entry.rows.length > 0;
 }
@@ -390,32 +517,63 @@ function wireAbHistoryToggles(historyList) {
   historyList.dataset.toggleBound = "true";
 }
 
-function setHistorySummaryOnly(toggleButton, historyList, enabled) {
+function renderAbHistoryCards(history) {
+  return history
+    .map(
+      (entry, index) => `
+        <article class="history-card ${index === 0 ? "is-latest" : ""}">
+          <div class="history-head">
+            <div>
+              <p class="eyebrow">History</p>
+              <h3>${escapeHtml(entry.trade_date || "--")} ${escapeHtml(entry.phase_label || "")}</h3>
+            </div>
+            <div class="history-head-actions">
+              <div class="pill-row compact-pills">
+                ${buildAbPills(entry)
+                  .map((item) => `<span class="pill">${item}</span>`)
+                  .join("")}
+              </div>
+              ${renderHistoryToggleButton()}
+            </div>
+          </div>
+          <div class="history-body">
+            <div class="pool-grid">${renderPoolGrid(entry)}</div>
+          </div>
+        </article>
+      `
+    )
+    .join("");
+}
+
+function setHistorySummaryOnly(toggleButton, historyList, history, enabled) {
   if (!toggleButton || !historyList) {
     return;
   }
 
+  const rows = Array.isArray(history) ? history : historyList.__abDailyHistory || [];
+  historyList.__abDailyHistory = rows;
   historyList.classList.toggle("is-summary-only", enabled);
+  historyList.classList.toggle("is-summary-table", enabled);
   toggleButton.classList.toggle("is-active", enabled);
   toggleButton.textContent = enabled ? "顯示 A/B 明細" : "只看每日 A/B 摘要";
   toggleButton.setAttribute("aria-pressed", enabled ? "true" : "false");
-
-  if (enabled) {
-    historyList.querySelectorAll(".history-card.is-collapsed").forEach((card) => {
-      card.classList.remove("is-collapsed");
-      syncHistoryCardToggle(card, false);
-    });
-  }
+  historyList.innerHTML = enabled ? renderAbDailyHistorySummaryTable(rows) : renderAbHistoryCards(rows);
 }
 
-function wireAbHistorySummaryToggle(toggleButton, historyList) {
-  if (!toggleButton || !historyList || toggleButton.dataset.summaryToggleBound === "true") {
+function wireAbHistorySummaryToggle(toggleButton, historyList, history) {
+  if (!toggleButton || !historyList) {
+    return;
+  }
+
+  historyList.__abDailyHistory = Array.isArray(history) ? history : [];
+
+  if (toggleButton.dataset.summaryToggleBound === "true") {
     return;
   }
 
   toggleButton.addEventListener("click", () => {
     const enabled = !historyList.classList.contains("is-summary-only");
-    setHistorySummaryOnly(toggleButton, historyList, enabled);
+    setHistorySummaryOnly(toggleButton, historyList, historyList.__abDailyHistory, enabled);
   });
 
   toggleButton.dataset.summaryToggleBound = "true";
@@ -443,7 +601,9 @@ function renderAbDailyPage(payload) {
     historyList.innerHTML = '<div class="empty-state">目前還沒有歷史資料。</div>';
     if (historySummaryToggle) {
       historySummaryToggle.disabled = true;
-      setHistorySummaryOnly(historySummaryToggle, historyList, false);
+      historySummaryToggle.classList.remove("is-active");
+      historySummaryToggle.textContent = "只看每日 A/B 摘要";
+      historySummaryToggle.setAttribute("aria-pressed", "false");
     }
     return;
   }
@@ -474,35 +634,9 @@ function renderAbDailyPage(payload) {
 
   latestPools.innerHTML = renderPoolGrid(latest);
 
-  historyList.innerHTML = history
-    .map(
-      (entry, index) => `
-        <article class="history-card ${index === 0 ? "is-latest" : ""}">
-          <div class="history-head">
-            <div>
-              <p class="eyebrow">History</p>
-              <h3>${escapeHtml(entry.trade_date || "--")} ${escapeHtml(entry.phase_label || "")}</h3>
-            </div>
-            <div class="history-head-actions">
-              <div class="pill-row compact-pills">
-                ${buildAbPills(entry)
-                  .map((item) => `<span class="pill">${item}</span>`)
-                  .join("")}
-              </div>
-              ${renderHistoryToggleButton()}
-            </div>
-          </div>
-          <div class="history-body">
-            <div class="pool-grid">${renderPoolGrid(entry)}</div>
-          </div>
-        </article>
-      `
-    )
-    .join("");
-
   wireAbHistoryToggles(historyList);
-  wireAbHistorySummaryToggle(historySummaryToggle, historyList);
-  setHistorySummaryOnly(historySummaryToggle, historyList, false);
+  wireAbHistorySummaryToggle(historySummaryToggle, historyList, history);
+  setHistorySummaryOnly(historySummaryToggle, historyList, history, false);
 }
 
 function wireAutoTradingFrame(manifest) {
