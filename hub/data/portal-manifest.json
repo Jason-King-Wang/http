@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-30T16:00:01+08:00",
+  "generated_at": "2026-05-01T06:11:00+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-04-30",
@@ -8,27 +8,27 @@
     "source_scope": "public"
   },
   "ab_daily": {
-    "trade_date": "2026-04-30",
-    "phase_label": "收盤版",
-    "stock_count": 22,
+    "trade_date": "2026-05-01",
+    "phase_label": "開盤版",
+    "stock_count": 18,
     "a_count": 12,
     "b_count": 12,
-    "ab_count": 2,
-    "equal_lot_return_pct": -0.1752,
-    "equal_lot_pnl_twd": -99500.0,
-    "updated_at": "2026-04-30T13:30:05+08:00",
+    "ab_count": 6,
+    "equal_lot_return_pct": null,
+    "equal_lot_pnl_twd": null,
+    "updated_at": "2026-05-01T06:10:29+08:00",
     "candidate_pool_health_status": "web_failed_shioaji_primary",
     "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池"
   },
   "auto_trading": {
-    "trade_date": "2026-04-27",
+    "trade_date": "2026-04-30",
     "week_id": "2026-04-27_2026-04-30",
-    "mode": "live",
+    "mode": "dry_run",
     "provider_name": "ab_llm_preselect_json",
-    "today_status": "buying",
+    "today_status": "selling",
     "strategy_return": 6.758583400919168e-05,
     "current_equity": 29594.0,
-    "latest_daily_html": "2026-04-28.html",
-    "latest_weekly_html": "2026-04-20_2026-04-24.html"
+    "latest_daily_html": "2026-04-30.html",
+    "latest_weekly_html": "2026-04-27_2026-04-30.html"
   }
 }
