@@ -397,7 +397,7 @@ function setHistorySummaryOnly(toggleButton, historyList, enabled) {
 
   historyList.classList.toggle("is-summary-only", enabled);
   toggleButton.classList.toggle("is-active", enabled);
-  toggleButton.textContent = enabled ? "顯示完整明細" : "只看每日摘要";
+  toggleButton.textContent = enabled ? "顯示 A/B 明細" : "只看每日 A/B 摘要";
   toggleButton.setAttribute("aria-pressed", enabled ? "true" : "false");
 
   if (enabled) {
