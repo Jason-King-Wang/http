@@ -205,6 +205,8 @@ function renderRotationStatusBand(entry) {
   const details = [
     ["daily_trade_date", entry?.daily_trade_date || entry?.trade_date],
     ["daily_weekday", entry?.daily_weekday],
+    ["target_trade_date", entry?.source_target_trade_date || entry?.rotation_effective_trade_date],
+    ["target_weekday", entry?.rotation_effective_weekday],
     ["rotation_shadow_action", rotationActionLabel(action)],
     ["weekly_reference", weeklyRegime],
     ["week_monday", entry?.rotation_trade_week_monday],
