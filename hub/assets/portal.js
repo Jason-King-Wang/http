@@ -136,6 +136,108 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function asBool(value) {
+  if (value === true || value === 1) {
+    return true;
+  }
+  return String(value ?? "").trim().toLowerCase() === "true";
+}
+
+function rotationActionLabel(action) {
+  const normalized = String(action || "").trim();
+  const labels = {
+    no_action: "no action",
+    confirm_required: "confirm required",
+    hard_change_required: "hard change required",
+    anti_kill_suppressed: "anti-kill suppressed",
+    not_applied_non_monday: "非週一不套用",
+  };
+  return labels[normalized] || normalized || "--";
+}
+
+function rotationStatusClass(entry) {
+  const action = String(entry?.rotation_shadow_action || "").trim();
+  if (action === "hard_change_required") {
+    return "rotation-hard";
+  }
+  if (action === "confirm_required") {
+    return "rotation-confirm";
+  }
+  if (action === "not_applied_non_monday") {
+    return "rotation-reference";
+  }
+  if (action === "anti_kill_suppressed") {
+    return "rotation-suppressed";
+  }
+  return "rotation-neutral";
+}
+
+function rotationAppliedToDaily(entry) {
+  return asBool(entry?.rotation_applied_to_daily_preselect) || asBool(entry?.rotation_applied_to_daily_finalize);
+}
+
+function rotationCompactText(entry) {
+  const action = String(entry?.rotation_shadow_action || "").trim();
+  if (!action) {
+    return "";
+  }
+  if (action === "not_applied_non_monday") {
+    const weekly = entry?.weekly_rotation_regime_reference || "--";
+    return `輪動 weekly reference: ${weekly}`;
+  }
+  return `輪動 shadow: ${rotationActionLabel(action)}`;
+}
+
+function renderRotationStatusBand(entry) {
+  const action = String(entry?.rotation_shadow_action || "").trim();
+  const weeklyRegime = entry?.weekly_rotation_regime_reference || "";
+  if (!action && !weeklyRegime) {
+    return "";
+  }
+
+  const applied = rotationAppliedToDaily(entry);
+  const headline = applied ? "AB 快速輪動 shadow 已套用到今日 AB" : "AB 快速輪動本日未套用";
+  const note = entry?.rotation_mode_switch_note || (
+    applied
+      ? "今日為週一，ROT-PRE / ROT-FIN shadow 欄位已顯示在每日 AB。"
+      : "今日非週一；weekly rotation regime 只作參考，不切換今日 AB 預選 / 定版。"
+  );
+  const details = [
+    ["daily_trade_date", entry?.daily_trade_date || entry?.trade_date],
+    ["daily_weekday", entry?.daily_weekday],
+    ["rotation_shadow_action", rotationActionLabel(action)],
+    ["weekly_reference", weeklyRegime],
+    ["week_monday", entry?.rotation_trade_week_monday],
+    ["cutoff_date", entry?.rotation_cutoff_date],
+    ["execution_status", entry?.actual_execution_status],
+  ];
+
+  return `
+    <section class="rotation-status-band ${rotationStatusClass(entry)}">
+      <div class="rotation-status-head">
+        <div>
+          <p class="eyebrow">Rotation Shadow</p>
+          <h3>${escapeHtml(headline)}</h3>
+        </div>
+        <span class="rotation-status-badge">${escapeHtml(rotationActionLabel(action))}</span>
+      </div>
+      <p class="rotation-note">${escapeHtml(note)}</p>
+      <div class="rotation-status-grid">
+        ${details
+          .map(
+            ([label, value]) => `
+              <div class="rotation-status-item">
+                <span>${escapeHtml(label)}</span>
+                <strong>${escapeHtml(fallbackText(value))}</strong>
+              </div>
+            `
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderMetricCards(target, rows) {
   if (!target) {
     return;
@@ -326,7 +428,7 @@ function buildAbPills(entry) {
   const poolHealthLabel = entry?.candidate_pool_health_label || (
     entry?.external_scan_status === "completed" ? "選池正常" : entry?.external_scan_status
   );
-  return [
+  const pills = [
     `交易日 ${fallbackText(entry.trade_date)}`,
     `${fallbackText(entry.phase_label)}`,
     `選池 ${fallbackText(poolHealthLabel)}`,
@@ -334,6 +436,13 @@ function buildAbPills(entry) {
     `B 預選 ${fallbackText(entry.b_count)}`,
     `重疊 ${fallbackText(entry.ab_count)}`,
   ];
+  if (entry?.rotation_shadow_action) {
+    pills.push(`輪動 ${rotationActionLabel(entry.rotation_shadow_action)}`);
+  }
+  if (entry?.weekly_rotation_regime_reference) {
+    pills.push(`週參考 ${entry.weekly_rotation_regime_reference}`);
+  }
+  return pills;
 }
 
 function renderPoolGrid(entry) {
@@ -425,6 +534,7 @@ function renderAbDailyHistoryRow(entry, isLatest) {
         <div class="stacked">
           <strong>${escapeHtml(entry.trade_date || "--")}</strong>
           <span class="metric-sub">${escapeHtml(entry.phase_label || entry.phase || "--")}</span>
+          <span class="metric-sub">${escapeHtml(rotationCompactText(entry))}</span>
         </div>
       </td>
       <td>${renderAbStockList(aRows, "A")}</td>
@@ -537,6 +647,7 @@ function renderAbHistoryCards(history) {
             </div>
           </div>
           <div class="history-body">
+            ${renderRotationStatusBand(entry)}
             <div class="pool-grid">${renderPoolGrid(entry)}</div>
           </div>
         </article>
@@ -653,6 +764,8 @@ function renderAbDailyPage(payload) {
     `最後同步 ${fallbackText(payload.generated_at)}`,
     `最新交易日 ${fallbackText(latest.trade_date)}`,
     `${fallbackText(latest.phase_label)}`,
+    `輪動 ${rotationActionLabel(latest.rotation_shadow_action)}`,
+    `週一 ${fallbackText(latest.rotation_trade_week_monday)}`,
     sourceLabel,
   ]
     .map((item) => `<span class="pill">${item}</span>`)
@@ -665,7 +778,7 @@ function renderAbDailyPage(payload) {
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
 
-  latestPools.innerHTML = renderPoolGrid(latest);
+  latestPools.innerHTML = `${renderRotationStatusBand(latest)}${renderPoolGrid(latest)}`;
 
   wireAbHistoryToggles(historyList);
   wireAbHistorySummaryToggle(historySummaryToggle, historyList, history);
