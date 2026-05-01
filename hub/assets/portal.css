@@ -567,11 +567,99 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
 }
 
 .history-body {
-  display: block;
+  display: grid;
+  gap: 1rem;
 }
 
 .history-card.is-collapsed .history-body {
   display: none;
+}
+
+.rotation-status-band {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.8rem;
+  padding: 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(22, 33, 46, 0.1);
+}
+
+.rotation-status-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.rotation-status-head .eyebrow {
+  margin-bottom: 0.35rem;
+}
+
+.rotation-status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.2rem;
+  padding: 0.48rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(22, 33, 46, 0.07);
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.rotation-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.rotation-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 0.65rem;
+}
+
+.rotation-status-item {
+  display: grid;
+  gap: 0.22rem;
+  min-width: 0;
+  padding: 0.68rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid rgba(22, 33, 46, 0.07);
+}
+
+.rotation-status-item span {
+  color: var(--muted);
+  font-size: 0.76rem;
+}
+
+.rotation-status-item strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-size: 0.88rem;
+}
+
+.rotation-status-band.rotation-hard {
+  border-color: rgba(178, 58, 44, 0.32);
+  background: rgba(255, 242, 238, 0.76);
+}
+
+.rotation-status-band.rotation-confirm {
+  border-color: rgba(238, 108, 77, 0.36);
+  background: rgba(255, 247, 239, 0.8);
+}
+
+.rotation-status-band.rotation-reference {
+  border-color: rgba(29, 53, 87, 0.2);
+  background: rgba(247, 249, 252, 0.78);
+}
+
+.rotation-status-band.rotation-suppressed {
+  border-color: rgba(29, 53, 87, 0.28);
+  background: rgba(239, 244, 248, 0.78);
 }
 
 .history-stack.is-summary-table {
