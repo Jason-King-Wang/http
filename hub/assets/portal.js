@@ -146,13 +146,34 @@ function asBool(value) {
 function rotationActionLabel(action) {
   const normalized = String(action || "").trim();
   const labels = {
-    no_action: "no action",
-    confirm_required: "confirm required",
-    hard_change_required: "hard change required",
-    anti_kill_suppressed: "anti-kill suppressed",
-    not_applied_non_monday: "非週一不套用",
+    no_action: "照原 AB",
+    confirm_required: "不切，只提高確認門檻",
+    hard_change_required: "不要無腦照原 AB，人工風控確認",
+    clean_rotation_candidate: "可考慮切 receiver side，但仍需人工確認",
+    anti_kill_suppressed: "反殺週優先",
+    not_applied_non_monday: "今日不套用，週參考",
   };
   return labels[normalized] || normalized || "--";
+}
+
+function rotationConclusionText(entry) {
+  const explicit = String(entry?.rotation_daily_conclusion_text || "").trim();
+  if (explicit) {
+    return explicit;
+  }
+  const conclusion = String(entry?.rotation_daily_conclusion || "").trim();
+  if (conclusion) {
+    return rotationActionLabel(conclusion);
+  }
+  const regime = String(entry?.weekly_rotation_regime_reference || entry?.final_rotation_regime || "").trim();
+  const action = String(entry?.rotation_shadow_action || "").trim();
+  if (regime === "clean_a_to_b_rotation" || regime === "clean_b_to_a_rotation") {
+    return rotationActionLabel("clean_rotation_candidate");
+  }
+  if (regime === "anti_kill_week_suppressed" || action === "anti_kill_suppressed") {
+    return rotationActionLabel("anti_kill_suppressed");
+  }
+  return rotationActionLabel(action || "no_action");
 }
 
 function rotationStatusClass(entry) {
@@ -177,15 +198,16 @@ function rotationAppliedToDaily(entry) {
 }
 
 function rotationCompactText(entry) {
-  const action = String(entry?.rotation_shadow_action || "").trim();
-  if (!action) {
+  const conclusion = rotationConclusionText(entry);
+  if (!conclusion || conclusion === "--") {
     return "";
   }
+  const action = String(entry?.rotation_shadow_action || "").trim();
   if (action === "not_applied_non_monday") {
     const weekly = entry?.weekly_rotation_regime_reference || "--";
-    return `輪動 weekly reference: ${weekly}`;
+    return `輪動結論: ${conclusion}；週參考 ${weekly}`;
   }
-  return `輪動 shadow: ${rotationActionLabel(action)}`;
+  return `輪動結論: ${conclusion}`;
 }
 
 function renderRotationStatusBand(entry) {
@@ -197,6 +219,7 @@ function renderRotationStatusBand(entry) {
 
   const applied = rotationAppliedToDaily(entry);
   const headline = applied ? "AB 快速輪動 shadow 已套用到今日 AB" : "AB 快速輪動本日未套用";
+  const conclusion = rotationConclusionText(entry);
   const note = entry?.rotation_mode_switch_note || (
     applied
       ? "今日為週一，ROT-PRE / ROT-FIN shadow 欄位已顯示在每日 AB。"
@@ -207,6 +230,7 @@ function renderRotationStatusBand(entry) {
     ["daily_weekday", entry?.daily_weekday],
     ["target_trade_date", entry?.source_target_trade_date || entry?.rotation_effective_trade_date],
     ["target_weekday", entry?.rotation_effective_weekday],
+    ["rotation_daily_conclusion", conclusion],
     ["rotation_shadow_action", rotationActionLabel(action)],
     ["weekly_reference", weeklyRegime],
     ["week_monday", entry?.rotation_trade_week_monday],
@@ -223,6 +247,7 @@ function renderRotationStatusBand(entry) {
         </div>
         <span class="rotation-status-badge">${escapeHtml(rotationActionLabel(action))}</span>
       </div>
+      <p class="rotation-note"><strong>${escapeHtml(conclusion)}</strong></p>
       <p class="rotation-note">${escapeHtml(note)}</p>
       <div class="rotation-status-grid">
         ${details
@@ -439,7 +464,7 @@ function buildAbPills(entry) {
     `重疊 ${fallbackText(entry.ab_count)}`,
   ];
   if (entry?.rotation_shadow_action) {
-    pills.push(`輪動 ${rotationActionLabel(entry.rotation_shadow_action)}`);
+    pills.push(`輪動 ${rotationConclusionText(entry)}`);
   }
   if (entry?.weekly_rotation_regime_reference) {
     pills.push(`週參考 ${entry.weekly_rotation_regime_reference}`);
@@ -774,7 +799,7 @@ function renderAbDailyPage(payload) {
     .join("");
 
   latestSummary.textContent =
-    `${latest.trade_date} 的 ${latest.phase_label} 已更新。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
+    `${latest.trade_date} 的 ${latest.phase_label} 已更新。輪動結論：${rotationConclusionText(latest)}。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
 
   latestPills.innerHTML = buildAbPills(latest)
     .map((item) => `<span class="pill">${item}</span>`)
