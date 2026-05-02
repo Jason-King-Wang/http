@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02T16:00:01+08:00",
+  "generated_at": "2026-05-03T06:08:52+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-04-30",
@@ -8,10 +8,10 @@
     "source_scope": "public"
   },
   "ab_daily": {
-    "trade_date": "2026-05-01",
+    "trade_date": "2026-05-03",
     "source_target_trade_date": "2026-05-04",
-    "daily_trade_date": "2026-05-01",
-    "daily_weekday": "Friday",
+    "daily_trade_date": "2026-05-03",
+    "daily_weekday": "Sunday",
     "rotation_effective_trade_date": "2026-05-04",
     "rotation_effective_weekday": "Monday",
     "phase_label": "開盤版",
@@ -21,7 +21,7 @@
     "ab_count": 6,
     "equal_lot_return_pct": null,
     "equal_lot_pnl_twd": null,
-    "updated_at": "2026-05-02T07:24:29+08:00",
+    "updated_at": "2026-05-03T06:08:25+08:00",
     "candidate_pool_health_status": "web_failed_shioaji_primary",
     "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池",
     "rotation_trade_week_monday": "2026-05-04",
@@ -33,7 +33,7 @@
     "rotation_shadow_action": "hard_change_required",
     "weekly_rotation_regime_reference": "rotation_conflict",
     "weekly_rotation_shadow_action_reference": "hard_change_required",
-    "rotation_mode_switch_note": "今日為 2026-05-01，此 AB 預選目標交易日為週一 2026-05-04；AB 預選切換到 AB 快速輪動 shadow mode；本日需要套用 ROT-PRE / ROT-FIN shadow 建議，實際買法仍需人工確認。",
+    "rotation_mode_switch_note": "今日為 2026-05-03，此 AB 預選目標交易日為週一 2026-05-04；AB 預選切換到 AB 快速輪動 shadow mode；本日需要套用 ROT-PRE / ROT-FIN shadow 建議，實際買法仍需人工確認。",
     "hard_change_model_core": true,
     "hard_change_execution_policy": true,
     "actual_execution_units_change": "manual_required",
