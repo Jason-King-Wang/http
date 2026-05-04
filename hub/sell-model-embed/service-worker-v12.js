@@ -50,8 +50,12 @@ self.addEventListener("fetch", (event) => {
     || requestUrl.pathname.endsWith("/data/public-sell-model.json")
     || requestUrl.pathname.endsWith("/data/public-ab-daily.js")
     || requestUrl.pathname.endsWith("/data/public-ab-daily.json")
+    || requestUrl.pathname.endsWith("/hub/assets/portal.css")
+    || requestUrl.pathname.endsWith("/hub/assets/portal.js")
     || requestUrl.pathname.endsWith("/hub/data/portal-manifest.js")
     || requestUrl.pathname.endsWith("/hub/data/portal-manifest.json")
+    || requestUrl.pathname.endsWith("/hub/sell-model-embed/data/public-ab-daily.js")
+    || requestUrl.pathname.endsWith("/hub/sell-model-embed/data/public-ab-daily.json")
     || requestUrl.pathname.endsWith("/latest-date.txt")
   ) {
     event.respondWith(networkFirst(event.request));
