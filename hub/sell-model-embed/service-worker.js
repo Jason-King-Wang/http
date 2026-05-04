@@ -1,4 +1,4 @@
-const CACHE_NAME = "sell-model-dashboard-public-v13";
+const CACHE_NAME = "sell-model-dashboard-public-v14";
 const ASSETS = [
   "./",
   "./index.html",
