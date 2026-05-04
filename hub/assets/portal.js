@@ -807,9 +807,17 @@ function renderAbDailyPage(payload) {
 
   latestPools.innerHTML = `${renderRotationStatusBand(latest)}${renderPoolGrid(latest)}`;
 
-  wireAbHistoryToggles(historyList);
-  wireAbHistorySummaryToggle(historySummaryToggle, historyList, history);
-  setHistorySummaryOnly(historySummaryToggle, historyList, history, false);
+  historyList.innerHTML = '<div class="empty-state">正在整理每日 A/B 摘要...</div>';
+  const renderHistory = () => {
+    wireAbHistoryToggles(historyList);
+    wireAbHistorySummaryToggle(historySummaryToggle, historyList, history);
+    setHistorySummaryOnly(historySummaryToggle, historyList, history, true);
+  };
+  if (typeof window.requestAnimationFrame === "function") {
+    window.requestAnimationFrame(renderHistory);
+  } else {
+    renderHistory();
+  }
 }
 
 function wireAutoTradingFrame(manifest) {
