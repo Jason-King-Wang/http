@@ -34,6 +34,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   const requestUrl = new URL(event.request.url);
+  if (requestUrl.pathname.includes("/auto-quant/")) {
+    return;
+  }
+
   if (
     event.request.mode === "navigate"
     || requestUrl.pathname.endsWith("/")

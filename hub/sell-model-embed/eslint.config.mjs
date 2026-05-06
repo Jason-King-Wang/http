@@ -8,7 +8,14 @@ export default defineConfig([
   globalIgnores([
     ".next/**",
     "out/**",
+    "pages-root-check/**",
     "node_modules/**",
+    "hub/**",
+    "data/**",
+    "ai-database/**",
+    "resume/**",
+    "app.js",
+    "service-worker*.js",
     "next-env.d.ts"
   ])
 ]);
