@@ -107,7 +107,7 @@ function renderHero() {
 
   elements.heroMeta.innerHTML = tags.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
   elements.sourceSummary.textContent = [
-    "目前公開版以 sell model v2 為主，正式高點預測使用 P80，而不是保守中心值。",
+    "目前公開版以 sell model v3 quantile 為主，q50 是中位高點估計，q60 是賣價目標，q80 是樂觀上緣。",
     actions.headline || "收盤後若有回寫動作，頁面會整理成今天模型怎麼修。",
     "頁面會保留結果與結論，但不公開內部分流規則、關聯標記與判斷來源。",
     `最後公開整理 ${formatDateTime(summary.generated_at)}。`,
@@ -213,16 +213,10 @@ function buildDailyComparisonMetrics(latest, comparisonBase) {
       tone: buildDeltaTone(latest.under_rate, comparisonBase?.under_rate, { lowerIsBetter: true })
     });
     metrics.push({
-      label: "P80 Pinball",
-      value: formatPercentFromPoints(latest.p80_pinball_loss_mean),
-      note: buildDeltaNote(
-        latest.p80_pinball_loss_mean,
-        comparisonBase?.p80_pinball_loss_mean,
-        comparisonBase?.trade_date,
-        "percentPoints",
-        { lowerIsBetter: true }
-      ),
-      tone: buildDeltaTone(latest.p80_pinball_loss_mean, comparisonBase?.p80_pinball_loss_mean, { lowerIsBetter: true })
+      label: "Q80 覆蓋率",
+      value: formatPercent(latest.q80_coverage_rate),
+      note: buildDeltaNote(latest.q80_coverage_rate, comparisonBase?.q80_coverage_rate, comparisonBase?.trade_date, "percent"),
+      tone: buildDeltaTone(latest.q80_coverage_rate, comparisonBase?.q80_coverage_rate)
     });
   } else {
     metrics.push({
@@ -344,6 +338,42 @@ function hasNumericValue(value) {
   return Number.isFinite(toMaybeNumber(value));
 }
 
+function firstPresentValue(...values) {
+  for (const value of values) {
+    if (value === undefined || value === null) {
+      continue;
+    }
+    if (String(value).trim() !== "") {
+      return value;
+    }
+  }
+  return "";
+}
+
+function q50Pct(row) {
+  return firstPresentValue(row?.pred_peak_q50_pct, row?.pred_peak_p50_pct);
+}
+
+function q60Pct(row) {
+  return firstPresentValue(row?.pred_sell_target_pct, row?.pred_peak_q60_pct, row?.pred_remaining_upside_from_now);
+}
+
+function q80Pct(row) {
+  return firstPresentValue(row?.pred_peak_upper_pct, row?.pred_peak_q80_pct, row?.pred_peak_p80_pct);
+}
+
+function q90Pct(row) {
+  return firstPresentValue(row?.pred_peak_q90_pct, row?.pred_peak_p95_pct);
+}
+
+function sellTargetPrice(row) {
+  return firstPresentValue(row?.pred_sell_target_price, row?.pred_peak_q60_price, row?.pred_peak_price);
+}
+
+function upperBandPrice(row) {
+  return firstPresentValue(row?.pred_peak_upper_price, row?.pred_peak_q80_price);
+}
+
 function resolveStatusClass(status) {
   return status === "verified" ? "status-pass" : "status-neutral";
 }
@@ -463,8 +493,8 @@ function formatSignedChange(delta, format) {
 
 function renderPublicScope() {
   const items = [
-    "公開版現在以 v2 high-forecast model 為主，正式高點預測使用 P80。",
-    "頁面會展示 dynamic cap、forecast regime、reliability 與時段機率，不再只看單一保守高點。",
+    "公開版現在以 v3 quantile high-forecast model 為主，q60 是賣價目標，q80 只作樂觀上緣。",
+    "頁面會展示 q50 / q60 / q80 / q90、dynamic cap、forecast regime、reliability 與時段機率。",
     "每天收盤後若有 review actions，會整理成今天模型怎麼修，直接顯示主題、個股與時段修正。",
     "會保留結果與結論，但仍移除內部分流邏輯、關聯標記與規則來源。"
   ];
@@ -497,10 +527,12 @@ function renderSummaryCards() {
       comparison: buildSummaryMetricComparison(summary, history, "pred_peak_mape", "percentPoints", { lowerIsBetter: true })
     },
     {
-      label: "P80 Pinball",
-      value: formatPercentFromPoints(summary.p80_pinball_loss_mean),
-      note: "越低表示對極值高點的分位數預測越穩",
-      comparison: buildSummaryMetricComparison(summary, history, "p80_pinball_loss_mean", "percentPoints", { lowerIsBetter: true })
+      label: "Q80 覆蓋率",
+      value: formatPercent(summary.q80_coverage_rate),
+      note: hasNumericValue(summary.sell_target_hit_rate)
+        ? `q60 hit ${formatPercent(summary.sell_target_hit_rate)} / q50 MAPE ${formatPercentFromPoints(summary.q50_mape)}`
+        : "待驗證日會在收盤後補 q80 coverage",
+      comparison: buildSummaryMetricComparison(summary, history, "q80_coverage_rate", "percent")
     },
     {
       label: "時間命中率",
@@ -629,7 +661,7 @@ function renderStories(rows) {
     },
     {
       title: "分位數表現",
-      text: `P80 pinball ${formatPercentFromPoints(summary.p80_pinball_loss_mean)}，高點 MAPE ${formatPercentFromPoints(summary.pred_peak_mape)}，objective ${formatDecimal(summary.objective_loss, 2)}。`
+      text: `Q80 coverage ${formatPercent(summary.q80_coverage_rate)}，q50 MAPE ${formatPercentFromPoints(summary.q50_mape)}，objective ${formatDecimal(summary.objective_loss, 2)}。`
     },
     {
       title: strongestRow ? `最亮眼個股：${strongestRow.stock_name}` : "最亮眼個股",
@@ -772,7 +804,7 @@ function renderDailyComparisonTable() {
         <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "under_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "pred_peak_mape", "percentPoints", { lowerIsBetter: true })}</td>
-        <td>${renderHistoryMetricCell(entry, "p80_pinball_loss_mean", "percentPoints", { lowerIsBetter: true })}</td>
+        <td>${renderHistoryMetricCell(entry, "q80_coverage_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "pred_peak_time_bucket_hit_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "objective_loss", "decimal", { lowerIsBetter: true })}</td>
       </tr>
@@ -923,8 +955,8 @@ function renderTable(rows) {
         </td>
         <td>
           <div class="stacked">
-            <strong>${escapeHtml(formatNumber(row.pred_peak_price))}</strong>
-            <span class="metric-sub">P80 ${escapeHtml(formatPercentFromPoints(row.pred_peak_p80_pct || row.pred_remaining_upside_from_now))} / cap ${escapeHtml(formatPercentFromPoints(row.forecast_cap_pct))} / ${escapeHtml(row.pred_peak_time_bucket || "未提供")}</span>
+            <strong>${escapeHtml(formatNumber(sellTargetPrice(row)))}</strong>
+            <span class="metric-sub">q60 ${escapeHtml(formatPercentFromPoints(q60Pct(row)))} / q80 ${escapeHtml(formatPercentFromPoints(q80Pct(row)))} / ${escapeHtml(row.pred_peak_time_bucket || "未提供")}</span>
           </div>
         </td>
         <td>
@@ -970,9 +1002,12 @@ function renderDetailPanel(filteredRows, rows) {
   const bucketProbabilityMarkup = renderBucketProbabilityMarkup(selectedRow);
   const forecastComponentMarkup = renderForecastComponentMarkup(selectedRow);
   const reliabilityValue = selectedRow.forecast_reliability || selectedRow.pred_confidence;
-  const p50Value = selectedRow.pred_peak_p50_pct;
-  const p80Value = selectedRow.pred_peak_p80_pct || selectedRow.pred_remaining_upside_from_now;
-  const p95Value = selectedRow.pred_peak_p95_pct;
+  const q50Value = q50Pct(selectedRow);
+  const q60Value = q60Pct(selectedRow);
+  const q80Value = q80Pct(selectedRow);
+  const q90Value = q90Pct(selectedRow);
+  const targetPrice = sellTargetPrice(selectedRow);
+  const upperPrice = upperBandPrice(selectedRow);
 
   elements.detailPanel.innerHTML = `
     <div class="detail-head">
@@ -998,12 +1033,12 @@ function renderDetailPanel(filteredRows, rows) {
       </div>
       <div class="detail-metric">
         <small>正式高點預測</small>
-        <strong>${escapeHtml(formatNumber(selectedRow.pred_peak_price))}</strong>
-        <span class="detail-metric-note">P80 upside ${escapeHtml(formatPercentFromPoints(p80Value))}</span>
+        <strong>${escapeHtml(formatNumber(targetPrice))}</strong>
+        <span class="detail-metric-note">q60 sell target ${escapeHtml(formatPercentFromPoints(q60Value))}</span>
       </div>
       <div class="detail-metric">
-        <small>P50 / P80 / P95</small>
-        <strong>${escapeHtml(formatPercentFromPoints(p50Value))} / ${escapeHtml(formatPercentFromPoints(p80Value))} / ${escapeHtml(formatPercentFromPoints(p95Value))}</strong>
+        <small>q50 / q60 / q80 / q90</small>
+        <strong>${escapeHtml(formatPercentFromPoints(q50Value))} / ${escapeHtml(formatPercentFromPoints(q60Value))} / ${escapeHtml(formatPercentFromPoints(q80Value))} / ${escapeHtml(formatPercentFromPoints(q90Value))}</strong>
         <span class="detail-metric-note">分位數高點預測</span>
       </div>
       <div class="detail-metric">
@@ -1022,9 +1057,9 @@ function renderDetailPanel(filteredRows, rows) {
         <span class="detail-metric-note">${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}</span>
       </div>
       <div class="detail-metric">
-        <small>階段賣點</small>
-        <strong>${escapeHtml(formatNumber(selectedRow.stage_1_price))} / ${escapeHtml(formatNumber(selectedRow.stage_2_price))}</strong>
-        <span class="detail-metric-note">legacy execution reference</span>
+        <small>q80 樂觀上緣</small>
+        <strong>${escapeHtml(formatNumber(upperPrice))}</strong>
+        <span class="detail-metric-note">${escapeHtml(formatPercentFromPoints(q80Value))}</span>
       </div>
       <div class="detail-metric">
         <small>高點誤差</small>
@@ -1049,7 +1084,7 @@ function renderDetailPanel(filteredRows, rows) {
       </section>
     </div>
     <div class="detail-copy">
-      <p>正式預測使用 P80。這檔預測高點 ${escapeHtml(formatNumber(selectedRow.pred_peak_price))}，實際高點 ${escapeHtml(formatNumber(selectedRow.actual_high))}，預測時段 ${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}，實際時段 ${escapeHtml(selectedRow.actual_high_time_bucket || "未提供")}。</p>
+      <p>正式預測使用 q60 賣價目標。這檔 q60 目標 ${escapeHtml(formatNumber(targetPrice))}，q80 樂觀上緣 ${escapeHtml(formatNumber(upperPrice))}，實際高點 ${escapeHtml(formatNumber(selectedRow.actual_high))}，預測時段 ${escapeHtml(selectedRow.pred_peak_time_bucket || "未提供")}，實際時段 ${escapeHtml(selectedRow.actual_high_time_bucket || "未提供")}。</p>
       <p>狀態：${escapeHtml(buildOutcomeSummary(selectedRow))}，forecast regime ${escapeHtml(formatForecastRegime(selectedRow.forecast_regime))}，reliability ${escapeHtml(buildReliabilityLabel(reliabilityValue))}。</p>
       <p>模型評語：${escapeHtml(selectedRow.review_note || "目前沒有額外備註。")}</p>
     </div>

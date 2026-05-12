@@ -1,9 +1,9 @@
-const CACHE_NAME = "sell-model-dashboard-public-v14";
+const CACHE_NAME = "sell-model-dashboard-public-v15";
 const ASSETS = [
   "./",
   "./index.html",
   "./styles.css",
-  "./app.js?v=20260430-restore-daily-accuracy",
+  "./app.js?v=20260512-v3-quantile-ui",
   "./manifest.webmanifest",
   "./favicon.svg"
 ];
