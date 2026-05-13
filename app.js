@@ -88,13 +88,24 @@ function renderDashboard() {
   renderDetailPanel(filteredRows, rows);
 }
 
+function isSellModelSourceMissing(value) {
+  return value?.source_missing === true || String(value?.source_status || value?.status || "").trim() === "missing_source";
+}
+
+function sellModelSourceMissingText(summary) {
+  return summary?.source_missing_message
+    || `${summary?.target_trade_date || "最新交易日"} 的賣價模型公開輸入尚未產生；公開頁先顯示缺口，不沿用舊資料。`;
+}
+
 function renderHero() {
   const summary = state.data.summary || {};
   const actions = state.data.actions || {};
   const rows = state.data.stocks || [];
   const dailyHistory = getDailyHistory();
+  const sourceMissing = isSellModelSourceMissing(summary);
 
   const tags = [
+    sourceMissing ? "賣價模型來源缺失" : null,
     `最新資料日 ${summary.target_trade_date || "未提供"}`,
     `${formatInteger(summary.verified_stock_count)} 檔驗證樣本`,
     `${formatInteger(rows.length)} 檔公開個股`,
@@ -106,6 +117,10 @@ function renderHero() {
   ].filter(Boolean);
 
   elements.heroMeta.innerHTML = tags.map((text) => `<span class="pill">${escapeHtml(text)}</span>`).join("");
+  if (sourceMissing) {
+    elements.sourceSummary.textContent = sellModelSourceMissingText(summary);
+    return;
+  }
   elements.sourceSummary.textContent = [
     "目前公開版以 sell model v3 quantile 為主，q50 是中位高點估計，q60 是賣價目標，q80 是樂觀上緣。",
     actions.headline || "收盤後若有回寫動作，頁面會整理成今天模型怎麼修。",
