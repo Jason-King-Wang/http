@@ -452,6 +452,15 @@ function renderPoolTable(title, pool, rows, options = {}) {
 }
 
 function buildAbPills(entry) {
+  if (isAbSourceMissing(entry)) {
+    return [
+      `交易日 ${fallbackText(entry.trade_date)}`,
+      `${fallbackText(entry.phase_label)}`,
+      "AB 預選來源缺失",
+      "未沿用舊資料",
+    ];
+  }
+
   const poolHealthLabel = entry?.candidate_pool_health_label || (
     entry?.external_scan_status === "completed" ? "選池正常" : entry?.external_scan_status
   );
@@ -473,6 +482,10 @@ function buildAbPills(entry) {
 }
 
 function renderPoolGrid(entry) {
+  if (isAbSourceMissing(entry)) {
+    return renderSourceMissingPanel(entry);
+  }
+
   const aRows = rowsForPool(entry, "a");
   const bRows = rowsForPool(entry, "b");
   return [
@@ -483,6 +496,28 @@ function renderPoolGrid(entry) {
 
 function getAbRows(entry) {
   return Array.isArray(entry?.rows) ? entry.rows : [];
+}
+
+function isAbSourceMissing(entry) {
+  return entry?.source_missing === true || String(entry?.source_status || "").trim() === "missing_preselect";
+}
+
+function sourceMissingText(entry) {
+  return entry?.source_missing_message || `${fallbackText(entry?.trade_date)} 的 AB LLM 預選來源尚未產生；公開頁先顯示缺口，不沿用舊資料。`;
+}
+
+function renderSourceMissingPanel(entry) {
+  const expectedPath = String(entry?.source_missing_expected_json || "").trim();
+  return `
+    <article class="source-missing-card">
+      <div>
+        <p class="eyebrow">Source Missing</p>
+        <h3>${escapeHtml(entry?.trade_date || "--")} AB 預選來源缺失</h3>
+        <p>${escapeHtml(sourceMissingText(entry))}</p>
+      </div>
+      ${expectedPath ? `<code>${escapeHtml(expectedPath)}</code>` : ""}
+    </article>
+  `;
 }
 
 function renderAbStockText(rows) {
@@ -551,6 +586,25 @@ function buildAbAllSummary(entry, baseline = "open") {
 }
 
 function renderAbDailyHistoryRow(entry, isLatest) {
+  if (isAbSourceMissing(entry)) {
+    return `
+      <tr class="${isLatest ? "is-latest" : ""} source-missing-row">
+        <td>
+          <div class="stacked">
+            <strong>${escapeHtml(entry.trade_date || "--")}</strong>
+            <span class="metric-sub">${escapeHtml(entry.phase_label || "來源缺失")}</span>
+          </div>
+        </td>
+        <td colspan="8">
+          <div class="source-missing-inline">
+            <strong>AB 預選來源缺失</strong>
+            <span>${escapeHtml(sourceMissingText(entry))}</span>
+          </div>
+        </td>
+      </tr>
+    `;
+  }
+
   const aRows = rowsForPool(entry, "a");
   const bRows = rowsForPool(entry, "b");
   const nonTradingSelectionDay = entry?.non_trading_selection_day === true;
@@ -610,7 +664,7 @@ function renderAbDailyHistorySummaryTable(history) {
 }
 
 function hasVisibleAbRows(entry) {
-  return Array.isArray(entry?.rows) && entry.rows.length > 0;
+  return isAbSourceMissing(entry) || (Array.isArray(entry?.rows) && entry.rows.length > 0);
 }
 
 function renderHistoryToggleButton() {
@@ -656,8 +710,11 @@ function wireAbHistoryToggles(historyList) {
 
 function renderAbHistoryCards(history) {
   return history
-    .map(
-      (entry, index) => `
+    .map((entry, index) => {
+      const body = isAbSourceMissing(entry)
+        ? renderSourceMissingPanel(entry)
+        : `${renderRotationStatusBand(entry)}<div class="pool-grid">${renderPoolGrid(entry)}</div>`;
+      return `
         <article class="history-card ${index === 0 ? "is-latest" : ""}">
           <div class="history-head">
             <div>
@@ -674,12 +731,11 @@ function renderAbHistoryCards(history) {
             </div>
           </div>
           <div class="history-body">
-            ${renderRotationStatusBand(entry)}
-            <div class="pool-grid">${renderPoolGrid(entry)}</div>
+            ${body}
           </div>
         </article>
-      `
-    )
+      `;
+    })
     .join("");
 }
 
@@ -742,6 +798,7 @@ function wireLatestToggle(toggleButton, latestShell) {
 function renderAbDailyPage(payload) {
   const history = (Array.isArray(payload?.history) ? payload.history : []).filter((entry) => hasVisibleAbRows(entry));
   const latest = hasVisibleAbRows(payload?.latest) ? payload.latest : history[0] || {};
+  const latestSourceMissing = isAbSourceMissing(latest);
   const latestShell = document.querySelector(".ab-latest-shell");
   const latestToggle = document.querySelector("#ab-latest-toggle");
   const latestPools = document.querySelector("#ab-latest-pools");
@@ -783,7 +840,9 @@ function renderAbDailyPage(payload) {
     syncLatestToggle(latestToggle, latestShell, latestShell?.classList.contains("is-collapsed"));
   }
 
-  const sourceLabel = latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
+  const sourceLabel = latestSourceMissing
+    ? "來源缺失"
+    : latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
     ? "LLM 規則預選"
     : "LLM 預選";
 
@@ -791,21 +850,25 @@ function renderAbDailyPage(payload) {
     `最後同步 ${fallbackText(payload.generated_at)}`,
     `最新交易日 ${fallbackText(latest.trade_date)}`,
     `${fallbackText(latest.phase_label)}`,
-    `輪動 ${rotationActionLabel(latest.rotation_shadow_action)}`,
-    `週一 ${fallbackText(latest.rotation_trade_week_monday)}`,
+    latestSourceMissing ? "AB 預選來源缺失" : `輪動 ${rotationActionLabel(latest.rotation_shadow_action)}`,
+    latestSourceMissing ? "" : `週一 ${fallbackText(latest.rotation_trade_week_monday)}`,
     sourceLabel,
   ]
+    .filter(Boolean)
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
 
-  latestSummary.textContent =
-    `${latest.trade_date} 的 ${latest.phase_label} 已更新。輪動結論：${rotationConclusionText(latest)}。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
+  latestSummary.textContent = latestSourceMissing
+    ? sourceMissingText(latest)
+    : `${latest.trade_date} 的 ${latest.phase_label} 已更新。輪動結論：${rotationConclusionText(latest)}。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
 
   latestPills.innerHTML = buildAbPills(latest)
     .map((item) => `<span class="pill">${item}</span>`)
     .join("");
 
-  latestPools.innerHTML = `${renderRotationStatusBand(latest)}${renderPoolGrid(latest)}`;
+  latestPools.innerHTML = latestSourceMissing
+    ? renderSourceMissingPanel(latest)
+    : `${renderRotationStatusBand(latest)}${renderPoolGrid(latest)}`;
 
   historyList.innerHTML = '<div class="empty-state">正在整理每日 A/B 摘要...</div>';
   const renderHistory = () => {

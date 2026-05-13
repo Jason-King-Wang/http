@@ -494,6 +494,51 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   border-color: rgba(12, 143, 122, 0.2);
 }
 
+.source-missing-card {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 247, 239, 0.82);
+  border: 1px solid rgba(238, 108, 77, 0.28);
+}
+
+.source-missing-card h3,
+.source-missing-card p {
+  margin: 0;
+}
+
+.source-missing-card p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.source-missing-card code {
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.72rem 0.8rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.source-missing-inline {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.source-missing-inline span {
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.source-missing-row td {
+  background: rgba(255, 247, 239, 0.72);
+}
+
 .pool-head {
   display: grid;
   gap: 0.75rem;
