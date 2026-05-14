@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-05-14T23:50:52+08:00",
+  "generated_at": "2026-05-15T00:16:07+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-05-14",
-    "verified_stock_count": 0,
+    "verified_stock_count": null,
     "peak_hit_rate": null,
     "source_scope": "public"
   },
