@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Sell Model 與永豐自動交易的統一入口網站，可在同一個地方切換兩套系統。"
+      content="Sell Model、永豐自動交易與短線雷達資料工程的統一入口網站。"
     />
     <title>交易儀表板總入口</title>
     <link rel="stylesheet" href="./assets/portal.css?v=20260504-ab-load-fix" />
@@ -20,13 +20,14 @@
         <header class="topbar">
           <div class="brand">
             <strong>交易儀表板總入口</strong>
-            <span>Sell Model 與永豐自動交易的統一入口</span>
+            <span>Sell Model、永豐自動交易與短線雷達的統一入口</span>
           </div>
           <nav class="nav-links" aria-label="主站導覽">
             <a class="active" href="./index.html">首頁</a>
             <a href="./ab-daily/index.html">每日 AB</a>
             <a href="./sell-model/index.html">賣價模型</a>
             <a href="./auto-trading/index.html">自動交易</a>
+            <a href="./short-term-radar/index.html">短線雷達</a>
           </nav>
         </header>
 
@@ -35,8 +36,8 @@
             <p class="eyebrow">統一入口</p>
             <h1>一個入口，切換兩套系統。</h1>
             <p>
-              這個入口把 Sell Model 與 SinoPac Auto Trading 整合在一起。你可以從同一個地方切換兩邊，
-              首頁也會同步顯示兩套系統的最新摘要資訊。
+              這個入口把 Sell Model、SinoPac Auto Trading 與短線雷達資料工程整合在一起。你可以從同一個地方切換各頁，
+              首頁也會同步顯示主要系統的最新摘要資訊。
             </p>
             <div class="pill-row" id="portal-meta"></div>
           </div>
@@ -49,6 +50,7 @@
               <a class="action-link" href="./ab-daily/index.html">打開每日 AB</a>
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
+              <a class="action-link" href="./short-term-radar/index.html">打開短線雷達</a>
             </div>
           </aside>
         </section>
@@ -96,15 +98,39 @@
                 <a class="action-link" href="./auto-trading/index.html">查看頁面</a>
               </div>
             </article>
+
+            <article class="card site-card">
+              <div>
+                <p class="eyebrow">站台 D</p>
+                <h2>短線雷達資料工程</h2>
+              </div>
+              <p class="section-copy">
+                顯示 2024 起資料補洞、公司官網批量、財報回補與 coverage 缺口的公開進度頁。
+              </p>
+              <div class="metric-grid">
+                <div class="metric">
+                  <span>目前總進度</span>
+                  <strong>50.5%</strong>
+                </div>
+                <div class="metric">
+                  <span>資料格</span>
+                  <strong>23</strong>
+                </div>
+              </div>
+              <div class="actions">
+                <a class="action-link" href="./short-term-radar/index.html">查看頁面</a>
+              </div>
+            </article>
           </div>
 
           <section class="card">
             <p class="eyebrow">整合方式</p>
             <h2>這個入口站怎麼運作</h2>
             <ul class="list">
-              <li>首頁會讀取共用 manifest，顯示兩套系統的最新摘要。</li>
+              <li>首頁會讀取共用 manifest，顯示主要系統的最新摘要。</li>
               <li>每日 AB 選股模型輸出獨立成一頁，最新一天放最上面，下面保留歷史。</li>
               <li>賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。</li>
+              <li>短線雷達頁會讀取公開版 coverage/status 檔；重新發布後會同步最新補資料進度。</li>
               <li>同步腳本會重建嵌入內容，之後由同一條公開發布鏈把入口站一起推上去。</li>
             </ul>
           </section>

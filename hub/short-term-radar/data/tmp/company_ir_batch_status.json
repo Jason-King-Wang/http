@@ -1,0 +1,87 @@
+{
+  "command": "company_ir_batch",
+  "state": "succeeded",
+  "started_at": "2026-05-16T12:44:51+00:00",
+  "updated_at": "2026-05-16T12:48:36+00:00",
+  "config": "configs\\short_term_radar\\local.yaml",
+  "market": "TWSE",
+  "month": "202604",
+  "offset": 36,
+  "limit": 20,
+  "batch_size": 10,
+  "max_batches": 2,
+  "targets": [
+    "monthly_revenue",
+    "financial_report",
+    "corporate_actions",
+    "material_events",
+    "insider_holding"
+  ],
+  "selected_rows": 20,
+  "planned_batches": 2,
+  "quality_only": true,
+  "batches": [
+    {
+      "batch": 1,
+      "offset": 36,
+      "symbols": [
+        "1313",
+        "1314",
+        "1315",
+        "1316",
+        "1319",
+        "1321",
+        "1323",
+        "1324",
+        "1325",
+        "1326"
+      ],
+      "discovery_output": "short_term_radar_mvp/data\\quality\\company_ir_discovery_twse_offset36_limit10.csv",
+      "discovery_rows": 74,
+      "discovery_kind_counts": {
+        "homepage": 4,
+        "material_events": 11,
+        "monthly_revenue": 4,
+        "insider_holding": 10,
+        "investor_relations": 35,
+        "corporate_actions": 5,
+        "financial_report": 5
+      },
+      "verification_output": "short_term_radar_mvp/data\\quality\\company_ir_monthly_revenue_verify_202604_twse_offset36_limit10.csv",
+      "verification_exit": 0,
+      "finished_at": "2026-05-16T12:46:13+00:00"
+    },
+    {
+      "batch": 2,
+      "offset": 46,
+      "symbols": [
+        "1337",
+        "1338",
+        "1339",
+        "1340",
+        "1341",
+        "1342",
+        "1402",
+        "1409",
+        "1410",
+        "1413"
+      ],
+      "discovery_output": "short_term_radar_mvp/data\\quality\\company_ir_discovery_twse_offset46_limit10.csv",
+      "discovery_rows": 85,
+      "discovery_kind_counts": {
+        "monthly_revenue": 12,
+        "material_events": 21,
+        "investor_relations": 29,
+        "financial_report": 4,
+        "corporate_actions": 4,
+        "insider_holding": 12,
+        "homepage": 3
+      },
+      "verification_output": "short_term_radar_mvp/data\\quality\\company_ir_monthly_revenue_verify_202604_twse_offset46_limit10.csv",
+      "verification_exit": 0,
+      "finished_at": "2026-05-16T12:48:36+00:00"
+    }
+  ],
+  "current_batch": 2,
+  "finished_at": "2026-05-16T12:48:36+00:00"
+}

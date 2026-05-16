@@ -1,0 +1,1273 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>短線雷達完整流程圖</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6fbff;
+      --paper: #ffffff;
+      --ink: #122033;
+      --muted: #5a6b80;
+      --line: #d8e6f4;
+      --blue: #1769e0;
+      --blue-2: #0f4fae;
+      --blue-soft: #e8f2ff;
+      --green: #0e8f65;
+      --green-soft: #e8f8f1;
+      --amber: #a96b00;
+      --amber-soft: #fff4dc;
+      --red: #b42318;
+      --red-soft: #fff0ee;
+      --gray-soft: #f1f5f9;
+      --shadow: 0 16px 40px rgba(21, 68, 120, 0.09);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Microsoft JhengHei", "Noto Sans TC", system-ui, sans-serif;
+      background: linear-gradient(180deg, #eef7ff 0%, var(--bg) 320px);
+      color: var(--ink);
+      line-height: 1.65;
+    }
+    header {
+      padding: 46px 28px 32px;
+      border-bottom: 1px solid var(--line);
+      background: radial-gradient(circle at 16% 0%, rgba(23, 105, 224, 0.14), transparent 32%), #ffffffdd;
+      backdrop-filter: blur(8px);
+    }
+    main {
+      width: min(1220px, calc(100% - 32px));
+      margin: 28px auto 68px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(30px, 5vw, 54px);
+      letter-spacing: 0;
+      line-height: 1.12;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 24px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p { margin: 0 0 12px; }
+    code {
+      background: #eef4fb;
+      border: 1px solid #d9e6f5;
+      border-radius: 6px;
+      padding: 1px 6px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.93em;
+    }
+    pre {
+      margin: 12px 0 0;
+      padding: 14px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #0f172a;
+      color: #e5eefb;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+    th, td {
+      padding: 11px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th {
+      background: #f0f6fd;
+      color: #0d3d7e;
+      font-weight: 800;
+    }
+    tr:last-child td { border-bottom: 0; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .subtitle {
+      max-width: 900px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .span-3 { grid-column: span 3; }
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    .metric {
+      font-size: 34px;
+      line-height: 1;
+      color: var(--blue);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 13px; }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: #0e4fae;
+      font-weight: 800;
+      font-size: 13px;
+      margin: 2px 4px 2px 0;
+      white-space: nowrap;
+    }
+    .pill.green { background: var(--green-soft); color: var(--green); }
+    .pill.amber { background: var(--amber-soft); color: var(--amber); }
+    .pill.red { background: var(--red-soft); color: var(--red); }
+    .pill.gray { background: var(--gray-soft); color: #475569; }
+    .callout {
+      border-left: 5px solid var(--blue);
+      background: #f4f9ff;
+      padding: 14px 16px;
+      border-radius: 10px;
+    }
+    .callout.current {
+      border-left-color: var(--amber);
+      background: #fff9ea;
+    }
+    .callout.ok {
+      border-left-color: var(--green);
+      background: #f2fbf7;
+    }
+    .callout.danger {
+      border-left-color: var(--red);
+      background: #fff7f6;
+    }
+    .progress-shell {
+      height: 14px;
+      background: #e9f1fa;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 12px 0 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 67%;
+      background: linear-gradient(90deg, var(--blue), #37a3ff);
+    }
+    .live-panel {
+      overflow: hidden;
+    }
+    .live-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+    .live-header .eyebrow {
+      margin-bottom: 8px;
+    }
+    .live-refresh {
+      min-width: 210px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdff;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      margin-right: 7px;
+      background: #94a3b8;
+      box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.16);
+    }
+    .status-dot.ok {
+      background: var(--green);
+      box-shadow: 0 0 0 4px rgba(14, 143, 101, 0.14);
+    }
+    .status-dot.running {
+      background: var(--blue);
+      box-shadow: 0 0 0 4px rgba(23, 105, 224, 0.14);
+    }
+    .status-dot.warn {
+      background: var(--amber);
+      box-shadow: 0 0 0 4px rgba(169, 107, 0, 0.14);
+    }
+    .status-dot.error {
+      background: var(--red);
+      box-shadow: 0 0 0 4px rgba(180, 35, 24, 0.14);
+    }
+    .live-bar {
+      height: 18px;
+      margin: 10px 0 12px;
+    }
+    .live-bar .progress-fill {
+      width: 0%;
+      transition: width 0.35s ease;
+    }
+    .live-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 16px;
+    }
+    .live-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .live-kpi {
+      min-height: 112px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdff;
+    }
+    .live-kpi .label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .live-kpi .value {
+      color: var(--ink);
+      font-size: 26px;
+      line-height: 1.1;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+    }
+    .live-kpi .hint {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .live-kpi .value.good {
+      color: var(--green);
+    }
+    .live-kpi .value.warn {
+      color: var(--amber);
+    }
+    .live-kpi .value.bad {
+      color: var(--red);
+    }
+    .live-jobs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin: 10px 0 18px;
+    }
+    .live-job {
+      padding: 13px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fbfdff;
+    }
+    .live-job-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .live-job-title {
+      display: inline-flex;
+      align-items: center;
+      color: var(--blue-2);
+      font-weight: 900;
+    }
+    .live-table-wrap {
+      overflow-x: auto;
+      border-radius: 10px;
+    }
+    .mini-progress {
+      width: 128px;
+      height: 9px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #e9f1fa;
+      border: 1px solid var(--line);
+      margin-top: 5px;
+    }
+    .mini-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--blue), #37a3ff);
+    }
+    .table-note {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .final-flow {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(140px, 1fr));
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .flow-node {
+      min-height: 126px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fbfdff;
+      position: relative;
+    }
+    .flow-node::after {
+      content: ">";
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--blue);
+      font-weight: 900;
+      z-index: 2;
+    }
+    .flow-node:last-child::after { content: ""; }
+    .flow-node strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue-2);
+    }
+    .stage-board {
+      display: grid;
+      grid-template-columns: repeat(10, minmax(120px, 1fr));
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .stage {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 150px;
+      background: #fff;
+    }
+    .stage.done { border-color: #b7ebd3; background: #f4fcf8; }
+    .stage.current { border: 2px solid #f2b84b; background: #fff9ec; box-shadow: 0 10px 24px rgba(169, 107, 0, 0.12); }
+    .stage.pending { background: #f8fafc; }
+    .stage-number {
+      width: 28px;
+      height: 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      color: var(--blue-2);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+    .stage.done .stage-number { background: var(--green-soft); color: var(--green); }
+    .stage.current .stage-number { background: var(--amber-soft); color: var(--amber); }
+    .stage.pending .stage-number { background: #e2e8f0; color: #64748b; }
+    .pipe-list {
+      display: grid;
+      gap: 12px;
+    }
+    .pipe-row {
+      display: grid;
+      grid-template-columns: 180px 1fr 170px;
+      gap: 12px;
+      align-items: stretch;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fbfdff;
+    }
+    .pipe-flow {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pipe-flow span {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 8px;
+      border-radius: 8px;
+      background: #eef4fb;
+      border: 1px solid #d9e6f5;
+      color: #173b66;
+      font-weight: 700;
+    }
+    .list {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .list li { margin: 6px 0; }
+    .two-col {
+      columns: 2;
+      column-gap: 28px;
+    }
+    footer {
+      width: min(1220px, calc(100% - 32px));
+      margin: 0 auto 36px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    @media (max-width: 980px) {
+      .span-3, .span-4, .span-5, .span-6, .span-7, .span-8 { grid-column: span 12; }
+      .pipe-row { grid-template-columns: 1fr; }
+      .two-col { columns: 1; }
+      .live-header { flex-direction: column; }
+      .live-refresh { width: 100%; }
+      .live-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .live-jobs { grid-template-columns: 1fr; }
+      header { padding: 32px 18px 24px; }
+    }
+    @media (max-width: 640px) {
+      .live-kpis { grid-template-columns: 1fr; }
+      .live-kpi .value { font-size: 23px; }
+      th, td { padding: 9px 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="eyebrow">Short Term Radar MVP · 完整流程圖</div>
+    <h1>最後要長成這樣，目前做到這裡</h1>
+    <p class="subtitle">
+      這頁用流程板方式呈現整個短線雷達：終局流程、目前階段、各資料格怎麼進來、程式各自負責什麼、背景自動化如何更新。最新數字仍以本機 parquet 與 status JSON 為準。
+    </p>
+  </header>
+
+  <main>
+    <section class="grid">
+      <article class="card span-7">
+        <h2>一眼看懂目前位置</h2>
+        <div class="callout current">
+          <h3>目前階段：Stage 6 / 10，2024 起 TPEX 核心日資料已補齊，剩 TWSE 來源阻擋與 P1 歷史來源</h3>
+          <p>
+            簡版價量掃描、scan/backtest/report、官方 collector、normalizer、quality gate 都已可跑。這一輪已把
+            <code>prices_daily</code> 正式回填到 processed，並把 TPEX 三大法人、融資融券、注意/處置狀態補到
+            <code>2026-05-12</code>。主要卡點是 TWSE 官方端仍回 <code>HTTP 307</code>，以及估值、董監持股仍偏最新端或缺歷史日期來源。
+          </p>
+        </div>
+        <div class="progress-shell"><div class="progress-fill"></div></div>
+        <p class="muted small">更新時間：2026-05-16 18:32。下一個有效動作是等 TWSE 307 cooldown 後再低頻補 TWSE，並確認估值/董監持股是否有可靠歷史來源。</p>
+      </article>
+      <article class="card span-5">
+        <h2>目前快照</h2>
+        <p><span class="pill green">測試 227 passed</span><span class="pill green">scan 可跑</span><span class="pill green">TPEX P0 2024+ 完整</span><span class="pill amber">TWSE 307</span></p>
+        <table>
+          <tbody>
+            <tr><th>已補到</th><td>2024 起 TPEX P0 日資料覆蓋到 <code>2026-05-12</code>，以 coverage report 為準</td></tr>
+            <tr><th>月營收</th><td>TWSE/TPEX <code>64/64</code>，processed <code>121,005</code> rows</td></tr>
+            <tr><th>價格日線</th><td>processed <code>1,064,079</code> rows；2024-01-02..2026-05-12 TWSE/TPEX coverage 100%</td></tr>
+            <tr><th>法人籌碼</th><td>TPEX 2024+ coverage 100%；TWSE 仍受 <code>HTTP 307</code> 阻擋；processed <code>1,703,536</code> rows</td></tr>
+            <tr><th>融資融券</th><td>TPEX 2024+ coverage 100%；TWSE 仍受 <code>HTTP 307</code> 阻擋；processed <code>1,121,412</code> rows</td></tr>
+            <tr><th>注意處置</th><td>TPEX 2024+ status coverage 100%；processed <code>10,723</code> rows，collection status <code>1,134</code> rows</td></tr>
+            <tr><th>掃描 smoke</th><td><code>reports/short_term_radar/scan_after_2024_tpex_backfill.csv</code></td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <section class="grid" id="live-progress">
+      <article class="card span-12 live-panel">
+        <div class="live-header">
+          <div>
+            <div class="eyebrow">Live Progress · 自動讀取本機狀態</div>
+            <h2>即時下載進度</h2>
+            <p class="muted">
+              每 30 秒重讀 <code>data/quality/data_coverage_report.csv</code>、
+              <code>data/tmp/company_ir_batch_status.json</code> 與
+              <code>data/tmp/financial_statement_backfill_status.json</code>。本頁會用瀏覽器快照計算「上一段時間多補了多少百分點」。
+            </p>
+          </div>
+          <div class="live-refresh">
+            <div><span class="status-dot" id="live-status-dot"></span><strong id="live-refresh-state">讀取中</strong></div>
+            <div id="live-last-updated">等待第一筆資料</div>
+          </div>
+        </div>
+
+        <div class="metric" id="live-overall-pct">--%</div>
+        <div class="progress-shell live-bar"><div class="progress-fill" id="live-overall-fill"></div></div>
+        <div class="live-meta-row">
+          <span class="pill" id="live-target-range">目標範圍：讀取中</span>
+          <span class="pill gray" id="live-coverage-generated">coverage report：讀取中</span>
+          <span class="pill amber" id="live-next-refresh">下一次刷新：約 30 秒內</span>
+        </div>
+
+        <div class="live-kpis">
+          <div class="live-kpi">
+            <div class="label">已下載 / 目標</div>
+            <div class="value" id="live-counts">-- / --</div>
+            <div class="hint">只計入 coverage report 裡有 expected_count 的資料格。</div>
+          </div>
+          <div class="live-kpi">
+            <div class="label">剩餘缺口</div>
+            <div class="value warn" id="live-missing">--</div>
+            <div class="hint" id="live-complete-rows">完成資料格：--</div>
+          </div>
+          <div class="live-kpi">
+            <div class="label">過去一段時間</div>
+            <div class="value" id="live-last-delta">追蹤中</div>
+            <div class="hint" id="live-last-delta-hint">下一次刷新後會顯示新增百分點。</div>
+          </div>
+          <div class="live-kpi">
+            <div class="label">最近 1 小時</div>
+            <div class="value" id="live-hour-delta">追蹤中</div>
+            <div class="hint" id="live-hour-delta-hint">本瀏覽器會保留 24 小時內快照。</div>
+          </div>
+        </div>
+
+        <h3>正在跑 / 剛跑完的任務</h3>
+        <div class="live-jobs" id="live-job-list">
+          <div class="live-job"><span class="muted">讀取 status JSON 中...</span></div>
+        </div>
+
+        <h3>資料格進度明細</h3>
+        <div class="live-table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>資料格</th>
+                <th>市場</th>
+                <th>目標範圍</th>
+                <th>目前 / 目標</th>
+                <th>缺口</th>
+                <th>進度</th>
+              </tr>
+            </thead>
+            <tbody id="live-progress-rows">
+              <tr><td colspan="6" class="muted">讀取中...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>終局完整流程：我們最後要讓雷達每天這樣跑</h2>
+        <div class="final-flow">
+          <div class="flow-node"><strong>1. 官方與公開來源</strong>TWSE、TPEx、MOPS、公司官網、Yahoo、Cnyes 等。</div>
+          <div class="flow-node"><strong>2. Collector</strong>固定入口抓資料，支援 dry-run、日期、market、批次。</div>
+          <div class="flow-node"><strong>3. Normalizer</strong>把 HTML、JSON、CSV 轉成統一 schema。</div>
+          <div class="flow-node"><strong>4. Processed parquet</strong>用主鍵 upsert 寫入本機整理後資料。</div>
+          <div class="flow-node"><strong>5. 品質與鑑真</strong>schema、主鍵、日期、兩來源一致才通過。</div>
+          <div class="flow-node"><strong>6. 雷達掃描與回測</strong>特徵、分數、候選、baseline、績效。</div>
+          <div class="flow-node"><strong>7. 自動排程</strong>每天或每週更新，狀態留在本機，不靠對話掛著。</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>10 階段路線圖</h2>
+        <div class="stage-board">
+          <div class="stage done">
+            <div class="stage-number">1</div>
+            <h3>專案獨立</h3>
+            <p>短線雷達已搬成獨立專案。</p>
+            <span class="pill green">done</span>
+          </div>
+          <div class="stage done">
+            <div class="stage-number">2</div>
+            <h3>本機設定</h3>
+            <p>local.yaml、data_root、忽略規則已建立。</p>
+            <span class="pill green">done</span>
+          </div>
+          <div class="stage done">
+            <div class="stage-number">3</div>
+            <h3>簡版掃描</h3>
+            <p>價量模式、scan、backtest 基礎可跑。</p>
+            <span class="pill green">done</span>
+          </div>
+          <div class="stage done">
+            <div class="stage-number">4</div>
+            <h3>官方來源小測</h3>
+            <p>月營收、法人、融資、注意、重大訊息等可寫 processed。</p>
+            <span class="pill green">done</span>
+          </div>
+          <div class="stage done">
+            <div class="stage-number">5</div>
+            <h3>品質檢查</h3>
+            <p>schema、primary key、日期、no future leakage 測試接上。</p>
+            <span class="pill green">done</span>
+          </div>
+          <div class="stage current">
+            <div class="stage-number">6</div>
+            <h3>資料格補洞</h3>
+            <p>TPEX P0 日資料已補齊 2024+；現在要處理 TWSE 307 與 P1 歷史來源。</p>
+            <span class="pill amber">current</span>
+          </div>
+          <div class="stage pending">
+            <div class="stage-number">7</div>
+            <h3>公司官網批量</h3>
+            <p>從 company_url 掃 IR、月營收、財報頁。</p>
+            <span class="pill gray">pending</span>
+          </div>
+          <div class="stage pending">
+            <div class="stage-number">8</div>
+            <h3>三源鑑真</h3>
+            <p>官方、公司官網、公開市場或券商公開頁交叉驗證。</p>
+            <span class="pill gray">pending</span>
+          </div>
+          <div class="stage pending">
+            <div class="stage-number">9</div>
+            <h3>完整回測</h3>
+            <p>五年資料補齊後跑完整策略與 baseline。</p>
+            <span class="pill gray">pending</span>
+          </div>
+          <div class="stage pending">
+            <div class="stage-number">10</div>
+            <h3>正式日更</h3>
+            <p>每日資料更新、每週來源健康檢查、定期報告。</p>
+            <span class="pill gray">pending</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>每個資料格的流程狀態</h2>
+        <div class="pipe-list">
+          <div class="pipe-row">
+            <div><h3>月營收</h3><span class="pill green">已可用</span></div>
+            <div class="pipe-flow"><span>MOPS 官方</span> &gt; <span>normalizer</span> &gt; <span>processed</span> &gt; <span>Yahoo/Cnyes 鑑真</span></div>
+            <div class="muted">121,005 rows；202101 到 202604，TWSE/TPEX 64/64 個月份完整。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>三大法人</h3><span class="pill green">TPEX 2024+ 完整</span></div>
+            <div class="pipe-flow"><span>TWSE T86</span> &gt; <span>TPEx insti</span> &gt; <span>processed</span> &gt; <span>quality</span></div>
+            <div class="muted">1,703,536 rows；2024-01-02..2026-05-12 TPEX coverage 567/567，TWSE 仍回 <code>HTTP 307</code>。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>融資融券 / 借券</h3><span class="pill green">TPEX 2024+ 完整</span></div>
+            <div class="pipe-flow"><span>TWSE margin</span> &gt; <span>TPEx margin/sbl</span> &gt; <span>processed</span> &gt; <span>quality</span></div>
+            <div class="muted">1,121,412 rows；2024-01-02..2026-05-12 TPEX coverage 567/567，TWSE 仍回 <code>HTTP 307</code>。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>注意 / 處置</h3><span class="pill green">TPEX status 完整</span></div>
+            <div class="pipe-flow"><span>官方頁</span> &gt; <span>surveillance normalizer</span> &gt; <span>processed</span> &gt; <span>candidate gating</span></div>
+            <div class="muted">10,723 event rows；另有 1,134 筆 collection_status_daily，可區分「已確認無事件」與「未收集」。TPEX 2024+ coverage 567/567。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>重大訊息</h3><span class="pill green">可寫入</span></div>
+            <div class="pipe-flow"><span>official open data</span> &gt; <span>classifier</span> &gt; <span>processed</span></div>
+            <div class="muted">1073 rows，分類規則可持續強化。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>公司行動</h3><span class="pill green">可寫入</span></div>
+            <div class="pipe-flow"><span>ex-dividend/action</span> &gt; <span>normalizer</span> &gt; <span>processed</span></div>
+            <div class="muted">1224 rows，待補完整歷史。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>估值</h3><span class="pill green">可寫入</span></div>
+            <div class="pipe-flow"><span>official valuation</span> &gt; <span>normalizer</span> &gt; <span>processed</span></div>
+            <div class="muted">3,035 rows；目前偏最新端，歷史日期來源/參數仍要確認。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>交易日曆</h3><span class="pill green">可寫入</span></div>
+            <div class="pipe-flow"><span>holiday schedule</span> &gt; <span>normalizer</span> &gt; <span>processed</span></div>
+            <div class="muted">27 rows，待確認年度更新節奏。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>季財報 FINANCIAL_SLOT</h3><span class="pill amber">目前重點</span></div>
+            <div class="pipe-flow"><span>找缺口</span> &gt; <span>MOPS t164sb04/t164sb03</span> &gt; <span>merge row</span> &gt; <span>quality</span> &gt; <span>cron</span></div>
+            <div class="muted">483 rows；TWSE 2025Q4 target 1084，existing 463，remaining 621；MOPS 目前回 WinError 10061 degraded。</div>
+          </div>
+          <div class="pipe-row">
+            <div><h3>公司官網 crawler</h3><span class="pill green">批量骨架可跑</span></div>
+            <div class="pipe-flow"><span>company_url</span> &gt; <span>target catalog</span> &gt; <span>page router</span> &gt; <span>specialized extractor</span> &gt; <span>quality evidence</span></div>
+            <div class="muted">已新增 quality-only 批量 runner；offset 36..55 已跑 20 檔，找到 159 個候選，分流到月營收、財報、公司行動、重大訊息、董監持股與 IR 導航。</div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-6">
+        <h2>FINANCIAL_SLOT 現在怎麼自動跑</h2>
+        <div class="final-flow" style="grid-template-columns: repeat(5, minmax(130px, 1fr));">
+          <div class="flow-node"><strong>讀 symbol master</strong>拿 TWSE/TPEX 股票清單。</div>
+          <div class="flow-node"><strong>比對財報 parquet</strong>找出該季度缺哪些 symbol。</div>
+          <div class="flow-node"><strong>每批 3 檔</strong>每檔抓 income + balance。</div>
+          <div class="flow-node"><strong>寫入並驗證</strong>upsert 後跑 validate / pytest。</div>
+          <div class="flow-node"><strong>狀態留檔</strong>status/log/lock/stop 都在 data/tmp。</div>
+        </div>
+        <pre>py -3.14 -m short_term_radar.cli.backfill_financial_statements `
+  --config configs\short_term_radar\local.yaml `
+  --market TWSE `
+  --start 2025Q4 `
+  --chunk-size 2 `
+  --max-batches 3 `
+  --execute `
+  --compileall-each-batch `
+  --git-diff-check `
+  --rate-limit-seconds 10 `
+  --stop-on-access-blocked-batches 1 `
+  --stop-on-empty-degraded-batches 1 `
+  --allowed-root "&lt;repo-root&gt;"</pre>
+      </article>
+      <article class="card span-6">
+        <h2>不用看對話也能知道進度</h2>
+        <table>
+          <tbody>
+            <tr><th>狀態檔</th><td><code>data/tmp/financial_statement_backfill_status.json</code></td></tr>
+            <tr><th>事件 log</th><td><code>data/tmp/financial_statement_backfill_events.jsonl</code></td></tr>
+            <tr><th>防重疊 lock</th><td><code>data/tmp/financial_statement_backfill.lock</code></td></tr>
+            <tr><th>暫停檔</th><td><code>data/tmp/financial_statement_backfill.stop</code></td></tr>
+          </tbody>
+        </table>
+        <pre>Get-Content data\tmp\financial_statement_backfill_status.json
+Get-Content data\tmp\financial_statement_backfill_events.jsonl -Tail 5</pre>
+        <p class="muted">`state=succeeded` 代表該次已跑完；`blocked` / `degraded` 代表官方端暫時擋流量或來源不可用；`failed` 會帶 error；`remaining` 會告訴你還剩多少。</p>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-7">
+        <h2>程式角色地圖</h2>
+        <table>
+          <thead>
+            <tr><th>程式</th><th>負責什麼</th><th>在流程中的位置</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>collect.py</code></td><td>官方資料收集總入口。</td><td>Collector</td></tr>
+            <tr><td><code>backfill_financial_statements.py</code></td><td>找財報缺口並分批呼叫 MOPS collector。</td><td>自動回補</td></tr>
+            <tr><td><code>validate_data.py</code></td><td>檢查 processed table 品質。</td><td>Quality gate</td></tr>
+            <tr><td><code>verify_public_revenue.py</code></td><td>月營收公開來源鑑真。</td><td>Second-source verification</td></tr>
+            <tr><td><code>verify_company_ir.py</code></td><td>公司官網月營收 evidence 驗證。</td><td>Company source verification</td></tr>
+            <tr><td><code>discover_company_ir.py</code></td><td>掃公司官網 IR / 財報 / 月營收候選頁。</td><td>Source discovery</td></tr>
+            <tr><td><code>company_ir_batch.py</code></td><td>公司官網批量 discovery + quality-only verification，可續跑並寫 status。</td><td>Source automation</td></tr>
+            <tr><td><code>scan.py</code></td><td>雷達掃描。</td><td>Use data</td></tr>
+            <tr><td><code>backtest.py</code></td><td>回測與 baseline。</td><td>Evaluation</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <article class="card span-5">
+        <h2>如果換分頁，先做這些</h2>
+        <ol class="list">
+          <li>進入專案：<code>short_term_radar_mvp</code></li>
+          <li>讀 <code>README.md</code>、<code>SHORT_TERM_RADAR_HANDOFF.md</code>。</li>
+          <li>讀 <code>docs/short_term_radar_agent_handoff_guide.md</code>。</li>
+          <li>看本頁確認流程與目前階段。</li>
+          <li>看 <code>data/tmp/financial_statement_backfill_status.json</code> 確認自動化進度。</li>
+          <li>若改 Python，跑完整測試。</li>
+        </ol>
+      </article>
+    </section>
+
+    <section class="grid">
+      <article class="card span-12">
+        <h2>最後還差什麼</h2>
+        <div class="two-col">
+          <ul class="list">
+            <li>等 TWSE 來源 cooldown 後，低頻重試三大法人、融資融券、注意/處置；若仍 <code>HTTP 307</code>，改找可追日期替代來源。</li>
+            <li>把 TWSE 2024+ 的 P0 日資料缺口補齊，避免只靠 TPEX coverage。</li>
+            <li>把 collection_status_daily 機制擴到 TWSE，區分「已確認無事件」和「未收集」。</li>
+            <li>確認估值歷史日期來源，避免只拿最新端假補歷史。</li>
+            <li>TWSE 2025Q4 財報等 MOPS 網路恢復後續補。</li>
+            <li>TPEX 2025Q4 財報補滿。</li>
+            <li>往前補 2025Q3、2025Q2，直到五年季度財報。</li>
+            <li>公司官網 IR crawler 從小測變成全市場批量。</li>
+            <li>日更與週更 source-health 自動化全部打穩。</li>
+            <li>資料補齊後跑完整回測與報告。</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    本頁更新於 2026-05-16 18:32。最新狀態請看 `data/quality/*.csv`、`data/tmp/financial_statement_backfill_status.json`
+    與 `data/processed/*.parquet`。本頁只描述資料工程狀態，不構成投資建議。
+  </footer>
+
+  <script>
+    (function () {
+      var PATHS = {
+        coverage: "./data/quality/data_coverage_report.csv",
+        companyIr: "./data/tmp/company_ir_batch_status.json",
+        financial: "./data/tmp/financial_statement_backfill_status.json"
+      };
+      var POLL_MS = 30000;
+      var HISTORY_KEY = "shortTermRadar.liveProgress.history.v1";
+      var DATASET_LABELS = {
+        symbol_master: "股票清單",
+        prices_daily: "價格日線",
+        monthly_revenue: "月營收",
+        institutional_trading: "三大法人",
+        margin_short: "融資融券",
+        surveillance: "注意 / 處置",
+        corporate_actions: "公司行動",
+        material_events: "重大訊息",
+        financial_statement: "季財報",
+        insider_holding: "董監持股",
+        valuation: "估值",
+        trading_calendar: "交易日曆"
+      };
+
+      function byId(id) {
+        return document.getElementById(id);
+      }
+
+      function toNumber(value) {
+        if (value === null || value === undefined || value === "") return 0;
+        var parsed = Number(String(value).replace(/,/g, ""));
+        return Number.isFinite(parsed) ? parsed : 0;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function formatNumber(value) {
+        return Math.round(toNumber(value)).toLocaleString("zh-TW");
+      }
+
+      function formatPct(value, digits) {
+        var places = digits === undefined ? 1 : digits;
+        return (toNumber(value) * 100).toFixed(places) + "%";
+      }
+
+      function formatTime(value) {
+        if (!value) return "--";
+        var date = new Date(value);
+        if (Number.isNaN(date.getTime())) return value;
+        return date.toLocaleString("zh-TW", { hour12: false });
+      }
+
+      function parseCsv(text) {
+        var rows = [];
+        var row = [];
+        var field = "";
+        var inQuotes = false;
+        for (var i = 0; i < text.length; i += 1) {
+          var ch = text[i];
+          if (inQuotes) {
+            if (ch === "\"") {
+              if (text[i + 1] === "\"") {
+                field += "\"";
+                i += 1;
+              } else {
+                inQuotes = false;
+              }
+            } else {
+              field += ch;
+            }
+            continue;
+          }
+          if (ch === "\"") {
+            inQuotes = true;
+          } else if (ch === ",") {
+            row.push(field);
+            field = "";
+          } else if (ch === "\n") {
+            row.push(field.replace(/\r$/, ""));
+            rows.push(row);
+            row = [];
+            field = "";
+          } else {
+            field += ch;
+          }
+        }
+        if (field.length > 0 || row.length > 0) {
+          row.push(field.replace(/\r$/, ""));
+          rows.push(row);
+        }
+        if (!rows.length) return [];
+        var headers = rows.shift().map(function (header) {
+          return header.trim();
+        });
+        return rows
+          .filter(function (cells) {
+            return cells.some(function (cell) { return String(cell).trim() !== ""; });
+          })
+          .map(function (cells) {
+            var item = {};
+            headers.forEach(function (header, index) {
+              item[header] = String(cells[index] || "").trim();
+            });
+            return item;
+          });
+      }
+
+      function fetchText(path, optional) {
+        return fetch(path + "?t=" + Date.now(), { cache: "no-store" })
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error(path + " HTTP " + response.status);
+            }
+            return response.text();
+          })
+          .catch(function (error) {
+            if (optional) return null;
+            throw error;
+          });
+      }
+
+      function parseJson(text) {
+        if (!text) return null;
+        try {
+          return JSON.parse(text);
+        } catch (error) {
+          return { state: "invalid", message: error.message };
+        }
+      }
+
+      function buildTargetLabel(rows) {
+        var expectedRows = rows.filter(function (row) { return toNumber(row.expected_count) > 0; });
+        var daily = expectedRows.filter(function (row) {
+          return row.start_date_or_month && row.start_date_or_month.indexOf("-") >= 0;
+        });
+        var monthly = expectedRows.filter(function (row) {
+          return /^\d{6}$/.test(row.start_date_or_month || "");
+        });
+        var parts = [];
+        if (daily.length) {
+          var dailyStart = daily.reduce(function (min, row) {
+            return !min || row.start_date_or_month < min ? row.start_date_or_month : min;
+          }, "");
+          var dailyEnd = daily.reduce(function (max, row) {
+            return !max || row.end_date_or_month > max ? row.end_date_or_month : max;
+          }, "");
+          parts.push("日資料 " + dailyStart + " 至 " + dailyEnd);
+        }
+        if (monthly.length) {
+          var monthStart = monthly.reduce(function (min, row) {
+            return !min || row.start_date_or_month < min ? row.start_date_or_month : min;
+          }, "");
+          var monthEnd = monthly.reduce(function (max, row) {
+            return !max || row.end_date_or_month > max ? row.end_date_or_month : max;
+          }, "");
+          parts.push("月資料 " + monthStart + " 至 " + monthEnd);
+        }
+        return parts.length ? parts.join("；") : "以 coverage report 每列目標為準";
+      }
+
+      function summarizeCoverage(rows) {
+        var expectedRows = rows.filter(function (row) { return toNumber(row.expected_count) > 0; });
+        var totalExpected = 0;
+        var totalActual = 0;
+        var totalMissing = 0;
+        expectedRows.forEach(function (row) {
+          var expected = toNumber(row.expected_count);
+          var actual = toNumber(row.actual_count);
+          totalExpected += expected;
+          totalActual += Math.min(actual, expected);
+          totalMissing += Math.max(0, toNumber(row.missing_count));
+        });
+        var pct = totalExpected > 0 ? totalActual / totalExpected : 0;
+        var completeRows = expectedRows.filter(function (row) {
+          return toNumber(row.missing_count) <= 0 || toNumber(row.coverage_ratio) >= 1;
+        }).length;
+        var generatedAt = rows.reduce(function (latest, row) {
+          return row.generated_at && row.generated_at > latest ? row.generated_at : latest;
+        }, "");
+        return {
+          actual: totalActual,
+          expected: totalExpected,
+          missing: totalMissing,
+          pct: clamp(pct, 0, 1),
+          completeRows: completeRows,
+          expectedRows: expectedRows.length,
+          generatedAt: generatedAt,
+          targetLabel: buildTargetLabel(rows)
+        };
+      }
+
+      function readHistory() {
+        try {
+          var parsed = JSON.parse(localStorage.getItem(HISTORY_KEY) || "[]");
+          return Array.isArray(parsed) ? parsed : [];
+        } catch (error) {
+          return [];
+        }
+      }
+
+      function rememberSnapshot(summary) {
+        var now = Date.now();
+        var history = readHistory().filter(function (item) {
+          return item && now - toNumber(item.ts) <= 24 * 60 * 60 * 1000;
+        });
+        var previous = history.length ? history[history.length - 1] : null;
+        var hourBase = null;
+        for (var i = 0; i < history.length; i += 1) {
+          if (now - toNumber(history[i].ts) <= 60 * 60 * 1000) {
+            hourBase = history[i];
+            break;
+          }
+        }
+        if (!hourBase) hourBase = previous;
+        history.push({
+          ts: now,
+          pct: summary.pct,
+          actual: summary.actual,
+          expected: summary.expected,
+          missing: summary.missing
+        });
+        try {
+          localStorage.setItem(HISTORY_KEY, JSON.stringify(history.slice(-2880)));
+        } catch (error) {
+          // localStorage can be blocked in some browser modes; the page still works without deltas.
+        }
+        return { previous: previous, hourBase: hourBase, now: now };
+      }
+
+      function deltaSummary(summary, base, now) {
+        if (!base) return null;
+        var minutes = Math.max(1, Math.round((now - toNumber(base.ts)) / 60000));
+        var points = (summary.pct - toNumber(base.pct)) * 100;
+        var rows = summary.actual - toNumber(base.actual);
+        return {
+          value: (points >= 0 ? "+" : "") + points.toFixed(2) + "pt",
+          hint: "約 " + minutes + " 分鐘前相比，新增 " + formatNumber(rows) + " 個 coverage 單位"
+        };
+      }
+
+      function setRefreshState(kind, label, detail) {
+        var dot = byId("live-status-dot");
+        dot.className = "status-dot " + kind;
+        byId("live-refresh-state").textContent = label;
+        byId("live-last-updated").textContent = detail || "";
+      }
+
+      function statePillClass(state) {
+        if (state === "succeeded") return "green";
+        if (state === "degraded" || state === "blocked" || state === "invalid") return "amber";
+        if (state === "failed" || state === "error") return "red";
+        if (state === "missing") return "gray";
+        return "";
+      }
+
+      function stateDotClass(state) {
+        if (state === "succeeded") return "ok";
+        if (state === "running") return "running";
+        if (state === "failed" || state === "error") return "error";
+        if (state === "degraded" || state === "blocked" || state === "invalid") return "warn";
+        return "";
+      }
+
+      function appendText(parent, tag, text, className) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        node.textContent = text;
+        parent.appendChild(node);
+        return node;
+      }
+
+      function addJob(container, title, state, lines) {
+        var item = document.createElement("div");
+        item.className = "live-job";
+
+        var head = document.createElement("div");
+        head.className = "live-job-head";
+        var titleNode = document.createElement("div");
+        titleNode.className = "live-job-title";
+        var dot = document.createElement("span");
+        dot.className = "status-dot " + stateDotClass(state);
+        titleNode.appendChild(dot);
+        titleNode.appendChild(document.createTextNode(title));
+        var pill = document.createElement("span");
+        pill.className = "pill " + statePillClass(state);
+        pill.textContent = state || "missing";
+        head.appendChild(titleNode);
+        head.appendChild(pill);
+        item.appendChild(head);
+
+        lines.forEach(function (line) {
+          appendText(item, "p", line, "muted small");
+        });
+        container.appendChild(item);
+      }
+
+      function renderJobs(companyIr, financial) {
+        var container = byId("live-job-list");
+        container.textContent = "";
+
+        if (companyIr) {
+          var batches = Array.isArray(companyIr.batches) ? companyIr.batches : [];
+          var candidates = batches.reduce(function (sum, batch) {
+            return sum + toNumber(batch.discovery_rows);
+          }, 0);
+          var selected = toNumber(companyIr.selected_rows);
+          var offsetEnd = selected ? toNumber(companyIr.offset) + selected - 1 : toNumber(companyIr.offset);
+          addJob(container, "公司官網批量", companyIr.state || "missing", [
+            (companyIr.market || "--") + " offset " + formatNumber(companyIr.offset) + " 至 " + formatNumber(offsetEnd) + "，批次 " + formatNumber(companyIr.current_batch) + "/" + formatNumber(companyIr.planned_batches),
+            "已掃 " + formatNumber(selected) + " 檔，找到 " + formatNumber(candidates) + " 個候選頁；targets: " + (companyIr.targets || []).join(", "),
+            "更新時間：" + formatTime(companyIr.updated_at || companyIr.finished_at)
+          ]);
+        } else {
+          addJob(container, "公司官網批量", "missing", ["尚未讀到 status JSON。"]);
+        }
+
+        if (financial) {
+          var progress = Array.isArray(financial.progress) && financial.progress.length ? financial.progress[0] : {};
+          addJob(container, "季財報回補", financial.state || "missing", [
+            (progress.market || financial.market || "--") + " " + (progress.period || financial.period || "--") + "：目前 " + formatNumber(progress.existing) + "/" + formatNumber(progress.target) + "，剩 " + formatNumber(progress.remaining),
+            "批次 " + formatNumber(financial.current_batch) + "/" + formatNumber(financial.planned_batches || financial.total_batches) + "，本輪抓到 " + formatNumber(financial.rows_fetched) + " rows",
+            financial.message ? "訊息：" + financial.message : "更新時間：" + formatTime(financial.updated_at || financial.finished_at)
+          ]);
+        } else {
+          addJob(container, "季財報回補", "missing", ["尚未讀到 status JSON。"]);
+        }
+      }
+
+      function renderCoverageRows(rows) {
+        var body = byId("live-progress-rows");
+        body.textContent = "";
+        var sorted = rows.slice().sort(function (a, b) {
+          var aExpected = toNumber(a.expected_count);
+          var bExpected = toNumber(b.expected_count);
+          var aMissing = aExpected > 0 ? toNumber(a.missing_count) : -1;
+          var bMissing = bExpected > 0 ? toNumber(b.missing_count) : -1;
+          if ((aMissing > 0) !== (bMissing > 0)) return aMissing > 0 ? -1 : 1;
+          if ((aExpected > 0) !== (bExpected > 0)) return aExpected > 0 ? -1 : 1;
+          if (aMissing !== bMissing) return bMissing - aMissing;
+          return String(a.dataset + a.market).localeCompare(String(b.dataset + b.market), "zh-Hant");
+        });
+
+        sorted.forEach(function (row) {
+          var expected = toNumber(row.expected_count);
+          var actual = toNumber(row.actual_count);
+          var ratio = expected > 0 ? clamp(toNumber(row.coverage_ratio), 0, 1) : 1;
+          var tr = document.createElement("tr");
+
+          var datasetCell = document.createElement("td");
+          appendText(datasetCell, "strong", DATASET_LABELS[row.dataset] || row.dataset || row.processed_table || "--");
+          appendText(datasetCell, "span", row.source ? "source: " + row.source : "", "table-note");
+          tr.appendChild(datasetCell);
+
+          appendText(tr, "td", row.market || "--");
+          appendText(tr, "td", row.start_date_or_month || row.end_date_or_month ? (row.start_date_or_month || "?") + " 至 " + (row.end_date_or_month || "?") : "事件型資料 / 清單");
+          appendText(tr, "td", expected > 0 ? formatNumber(actual) + " / " + formatNumber(expected) : formatNumber(actual) + " rows");
+          appendText(tr, "td", expected > 0 ? formatNumber(row.missing_count) : "--");
+
+          var progressCell = document.createElement("td");
+          appendText(progressCell, "span", expected > 0 ? formatPct(ratio, 1) : "已收資料");
+          var mini = document.createElement("div");
+          mini.className = "mini-progress";
+          var fill = document.createElement("div");
+          fill.className = "mini-progress-fill";
+          fill.style.width = (ratio * 100).toFixed(2) + "%";
+          mini.appendChild(fill);
+          progressCell.appendChild(mini);
+          tr.appendChild(progressCell);
+          body.appendChild(tr);
+        });
+      }
+
+      function renderSummary(summary, rows) {
+        byId("live-overall-pct").textContent = formatPct(summary.pct, 1);
+        byId("live-overall-fill").style.width = (summary.pct * 100).toFixed(2) + "%";
+        byId("live-target-range").textContent = "目標範圍：" + summary.targetLabel;
+        byId("live-coverage-generated").textContent = "coverage report：" + formatTime(summary.generatedAt);
+        byId("live-next-refresh").textContent = "下一次刷新：約 " + Math.round(POLL_MS / 1000) + " 秒內";
+        byId("live-counts").textContent = formatNumber(summary.actual) + " / " + formatNumber(summary.expected);
+        byId("live-missing").textContent = formatNumber(summary.missing);
+        byId("live-missing").className = summary.missing > 0 ? "value warn" : "value good";
+        byId("live-complete-rows").textContent = "完成資料格：" + formatNumber(summary.completeRows) + "/" + formatNumber(summary.expectedRows);
+
+        var deltas = rememberSnapshot(summary);
+        var lastDelta = deltaSummary(summary, deltas.previous, deltas.now);
+        if (lastDelta) {
+          byId("live-last-delta").textContent = lastDelta.value;
+          byId("live-last-delta-hint").textContent = lastDelta.hint;
+        } else {
+          byId("live-last-delta").textContent = "追蹤中";
+          byId("live-last-delta-hint").textContent = "下一次刷新後會顯示新增百分點。";
+        }
+        var hourDelta = deltaSummary(summary, deltas.hourBase, deltas.now);
+        if (hourDelta) {
+          byId("live-hour-delta").textContent = hourDelta.value;
+          byId("live-hour-delta-hint").textContent = hourDelta.hint;
+        } else {
+          byId("live-hour-delta").textContent = "追蹤中";
+          byId("live-hour-delta-hint").textContent = "累積一段時間後會顯示最近 1 小時變化。";
+        }
+
+        renderCoverageRows(rows);
+      }
+
+      function chooseRefreshKind(companyIr, financial) {
+        var states = [companyIr && companyIr.state, financial && financial.state];
+        if (states.indexOf("running") >= 0) return { kind: "running", label: "讀取成功，有任務正在跑" };
+        if (states.indexOf("degraded") >= 0 || states.indexOf("blocked") >= 0 || states.indexOf("invalid") >= 0) {
+          return { kind: "warn", label: "讀取成功，部分來源卡住" };
+        }
+        return { kind: "ok", label: "讀取成功" };
+      }
+
+      function refreshLiveProgress() {
+        setRefreshState("running", "讀取中", "正在更新本機狀態檔...");
+        Promise.all([
+          fetchText(PATHS.coverage, false),
+          fetchText(PATHS.companyIr, true),
+          fetchText(PATHS.financial, true)
+        ]).then(function (results) {
+          var rows = parseCsv(results[0]);
+          var companyIr = parseJson(results[1]);
+          var financial = parseJson(results[2]);
+          var summary = summarizeCoverage(rows);
+          renderSummary(summary, rows);
+          renderJobs(companyIr, financial);
+          var refresh = chooseRefreshKind(companyIr, financial);
+          setRefreshState(refresh.kind, refresh.label, "頁面刷新：" + formatTime(new Date().toISOString()));
+        }).catch(function (error) {
+          setRefreshState("error", "讀取失敗", error.message);
+          var body = byId("live-progress-rows");
+          body.textContent = "";
+          var tr = document.createElement("tr");
+          appendText(tr, "td", "讀取 coverage/status 檔失敗：" + error.message, "muted");
+          tr.firstChild.setAttribute("colspan", "6");
+          body.appendChild(tr);
+        });
+      }
+
+      refreshLiveProgress();
+      window.setInterval(refreshLiveProgress, POLL_MS);
+    })();
+  </script>
+</body>
+</html>
