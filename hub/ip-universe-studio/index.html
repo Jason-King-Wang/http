@@ -7,7 +7,7 @@
   <meta name="description" content="角色宇宙工房提供原創角色、長篇文本與世界觀的 IP 視覺化服務，協助創作者建立角色資料庫並持續產出高品質圖像。">
   <meta property="og:title" content="角色宇宙工房｜原創角色 IP 視覺化服務">
   <meta property="og:description" content="把百萬字故事，整理成可以持續出圖的 IP 宇宙。">
-  <meta property="og:image" content="https://jason-king-wang.github.io/http/hub/ip-universe-studio/assets/ip-database.png">
+  <meta property="og:image" content="https://jason-king-wang.github.io/http/hub/ip-universe-studio/assets/sample-library.png">
   <meta property="og:url" content="https://jason-king-wang.github.io/http/hub/ip-universe-studio/">
   <meta name="theme-color" content="#182625">
   <style>
@@ -93,7 +93,7 @@
       display: grid;
       align-items: end;
       color: #fff;
-      background-image: url("assets/story-scene.png");
+      background-image: url("assets/sample-library.png");
       background-size: cover;
       background-position: center;
       overflow: hidden;
@@ -304,33 +304,19 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .gallery figure {
-      margin: 0;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-      border: 1px solid rgba(23, 33, 32, .08);
-      box-shadow: 0 12px 30px rgba(23, 33, 32, .1);
+      columns: 3 280px;
+      column-gap: 14px;
     }
 
     .gallery img {
       width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-    }
-
-    .gallery figcaption {
-      min-height: 64px;
-      padding: 12px;
-      color: var(--muted);
-      font-size: .9rem;
-      line-height: 1.45;
+      height: auto;
+      margin: 0 0 14px;
+      border-radius: 8px;
       background: #fff;
+      border: 1px solid rgba(23, 33, 32, .08);
+      box-shadow: 0 12px 30px rgba(23, 33, 32, .1);
+      break-inside: avoid;
     }
 
     .pricing-band {
@@ -448,7 +434,7 @@
     }
 
     .contact {
-      background-image: url("assets/ip-database.png");
+      background-image: url("assets/sample-reading.png");
       background-size: cover;
       background-position: center;
       color: #fff;
@@ -531,9 +517,7 @@
         grid-template-columns: 1fr;
       }
 
-      .gallery {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .gallery { columns: 2 240px; }
 
       .subscription-row {
         grid-template-columns: 1fr;
@@ -585,9 +569,7 @@
         width: 100%;
       }
 
-      .gallery {
-        grid-template-columns: 1fr;
-      }
+      .gallery { columns: 1; }
 
       .price-card,
       .service-card,
@@ -675,29 +657,15 @@
             <p class="section-kicker">Samples</p>
             <h2>可交付的視覺方向</h2>
           </div>
-          <p>以下為示意作品，用於展示服務類型：角色肖像、人物關係、劇情場景、設定表與 IP 資料庫視覺化。正式合作會依客戶原創角色與文本重新製作。</p>
+          <p>以下為實際專案圖像節選。頁面僅展示視覺品質與製作方向，正式合作會依客戶提供的原創文本、設定與授權範圍重新製作。</p>
         </div>
         <div class="gallery">
-          <figure>
-            <img src="assets/character-portrait.png" alt="原創角色肖像示意圖">
-            <figcaption>角色肖像與風格基準</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/relationship-map.png" alt="角色關係圖示意圖">
-            <figcaption>人物關係與宇宙連結</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/story-scene.png" alt="劇情場景圖示意圖">
-            <figcaption>劇情場景與情緒節點</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/design-sheet.png" alt="角色設定表示意圖">
-            <figcaption>角色設定與配色整理</figcaption>
-          </figure>
-          <figure>
-            <img src="assets/ip-database.png" alt="IP 資料庫視覺化示意圖">
-            <figcaption>文本資料庫到視覺交付</figcaption>
-          </figure>
+          <img src="assets/sample-reading.png" alt="作品樣張" loading="lazy">
+          <img src="assets/sample-rabbit.png" alt="作品樣張" loading="lazy">
+          <img src="assets/sample-battle.png" alt="作品樣張" loading="lazy">
+          <img src="assets/sample-ink.png" alt="作品樣張" loading="lazy">
+          <img src="assets/sample-fan.png" alt="作品樣張" loading="lazy">
+          <img src="assets/sample-library.png" alt="作品樣張" loading="lazy">
         </div>
       </div>
     </section>
