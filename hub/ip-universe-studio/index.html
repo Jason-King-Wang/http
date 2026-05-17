@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>角色宇宙工房｜原創角色 IP 視覺化服務</title>
+  <meta name="description" content="角色宇宙工房提供原創角色、長篇文本與世界觀的 IP 視覺化服務，協助創作者建立角色資料庫並持續產出高品質圖像。">
+  <meta property="og:title" content="角色宇宙工房｜原創角色 IP 視覺化服務">
+  <meta property="og:description" content="把百萬字故事，整理成可以持續出圖的 IP 宇宙。">
+  <meta property="og:image" content="https://jason-king-wang.github.io/http/hub/ip-universe-studio/assets/ip-database.png">
+  <meta property="og:url" content="https://jason-king-wang.github.io/http/hub/ip-universe-studio/">
+  <meta name="theme-color" content="#182625">
+  <style>
+    :root {
+      --ink: #172120;
+      --muted: #56605c;
+      --paper: #faf9f4;
+      --surface: #ffffff;
+      --line: #dfe4dc;
+      --cedar: #1f675e;
+      --wine: #80334b;
+      --gold: #b48339;
+      --clay: #a94f38;
+      --night: #142224;
+      --shadow: 0 18px 48px rgba(20, 34, 36, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      letter-spacing: 0;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 14px 32px;
+      color: #fff;
+      background: rgba(20, 34, 36, .72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, .16);
+    }
+
+    .brand-mark {
+      font-weight: 800;
+      font-size: 1rem;
+      white-space: nowrap;
+    }
+
+    .topbar nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: rgba(255, 255, 255, .86);
+      font-size: .92rem;
+    }
+
+    .topbar a {
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 86vh;
+      display: grid;
+      align-items: end;
+      color: #fff;
+      background-image: url("assets/story-scene.png");
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(12, 24, 27, .58);
+    }
+
+    .hero-inner {
+      position: relative;
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 136px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      color: #ffe0a0;
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 18px;
+      font-size: 4rem;
+      line-height: 1.08;
+      letter-spacing: 0;
+      text-shadow: 0 5px 24px rgba(0, 0, 0, .28);
+    }
+
+    .hero-copy {
+      max-width: 740px;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, .9);
+      font-size: 1.3rem;
+      line-height: 1.8;
+      text-shadow: 0 3px 16px rgba(0, 0, 0, .32);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 1px solid rgba(255, 255, 255, .72);
+      color: #fff;
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .button.primary {
+      border-color: #ffd37e;
+      color: #142224;
+      background: #ffd37e;
+    }
+
+    .quick-proof {
+      background: var(--night);
+      color: #fff;
+      border-top: 1px solid rgba(255, 255, 255, .14);
+    }
+
+    .quick-proof .wrap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      background: rgba(255, 255, 255, .14);
+    }
+
+    .proof-item {
+      min-height: 112px;
+      padding: 24px;
+      background: var(--night);
+    }
+
+    .proof-item strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #ffd37e;
+      font-size: 1.1rem;
+    }
+
+    .proof-item span {
+      color: rgba(255, 255, 255, .78);
+      font-size: .95rem;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1fr);
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 32px;
+    }
+
+    .section-kicker {
+      margin-bottom: 8px;
+      color: var(--clay);
+      font-weight: 800;
+      font-size: .95rem;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      font-size: 2.3rem;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .service-grid,
+    .pricing-grid,
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card,
+    .price-card,
+    .process-card,
+    .note-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card {
+      padding: 26px;
+    }
+
+    .service-card h3,
+    .price-card h3,
+    .process-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      line-height: 1.35;
+    }
+
+    .service-card p,
+    .process-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .service-card:nth-child(1) {
+      border-top: 5px solid var(--cedar);
+    }
+
+    .service-card:nth-child(2) {
+      border-top: 5px solid var(--wine);
+    }
+
+    .service-card:nth-child(3) {
+      border-top: 5px solid var(--gold);
+    }
+
+    .gallery-band {
+      background: #eef4f0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .gallery figure {
+      margin: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(23, 33, 32, .08);
+      box-shadow: 0 12px 30px rgba(23, 33, 32, .1);
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .gallery figcaption {
+      min-height: 64px;
+      padding: 12px;
+      color: var(--muted);
+      font-size: .9rem;
+      line-height: 1.45;
+      background: #fff;
+    }
+
+    .pricing-band {
+      background: #fff;
+    }
+
+    .price-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      padding: 28px;
+    }
+
+    .price {
+      margin: 8px 0 18px;
+      color: var(--cedar);
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .price small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 700;
+    }
+
+    .price-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .subscription-table {
+      margin-top: 20px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .subscription-row {
+      display: grid;
+      grid-template-columns: 1.2fr .9fr 1.6fr;
+      gap: 1px;
+      background: var(--line);
+    }
+
+    .subscription-row > div {
+      padding: 16px 18px;
+      background: #fff;
+    }
+
+    .subscription-row.header > div {
+      background: var(--night);
+      color: #fff;
+      font-weight: 800;
+    }
+
+    .process-card {
+      padding: 24px;
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 18px;
+      border-radius: 50%;
+      color: #fff;
+      background: var(--wine);
+      font-weight: 900;
+    }
+
+    .note-band {
+      background: var(--night);
+      color: #fff;
+    }
+
+    .note-panel {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 30px;
+      align-items: center;
+      padding: 34px;
+      color: var(--ink);
+      background: #fff;
+    }
+
+    .note-panel p {
+      color: var(--muted);
+    }
+
+    .note-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .note-list li {
+      padding: 12px 14px;
+      border-left: 5px solid var(--gold);
+      background: #f6f8f4;
+      border-radius: 6px;
+      color: var(--muted);
+    }
+
+    .contact {
+      background-image: url("assets/ip-database.png");
+      background-size: cover;
+      background-position: center;
+      color: #fff;
+      position: relative;
+    }
+
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 34, 36, .66);
+    }
+
+    .contact .wrap {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .contact p {
+      max-width: 680px;
+      margin-bottom: 0;
+      color: rgba(255, 255, 255, .86);
+      font-size: 1.08rem;
+    }
+
+    footer {
+      padding: 26px 0;
+      background: #111b1c;
+      color: rgba(255, 255, 255, .72);
+      font-size: .9rem;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .topbar {
+        padding: 12px 20px;
+      }
+
+      .topbar nav {
+        display: none;
+      }
+
+      .hero {
+        min-height: 84vh;
+      }
+
+      .hero-inner,
+      .wrap {
+        width: min(100% - 32px, 1120px);
+      }
+
+      h1 {
+        font-size: 2.8rem;
+      }
+
+      h2 {
+        font-size: 1.9rem;
+      }
+
+      .hero-copy {
+        font-size: 1.08rem;
+      }
+
+      .quick-proof .wrap,
+      .section-head,
+      .service-grid,
+      .pricing-grid,
+      .process-grid,
+      .note-panel,
+      .contact .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .subscription-row {
+        grid-template-columns: 1fr;
+      }
+
+      .subscription-row.header {
+        display: none;
+      }
+
+      .subscription-row > div::before {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--clay);
+        font-size: .82rem;
+        font-weight: 800;
+      }
+
+      .subscription-row > div:nth-child(1)::before {
+        content: "出圖量";
+      }
+
+      .subscription-row > div:nth-child(2)::before {
+        content: "月費";
+      }
+
+      .subscription-row > div:nth-child(3)::before {
+        content: "適合對象";
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        font-size: 15px;
+      }
+
+      section {
+        padding: 56px 0;
+      }
+
+      .hero-inner {
+        padding: 112px 0 56px;
+      }
+
+      h1 {
+        font-size: 2.35rem;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card,
+      .service-card,
+      .note-panel {
+        padding: 22px;
+      }
+
+      .contact .button {
+        justify-self: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="主要導覽">
+    <a class="brand-mark" href="#top">角色宇宙工房</a>
+    <nav>
+      <a href="#services">服務</a>
+      <a href="#gallery">範例</a>
+      <a href="#pricing">定價</a>
+      <a href="#contact">聯絡</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="角色宇宙工房">
+      <div class="hero-inner">
+        <p class="eyebrow">原創角色 IP 視覺化服務</p>
+        <h1>角色宇宙工房</h1>
+        <p class="hero-copy">把百萬字故事，整理成可以持續出圖的 IP 宇宙。從角色設定、人物關係、文本資料庫到每週產圖，讓原創世界觀長期穩定累積。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:a130326714@gmail.com?subject=%E8%A7%92%E8%89%B2%E5%AE%87%E5%AE%99%E5%B7%A5%E6%88%BF%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2">預約討論</a>
+          <a class="button" href="#pricing">查看方案</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="quick-proof" aria-label="服務重點">
+      <div class="wrap">
+        <div class="proof-item">
+          <strong>建庫先行</strong>
+          <span>先整理角色、關係、文本與世界觀，再進入視覺製作。</span>
+        </div>
+        <div class="proof-item">
+          <strong>高品質少量</strong>
+          <span>以長期一致性、角色連續性與可管理資料為核心。</span>
+        </div>
+        <div class="proof-item">
+          <strong>訂閱產圖</strong>
+          <span>月費制管理，每週固定交付 2 至 5 張以上圖像。</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Services</p>
+            <h2>從文本到角色宇宙資料庫</h2>
+          </div>
+          <p>客戶提供原創角色、故事片段、人物關係或長篇文本。我們負責整理可持續創作的資料結構，並依資料庫產出角色圖、關係圖與劇情場景圖。</p>
+        </div>
+        <div class="service-grid">
+          <article class="service-card">
+            <h3>角色宇宙建庫</h3>
+            <p>建立角色設定、人物關係、世界觀規則、視覺風格與後續出圖規範，讓每次創作都能接上同一個宇宙。</p>
+          </article>
+          <article class="service-card">
+            <h3>長篇文本 IP 整理</h3>
+            <p>適合小說、OC 世界觀、VTuber 設定與品牌角色。可處理大型文本，將故事資料轉成可視覺化的創作基礎。</p>
+          </article>
+          <article class="service-card">
+            <h3>週期式圖像製作</h3>
+            <p>以每週出圖量管理交付，持續累積角色肖像、關係場景、情緒差分、劇情節點與宣傳素材。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Samples</p>
+            <h2>可交付的視覺方向</h2>
+          </div>
+          <p>以下為示意作品，用於展示服務類型：角色肖像、人物關係、劇情場景、設定表與 IP 資料庫視覺化。正式合作會依客戶原創角色與文本重新製作。</p>
+        </div>
+        <div class="gallery">
+          <figure>
+            <img src="assets/character-portrait.png" alt="原創角色肖像示意圖">
+            <figcaption>角色肖像與風格基準</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/relationship-map.png" alt="角色關係圖示意圖">
+            <figcaption>人物關係與宇宙連結</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/story-scene.png" alt="劇情場景圖示意圖">
+            <figcaption>劇情場景與情緒節點</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/design-sheet.png" alt="角色設定表示意圖">
+            <figcaption>角色設定與配色整理</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/ip-database.png" alt="IP 資料庫視覺化示意圖">
+            <figcaption>文本資料庫到視覺交付</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="pricing-band">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Pricing</p>
+            <h2>高品質少量的長期方案</h2>
+          </div>
+          <p>我們不走低價一次性生圖。核心價值在於替角色與文本建立可延續的創作資料庫，再用訂閱方式穩定產出。</p>
+        </div>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <h3>角色宇宙啟動建庫</h3>
+            <div class="price">NT$9,800 起<small>適合 2 萬字以下或初期角色設定</small></div>
+            <ul>
+              <li>角色與關係資料整理</li>
+              <li>視覺方向與出圖規範</li>
+              <li>後續訂閱製作基礎</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>長篇文本 IP 建庫</h3>
+            <div class="price">NT$20,000 起<small>百萬字故事也能整理成可出圖宇宙</small></div>
+            <ul>
+              <li>長篇文本脈絡整理</li>
+              <li>角色群與世界觀索引</li>
+              <li>適合小說與大型原創 IP</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>訂閱式產圖</h3>
+            <div class="price">NT$18,800 / 月起<small>以每週出圖量規劃交付</small></div>
+            <ul>
+              <li>每週固定交付</li>
+              <li>角色資料庫持續維護</li>
+              <li>適合長期經營 IP</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="subscription-table" aria-label="訂閱產圖方案">
+          <div class="subscription-row header">
+            <div>出圖量</div>
+            <div>月費</div>
+            <div>適合對象</div>
+          </div>
+          <div class="subscription-row">
+            <div>每週 2 張</div>
+            <div>NT$18,800</div>
+            <div>初期 IP、單一主角線、穩定累積作品集</div>
+          </div>
+          <div class="subscription-row">
+            <div>每週 3 張</div>
+            <div>NT$26,800</div>
+            <div>多角色互動、劇情節點與社群曝光並行</div>
+          </div>
+          <div class="subscription-row">
+            <div>每週 4 張</div>
+            <div>NT$34,800</div>
+            <div>角色群經營、系列場景與活動素材</div>
+          </div>
+          <div class="subscription-row">
+            <div>每週 5 張以上</div>
+            <div>NT$42,800 起</div>
+            <div>大型文本 IP、商業宣傳、長期內容排程</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Workflow</p>
+            <h2>合作流程</h2>
+          </div>
+          <p>先確認角色與文本的可用範圍，再建立資料庫與製作節奏。每一步都會留下可延續的資料，避免作品只停在單張圖。</p>
+        </div>
+        <div class="process-grid">
+          <article class="process-card">
+            <div class="step-number">1</div>
+            <h3>提交角色與文本</h3>
+            <p>提供角色設定、人物關係、故事片段、世界觀說明或完整文本。</p>
+          </article>
+          <article class="process-card">
+            <div class="step-number">2</div>
+            <h3>建立 IP 資料庫</h3>
+            <p>整理角色索引、關係線、風格規範、場景基準與出圖方向。</p>
+          </article>
+          <article class="process-card">
+            <div class="step-number">3</div>
+            <h3>週期交付與維護</h3>
+            <p>依訂閱方案每週交付圖像，並持續更新資料庫與角色視覺一致性。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="note-band">
+      <div class="wrap">
+        <div class="note-panel">
+          <div>
+            <p class="section-kicker">Rights</p>
+            <h2>只承接原創與合法授權內容</h2>
+            <p>服務專注在創作者自有角色、自有文本、品牌原創角色與已取得授權的內容。若內容涉及既有動漫、遊戲、明星、商標角色或第三方 IP，需由客戶先提供可使用授權。</p>
+          </div>
+          <ul class="note-list">
+            <li>不製作未授權既有 IP 仿作</li>
+            <li>不以他人作品風格作為唯一指定仿製目標</li>
+            <li>可協助將原創設定整理成商業可用的視覺資料</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="wrap">
+        <div>
+          <p class="section-kicker">Contact</p>
+          <h2>讓角色開始形成自己的宇宙</h2>
+          <p>來信時可附上角色設定、文本量、預計用途、希望每週出圖量與授權狀態。我們會依資料量與交付需求回覆合適方案。</p>
+        </div>
+        <a class="button primary" href="mailto:a130326714@gmail.com?subject=%E8%A7%92%E8%89%B2%E5%AE%87%E5%AE%99%E5%B7%A5%E6%88%BF%E5%90%88%E4%BD%9C%E8%AB%AE%E8%A9%A2">a130326714@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 角色宇宙工房</span>
+      <span>Original character IP visualization service</span>
+    </div>
+  </footer>
+</body>
+</html>
