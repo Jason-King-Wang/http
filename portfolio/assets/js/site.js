@@ -52,6 +52,7 @@
   }
 
   const API_BASE = String(window.__PORTFOLIO_API_BASE__ || "").replace(/\/$/, "");
+  let liveApiAvailable = isLocalDemoHost() || Boolean(API_BASE);
   const PUBLIC_KB_DEMO = {
     stats: {
       documents: 5745,
@@ -94,11 +95,17 @@
   };
 
   function hasLiveApi() {
-    return isLocalDemoHost() || Boolean(API_BASE);
+    return liveApiAvailable;
   }
 
   function apiUrl(path) {
     return API_BASE ? API_BASE + path : path;
+  }
+
+  function mediaUrl(path) {
+    const value = String(path || "");
+    if (!value || /^(https?:|data:)/i.test(value)) return value;
+    return API_BASE ? API_BASE + value : value;
   }
 
   async function getJson(url) {
@@ -168,7 +175,7 @@
           '<span>' + escapeText(item.source_path) + '</span>' +
           '<span>' + escapeText(heading) + '</span>' +
         '</div>' +
-        (item.image_url ? '<img class="kb-result-image" src="' + escapeText(item.image_url) + '" alt="' + escapeText(item.title) + '" loading="lazy">' : '') +
+        (item.image_url ? '<img class="kb-result-image" src="' + escapeText(mediaUrl(item.image_url)) + '" alt="' + escapeText(item.title) + '" loading="lazy">' : '') +
       '</article>';
     }).join("");
   }
@@ -191,8 +198,23 @@
     const sourceType = String(data.get("source_type") || "");
     if (sourceType) params.set("source_type", sourceType);
     renderKbResults({ results: [] });
-    const payload = await getJson("/api/vector/search?" + params.toString());
-    renderKbResults(payload);
+    try {
+      const payload = await getJson("/api/vector/search?" + params.toString());
+      renderKbResults(payload);
+    } catch (error) {
+      if (API_BASE && (!error || error.status !== 401)) {
+        liveApiAvailable = false;
+        const state = document.querySelector("[data-kb-api-state]");
+        if (state) {
+          state.textContent = "遠端 API 暫時關閉，已切回公開展示";
+          state.classList.remove("error");
+          state.classList.add("ready");
+        }
+        await runKbSearch();
+        return;
+      }
+      throw error;
+    }
   }
 
   function renderKbImages(payload, selectedCharacter = "") {
@@ -201,7 +223,7 @@
     const images = (payload.images || []).filter((item) => !selectedCharacter || item.character === selectedCharacter);
     target.innerHTML = images.map((item) =>
       '<article class="kb-image-card">' +
-        '<img src="' + escapeText(item.image_url) + '" alt="' + escapeText((item.display_name || item.character) + " " + item.image_type) + '" loading="lazy">' +
+        '<img src="' + escapeText(mediaUrl(item.image_url)) + '" alt="' + escapeText((item.display_name || item.character) + " " + item.image_type) + '" loading="lazy">' +
         '<div><strong>' + escapeText(item.display_name || item.character) + '</strong><span>' + escapeText(item.image_type === "face" ? "正臉照" : "形象圖") + '</span><span>' + escapeText(item.title) + '</span></div>' +
       '</article>'
     ).join("");
@@ -221,10 +243,11 @@
     }
     try {
       const stats = await getJson("/api/vector/stats");
-      state.textContent = "本機 API 已連線";
+      state.textContent = API_BASE ? "遠端 read-only API 已連線" : "本機 API 已連線";
       state.classList.add("ready");
       renderKbStats(stats);
       await runKbSearch();
+      if (!hasLiveApi()) return;
       const images = await getJson("/api/portfolio/images");
       const filter = document.querySelector("[data-kb-character-filter]");
       if (filter) {
@@ -236,6 +259,17 @@
       }
       renderKbImages(images);
     } catch (error) {
+      if (API_BASE && (!error || error.status !== 401)) {
+        liveApiAvailable = false;
+        if (state) {
+          state.textContent = "遠端 API 暫時關閉，已切回公開展示";
+          state.classList.remove("error");
+          state.classList.add("ready");
+        }
+        renderKbStats(PUBLIC_KB_DEMO.stats);
+        await runKbSearch();
+        return;
+      }
       if (state) {
         state.textContent = error && error.status === 401 ? "安全鎖尚未解鎖" : "請先啟動本機 API";
         state.classList.add("error");
