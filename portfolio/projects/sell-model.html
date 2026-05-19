@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sell Model v3 Quantile Engine | Wang Yu AI Portfolio</title>
+  <meta name="description" content="把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-amber">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Forecast contract / calibration / AB bridge</p>
+        <h1>Sell Model v3 Quantile Engine</h1>
+        <p class="lead">把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span><span class="chip">Testing</span><span class="chip">Obsidian Sync</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-sell-model.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Active model core</h2>
+        <p>v3 quantile contract 已成為 active model，q60 是 executable sell target；校正使用 exact trade-date labels，Shioaji 5m intraday bars 是主要 after-close outcome source。2026-05-18 review 顯示 valid_review_count 30，當日 state 無需變更。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>q50/q60/q80/q90</strong>
+      <span>明確分層的預測語義</span>
+    </div>
+    <div class="stat-tile">
+      <strong>30</strong>
+      <span>AB big-pool Top30 bridge</span>
+    </div>
+    <div class="stat-tile">
+      <strong>8</strong>
+      <span>核心測試檔案</span>
+    </div>
+    <div class="stat-tile">
+      <strong>0.00%</strong>
+      <span>2026-05-18 mean signed error 紀錄</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>我會強調這不是單一預測數字，而是可校正的 contract。q50 是中心估計、q60 是可執行賣價、q80/q90 是上緣情境；資料標籤品質被明確分級，避免用錯日期或 fallback label 去污染模型。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-04 至 2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local sell-model-core workspace\README.md</code></li><li><code>local sell-model-core workspace\ab_daily_model\peak_quantile_model.py</code></li><li><code>local sell-model-core workspace\docs\sell_model_v3_quantile_contract.md</code></li><li><code>local sell-model-core workspace\tests</code></li><li><code>local Obsidian vault\StockModelVault\50_model_runs\sell_model</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>ab_top30_selector 從 merged AB candidate pool 與 LLM labels 建立 sell-model Top30。</li><li>feature_builder 建立預測特徵，peak_quantile_model 產生 deterministic quantile output。</li><li>outcome_fetch 使用嚴格交易日資料，區分 strict_intraday 與 partial_daily label quality。</li><li>calibration / review_actions 只更新 sell model state，不碰 AB current rules。</li><li>vault_sync 產出 Obsidian-facing prediction note 與 calibration note。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>移除舊的 next_day_prediction source-of-truth，改以 merged AB pool 與 LLM labels 為 active universe。</li><li>建立 q60 executable sell target contract，保留 pred_peak_price 作為相容 alias 但不讓它被誤讀為 p80。</li><li>建立 label quality 規則：只有 exact-date intraday labels 才可計入 time-bucket metrics。</li><li>建立測試涵蓋 AB Top30、LLM source、v3 quantiles、strict date outcome、vault notes。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>加入更多跨市場狀態與特徵漂移監控。</li><li>把 calibration review 做成更清楚的 dashboard panel。</li><li>擴充回測報告，讓不同 quantile band 的命中率與實際成交可視化。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-teal" data-project-card data-title="每日 ab 預選與輪轉 shadow pipeline" data-tags="agentic workflow prompt engineering api/etl guardrails human-in-the-loop dashboard">
+      <a class="card-media" href="../projects/ab-daily.html" aria-label="每日 AB 預選與輪轉 Shadow Pipeline">
+        <img src="../assets/img/project-ab-daily.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h3><a href="../projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h3>
+        <p>把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active daily workflow</span>
+          <a class="text-link" href="../projects/ab-daily.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-coral" data-project-card data-title="sinopac / shioaji 自動交易執行框架" data-tags="python backend guardrails human-in-the-loop testing broker api">
+      <a class="card-media" href="../projects/shioaji-execution.html" aria-label="SinoPac / Shioaji 自動交易執行框架">
+        <img src="../assets/img/project-shioaji-execution.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Broker adapter / live guard / repair flow</p>
+        <h3><a href="../projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h3>
+        <p>一套把上游標準化訊號轉成 sizing、order intent、broker adapter、fills、positions、PnL、reports 與 Obsidian operating notes 的執行層框架。私有選股規則被排除，公開展示的是安全下單與可修復的工程架構。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Backend</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span></div>
+        <div class="card-footer">
+          <span>Interview-safe execution repo</span>
+          <a class="text-link" href="../projects/shioaji-execution.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-violet" data-project-card data-title="z3b-prime 中樞三買量化模型" data-tags="python quant model backtest testing data pipeline visualization">
+      <a class="card-media" href="../projects/z3b-prime.html" aria-label="Z3B-Prime 中樞三買量化模型">
+        <img src="../assets/img/project-z3b-prime.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Rule quantification / state machine / full-universe backtest</p>
+        <h3><a href="../projects/z3b-prime.html">Z3B-Prime 中樞三買量化模型</a></h3>
+        <p>把影片中的中樞三買交易法拆成可重現規則、狀態機、reason code、台股整股 / 零股執行 profile、回測 CLI、CSV 輸出與 SVG 標註。重點是把模糊策略變成能檢查、能回測、能說明失敗原因的工程模型。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">Backtest</span><span class="chip">Testing</span></div>
+        <div class="card-footer">
+          <span>Research model with honest backtest</span>
+          <a class="text-link" href="../projects/z3b-prime.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>每日 AB 預選與輪轉 Shadow Pipeline | Wang Yu AI Portfolio</title>
+  <meta name="description" content="把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-teal">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h1>每日 AB 預選與輪轉 Shadow Pipeline</h1>
+        <p class="lead">把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span><span class="chip">Dashboard</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-ab-daily.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Active daily workflow</h2>
+        <p>已能產出每日 AB 預選、候選池、規則 trace、輪轉 shadow 欄位與公開頁面資料。最近一次資料顯示網路版候選池失敗時會降級使用 Shioaji API 分池；actual execution 維持 not_connected，未把模型建議誤寫成實際下單。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>25</strong>
+      <span>2026-05-18 收盤版預選股數</span>
+    </div>
+    <div class="stat-tile">
+      <strong>83+</strong>
+      <span>大候選池可追蹤標的列</span>
+    </div>
+    <div class="stat-tile">
+      <strong>A/B/AB</strong>
+      <span>多類別預選與 overlap</span>
+    </div>
+    <div class="stat-tile">
+      <strong>Shadow</strong>
+      <span>輪轉週只做 read-only overlay</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>我會把這個專案講成一套多步驟 Agentic workflow：上游資料不穩定，所以先做候選池、來源標記、LLM handoff、驗證與報告；模型建議和實際執行被刻意分開，輪轉週只是 shadow overlay，這就是 guardrailing 與 human-in-the-loop。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-04 至 2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local automation workspace\scripts\build_ab_daily_output.py</code></li><li><code>local automation workspace\scripts\prepare_ab_preselect_handoff.py</code></li><li><code>local automation workspace\scripts\rotation_regime_lib.py</code></li><li><code>local automation workspace\data\ab_llm_preselect</code></li><li><code>local Obsidian vault\StockModelVault\每日版本的AB選股模型輸出\latest.md</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>Shioaji / web external pool 收斂成 merged AB candidate pool。</li><li>LLM 只讀合併候選池與 StockModelVault current rules，輸出 source = llm_vault_direct_preselect。</li><li>repair / validate / annotate / daily output 逐步落地，避免模型輸出直接進入發布層。</li><li>rotation regime 欄位寫入報告與 dashboard，但不能改 AB hard rule、候選池分數、實際買法或券商狀態。</li><li>每日輸出同步到 Obsidian、public dashboard、Email 通知與後續 sell model bridge。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>建立 AB 大候選池合併流程，整合內部候選、外部掃描、Shioaji API 與網路候選來源。</li><li>建立 LLM 預選 handoff、輸出修復、schema 驗證與文字品質修復腳本。</li><li>建立快速輪動週 precheck 與 shadow mode 語義，避免誤把風險燈號當成實際交易命令。</li><li>產出每日 Markdown / JSON / CSV 與公開 dashboard 可讀資料。</li><li>保留 applied_rule_ids、selection_reason、rotation traceability，能回頭查每檔標的為什麼被選。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>把 Email approval / dashboard acknowledgement 做成正式人工確認 gate。</li><li>補更完整的失敗情境 replay：網路池失敗、LLM 欄位缺漏、日期錯置、舊 latest fallback。</li><li>若未來接實際券商執行，必須新增獨立 execution service，不能讓 AB pipeline 直接下單。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-amber" data-project-card data-title="sell model v3 quantile engine" data-tags="python quant model api/etl guardrails testing obsidian sync">
+      <a class="card-media" href="../projects/sell-model.html" aria-label="Sell Model v3 Quantile Engine">
+        <img src="../assets/img/project-sell-model.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Forecast contract / calibration / AB bridge</p>
+        <h3><a href="../projects/sell-model.html">Sell Model v3 Quantile Engine</a></h3>
+        <p>把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active model core</span>
+          <a class="text-link" href="../projects/sell-model.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-coral" data-project-card data-title="sinopac / shioaji 自動交易執行框架" data-tags="python backend guardrails human-in-the-loop testing broker api">
+      <a class="card-media" href="../projects/shioaji-execution.html" aria-label="SinoPac / Shioaji 自動交易執行框架">
+        <img src="../assets/img/project-shioaji-execution.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Broker adapter / live guard / repair flow</p>
+        <h3><a href="../projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h3>
+        <p>一套把上游標準化訊號轉成 sizing、order intent、broker adapter、fills、positions、PnL、reports 與 Obsidian operating notes 的執行層框架。私有選股規則被排除，公開展示的是安全下單與可修復的工程架構。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Backend</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span></div>
+        <div class="card-footer">
+          <span>Interview-safe execution repo</span>
+          <a class="text-link" href="../projects/shioaji-execution.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-blue" data-project-card data-title="自動量化交易系統展示站與 hub" data-tags="next.js dashboard productization frontend static site ux">
+      <a class="card-media" href="../projects/auto-trading-app.html" aria-label="自動量化交易系統展示站與 Hub">
+        <img src="../assets/img/project-auto-trading-app.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Product surface / dashboards / static publish</p>
+        <h3><a href="../projects/auto-trading-app.html">自動量化交易系統展示站與 Hub</a></h3>
+        <p>把模型研發、每日 AB、賣價模型與自動交易報告整理成可展示的產品入口。包含 Next.js 主站、靜態 landing page、dashboard hub、public JSON/JS 資料與 GitHub Pages 型態的發布資產。</p>
+        <div class="chip-row"><span class="chip">Next.js</span><span class="chip">Dashboard</span><span class="chip">Productization</span><span class="chip">Frontend</span></div>
+        <div class="card-footer">
+          <span>Published static dashboard stack</span>
+          <a class="text-link" href="../projects/auto-trading-app.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
