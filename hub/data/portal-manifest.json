@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-05-20T03:00:40+08:00",
-  "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
+  "generated_at": "2026-05-20T03:11:34+08:00",
+  "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-05-19",
     "verified_stock_count": null,
@@ -50,5 +50,11 @@
     "current_equity": 46624.0,
     "latest_daily_html": "2026-05-04.html",
     "latest_weekly_html": "2026-04-27_2026-04-30.html"
+  },
+  "portfolio": {
+    "path": "/portfolio/",
+    "project_count": 10,
+    "public_mode": "static_safe",
+    "vector_demo": "localhost_locked"
   }
 }
