@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>角色宇宙知識庫與創作資料治理 | Wang Yu AI Portfolio</title>
+  <meta name="description" content="把角色設定、人物關係、故事經歷、來源索引、英文譯名、圖像 reference、提示詞規格與矛盾紀錄拆成可維護的資料結構。它是創作型 RAG/知識庫的前置工程：先把資料治理做好，再讓 AI 生成與檢索不亂跑。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-purple">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Knowledge graph / prompt assets / source governance</p>
+        <h1>角色宇宙知識庫與創作資料治理</h1>
+        <p class="lead">把角色設定、人物關係、故事經歷、來源索引、英文譯名、圖像 reference、提示詞規格與矛盾紀錄拆成可維護的資料結構。它是創作型 RAG/知識庫的前置工程：先把資料治理做好，再讓 AI 生成與檢索不亂跑。</p>
+        <div class="chip-row"><span class="chip">Knowledge Base</span><span class="chip">RAG-ready</span><span class="chip">Prompt Engineering</span><span class="chip">Data Modeling</span><span class="chip">Obsidian</span><span class="chip">Automation</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-knowledge-base.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Structured creative knowledge base</h2>
+        <p>????? workspace 已建立 characters、experiences、indexes、sources、translations、prompts、tools；目前已落地本地向量資料庫、受控 API、角色圖展示 manifest 與 Obsidian export。規則明確區分真實線、命運線、待確認矛盾與正式圖像 reference。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>19,823</strong>
+      <span>向量檢索片段</span>
+    </div>
+    <div class="stat-tile">
+      <strong>5,715</strong>
+      <span>標準化文件</span>
+    </div>
+    <div class="stat-tile">
+      <strong>95 / 858</strong>
+      <span>角色實體 / 關係邊</span>
+    </div>
+    <div class="stat-tile">
+      <strong>29</strong>
+      <span>安全展示角色圖</span>
+    </div></div>
+    </section>
+
+    
+    <section class="kb-live-panel" data-kb-demo>
+      <div class="kb-live-head">
+        <div>
+          <p class="eyebrow">本機即時展示</p>
+          <h2>向量搜尋 API 與角色圖白名單</h2>
+          <p>展示站只呼叫 localhost API；搜尋結果只回傳摘要、相對來源與 metadata，角色圖只讀已複製的安全展示資產。</p>
+        </div>
+        <div class="kb-api-state" data-kb-api-state>檢查本機 API...</div>
+      </div>
+      <div class="kb-stat-grid" data-kb-stats>
+        <div class="stat-tile"><strong>--</strong><span>文件</span></div>
+        <div class="stat-tile"><strong>--</strong><span>檢索片段</span></div>
+        <div class="stat-tile"><strong>--</strong><span>角色實體</span></div>
+        <div class="stat-tile"><strong>--</strong><span>關係邊</span></div>
+      </div>
+      <div class="kb-demo-grid">
+        <form class="kb-search-box" data-kb-search-form>
+          <label>
+            <span>語意查詢</span>
+            <input name="q" value="雷和小有娜的關係" maxlength="120" autocomplete="off">
+          </label>
+          <div class="kb-controls">
+            <select name="source_type" aria-label="來源類型">
+              <option value="">全部來源</option>
+              <option value="character">人物設定</option>
+              <option value="experience">故事經歷</option>
+              <option value="relationship_index">人物關係索引</option>
+              <option value="prompt">提示詞</option>
+              <option value="portfolio_image">角色圖</option>
+            </select>
+            <button class="button primary" type="submit">搜尋</button>
+          </div>
+          <p class="kb-note">安全：沒有管理端點、不回傳全文片段、不暴露本機絕對路徑。</p>
+        </form>
+        <div class="kb-results" data-kb-results></div>
+      </div>
+      <details class="kb-gallery-collapsible">
+      <summary>查看白名單角色圖總覽</summary>
+      <div class="kb-gallery-head">
+        <div>
+          <p class="eyebrow">角色圖資產</p>
+          <h3>形象圖 / 正臉照展示</h3>
+        </div>
+        <select data-kb-character-filter aria-label="角色圖篩選">
+          <option value="">全部角色</option>
+        </select>
+      </div>
+      <div class="kb-image-grid" data-kb-images></div>
+      </details>
+    </section>
+  
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>這可以當成 RAG 前置治理案例。真正的 RAG 不只是把文件丟進向量庫，而是要先處理來源優先級、資料分層、矛盾、命名表、reference 圖與提示詞規格，否則模型只會產生看似合理但不可控的內容。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local character-knowledge workspace\PROJECT_GUIDE.md</code></li><li><code>local character-knowledge workspace\characters</code></li><li><code>local character-knowledge workspace\experiences</code></li><li><code>local character-knowledge workspace\indexes</code></li><li><code>local character-knowledge workspace\tools</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>characters 記錄角色當前設定、身份、能力、外觀與提示詞線索。</li><li>experiences 記錄角色在故事中的事件與來源章節，不把經歷塞爆設定檔。</li><li>indexes 整理人物關係、圖像索引、來源索引與候選人物。</li><li>translations 管理英文版譯名與關係邊，新增角色會標記 needs_review。</li><li>conflicts 保存來源矛盾，避免 AI 自行覆蓋使用者腦中的設定。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>建立角色圖設計指南、圖像 reference 優先級、角色卡 / 形象圖 / 大頭照分支規則。</li><li>建立 Obsidian export workflow，把人物、關係、經歷、來源索引輸出成 wiki-link 網路。</li><li>建立英文譯名表同步與 relationship edges。</li><li>建立矛盾處理規則：不急著刪舊設定，而是標記命運線或待確認。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>把向量搜尋 API 接到展示網站，維持 localhost、安全白名單與摘要回傳。</li><li>建立 automated source ingestion，避免手動維護 markdown index 過重。</li><li>做 prompt regression：同角色多次生成時檢查臉、髮型、氣質是否漂移。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-teal" data-project-card data-title="每日 ab 預選與輪轉 shadow pipeline" data-tags="agentic workflow prompt engineering api/etl guardrails human-in-the-loop dashboard">
+      <a class="card-media" href="../projects/ab-daily.html" aria-label="每日 AB 預選與輪轉 Shadow Pipeline">
+        <img src="../assets/img/project-ab-daily.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h3><a href="../projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h3>
+        <p>把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active daily workflow</span>
+          <a class="text-link" href="../projects/ab-daily.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-green" data-project-card data-title="short term radar mvp 與市場資料 etl" data-tags="python api/etl data quality automation testing guardrails">
+      <a class="card-media" href="../projects/short-term-radar.html" aria-label="Short Term Radar MVP 與市場資料 ETL">
+        <img src="../assets/img/project-short-term-radar.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Official data / source verification / automations</p>
+        <h3><a href="../projects/short-term-radar.html">Short Term Radar MVP 與市場資料 ETL</a></h3>
+        <p>短線雷達是一個資料平台型 MVP，將 price、universe、revenue、chip、surveillance、catalyst、corporate、valuation、calendar 等 slot 拆開，支援官方資料收集、normalize、validate、coverage、backfill、source verification 與自我修復。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">API/ETL</span><span class="chip">Data Quality</span><span class="chip">Automation</span></div>
+        <div class="card-footer">
+          <span>MVP data platform</span>
+          <a class="text-link" href="../projects/short-term-radar.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-slate" data-project-card data-title="求職資料庫與 hr 表單自動化" data-tags="automation document workflow human-in-the-loop data tracking browser ops">
+      <a class="card-media" href="../projects/jobsearch-automation.html" aria-label="求職資料庫與 HR 表單自動化">
+        <img src="../assets/img/project-jobsearch-automation.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Browser workflow / document automation / tracking</p>
+        <h3><a href="../projects/jobsearch-automation.html">求職資料庫與 HR 表單自動化</a></h3>
+        <p>把求職搜尋、職缺資料庫、投遞前檢查、履歷同步與 HR 表單填寫整理成流程。它展示的是安全瀏覽器操作、資料庫化紀錄、人工確認與文件自動化，而不是無限制自動投遞。</p>
+        <div class="chip-row"><span class="chip">Automation</span><span class="chip">Document Workflow</span><span class="chip">Human-in-the-loop</span><span class="chip">Data Tracking</span></div>
+        <div class="card-footer">
+          <span>Active interview preparation tooling</span>
+          <a class="text-link" href="../projects/jobsearch-automation.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

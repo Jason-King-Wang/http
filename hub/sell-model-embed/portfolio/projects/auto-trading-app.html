@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>自動量化交易系統展示站與 Hub | Wang Yu AI Portfolio</title>
+  <meta name="description" content="把模型研發、每日 AB、賣價模型與自動交易報告整理成可展示的產品入口。包含 Next.js 主站、靜態 landing page、dashboard hub、public JSON/JS 資料與 GitHub Pages 型態的發布資產。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-blue">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Product surface / dashboards / static publish</p>
+        <h1>自動量化交易系統展示站與 Hub</h1>
+        <p class="lead">把模型研發、每日 AB、賣價模型與自動交易報告整理成可展示的產品入口。包含 Next.js 主站、靜態 landing page、dashboard hub、public JSON/JS 資料與 GitHub Pages 型態的發布資產。</p>
+        <div class="chip-row"><span class="chip">Next.js</span><span class="chip">Dashboard</span><span class="chip">Productization</span><span class="chip">Frontend</span><span class="chip">Static Site</span><span class="chip">UX</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-auto-trading-app.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Published static dashboard stack</h2>
+        <p>AI product workspace 已成為自動交易 App 工作區；hub / auto-quant / sell-model / ab-daily / auto-trading embed 已有公開頁面。這層偏產品展示與 operator interface，不是模型 source-of-truth。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>4</strong>
+      <span>Hub 主要入口頁</span>
+    </div>
+    <div class="stat-tile">
+      <strong>Next.js</strong>
+      <span>主站與靜態輸出</span>
+    </div>
+    <div class="stat-tile">
+      <strong>PWA-ish</strong>
+      <span>manifest / service worker</span>
+    </div>
+    <div class="stat-tile">
+      <strong>Public</strong>
+      <span>dashboard sync assets</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>這個專案展示的是 AI 產品落地：模型不只停在 script，而是有產品頁、儀表板、公開資料同步、操作入口與合規文字。面試時可以用它證明自己會把 AI workflow 包成使用者真的能看的產品。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local AI product workspace\package.json</code></li><li><code>local AI product workspace\SUBPROJECTS.md</code></li><li><code>local automation workspace\sell-model-dashboard-public\hub\index.html</code></li><li><code>local automation workspace\market-dashboard-site</code></li><li><code>local Obsidian vault\自動交易APP\90_current\current_auto_trading_app_status.md</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>主站使用 Next.js / React / TypeScript / Tailwind / lucide-react。</li><li>auto-quant 是純 HTML/CSS/JS 版產品展示頁，便於直接打開或嵌入。</li><li>hub 整合 ab-daily、sell-model、auto-trading 三個展示入口。</li><li>public data 以 JSON/JS 輸出，讓 static dashboard 不需要後端即可載入。</li><li>Obsidian current status 作為工作區與產品狀態同步入口。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>建立自動量化交易系統產品頁：hero、流程、PC installer、mobile control、FAQ 與合規定位。</li><li>建立 Hub dashboard，把每日 AB、賣價模型、自動交易報告放在同一導覽架構。</li><li>建立 public dashboard repo 與 sync 資產，能更新到公開靜態站。</li><li>整理 AI product workspace 子專案索引與 DATA_PATHS，避免模型、資料、網站混在一起。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>把 dashboard 內的模型狀態改成更清楚的 release status 與 data freshness 指示。</li><li>補 operator mode：今日流程、失敗點、最後成功同步時間、需要人工確認項。</li><li>把主站和 hub 的 source-of-truth 關係寫得更明確，避免漂亮頁面被誤當成實際交易狀態。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-teal" data-project-card data-title="每日 ab 預選與輪轉 shadow pipeline" data-tags="agentic workflow prompt engineering api/etl guardrails human-in-the-loop dashboard">
+      <a class="card-media" href="../projects/ab-daily.html" aria-label="每日 AB 預選與輪轉 Shadow Pipeline">
+        <img src="../assets/img/project-ab-daily.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h3><a href="../projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h3>
+        <p>把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active daily workflow</span>
+          <a class="text-link" href="../projects/ab-daily.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-rose" data-project-card data-title="客製角色 ip 宇宙服務商業化流程" data-tags="productization operations human-in-the-loop workflow business">
+      <a class="card-media" href="../projects/ecommerce-ops.html" aria-label="客製角色 IP 宇宙服務商業化流程">
+        <img src="../assets/img/project-ecommerce-ops.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">AI service packaging / channel operations</p>
+        <h3><a href="../projects/ecommerce-ops.html">客製角色 IP 宇宙服務商業化流程</a></h3>
+        <p>把創作型 AI 服務整理成可上架的商品方案、平台規則、申請狀態與通路優先級。這不是純工程 repo，但能展示 AI 產品落地、服務包裝、平台限制與真人驗證資料的處理方式。</p>
+        <div class="chip-row"><span class="chip">Productization</span><span class="chip">Operations</span><span class="chip">Human-in-the-loop</span><span class="chip">Workflow</span></div>
+        <div class="card-footer">
+          <span>Channel readiness and product drafts</span>
+          <a class="text-link" href="../projects/ecommerce-ops.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

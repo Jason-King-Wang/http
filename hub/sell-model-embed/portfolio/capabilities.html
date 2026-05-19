@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>能力對照 | Wang Yu AI Portfolio</title>
+  <meta name="description" content="Capability map for AI workflow interview">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="" data-page="capabilities">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="index.html">首頁</a><a class="" href="projects.html">專案</a><a class="active" href="capabilities.html">能力對照</a><a class="" href="timeline.html">時間線</a><a class="" href="evidence.html">證據牆</a><a class="" href="roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    
+    <section class="page-hero">
+      <div class="page-hero-copy">
+        <p class="eyebrow">Capabilities</p>
+        <h1>把職務要求翻成可展示的工程證據。</h1>
+        <p>這裡不是技能關鍵字表，而是每個能力背後可以點進去追看的專案。</p>
+        
+      </div>
+    </section>
+  
+    <section class="content-band">
+      <div class="capability-grid">
+        
+          <article class="capability-card" id="多步驟-agentic-workflow">
+            <h2>多步驟 Agentic Workflow</h2>
+            <p>每日 AB、短線雷達 backfill、Discord Codex bridge 都不是單一 prompt，而是多步驟資料準備、驗證、降級、輸出與人工確認。</p>
+            <div class="mini-project-list">
+              <a href="projects/ab-daily.html">每日 AB Pipeline</a><a href="projects/short-term-radar.html">短線雷達 ETL</a><a href="projects/discord-codex-bot.html">Discord Codex Bot</a><a href="projects/jobsearch-automation.html">求職自動化</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="ai-guardrailing-與安全邊界">
+            <h2>AI Guardrailing 與安全邊界</h2>
+            <p>交易執行、輪轉 shadow、Discord 檔案傳輸、平台操作都建立了 allowlist、read-only、manual_required、not_connected 或 repair confirmation。</p>
+            <div class="mini-project-list">
+              <a href="projects/shioaji-execution.html">Shioaji Execution</a><a href="projects/ab-daily.html">每日 AB Pipeline</a><a href="projects/discord-codex-bot.html">Discord Codex Bot</a><a href="projects/short-term-radar.html">短線雷達 ETL</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="api-串接與-etl">
+            <h2>API 串接與 ETL</h2>
+            <p>Shioaji、TWSE/TPEx/MOPS、Yahoo/Cnyes、Discord API 與文件資料流都被拆成 collector、normalizer、validator、quality report。</p>
+            <div class="mini-project-list">
+              <a href="projects/short-term-radar.html">短線雷達 ETL</a><a href="projects/ab-daily.html">每日 AB Pipeline</a><a href="projects/shioaji-execution.html">Shioaji Execution</a><a href="projects/discord-codex-bot.html">Discord Codex Bot</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="rag-知識庫準備">
+            <h2>RAG / 知識庫準備</h2>
+            <p>角色宇宙資料庫、Obsidian graph、StockModelVault 與資料索引都先做來源治理、關係建模與矛盾管理，為 retrieval layer 打底。</p>
+            <div class="mini-project-list">
+              <a href="projects/knowledge-base.html">知識庫 / RAG 準備層</a><a href="projects/ab-daily.html">每日 AB Pipeline</a><a href="projects/sell-model.html">賣價模型 v3</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="human-in-the-loop">
+            <h2>Human-in-the-loop</h2>
+            <p>AB rotation 不自動改買法，Shioaji repair 先對帳，求職投遞要確認，電商敏感資料由本人輸入。每個流程都有人工確認位置。</p>
+            <div class="mini-project-list">
+              <a href="projects/ab-daily.html">每日 AB Pipeline</a><a href="projects/shioaji-execution.html">Shioaji Execution</a><a href="projects/ecommerce-ops.html">電商商業化</a><a href="projects/jobsearch-automation.html">求職自動化</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="穩定性-成本與失敗處理">
+            <h2>穩定性、成本與失敗處理</h2>
+            <p>短線雷達避免 repeated source hammering；Discord 可 fallback 本機 Codex；資料流程不寫空 processed table；測試把拒絕行為文件化。</p>
+            <div class="mini-project-list">
+              <a href="projects/short-term-radar.html">短線雷達 ETL</a><a href="projects/discord-codex-bot.html">Discord Codex Bot</a><a href="projects/sell-model.html">賣價模型 v3</a><a href="projects/shioaji-execution.html">Shioaji Execution</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="ai-產品落地">
+            <h2>AI 產品落地</h2>
+            <p>從模型、資料與 agent workflow 延伸到 dashboard、公開站、服務商品、求職與面試作品集，能把工程包成可被使用者理解的產品。</p>
+            <div class="mini-project-list">
+              <a href="projects/auto-trading-app.html">自動交易 App Hub</a><a href="projects/ecommerce-ops.html">電商商業化</a><a href="projects/jobsearch-automation.html">求職自動化</a><a href="projects/knowledge-base.html">知識庫 / RAG 準備層</a>
+            </div>
+          </article>
+        
+          <article class="capability-card" id="python-node-js-frontend">
+            <h2>Python / Node.js / Frontend</h2>
+            <p>Python 涵蓋 ETL、量化模型、交易執行、文件自動化；Node.js 用於 Discord bridge；Next.js / static HTML 用於產品與 dashboard。</p>
+            <div class="mini-project-list">
+              <a href="projects/short-term-radar.html">短線雷達 ETL</a><a href="projects/shioaji-execution.html">Shioaji Execution</a><a href="projects/z3b-prime.html">Z3B-Prime</a><a href="projects/discord-codex-bot.html">Discord Codex Bot</a><a href="projects/auto-trading-app.html">自動交易 App Hub</a>
+            </div>
+          </article>
+        
+      </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="projects.html">全部專案</a>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

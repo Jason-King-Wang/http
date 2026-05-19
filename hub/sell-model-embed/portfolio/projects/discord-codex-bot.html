@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discord Private AI Bot 與本機 Codex Bridge | Wang Yu AI Portfolio</title>
+  <meta name="description" content="一個只回應核准 Discord 使用者與私人頻道的 AI bot。它能把 Discord 訊息安全轉交本機 Codex CLI，保留 channel-level session、附件接收、檔案傳回、transcript 使用量提示與 Windows service mode。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-indigo">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Private AI assistant / local automation bridge</p>
+        <h1>Discord Private AI Bot 與本機 Codex Bridge</h1>
+        <p class="lead">一個只回應核准 Discord 使用者與私人頻道的 AI bot。它能把 Discord 訊息安全轉交本機 Codex CLI，保留 channel-level session、附件接收、檔案傳回、transcript 使用量提示與 Windows service mode。</p>
+        <div class="chip-row"><span class="chip">Node.js</span><span class="chip">OpenAI API</span><span class="chip">Agentic Workflow</span><span class="chip">Guardrails</span><span class="chip">MCP-like Bridge</span><span class="chip">Windows Service</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-discord-codex-bot.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Working local bot</h2>
+        <p>README 已完整描述 safety model、Codex bridge、service mode、附件收發與 transcript memory delete confirmation。實際 log 顯示 bot 在 2026-05-20 仍有輸出活動；目前屬本機私用工具，非公開 SaaS。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>Node 20+</strong>
+      <span>runtime target</span>
+    </div>
+    <div class="stat-tile">
+      <strong>discord.js 14</strong>
+      <span>bot framework</span>
+    </div>
+    <div class="stat-tile">
+      <strong>store:false</strong>
+      <span>OpenAI fallback privacy</span>
+    </div>
+    <div class="stat-tile">
+      <strong>Allowlist</strong>
+      <span>user/channel/file roots</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>我會把它講成一個安全私有 agent gateway。它不是開一個普通 chatbot，而是把 Discord 變成本機 Codex 的遠端入口，所以權限、附件、session、記憶刪除、檔案傳回都要有 guardrail。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-04 至 2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local automation workspace 4\discord-private-ai-bot\README.md</code></li><li><code>local automation workspace 4\discord-private-ai-bot\package.json</code></li><li><code>local automation workspace 4\discord-private-ai-bot\src</code></li><li><code>local automation workspace 4\discord-private-ai-bot\scripts</code></li><li><code>local automation workspace 4\discord-private-ai-bot\transcripts</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>ALLOWED_USER_IDS / ALLOWED_CHANNEL_IDS / ALLOW_DMS 控制誰能觸發 bot。</li><li>CODEX_HANDLE_ALL_MESSAGES / CODEX_TRIGGER_ONLY 控制是否所有訊息都轉給本機 Codex。</li><li>per-channel session store 讓不同 Discord channel 對應不同 Codex thread。</li><li>附件下載限制在 CODEX_WORKDIR，且檢查 CDN URL、大小、extension 與敏感 path keyword。</li><li>檔案傳回也需要 allowed roots、extension allowlist、max bytes 與 secret path block。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>完成 Discord bot、OpenAI fallback、本機 Codex courier mode、channel session 與 Windows service scripts。</li><li>建立 transcript memory 與刪除確認機制，不把刪除語意直接執行成清空記憶。</li><li>建立 attachment receive / send allowlist，避免任意路徑讀寫或外洩。</li><li>建立 insufficient_quota fallback 邏輯，可改走本機 Codex。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>增加 end-to-end integration tests，尤其是附件下載、檔案傳回與 thread reset。</li><li>補更完整的 observability dashboard：queue length、last success、last failure、session size。</li><li>若要產品化，需要改成多租戶權限模型與明確 audit log。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-teal" data-project-card data-title="每日 ab 預選與輪轉 shadow pipeline" data-tags="agentic workflow prompt engineering api/etl guardrails human-in-the-loop dashboard">
+      <a class="card-media" href="../projects/ab-daily.html" aria-label="每日 AB 預選與輪轉 Shadow Pipeline">
+        <img src="../assets/img/project-ab-daily.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h3><a href="../projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h3>
+        <p>把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active daily workflow</span>
+          <a class="text-link" href="../projects/ab-daily.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-amber" data-project-card data-title="sell model v3 quantile engine" data-tags="python quant model api/etl guardrails testing obsidian sync">
+      <a class="card-media" href="../projects/sell-model.html" aria-label="Sell Model v3 Quantile Engine">
+        <img src="../assets/img/project-sell-model.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Forecast contract / calibration / AB bridge</p>
+        <h3><a href="../projects/sell-model.html">Sell Model v3 Quantile Engine</a></h3>
+        <p>把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active model core</span>
+          <a class="text-link" href="../projects/sell-model.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-coral" data-project-card data-title="sinopac / shioaji 自動交易執行框架" data-tags="python backend guardrails human-in-the-loop testing broker api">
+      <a class="card-media" href="../projects/shioaji-execution.html" aria-label="SinoPac / Shioaji 自動交易執行框架">
+        <img src="../assets/img/project-shioaji-execution.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Broker adapter / live guard / repair flow</p>
+        <h3><a href="../projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h3>
+        <p>一套把上游標準化訊號轉成 sizing、order intent、broker adapter、fills、positions、PnL、reports 與 Obsidian operating notes 的執行層框架。私有選股規則被排除，公開展示的是安全下單與可修復的工程架構。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Backend</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span></div>
+        <div class="card-footer">
+          <span>Interview-safe execution repo</span>
+          <a class="text-link" href="../projects/shioaji-execution.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

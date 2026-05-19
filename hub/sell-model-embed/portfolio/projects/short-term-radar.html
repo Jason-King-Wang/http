@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Short Term Radar MVP 與市場資料 ETL | Wang Yu AI Portfolio</title>
+  <meta name="description" content="短線雷達是一個資料平台型 MVP，將 price、universe、revenue、chip、surveillance、catalyst、corporate、valuation、calendar 等 slot 拆開，支援官方資料收集、normalize、validate、coverage、backfill、source verification 與自我修復。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-green">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Official data / source verification / automations</p>
+        <h1>Short Term Radar MVP 與市場資料 ETL</h1>
+        <p class="lead">短線雷達是一個資料平台型 MVP，將 price、universe、revenue、chip、surveillance、catalyst、corporate、valuation、calendar 等 slot 拆開，支援官方資料收集、normalize、validate、coverage、backfill、source verification 與自我修復。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">API/ETL</span><span class="chip">Data Quality</span><span class="chip">Automation</span><span class="chip">Testing</span><span class="chip">Guardrails</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-short-term-radar.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>MVP data platform</h2>
+        <p>simple mode 可掃描、回測、比較 baseline；多個官方來源已做 small live writes 與品質檢查。financial statement backfill 已有診斷 gate、自我修復、lock / cooldown / quarantine。仍需完整歷史 backfill 與更多 source-health automation。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>200+</strong>
+      <span>local verification tests reached</span>
+    </div>
+    <div class="stat-tile">
+      <strong>9</strong>
+      <span>robot data slots</span>
+    </div>
+    <div class="stat-tile">
+      <strong>50</strong>
+      <span>full-mode scan candidates in latest local runs</span>
+    </div>
+    <div class="stat-tile">
+      <strong>113,816</strong>
+      <span>monthly revenue processed rows snapshot</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>這個專案最能對應資料工程與穩定性：我不只寫 collector，而是設計來源降級、品質驗證、兩來源一致、backfill lock、cooldown、自我修復和 automation gate。這能證明我知道 API/ETL 不是抓到資料就結束。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local AI product workspace\short_term_radar_mvp\README.md</code></li><li><code>local AI product workspace\short_term_radar_mvp\SHORT_TERM_RADAR_HANDOFF.md</code></li><li><code>local AI product workspace\short_term_radar_mvp\short_term_radar</code></li><li><code>local AI product workspace\short_term_radar_mvp\docs\financial_backfill_debug_runbook.md</code></li><li><code>local AI product workspace\short_term_radar_mvp\tests</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>slot-based design：PRICE、UNIVERSE、REVENUE、CHIP、SURVEILLANCE、CATALYST、CORPORATE、FINANCIAL、VALUATION、CALENDAR。</li><li>collect CLI 支援 official dry-run、small-range live write、normalize、validate 與 degraded no-empty-write。</li><li>source_verification 要求兩個獨立來源一致才寫入 crawled values。</li><li>financial backfill runner 有 allowed-root、status JSON、event log、lock、stop file、blocked/degraded cooldown、symbol quarantine。</li><li>diagnose / heal CLI 讓 automation 先判斷 should_run，再決定是否發 network requests。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>接入 MOPS monthly revenue、financial statement income/balance、TWSE/TPEx institutional trading、margin/short 等官方來源。</li><li>建立 Yahoo / Cnyes / MoneyDJ / Goodinfo public revenue verification，並分類 login_required、js_cookie_required、access_limited。</li><li>建立 coverage / freshness / missing-date reports，避免 partial slot 被誤判成 full mode。</li><li>建立 financial backfill 的診斷與自我修復流程，避免 scheduled automation 一直打爆來源。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>完整回補 institutional trading、margin/short、surveillance、valuation 等歷史資料。</li><li>把 source health 變成固定 dashboard，而不是只看 quality CSV。</li><li>補 RAG/LLM fallback 只處理低信心文件抽取，且不得直接寫 processed rows。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-teal" data-project-card data-title="每日 ab 預選與輪轉 shadow pipeline" data-tags="agentic workflow prompt engineering api/etl guardrails human-in-the-loop dashboard">
+      <a class="card-media" href="../projects/ab-daily.html" aria-label="每日 AB 預選與輪轉 Shadow Pipeline">
+        <img src="../assets/img/project-ab-daily.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Agentic workflow / LLM preselect / HITL</p>
+        <h3><a href="../projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h3>
+        <p>把多個候選池、LLM 預選、規則追蹤、輪轉週 shadow 判斷、Obsidian 記錄、Email 與公開儀表板串成每日可跑的工作流。核心價值不是單次選股，而是把可變資料、模型判斷與人工確認邊界整理成可追溯流程。</p>
+        <div class="chip-row"><span class="chip">Agentic Workflow</span><span class="chip">Prompt Engineering</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active daily workflow</span>
+          <a class="text-link" href="../projects/ab-daily.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-amber" data-project-card data-title="sell model v3 quantile engine" data-tags="python quant model api/etl guardrails testing obsidian sync">
+      <a class="card-media" href="../projects/sell-model.html" aria-label="Sell Model v3 Quantile Engine">
+        <img src="../assets/img/project-sell-model.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Forecast contract / calibration / AB bridge</p>
+        <h3><a href="../projects/sell-model.html">Sell Model v3 Quantile Engine</a></h3>
+        <p>把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active model core</span>
+          <a class="text-link" href="../projects/sell-model.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-coral" data-project-card data-title="sinopac / shioaji 自動交易執行框架" data-tags="python backend guardrails human-in-the-loop testing broker api">
+      <a class="card-media" href="../projects/shioaji-execution.html" aria-label="SinoPac / Shioaji 自動交易執行框架">
+        <img src="../assets/img/project-shioaji-execution.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Broker adapter / live guard / repair flow</p>
+        <h3><a href="../projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h3>
+        <p>一套把上游標準化訊號轉成 sizing、order intent、broker adapter、fills、positions、PnL、reports 與 Obsidian operating notes 的執行層框架。私有選股規則被排除，公開展示的是安全下單與可修復的工程架構。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Backend</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span></div>
+        <div class="card-footer">
+          <span>Interview-safe execution repo</span>
+          <a class="text-link" href="../projects/shioaji-execution.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>

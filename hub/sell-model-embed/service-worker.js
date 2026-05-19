@@ -1,4 +1,4 @@
-﻿const CACHE_NAME = "sell-model-dashboard-public-v17";
+﻿const CACHE_NAME = "sell-model-dashboard-public-v18";
 const ASSETS = [
   "./",
   "./index.html",
@@ -34,6 +34,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   const requestUrl = new URL(event.request.url);
+  if (requestUrl.pathname.includes("/portfolio/")) {
+    event.respondWith(networkFirst(event.request));
+    return;
+  }
   if (requestUrl.pathname.includes("/auto-quant/")) {
     return;
   }

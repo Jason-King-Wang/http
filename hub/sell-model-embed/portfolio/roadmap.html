@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>下一步 | Wang Yu AI Portfolio</title>
+  <meta name="description" content="Project roadmap and remaining work">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="" data-page="roadmap">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="index.html">首頁</a><a class="" href="projects.html">專案</a><a class="" href="capabilities.html">能力對照</a><a class="" href="timeline.html">時間線</a><a class="" href="evidence.html">證據牆</a><a class="active" href="roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    
+    <section class="page-hero">
+      <div class="page-hero-copy">
+        <p class="eyebrow">Roadmap</p>
+        <h1>未完成不是弱點，講清楚就是工程判斷。</h1>
+        <p>這一頁把各專案目前還差什麼整理出來，方便面試時主動說明風險、取捨與下一步。</p>
+        
+      </div>
+    </section>
+  
+    <section class="content-band roadmap-list">
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Active daily workflow</p>
+            <h2><a href="projects/ab-daily.html">每日 AB 預選與輪轉 Shadow Pipeline</a></h2>
+            <p>已能產出每日 AB 預選、候選池、規則 trace、輪轉 shadow 欄位與公開頁面資料。最近一次資料顯示網路版候選池失敗時會降級使用 Shioaji API 分池；actual execution 維持 not_connected，未把模型建議誤寫成實際下單。</p>
+          </div>
+          <ul>
+            <li>把 Email approval / dashboard acknowledgement 做成正式人工確認 gate。</li><li>補更完整的失敗情境 replay：網路池失敗、LLM 欄位缺漏、日期錯置、舊 latest fallback。</li><li>若未來接實際券商執行，必須新增獨立 execution service，不能讓 AB pipeline 直接下單。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Active model core</p>
+            <h2><a href="projects/sell-model.html">Sell Model v3 Quantile Engine</a></h2>
+            <p>v3 quantile contract 已成為 active model，q60 是 executable sell target；校正使用 exact trade-date labels，Shioaji 5m intraday bars 是主要 after-close outcome source。2026-05-18 review 顯示 valid_review_count 30，當日 state 無需變更。</p>
+          </div>
+          <ul>
+            <li>加入更多跨市場狀態與特徵漂移監控。</li><li>把 calibration review 做成更清楚的 dashboard panel。</li><li>擴充回測報告，讓不同 quantile band 的命中率與實際成交可視化。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Interview-safe execution repo</p>
+            <h2><a href="projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h2>
+            <p>已整理成 interview-safe portfolio repo。dry-run、provider boundary、finalizer、sizing、broker adapter、buy/sell loop、repair confirmation、duplicate-buy guard 與日週報表都有測試覆蓋；live submission 需要多層旗標與狀態確認。</p>
+          </div>
+          <ul>
+            <li>把 repair 後 email approval 做成正式 application gate。</li><li>補 simulated market session，測 quote freshness、partial fill 與 broker mismatch。</li><li>建立 artifact versioning，讓報表能精準指出 config/provider snapshot。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Published static dashboard stack</p>
+            <h2><a href="projects/auto-trading-app.html">自動量化交易系統展示站與 Hub</a></h2>
+            <p>AI product workspace 已成為自動交易 App 工作區；hub / auto-quant / sell-model / ab-daily / auto-trading embed 已有公開頁面。這層偏產品展示與 operator interface，不是模型 source-of-truth。</p>
+          </div>
+          <ul>
+            <li>把 dashboard 內的模型狀態改成更清楚的 release status 與 data freshness 指示。</li><li>補 operator mode：今日流程、失敗點、最後成功同步時間、需要人工確認項。</li><li>把主站和 hub 的 source-of-truth 關係寫得更明確，避免漂亮頁面被誤當成實際交易狀態。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Research model with honest backtest</p>
+            <h2><a href="projects/z3b-prime.html">Z3B-Prime 中樞三買量化模型</a></h2>
+            <p>v1.4 已完成核心 package、規則、台股 execution profile、單元測試與 full-universe run。全資料回測結果誠實保留為負 PnL，下一階段是檢查規則語義、濾網與市場適用性，而不是假裝績效好。</p>
+          </div>
+          <ul>
+            <li>人工抽查 annotated chart，確認程式辨識的中樞與影片語義一致。</li><li>加入分市場、分波動、分流動性、分時間區間的績效切片。</li><li>若要把 MACD 或濾網變成硬條件，必須先更新 RULES.md，不能直接在程式偷改。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">MVP data platform</p>
+            <h2><a href="projects/short-term-radar.html">Short Term Radar MVP 與市場資料 ETL</a></h2>
+            <p>simple mode 可掃描、回測、比較 baseline；多個官方來源已做 small live writes 與品質檢查。financial statement backfill 已有診斷 gate、自我修復、lock / cooldown / quarantine。仍需完整歷史 backfill 與更多 source-health automation。</p>
+          </div>
+          <ul>
+            <li>完整回補 institutional trading、margin/short、surveillance、valuation 等歷史資料。</li><li>把 source health 變成固定 dashboard，而不是只看 quality CSV。</li><li>補 RAG/LLM fallback 只處理低信心文件抽取，且不得直接寫 processed rows。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Working local bot</p>
+            <h2><a href="projects/discord-codex-bot.html">Discord Private AI Bot 與本機 Codex Bridge</a></h2>
+            <p>README 已完整描述 safety model、Codex bridge、service mode、附件收發與 transcript memory delete confirmation。實際 log 顯示 bot 在 2026-05-20 仍有輸出活動；目前屬本機私用工具，非公開 SaaS。</p>
+          </div>
+          <ul>
+            <li>增加 end-to-end integration tests，尤其是附件下載、檔案傳回與 thread reset。</li><li>補更完整的 observability dashboard：queue length、last success、last failure、session size。</li><li>若要產品化，需要改成多租戶權限模型與明確 audit log。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Structured creative knowledge base</p>
+            <h2><a href="projects/knowledge-base.html">角色宇宙知識庫與創作資料治理</a></h2>
+            <p>????? workspace 已建立 characters、experiences、indexes、sources、translations、prompts、tools；目前已落地本地向量資料庫、受控 API、角色圖展示 manifest 與 Obsidian export。規則明確區分真實線、命運線、待確認矛盾與正式圖像 reference。</p>
+          </div>
+          <ul>
+            <li>把向量搜尋 API 接到展示網站，維持 localhost、安全白名單與摘要回傳。</li><li>建立 automated source ingestion，避免手動維護 markdown index 過重。</li><li>做 prompt regression：同角色多次生成時檢查臉、髮型、氣質是否漂移。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Channel readiness and product drafts</p>
+            <h2><a href="projects/ecommerce-ops.html">客製角色 IP 宇宙服務商業化流程</a></h2>
+            <p>蝦皮已送出審核；Pinkoi 設計館與實名認證已送出；露天卡在實名認證；Yahoo 與 momo 先 Pass。第一批商品方案、價格、通路規則與平台注意事項已整理。</p>
+          </div>
+          <ul>
+            <li>等待蝦皮 / Pinkoi 審核結果，補客服話術與圖像範例。</li><li>完成第一批商品頁視覺資產與 FAQ。</li><li>有 3-5 個正式案例後，再評估 momo 或回頭處理 Yahoo/露天。</li>
+          </ul>
+        </article>
+      
+        <article class="roadmap-item">
+          <div>
+            <p class="eyebrow">Active interview preparation tooling</p>
+            <h2><a href="projects/jobsearch-automation.html">求職資料庫與 HR 表單自動化</a></h2>
+            <p>104/1111 求職專區已建立，含搜尋規則、職缺資料庫、投遞紀錄、SOP、履歷素材與 HR form filling script。第一輪以待確認候選清單為主，送出前仍需使用者確認。</p>
+          </div>
+          <ul>
+            <li>把職缺 fit scoring 做成更完整的 rubric，對應 AI Agent / LLM / RAG / API / workflow 能力。</li><li>建立面試作品集連結與投遞信模板。</li><li>把投遞後 follow-up 與面試狀態轉成 dashboard。</li>
+          </ul>
+        </article>
+      
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="projects.html">全部專案</a>
+  </footer>
+  <script src="assets/js/site.js"></script>
+</body>
+</html>

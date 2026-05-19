@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Z3B-Prime 中樞三買量化模型 | Wang Yu AI Portfolio</title>
+  <meta name="description" content="把影片中的中樞三買交易法拆成可重現規則、狀態機、reason code、台股整股 / 零股執行 profile、回測 CLI、CSV 輸出與 SVG 標註。重點是把模糊策略變成能檢查、能回測、能說明失敗原因的工程模型。">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project-detail" data-page="projects">
+  
+    <div class="top-strip">
+      <span>AI workflow portfolio</span>
+      <strong>10 個可點開追問的專案案例</strong>
+      <a href="../projects.html">Explore work</a>
+    </div>
+    <header class="site-header">
+      <a class="brand" href="../index.html" aria-label="Portfolio home">
+        <span class="brand-mark">AI</span>
+        <span>
+          <strong>Wang Yu</strong>
+          <small>Agentic AI Portfolio</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a class="" href="../index.html">首頁</a><a class="active" href="../projects.html">專案</a><a class="" href="../capabilities.html">能力對照</a><a class="" href="../timeline.html">時間線</a><a class="" href="../evidence.html">證據牆</a><a class="" href="../roadmap.html">下一步</a>
+      </nav>
+      <button class="mode-toggle" type="button" data-mode-toggle title="切換面試講法">面試模式</button>
+    </header>
+  
+  <main>
+    
+    <section class="project-hero accent-violet">
+      <div class="project-hero-copy">
+        <p class="eyebrow">Rule quantification / state machine / full-universe backtest</p>
+        <h1>Z3B-Prime 中樞三買量化模型</h1>
+        <p class="lead">把影片中的中樞三買交易法拆成可重現規則、狀態機、reason code、台股整股 / 零股執行 profile、回測 CLI、CSV 輸出與 SVG 標註。重點是把模糊策略變成能檢查、能回測、能說明失敗原因的工程模型。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">Backtest</span><span class="chip">Testing</span><span class="chip">Data Pipeline</span><span class="chip">Visualization</span></div>
+      </div>
+      <div class="project-visual">
+        <img src="../assets/img/project-z3b-prime.jpg" alt="">
+      </div>
+    </section>
+
+    <section class="project-status">
+      <div>
+        <p class="eyebrow">Current Stage</p>
+        <h2>Research model with honest backtest</h2>
+        <p>v1.4 已完成核心 package、規則、台股 execution profile、單元測試與 full-universe run。全資料回測結果誠實保留為負 PnL，下一階段是檢查規則語義、濾網與市場適用性，而不是假裝績效好。</p>
+      </div>
+      <div class="stat-grid">
+    <div class="stat-tile">
+      <strong>1,957</strong>
+      <span>全資料台股標的</span>
+    </div>
+    <div class="stat-tile">
+      <strong>1,712</strong>
+      <span>signals total</span>
+    </div>
+    <div class="stat-tile">
+      <strong>1,173</strong>
+      <span>trades total</span>
+    </div>
+    <div class="stat-tile">
+      <strong>16.11%</strong>
+      <span>full-universe win rate</span>
+    </div></div>
+    </section>
+
+    
+
+    <section class="project-layout">
+      <aside class="project-aside">
+        <div class="aside-block interview-rail">
+          <p class="eyebrow">Interview Talk Track</p>
+          <p>這個專案我會強調『工程誠實』：我不是只把策略寫成看起來很漂亮的回測，而是保留負績效結果，因為真正重要的是規則可重現、reason code 可查、圖上能驗證、執行層有市場限制。</p>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Period</p>
+          <strong>2026-05</strong>
+        </div>
+        <div class="aside-block">
+          <p class="eyebrow">Artifacts</p>
+          <ul class="artifact-list">
+            <li><code>local AI product workspace\z3b-prime-center-third-buy\README.md</code></li><li><code>local AI product workspace\z3b-prime-center-third-buy\RULES.md</code></li><li><code>local AI product workspace\z3b-prime-center-third-buy\src\z3b_prime</code></li><li><code>local AI product workspace\z3b-prime-center-third-buy\tests</code></li><li><code>local AI product workspace\z3b-prime-center-third-buy\reports\full_universe_20260519_tw_round_lot</code></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="project-main">
+        
+    <section class="detail-section">
+      <h2>Architecture</h2>
+      <ul class="detail-list">
+        <li>資料層讀取 1H / 15m OHLCV，若只有 15m 可 resample 成 1H。</li><li>market_structure 模組識別 confirmed swings、price-based centers、a/b、b-A。</li><li>strategy state machine 防止 lookahead bias，所有拒絕理由以 reason_code 記錄。</li><li>execution profile 拆成 tw_round_lot / tw_odd_lot，考慮滑價、手續費、交易稅、T+2、漲跌停、成交量限制。</li><li>output 產出 signal_log、trade_log、performance_report 與 annotated_chart.svg。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Done</h2>
+      <ul class="detail-list">
+        <li>將人讀規則整理為 RULES.md，明確第一部影片為交易規則主體，第二部只作概念輔助。</li><li>建立 Python package、CLI、config、data loader、state machine、execution simulator。</li><li>建立 unit tests 覆蓋 swing、center、MACD diagnostic、strategy rules、台股 execution。</li><li>跑完全資料 tw_round_lot 回測：1957 檔、1173 筆交易、總 PnL -1,049,331。</li>
+      </ul>
+    </section>
+  
+        
+    <section class="detail-section">
+      <h2>Remaining Work</h2>
+      <ul class="detail-list">
+        <li>人工抽查 annotated chart，確認程式辨識的中樞與影片語義一致。</li><li>加入分市場、分波動、分流動性、分時間區間的績效切片。</li><li>若要把 MACD 或濾網變成硬條件，必須先更新 RULES.md，不能直接在程式偷改。</li>
+      </ul>
+    </section>
+  
+      </div>
+    </section>
+
+    <section class="content-band">
+      <div class="section-heading">
+        <p class="eyebrow">Related</p>
+        <h2>可以接著打開的相關專案</h2>
+      </div>
+      <div class="project-grid compact-grid">
+    <article class="project-card accent-amber" data-project-card data-title="sell model v3 quantile engine" data-tags="python quant model api/etl guardrails testing obsidian sync">
+      <a class="card-media" href="../projects/sell-model.html" aria-label="Sell Model v3 Quantile Engine">
+        <img src="../assets/img/project-sell-model.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Forecast contract / calibration / AB bridge</p>
+        <h3><a href="../projects/sell-model.html">Sell Model v3 Quantile Engine</a></h3>
+        <p>把每日 AB 候選池轉成下游賣價模型 Top30 universe，並用 v3 quantile contract 輸出 q50 / q60 / q80 / q90。重點在於預測語義清楚、校正資料嚴格、歷史 note 不回改，並保留與 AB 模型的責任邊界。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Quant Model</span><span class="chip">API/ETL</span><span class="chip">Guardrails</span></div>
+        <div class="card-footer">
+          <span>Active model core</span>
+          <a class="text-link" href="../projects/sell-model.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-coral" data-project-card data-title="sinopac / shioaji 自動交易執行框架" data-tags="python backend guardrails human-in-the-loop testing broker api">
+      <a class="card-media" href="../projects/shioaji-execution.html" aria-label="SinoPac / Shioaji 自動交易執行框架">
+        <img src="../assets/img/project-shioaji-execution.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Broker adapter / live guard / repair flow</p>
+        <h3><a href="../projects/shioaji-execution.html">SinoPac / Shioaji 自動交易執行框架</a></h3>
+        <p>一套把上游標準化訊號轉成 sizing、order intent、broker adapter、fills、positions、PnL、reports 與 Obsidian operating notes 的執行層框架。私有選股規則被排除，公開展示的是安全下單與可修復的工程架構。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">Backend</span><span class="chip">Guardrails</span><span class="chip">Human-in-the-loop</span></div>
+        <div class="card-footer">
+          <span>Interview-safe execution repo</span>
+          <a class="text-link" href="../projects/shioaji-execution.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  
+    <article class="project-card accent-green" data-project-card data-title="short term radar mvp 與市場資料 etl" data-tags="python api/etl data quality automation testing guardrails">
+      <a class="card-media" href="../projects/short-term-radar.html" aria-label="Short Term Radar MVP 與市場資料 ETL">
+        <img src="../assets/img/project-short-term-radar.jpg" alt="" loading="lazy">
+      </a>
+      <div class="card-body">
+        <p class="eyebrow">Official data / source verification / automations</p>
+        <h3><a href="../projects/short-term-radar.html">Short Term Radar MVP 與市場資料 ETL</a></h3>
+        <p>短線雷達是一個資料平台型 MVP，將 price、universe、revenue、chip、surveillance、catalyst、corporate、valuation、calendar 等 slot 拆開，支援官方資料收集、normalize、validate、coverage、backfill、source verification 與自我修復。</p>
+        <div class="chip-row"><span class="chip">Python</span><span class="chip">API/ETL</span><span class="chip">Data Quality</span><span class="chip">Automation</span></div>
+        <div class="card-footer">
+          <span>MVP data platform</span>
+          <a class="text-link" href="../projects/short-term-radar.html">查看專頁</a>
+        </div>
+      </div>
+    </article>
+  </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div>
+      <strong>Prepared for AI workflow / agentic automation interviews.</strong>
+      <span>Local evidence paths are intentionally listed so the project can be reviewed live.</span>
+    </div>
+    <a href="../projects.html">全部專案</a>
+  </footer>
+  <script src="../assets/js/site.js"></script>
+</body>
+</html>
