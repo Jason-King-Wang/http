@@ -51,10 +51,60 @@
     return ["127.0.0.1", "localhost", "::1"].includes(location.hostname);
   }
 
+  const API_BASE = String(window.__PORTFOLIO_API_BASE__ || "").replace(/\/$/, "");
+  const PUBLIC_KB_DEMO = {
+    stats: {
+      documents: 5745,
+      chunks: 19862,
+      entities: 95,
+      relationships: 858
+    },
+    results: [
+      {
+        display_name: "Yuna",
+        title: "有娜 / 小有娜",
+        snippet: "## 關係網摘要 - 核心關係：雷、凱爾、戀、盾、珍永、文汀、志敏、清源、羅伯特、玉婕。對雷的定位：迷妹、戀慕者、親侍、被雷培養的女武神。這是公開展示用的安全摘要，真 API 會依查詢即時回傳 scored chunks。",
+        score: 0.3575,
+        source_type: "character",
+        timeline_layer: "mixed",
+        source_path: "characters/有娜.md",
+        heading_path: ["有娜 / 小有娜", "關係網摘要"]
+      },
+      {
+        display_name: "Yuna",
+        title: "有娜 / 小有娜",
+        snippet: "## 主角性 - 從東北勇者線進入貝奧里德核心圈；她想變強，也想留在雷身邊。角色資料在進入向量庫前已先整理來源、命名、時間線與可公開等級。",
+        score: 0.318,
+        source_type: "experience",
+        timeline_layer: "mixed",
+        source_path: "characters/有娜.md",
+        heading_path: ["有娜 / 小有娜", "主角性"]
+      },
+      {
+        display_name: "Knowledge Demo",
+        title: "公開 API 展示模式",
+        snippet: "GitHub Pages 是靜態站，不能直接執行本機 SQLite / vector API。公開頁保留安全回傳範例；面試現場用 localhost 安全鎖會自動切換到真正的 /api/vector/search。",
+        score: 1,
+        source_type: "documentation",
+        timeline_layer: "不適用",
+        source_path: "public-demo",
+        heading_path: ["Security boundary"]
+      }
+    ]
+  };
+
+  function hasLiveApi() {
+    return isLocalDemoHost() || Boolean(API_BASE);
+  }
+
+  function apiUrl(path) {
+    return API_BASE ? API_BASE + path : path;
+  }
+
   async function getJson(url) {
-    const response = await fetch(url, {
+    const response = await fetch(apiUrl(url), {
       headers: { Accept: "application/json" },
-      credentials: "same-origin",
+      credentials: API_BASE ? "omit" : "same-origin",
       cache: "no-store"
     });
     if (!response.ok) {
@@ -126,22 +176,15 @@
   async function runKbSearch() {
     const form = document.querySelector("[data-kb-search-form]");
     if (!form) return;
-    if (!isLocalDemoHost()) {
-      renderKbResults({
-        results: [{
-          display_name: "公開展示版",
-          title: "公開展示版",
-          snippet: "GitHub Pages 只發布作品集與安全摘要，不連接本機角色向量資料庫。面試現場可用 localhost 安全鎖開啟 live demo。",
-          score: 1,
-          source_type: "documentation",
-          timeline_layer: "不適用",
-          source_path: "public-demo",
-          heading_path: ["Security boundary"]
-        }]
-      });
+    const data = new FormData(form);
+    if (!hasLiveApi()) {
+      const sourceType = String(data.get("source_type") || "");
+      const results = sourceType
+        ? PUBLIC_KB_DEMO.results.filter((item) => item.source_type === sourceType)
+        : PUBLIC_KB_DEMO.results;
+      renderKbResults({ results: results.length ? results : PUBLIC_KB_DEMO.results.slice(-1) });
       return;
     }
-    const data = new FormData(form);
     const params = new URLSearchParams();
     params.set("q", String(data.get("q") || "").slice(0, 120));
     params.set("limit", "6");
@@ -167,12 +210,12 @@
   async function initKbDemo() {
     if (!kbDemo) return;
     const state = document.querySelector("[data-kb-api-state]");
-    if (!isLocalDemoHost()) {
+    if (!hasLiveApi()) {
       if (state) {
-        state.textContent = "公開版不連接本機 API";
+        state.textContent = "公開 API 展示模式";
         state.classList.add("ready");
       }
-      renderKbStats({ documents: 0, chunks: 0, entities: 0, relationships: 0 });
+      renderKbStats(PUBLIC_KB_DEMO.stats);
       await runKbSearch();
       return;
     }
@@ -200,7 +243,7 @@
       const results = document.querySelector("[data-kb-results]");
       if (results) results.innerHTML = error && error.status === 401
         ? '<p class="kb-note">安全鎖已啟用，請先輸入 demo key 解鎖。</p>'
-        : '<p class="kb-note">公開版不連接本機向量 API；面試現場使用安全鎖本機 demo。</p>';
+        : '<p class="kb-note">本機 API 尚未啟動。請先啟動安全鎖本機 demo 伺服器。</p>';
     }
   }
 
