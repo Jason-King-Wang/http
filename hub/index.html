@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Sell Model 與永豐自動交易的統一入口網站，可在同一個地方切換兩套系統。"
+      content="Sell Model、每日 AB、永豐自動交易與 AI 作品集的統一入口網站。"
     />
     <title>交易儀表板總入口</title>
     <link rel="stylesheet" href="./assets/portal.css?v=20260504-ab-load-fix" />
@@ -20,23 +20,24 @@
         <header class="topbar">
           <div class="brand">
             <strong>交易儀表板總入口</strong>
-            <span>Sell Model 與永豐自動交易的統一入口</span>
+            <span>交易系統與 AI 作品集的統一入口</span>
           </div>
           <nav class="nav-links" aria-label="主站導覽">
             <a class="active" href="./index.html">首頁</a>
             <a href="./ab-daily/index.html">每日 AB</a>
             <a href="./sell-model/index.html">賣價模型</a>
             <a href="./auto-trading/index.html">自動交易</a>
+            <a href="../portfolio/index.html">AI 作品集</a>
           </nav>
         </header>
 
         <section class="hero">
           <div>
             <p class="eyebrow">統一入口</p>
-            <h1>一個入口，切換兩套系統。</h1>
+            <h1>一個入口，切換交易系統與 AI 作品集。</h1>
             <p>
-              這個入口把 Sell Model 與 SinoPac Auto Trading 整合在一起。你可以從同一個地方切換兩邊，
-              首頁也會同步顯示兩套系統的最新摘要資訊。
+              這個入口把 Sell Model、每日 AB、SinoPac Auto Trading 與面試作品集整合在一起。
+              你可以從同一個地方切換交易儀表板與 AI workflow 展示頁。
             </p>
             <div class="pill-row" id="portal-meta"></div>
           </div>
@@ -49,6 +50,7 @@
               <a class="action-link" href="./ab-daily/index.html">打開每日 AB</a>
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
+              <a class="action-link" href="../portfolio/index.html">打開 AI 作品集</a>
             </div>
           </aside>
         </section>
@@ -96,15 +98,34 @@
                 <a class="action-link" href="./auto-trading/index.html">查看頁面</a>
               </div>
             </article>
+
+            <article class="card site-card">
+              <div>
+                <p class="eyebrow">站台 D</p>
+                <h2>AI Workflow 面試作品集</h2>
+              </div>
+              <p class="section-copy">
+                多頁式作品集，整理 agentic workflow、RAG/知識庫、guardrails、ETL、自動交易與產品化案例。
+              </p>
+              <div class="pill-row">
+                <span class="pill">10 個專案頁</span>
+                <span class="pill">安全公開版</span>
+                <span class="pill">本機向量 demo</span>
+              </div>
+              <div class="actions">
+                <a class="action-link" href="../portfolio/index.html">查看作品集</a>
+              </div>
+            </article>
           </div>
 
           <section class="card">
             <p class="eyebrow">整合方式</p>
             <h2>這個入口站怎麼運作</h2>
             <ul class="list">
-              <li>首頁會讀取共用 manifest，顯示兩套系統的最新摘要。</li>
+              <li>首頁會讀取共用 manifest，顯示交易系統的最新摘要。</li>
               <li>每日 AB 選股模型輸出獨立成一頁，最新一天放最上面，下面保留歷史。</li>
               <li>賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。</li>
+              <li>AI 作品集以靜態公開版發布；角色向量資料庫 live demo 留在本機安全鎖環境。</li>
               <li>同步腳本會重建嵌入內容，之後由同一條公開發布鏈把入口站一起推上去。</li>
             </ul>
           </section>
