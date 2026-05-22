@@ -1446,6 +1446,109 @@ input:focus-visible {
   backdrop-filter: blur(12px);
 }
 
+.float-carousel {
+  position: relative;
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  overflow: hidden;
+}
+
+.creation-row.float-carousel {
+  --float-columns: 5;
+  grid-auto-flow: initial;
+  grid-auto-columns: initial;
+  gap: 0;
+  overflow: hidden;
+  padding: 4px 0 6px;
+  scrollbar-width: none;
+}
+
+.creation-row.float-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.float-carousel-panel {
+  grid-area: 1 / 1;
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  grid-template-columns: repeat(var(--float-columns, 4), minmax(0, 1fr));
+  gap: 14px;
+  align-items: stretch;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(7%) translateY(12px) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 880ms ease,
+    transform 880ms cubic-bezier(0.19, 1, 0.22, 1),
+    filter 880ms ease;
+  will-change: opacity, transform, filter;
+}
+
+.float-carousel-panel.is-active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0) translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.float-carousel-panel.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-9%) translateY(-20px) scale(0.975);
+  filter: blur(8px);
+}
+
+.float-carousel-panel.is-entering .creation-card,
+.float-carousel-panel.is-entering .kb-image-card {
+  animation: floatCardIn 900ms cubic-bezier(0.19, 1, 0.22, 1) both;
+  animation-delay: calc(var(--float-slot, 0) * 54ms);
+}
+
+.float-carousel-panel.is-leaving .creation-card,
+.float-carousel-panel.is-leaving .kb-image-card {
+  animation: floatCardOut 780ms cubic-bezier(0.55, 0.06, 0.68, 0.19) both;
+  animation-delay: calc(var(--float-slot, 0) * 34ms);
+}
+
+.kb-image-grid.float-carousel {
+  --float-columns: 4;
+  gap: 0;
+}
+
+.kb-image-grid.float-carousel .float-carousel-panel {
+  gap: 12px;
+  align-items: stretch;
+}
+
+@keyframes floatCardIn {
+  from {
+    opacity: 0;
+    transform: translateX(34px) translateY(20px) scale(0.965);
+    filter: blur(7px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes floatCardOut {
+  from {
+    opacity: 1;
+    transform: translateX(0) translateY(0) scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-42px) translateY(-30px) scale(0.955);
+    filter: blur(7px);
+  }
+}
+
 .content-band,
 .split-band,
 .timeline-band,
@@ -1731,6 +1834,14 @@ code {
   .project-hero h1 {
     font-size: 3.6rem;
   }
+
+  .creation-row.float-carousel {
+    --float-columns: 3;
+  }
+
+  .kb-image-grid.float-carousel {
+    --float-columns: 2;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1844,6 +1955,14 @@ code {
 
   .creation-row {
     grid-auto-columns: minmax(190px, 82%);
+  }
+
+  .creation-row.float-carousel {
+    --float-columns: 2;
+  }
+
+  .kb-image-grid.float-carousel {
+    --float-columns: 2;
   }
 
   .project-hero {

@@ -35,6 +35,79 @@
     });
   });
 
+  const floatCarouselTimers = new WeakMap();
+
+  function stopFloatCarousel(root) {
+    const timer = floatCarouselTimers.get(root);
+    if (timer) {
+      window.clearInterval(timer);
+      floatCarouselTimers.delete(root);
+    }
+  }
+
+  function initFloatCarousel(root) {
+    if (!root) return;
+    stopFloatCarousel(root);
+    const existingPanels = Array.from(root.children).filter((item) => item.classList.contains("float-carousel-panel"));
+    if (existingPanels.length && existingPanels.length === root.children.length) return;
+
+    const items = Array.from(root.children);
+    const groupSize = Math.max(1, Number.parseInt(root.dataset.groupSize || "4", 10) || 4);
+    const interval = Math.max(2400, Number.parseInt(root.dataset.interval || "5200", 10) || 5200);
+    root.classList.add("float-carousel");
+
+    if (!items.length) {
+      root.classList.remove("is-ready");
+      return;
+    }
+
+    items.forEach((item, index) => {
+      item.style.setProperty("--float-slot", String(index % groupSize));
+    });
+
+    const panels = [];
+    for (let index = 0; index < items.length; index += groupSize) {
+      const panel = document.createElement("div");
+      panel.className = "float-carousel-panel";
+      panel.setAttribute("aria-hidden", panels.length === 0 ? "false" : "true");
+      items.slice(index, index + groupSize).forEach((item, slot) => {
+        item.style.setProperty("--float-slot", String(slot));
+        panel.appendChild(item);
+      });
+      panels.push(panel);
+    }
+
+    panels[0].classList.add("is-active");
+    root.replaceChildren(...panels);
+    root.classList.add("is-ready");
+
+    if (panels.length <= 1) return;
+
+    let activeIndex = 0;
+    const duration = 980;
+    const showPanel = () => {
+      const nextIndex = (activeIndex + 1) % panels.length;
+      const outgoing = panels[activeIndex];
+      const incoming = panels[nextIndex];
+      outgoing.classList.remove("is-active", "is-entering");
+      outgoing.classList.add("is-leaving");
+      outgoing.setAttribute("aria-hidden", "true");
+      incoming.classList.remove("is-leaving");
+      incoming.classList.add("is-active", "is-entering");
+      incoming.setAttribute("aria-hidden", "false");
+      window.setTimeout(() => {
+        outgoing.classList.remove("is-leaving");
+        incoming.classList.remove("is-entering");
+      }, duration);
+      activeIndex = nextIndex;
+    };
+
+    const timer = window.setInterval(showPanel, interval);
+    floatCarouselTimers.set(root, timer);
+  }
+
+  document.querySelectorAll("[data-float-carousel]").forEach(initFloatCarousel);
+
   const kbDemo = document.querySelector("[data-kb-demo]");
 
   function escapeText(value) {
@@ -220,13 +293,23 @@
   function renderKbImages(payload, selectedCharacter = "") {
     const target = document.querySelector("[data-kb-images]");
     if (!target) return;
+    stopFloatCarousel(target);
     const images = (payload.images || []).filter((item) => !selectedCharacter || item.character === selectedCharacter);
+    target.classList.add("float-carousel");
+    target.dataset.groupSize = target.dataset.groupSize || "4";
+    target.dataset.interval = target.dataset.interval || "4800";
+    if (!images.length) {
+      target.classList.remove("is-ready");
+      target.innerHTML = '<p class="kb-note">沒有符合篩選的安全展示角色圖。</p>';
+      return;
+    }
     target.innerHTML = images.map((item) =>
       '<article class="kb-image-card">' +
         '<img src="' + escapeText(mediaUrl(item.image_url)) + '" alt="' + escapeText((item.display_name || item.character) + " " + item.image_type) + '" loading="lazy">' +
         '<div><strong>' + escapeText(item.display_name || item.character) + '</strong><span>' + escapeText(item.image_type === "face" ? "正臉照" : "形象圖") + '</span><span>' + escapeText(item.title) + '</span></div>' +
       '</article>'
     ).join("");
+    initFloatCarousel(target);
   }
 
   async function initKbDemo() {
