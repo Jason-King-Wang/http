@@ -170,6 +170,7 @@ h2 {
 .score-card p,
 .section-heading p:not(.eyebrow),
 .deliver-grid p,
+.compliance-grid p,
 .pain-grid p,
 .faq-list p {
   color: var(--muted);
@@ -246,6 +247,7 @@ h2 {
 
 .pain-grid,
 .deliver-grid,
+.compliance-grid,
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -258,8 +260,14 @@ h2 {
   grid-template-columns: repeat(4, 1fr);
 }
 
+.compliance-grid {
+  grid-template-columns: repeat(4, 1fr);
+  margin-bottom: 72px;
+}
+
 .pain-grid article,
 .deliver-grid article,
+.compliance-grid article,
 .pricing-grid article,
 .score-card,
 .faq-list details {
@@ -271,16 +279,24 @@ h2 {
 
 .pain-grid article,
 .deliver-grid article,
+.compliance-grid article,
 .pricing-grid article {
   padding: 24px;
 }
 
 .pain-grid strong,
+.compliance-grid strong,
 .deliver-grid h3,
 .pricing-grid h3 {
   display: block;
   color: var(--navy);
   font-size: 21px;
+}
+
+.compliance-grid p {
+  margin-bottom: 0;
+  font-size: 16px;
+  line-height: 1.75;
 }
 
 .deliver-grid b {
@@ -497,6 +513,7 @@ h2 {
 
   .pain-grid,
   .deliver-grid,
+  .compliance-grid,
   .pricing-grid,
   .process-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -517,6 +534,7 @@ h2 {
   .section-shell,
   .pain-grid,
   .deliver-grid,
+  .compliance-grid,
   .pricing-grid {
     width: min(100% - 28px, 1180px);
   }
@@ -538,6 +556,7 @@ h2 {
   .proof-row,
   .pain-grid,
   .deliver-grid,
+  .compliance-grid,
   .pricing-grid,
   .process-grid,
   .row,
