@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-22T09:00:10+08:00",
+  "generated_at": "2026-05-22T09:12:08+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-05-22",
@@ -21,7 +21,7 @@
     "ab_count": 2,
     "equal_lot_return_pct": null,
     "equal_lot_pnl_twd": null,
-    "updated_at": "2026-05-22T09:00:09+08:00",
+    "updated_at": "2026-05-22T09:12:07+08:00",
     "candidate_pool_health_status": "web_failed_shioaji_primary",
     "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池",
     "rotation_trade_week_monday": "2026-05-18",
