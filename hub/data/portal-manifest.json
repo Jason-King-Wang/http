@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-26T00:19:27+08:00",
+  "generated_at": "2026-05-26T01:09:53+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-05-25",
