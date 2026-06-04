@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-04T16:00:02+08:00",
+  "generated_at": "2026-06-05T07:00:05+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-06-04",
@@ -41,14 +41,14 @@
     "actual_execution_status": "not_connected"
   },
   "auto_trading": {
-    "trade_date": "2026-05-29",
-    "week_id": "2026-05-25_2026-05-29",
+    "trade_date": "2026-06-05",
+    "week_id": "2026-06-01_2026-06-05",
     "mode": "dry_run",
     "provider_name": "ab_llm_preselect_json",
     "today_status": "holding",
     "strategy_return": -0.001242844889456782,
     "current_equity": 34233.6,
-    "latest_daily_html": "2026-05-29.html",
+    "latest_daily_html": "2026-06-05.html",
     "latest_weekly_html": "2026-05-18_2026-05-22.html"
   },
   "portfolio": {
