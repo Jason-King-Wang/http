@@ -1,14 +1,15 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-Hant">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="Sell Model, AB, Short Term Radar, Auto Trading and AI portfolio hub."
+    />
     <meta
       name="description"
       content="Sell Model、每日 AB、永豐自動交易與 AI 作品集的統一入口網站。"
     />
     <title>交易儀表板總入口</title>
-    <link rel="stylesheet" href="./assets/portal.css?v=20260504-ab-load-fix" />
+    <link rel="stylesheet" href="./assets/portal.css?v=20260609-radar-hub" />
   </head>
   <body data-page="portal-home">
     <div class="page-shell">
@@ -26,6 +27,7 @@
             <a class="active" href="./index.html">首頁</a>
             <a href="./ab-daily/index.html">每日 AB</a>
             <a href="./sell-model/index.html">賣價模型</a>
+            <a href="./short-term-radar/index.html">短線雷達</a>
             <a href="./auto-trading/index.html">自動交易</a>
             <a href="./job-description/index.html">工作說明圖</a>
             <a href="../portfolio/index.html">AI 作品集</a>
@@ -50,6 +52,7 @@
             <div class="frame-actions">
               <a class="action-link" href="./ab-daily/index.html">打開每日 AB</a>
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
+              <a class="action-link" href="./short-term-radar/index.html">打開短線雷達</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
               <a class="action-link" href="./job-description/index.html">打開工作說明圖</a>
               <a class="action-link" href="../portfolio/index.html">打開 AI 作品集</a>
@@ -90,6 +93,20 @@
             <article class="card site-card">
               <div>
                 <p class="eyebrow">站台 C</p>
+                <h2>短線雷達</h2>
+              </div>
+              <p class="section-copy">
+                整合價量、營收、籌碼與風控資料，呈現條件掃描觀察清單與資料源健康度。
+              </p>
+              <div class="metric-grid" id="short-term-radar-metrics"></div>
+              <div class="actions">
+                <a class="action-link" href="./short-term-radar/index.html">查看頁面</a>
+              </div>
+            </article>
+
+            <article class="card site-card">
+              <div>
+                <p class="eyebrow">站台 D</p>
                 <h2>永豐自動交易</h2>
               </div>
               <p class="section-copy">
@@ -103,7 +120,7 @@
 
             <article class="card site-card">
               <div>
-                <p class="eyebrow">站台 D</p>
+                <p class="eyebrow">站台 E</p>
                 <h2>工作說明圖</h2>
               </div>
               <p class="section-copy">
@@ -121,7 +138,7 @@
 
             <article class="card site-card">
               <div>
-                <p class="eyebrow">站台 E</p>
+                <p class="eyebrow">站台 F</p>
                 <h2>AI Workflow 面試作品集</h2>
               </div>
               <p class="section-copy">
@@ -162,7 +179,8 @@
       </main>
     </div>
 
-    <script src="./data/portal-manifest.js?v=20260504-ab-load-fix"></script>
-    <script src="./assets/portal.js?v=20260504-ab-load-fix"></script>
+    <script src="./data/portal-manifest.js?v=20260609-radar-hub"></script>
+    <script src="./data/short-term-radar-snapshot.js?v=20260609-radar-hub"></script>
+    <script src="./assets/portal.js?v=20260609-radar-hub"></script>
   </body>
 </html>

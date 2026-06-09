@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="短線雷達條件掃描儀表板，整合價量、營收、籌碼與風控資料源狀態。"
+    />
+    <title>短線雷達 | 交易儀表板總入口</title>
+    <link rel="stylesheet" href="../assets/portal.css?v=20260609-radar-hub" />
+  </head>
+  <body data-page="short-term-radar-wrapper">
+    <div class="page-shell">
+      <div class="ambient ambient-a" aria-hidden="true"></div>
+      <div class="ambient ambient-b" aria-hidden="true"></div>
+      <div class="ambient ambient-c" aria-hidden="true"></div>
+
+      <main class="site">
+        <header class="topbar">
+          <div class="brand">
+            <strong>交易儀表板總入口</strong>
+            <span>短線雷達分頁</span>
+          </div>
+          <nav class="nav-links" aria-label="主站導覽">
+            <a href="../index.html">首頁</a>
+            <a href="../ab-daily/index.html">每日 AB</a>
+            <a href="../sell-model/index.html">賣價模型</a>
+            <a class="active" href="./index.html">短線雷達</a>
+            <a href="../auto-trading/index.html">自動交易</a>
+          </nav>
+        </header>
+
+        <section class="hero radar-hero">
+          <div>
+            <p class="eyebrow">Short Term Radar</p>
+            <h1>短線雷達</h1>
+            <p>
+              將價量、營收、籌碼、風控與事件資料接成條件掃描看板，集中呈現觀察清單、資料覆蓋率與資料源健康度。
+            </p>
+            <div class="pill-row" id="radar-page-meta"></div>
+          </div>
+          <aside class="hero-panel">
+            <p class="eyebrow">產品定位</p>
+            <h2>條件掃描與觀察</h2>
+            <p class="meta-line">
+              本系統為交易規則量化與下單輔助工具，不提供個股投資建議、不保證收益。使用者須自行評估投資風險。
+            </p>
+            <div class="frame-actions">
+              <a class="action-link" href="../index.html">回入口首頁</a>
+            </div>
+          </aside>
+        </section>
+
+        <section class="card radar-summary-shell">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Snapshot</p>
+              <h2>掃描摘要</h2>
+            </div>
+          </div>
+          <div class="metric-grid" id="radar-summary-metrics"></div>
+        </section>
+
+        <section class="radar-layout">
+          <article class="card radar-table-card">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Watchlist</p>
+                <h2>條件掃描觀察清單</h2>
+              </div>
+            </div>
+            <div class="table-wrap" id="radar-candidate-table"></div>
+          </article>
+
+          <aside class="card radar-detail-card" id="radar-detail"></aside>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Data Health</p>
+              <h2>資料源狀態</h2>
+            </div>
+          </div>
+          <div class="radar-source-grid" id="radar-source-grid"></div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Compliance</p>
+              <h2>合規提醒</h2>
+            </div>
+          </div>
+          <div class="radar-notice-grid" id="radar-notices"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="../data/portal-manifest.js?v=20260609-radar-hub"></script>
+    <script src="../data/short-term-radar-snapshot.js?v=20260609-radar-hub"></script>
+    <script src="../assets/portal.js?v=20260609-radar-hub"></script>
+  </body>
+</html>
