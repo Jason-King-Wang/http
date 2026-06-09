@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Sell Model 與永豐自動交易的統一入口網站，可在同一個地方切換兩套系統。"
+      content="Sell Model、每日 AB、短線雷達與永豐自動交易的統一入口網站，可在同一個地方切換多套交易儀表板。"
     />
     <title>交易儀表板總入口</title>
-    <link rel="stylesheet" href="./assets/portal.css?v=20260504-ab-load-fix" />
+    <link rel="stylesheet" href="./assets/portal.css?v=20260609-radar-hub" />
   </head>
   <body data-page="portal-home">
     <div class="page-shell">
@@ -26,6 +26,7 @@
             <a class="active" href="./index.html">首頁</a>
             <a href="./ab-daily/index.html">每日 AB</a>
             <a href="./sell-model/index.html">賣價模型</a>
+            <a href="./short-term-radar/index.html">短線雷達</a>
             <a href="./auto-trading/index.html">自動交易</a>
           </nav>
         </header>
@@ -33,10 +34,10 @@
         <section class="hero">
           <div>
             <p class="eyebrow">統一入口</p>
-            <h1>一個入口，切換兩套系統。</h1>
+            <h1>一個入口，切換多套交易儀表板。</h1>
             <p>
-              這個入口把 Sell Model 與 SinoPac Auto Trading 整合在一起。你可以從同一個地方切換兩邊，
-              首頁也會同步顯示兩套系統的最新摘要資訊。
+              這個入口把每日 AB、Sell Model、短線雷達與 SinoPac Auto Trading 整合在一起。你可以從同一個地方切換各套看板，
+              首頁也會同步顯示最新摘要資訊。
             </p>
             <div class="pill-row" id="portal-meta"></div>
           </div>
@@ -48,6 +49,7 @@
             <div class="frame-actions">
               <a class="action-link" href="./ab-daily/index.html">打開每日 AB</a>
               <a class="action-link" href="./sell-model/index.html">打開賣價模型</a>
+              <a class="action-link" href="./short-term-radar/index.html">打開短線雷達</a>
               <a class="action-link" href="./auto-trading/index.html">打開自動交易</a>
             </div>
           </aside>
@@ -86,6 +88,20 @@
             <article class="card site-card">
               <div>
                 <p class="eyebrow">站台 C</p>
+                <h2>短線雷達</h2>
+              </div>
+              <p class="section-copy">
+                整合價量、營收、籌碼與風控資料，呈現條件掃描觀察清單與資料源健康度。
+              </p>
+              <div class="metric-grid" id="short-term-radar-metrics"></div>
+              <div class="actions">
+                <a class="action-link" href="./short-term-radar/index.html">查看頁面</a>
+              </div>
+            </article>
+
+            <article class="card site-card">
+              <div>
+                <p class="eyebrow">站台 D</p>
                 <h2>永豐自動交易</h2>
               </div>
               <p class="section-copy">
@@ -102,8 +118,9 @@
             <p class="eyebrow">整合方式</p>
             <h2>這個入口站怎麼運作</h2>
             <ul class="list">
-              <li>首頁會讀取共用 manifest，顯示兩套系統的最新摘要。</li>
+              <li>首頁會讀取共用 manifest 與短線雷達 snapshot，顯示各套看板的最新摘要。</li>
               <li>每日 AB 選股模型輸出獨立成一頁，最新一天放最上面，下面保留歷史。</li>
+              <li>短線雷達獨立成一頁，顯示條件掃描觀察清單、資料覆蓋與資料源狀態。</li>
               <li>賣價模型頁與自動交易頁各自保留原內容，但共用同一套導覽外殼。</li>
               <li>同步腳本會重建嵌入內容，之後由同一條公開發布鏈把入口站一起推上去。</li>
             </ul>
@@ -120,7 +137,8 @@
       </main>
     </div>
 
-    <script src="./data/portal-manifest.js?v=20260504-ab-load-fix"></script>
-    <script src="./assets/portal.js?v=20260504-ab-load-fix"></script>
+    <script src="./data/portal-manifest.js?v=20260609-radar-hub"></script>
+    <script src="./data/short-term-radar-snapshot.js?v=20260609-radar-hub"></script>
+    <script src="./assets/portal.js?v=20260609-radar-hub"></script>
   </body>
 </html>

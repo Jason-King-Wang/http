@@ -810,6 +810,176 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   color: var(--muted);
 }
 
+.radar-hero h1 {
+  max-width: none;
+}
+
+.radar-summary-shell,
+.radar-table-card,
+.radar-detail-card {
+  min-width: 0;
+}
+
+.radar-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.72fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.radar-table {
+  min-width: 980px;
+}
+
+.radar-table td {
+  vertical-align: top;
+}
+
+.radar-stock {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 9rem;
+}
+
+.radar-stock span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.score-pill,
+.radar-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.42rem 0.65rem;
+  border-radius: 999px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.score-pill {
+  min-width: 3.2rem;
+  background: rgba(12, 143, 122, 0.12);
+  color: var(--accent-strong);
+}
+
+.radar-status-badge {
+  background: rgba(22, 33, 46, 0.07);
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.radar-status-stage {
+  background: rgba(29, 53, 87, 0.1);
+  color: var(--navy);
+}
+
+.risk-cell {
+  max-width: 220px;
+  white-space: normal;
+  color: var(--muted);
+}
+
+.radar-detail-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.radar-detail-grid,
+.radar-score-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.radar-detail-grid > div,
+.radar-score-item {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.72rem;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(22, 33, 46, 0.07);
+}
+
+.radar-detail-grid span,
+.radar-score-item span,
+.radar-source-meta span {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.radar-detail-grid strong,
+.radar-score-item strong {
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+}
+
+.radar-detail-block {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.radar-source-grid,
+.radar-notice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.85rem;
+  margin-top: 1rem;
+}
+
+.radar-source-card,
+.radar-notice {
+  padding: 0.92rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(22, 33, 46, 0.08);
+}
+
+.radar-source-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.radar-source-meta {
+  display: grid;
+  gap: 0.32rem;
+}
+
+.radar-source-card.radar-status-fresh,
+.radar-status-badge.radar-status-fresh {
+  border-color: rgba(12, 143, 122, 0.22);
+  background: rgba(12, 143, 122, 0.1);
+  color: var(--accent-strong);
+}
+
+.radar-source-card.radar-status-partial,
+.radar-status-badge.radar-status-partial,
+.radar-source-card.radar-status-historical,
+.radar-status-badge.radar-status-historical {
+  border-color: rgba(238, 108, 77, 0.24);
+  background: rgba(255, 247, 239, 0.78);
+  color: #a13f28;
+}
+
+.radar-source-card.radar-status-stale,
+.radar-status-badge.radar-status-stale,
+.radar-source-card.radar-status-source-missing,
+.radar-status-badge.radar-status-source-missing {
+  border-color: rgba(29, 53, 87, 0.18);
+  background: rgba(247, 249, 252, 0.78);
+  color: var(--muted);
+}
+
+.radar-notice {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
 .list {
   display: grid;
   gap: 0.65rem;
@@ -854,6 +1024,15 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell iframe {
   .section-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .radar-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .radar-detail-grid,
+  .radar-score-grid {
+    grid-template-columns: 1fr;
   }
 
   body[data-page="auto-trading-wrapper"] .site {

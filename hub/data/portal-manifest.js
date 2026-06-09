@@ -1,1 +1,64 @@
-window.__PORTAL_MANIFEST__ = {"generated_at": "2026-05-05T14:16:33+08:00", "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。", "sell_model": {"target_trade_date": "2026-04-30", "verified_stock_count": 30, "peak_hit_rate": 0.1667, "source_scope": "public"}, "ab_daily": {"trade_date": "2026-05-05", "source_target_trade_date": "2026-05-05", "daily_trade_date": "2026-05-05", "daily_weekday": "Tuesday", "rotation_effective_trade_date": "2026-05-05", "rotation_effective_weekday": "Tuesday", "phase_label": "收盤版", "stock_count": 17, "a_count": 12, "b_count": 12, "ab_count": 7, "equal_lot_return_pct": 0.0836, "equal_lot_pnl_twd": 25000.0, "updated_at": "2026-05-05T14:15:24+08:00", "candidate_pool_health_status": "web_failed_shioaji_primary", "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池", "rotation_trade_week_monday": "2026-05-04", "rotation_cutoff_date": "2026-04-30", "rotation_applied_to_daily_preselect": false, "rotation_applied_to_daily_finalize": false, "rotation_daily_conclusion": "no_action", "rotation_daily_conclusion_text": "照原 AB", "rotation_shadow_action": "not_applied_non_monday", "weekly_rotation_regime_reference": "rotation_conflict", "weekly_rotation_shadow_action_reference": "hard_change_required", "rotation_mode_switch_note": "rotation 生效日非週一；AB 快速輪動 shadow 只在週一買入前套用。本週週一 rotation_conflict 僅作參考。", "hard_change_model_core": false, "hard_change_execution_policy": false, "actual_execution_units_change": "not_applicable_non_monday", "execution_policy_change_status": "not_applied_non_monday", "actual_execution_status": "not_connected"}, "auto_trading": {"trade_date": "2026-05-04", "week_id": "2026-05-04_2026-05-08", "mode": "live", "provider_name": "ab_llm_preselect_json", "today_status": "buying", "strategy_return": 0.005998360160531653, "current_equity": 46624.0, "latest_daily_html": "2026-05-04.html", "latest_weekly_html": "2026-04-27_2026-04-30.html"}};
+window.__PORTAL_MANIFEST__ = {
+  "generated_at": "2026-05-05T14:16:33+08:00",
+  "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑。",
+  "sell_model": {
+    "target_trade_date": "2026-04-30",
+    "verified_stock_count": 30,
+    "peak_hit_rate": 0.1667,
+    "source_scope": "public"
+  },
+  "ab_daily": {
+    "trade_date": "2026-05-05",
+    "source_target_trade_date": "2026-05-05",
+    "daily_trade_date": "2026-05-05",
+    "daily_weekday": "Tuesday",
+    "rotation_effective_trade_date": "2026-05-05",
+    "rotation_effective_weekday": "Tuesday",
+    "phase_label": "收盤版",
+    "stock_count": 17,
+    "a_count": 12,
+    "b_count": 12,
+    "ab_count": 7,
+    "equal_lot_return_pct": 0.0836,
+    "equal_lot_pnl_twd": 25000,
+    "updated_at": "2026-05-05T14:15:24+08:00",
+    "candidate_pool_health_status": "web_failed_shioaji_primary",
+    "candidate_pool_health_label": "網路版選池抓取失敗，已改用永豐 API 分池",
+    "rotation_trade_week_monday": "2026-05-04",
+    "rotation_cutoff_date": "2026-04-30",
+    "rotation_applied_to_daily_preselect": false,
+    "rotation_applied_to_daily_finalize": false,
+    "rotation_daily_conclusion": "no_action",
+    "rotation_daily_conclusion_text": "照原 AB",
+    "rotation_shadow_action": "not_applied_non_monday",
+    "weekly_rotation_regime_reference": "rotation_conflict",
+    "weekly_rotation_shadow_action_reference": "hard_change_required",
+    "rotation_mode_switch_note": "rotation 生效日非週一；AB 快速輪動 shadow 只在週一買入前套用。本週週一 rotation_conflict 僅作參考。",
+    "hard_change_model_core": false,
+    "hard_change_execution_policy": false,
+    "actual_execution_units_change": "not_applicable_non_monday",
+    "execution_policy_change_status": "not_applied_non_monday",
+    "actual_execution_status": "not_connected"
+  },
+  "auto_trading": {
+    "trade_date": "2026-05-04",
+    "week_id": "2026-05-04_2026-05-08",
+    "mode": "live",
+    "provider_name": "ab_llm_preselect_json",
+    "today_status": "buying",
+    "strategy_return": 0.005998360160531653,
+    "current_equity": 46624,
+    "latest_daily_html": "2026-05-04.html",
+    "latest_weekly_html": "2026-04-27_2026-04-30.html"
+  },
+  "short_term_radar": {
+    "as_of_date": "2026-06-08",
+    "created_at": "2026-06-09T08:14:56",
+    "total_candidates": 50,
+    "mode": "full_short_term_radar",
+    "early_watch_count": 1,
+    "average_score_coverage": 0.794,
+    "snapshot_json": "data/short-term-radar-snapshot.json",
+    "page_path": "short-term-radar/index.html"
+  }
+};
