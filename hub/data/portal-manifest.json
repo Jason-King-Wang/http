@@ -56,5 +56,15 @@
     "project_count": 10,
     "public_mode": "static_safe",
     "vector_demo": "localhost_locked"
+  },
+  "short_term_radar": {
+    "as_of_date": "2026-06-08",
+    "created_at": "2026-06-09T08:14:56",
+    "total_candidates": 50,
+    "mode": "full_short_term_radar",
+    "early_watch_count": 1,
+    "average_score_coverage": 0.794,
+    "snapshot_json": "data/short-term-radar-snapshot.json",
+    "page_path": "short-term-radar/index.html"
   }
 }

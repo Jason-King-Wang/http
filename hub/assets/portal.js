@@ -34,6 +34,25 @@ async function fetchAbDailyData() {
   }
 }
 
+async function fetchShortTermRadarData() {
+  if (window.__SHORT_TERM_RADAR_DATA__) {
+    return window.__SHORT_TERM_RADAR_DATA__;
+  }
+
+  const basePath = document.body.dataset.page === "portal-home" ? "./" : "../";
+  try {
+    const response = await fetch(`${basePath}data/short-term-radar-snapshot.json?v=${Date.now()}`, {
+      cache: "no-store",
+    });
+    if (!response.ok) {
+      throw new Error(`Short term radar request failed: ${response.status}`);
+    }
+    return await response.json();
+  } catch (_error) {
+    return null;
+  }
+}
+
 function fallbackText(value) {
   return value === undefined || value === null || value === "" ? "--" : value;
 }
@@ -275,16 +294,81 @@ function renderMetricCards(target, rows) {
     .join("");
 }
 
-function renderPortalHome(manifest) {
+function formatScore(value) {
+  const number = asNumber(value);
+  return number === null ? "--" : number.toFixed(1);
+}
+
+function formatCompactDateTime(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "--";
+  }
+  return text.replace("T", " ");
+}
+
+function modeLabel(mode) {
+  const labels = {
+    full_short_term_radar: "完整短線雷達",
+  };
+  return labels[mode] || mode || "--";
+}
+
+function stageLabel(stage) {
+  const labels = {
+    S1: "初篩觀察",
+    S2: "進階觀察",
+    S3: "高強度觀察",
+  };
+  return labels[stage] || stage || "--";
+}
+
+function entryZoneLabel(zone) {
+  const labels = {
+    early_watch: "早期觀察",
+    watch_only: "觀察中",
+    confirm_required: "需自行確認",
+  };
+  return labels[zone] || zone || "--";
+}
+
+function freshnessLabel(value) {
+  const labels = {
+    fresh: "新鮮",
+    partial: "部分更新",
+    stale: "待更新",
+    historical: "歷史資料",
+    source_missing: "來源缺口",
+  };
+  return labels[value] || value || "--";
+}
+
+function freshnessClass(value) {
+  const normalized = String(value || "unknown").replaceAll("_", "-");
+  return `radar-status-${normalized}`;
+}
+
+function radarRiskText(candidate) {
+  const flags = Array.isArray(candidate?.riskFlags) ? candidate.riskFlags.filter(Boolean) : [];
+  return flags.length ? flags.join("、") : "未標記";
+}
+
+function renderStatusBadge(label, className = "") {
+  return `<span class="radar-status-badge ${className}">${escapeHtml(label)}</span>`;
+}
+
+function renderPortalHome(manifest, radar) {
   const meta = document.querySelector("#portal-meta");
   const sell = manifest?.sell_model || {};
   const ab = manifest?.ab_daily || {};
   const auto = manifest?.auto_trading || {};
+  const radarSummary = radar?.summary || {};
 
   if (meta) {
     meta.innerHTML = [
       `每日 AB 日期 ${fallbackText(ab.trade_date)}`,
       `賣價模型日期 ${fallbackText(sell.target_trade_date)}`,
+      `短線雷達日期 ${fallbackText(radar?.asOfDate)}`,
       `自動交易日期 ${fallbackText(auto.trade_date)}`,
       `最後同步 ${fallbackText(manifest?.generated_at)}`,
     ]
@@ -304,6 +388,13 @@ function renderPortalHome(manifest) {
     ["驗證股票數", sell.verified_stock_count],
     ["Peak 命中率", formatPct(sell.peak_hit_rate)],
     ["資料範圍", sell.source_scope || "public"],
+  ]);
+
+  renderMetricCards(document.querySelector("#short-term-radar-metrics"), [
+    ["掃描日", radar?.asOfDate],
+    ["候選清單", radarSummary.totalCandidates],
+    ["早期觀察", radarSummary.entryZoneCounts?.early_watch],
+    ["平均覆蓋", formatPct(radarSummary.averageScoreCoverage)],
   ]);
 
   renderMetricCards(document.querySelector("#auto-trading-metrics"), [
@@ -883,6 +974,223 @@ function renderAbDailyPage(payload) {
   }
 }
 
+function renderRadarCandidateRow(candidate) {
+  const stockLabel = [candidate?.symbol, candidate?.name].filter(Boolean).join(" ");
+  const stage = `${stageLabel(candidate?.stage)} / ${entryZoneLabel(candidate?.entryZone)}`;
+  const volumeRatio = asNumber(candidate?.volumeExpansionRatio);
+  const volumeText = volumeRatio === null ? "--" : `${formatNumber(volumeRatio)}x`;
+
+  return `
+    <tr>
+      <td>${escapeHtml(candidate?.rank || "--")}</td>
+      <td>
+        <div class="radar-stock">
+          <strong>${escapeHtml(stockLabel || "--")}</strong>
+          <span>${escapeHtml(candidate?.industry || "產業未標記")}</span>
+        </div>
+      </td>
+      <td>${renderStatusBadge(stage, "radar-status-stage")}</td>
+      <td><span class="score-pill">${escapeHtml(formatScore(candidate?.scoreTotal))}</span></td>
+      <td>${escapeHtml(formatNumber(candidate?.lastClose))}</td>
+      <td>${escapeHtml(formatPct(candidate?.ret20d))}</td>
+      <td>${escapeHtml(formatPct(candidate?.ret60d))}</td>
+      <td>${escapeHtml(volumeText)}</td>
+      <td>${escapeHtml(formatPct(candidate?.scoreDataCoverageRatio))}</td>
+      <td class="risk-cell">${escapeHtml(radarRiskText(candidate))}</td>
+    </tr>
+  `;
+}
+
+function renderRadarCandidateTable(candidates) {
+  if (!candidates.length) {
+    return '<div class="empty-state">目前沒有可呈現的短線雷達觀察清單。</div>';
+  }
+
+  return `
+    <table class="ab-history-table radar-table">
+      <thead>
+        <tr>
+          <th>排序</th>
+          <th>標的</th>
+          <th>階段</th>
+          <th>分數</th>
+          <th>收盤</th>
+          <th>20 日</th>
+          <th>60 日</th>
+          <th>量能</th>
+          <th>覆蓋</th>
+          <th>風險標記</th>
+        </tr>
+      </thead>
+      <tbody>${candidates.map(renderRadarCandidateRow).join("")}</tbody>
+    </table>
+  `;
+}
+
+function renderRadarScoreGrid(candidate) {
+  const scores = candidate?.scores || {};
+  const rows = [
+    ["營收", scores.revenue],
+    ["預期差", scores.expectationGap],
+    ["價量", scores.priceVolume],
+    ["題材群", scores.themeGroup],
+    ["籌碼", scores.chip],
+    ["事件", scores.catalyst],
+  ];
+
+  return `
+    <div class="radar-score-grid">
+      ${rows
+        .map(
+          ([label, value]) => `
+            <div class="radar-score-item">
+              <span>${escapeHtml(label)}</span>
+              <strong>${escapeHtml(formatScore(value))}</strong>
+            </div>
+          `
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderRadarDetail(candidate) {
+  if (!candidate) {
+    return `
+      <p class="eyebrow">Detail</p>
+      <h2>尚無觀察資料</h2>
+      <p class="section-copy">短線雷達 snapshot 尚未提供候選清單。</p>
+    `;
+  }
+
+  const stockLabel = [candidate.symbol, candidate.name].filter(Boolean).join(" ");
+  const reasons = Array.isArray(candidate.reasons) ? candidate.reasons.filter(Boolean) : [];
+  const availableRadars = Array.isArray(candidate.availableRadars) ? candidate.availableRadars : [];
+  const degradedRadars = Array.isArray(candidate.degradedRadars) ? candidate.degradedRadars : [];
+
+  return `
+    <p class="eyebrow">Top Observation</p>
+    <h2>${escapeHtml(stockLabel || "--")}</h2>
+    <p class="section-copy">
+      目前排序第 ${escapeHtml(candidate.rank || "--")}，${escapeHtml(stageLabel(candidate.stage))}，
+      ${escapeHtml(entryZoneLabel(candidate.entryZone))}。此區僅呈現條件掃描結果與資料狀態。
+    </p>
+    <div class="radar-detail-grid">
+      <div>
+        <span>總分</span>
+        <strong>${escapeHtml(formatScore(candidate.scoreTotal))}</strong>
+      </div>
+      <div>
+        <span>最近收盤</span>
+        <strong>${escapeHtml(formatNumber(candidate.lastClose))}</strong>
+      </div>
+      <div>
+        <span>20 日變動</span>
+        <strong>${escapeHtml(formatPct(candidate.ret20d))}</strong>
+      </div>
+      <div>
+        <span>量能倍率</span>
+        <strong>${escapeHtml(asNumber(candidate.volumeExpansionRatio) === null ? "--" : `${formatNumber(candidate.volumeExpansionRatio)}x`)}</strong>
+      </div>
+    </div>
+    ${renderRadarScoreGrid(candidate)}
+    <div class="radar-detail-block">
+      <strong>條件摘要</strong>
+      <ul class="list">
+        ${
+          reasons.length
+            ? reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")
+            : "<li>尚無條件摘要。</li>"
+        }
+      </ul>
+    </div>
+    <div class="radar-detail-block">
+      <strong>雷達覆蓋</strong>
+      <p class="mini-note">
+        可用：${escapeHtml(availableRadars.length ? availableRadars.join("、") : "--")}
+        <br />
+        降級：${escapeHtml(degradedRadars.length ? degradedRadars.join("、") : "--")}
+      </p>
+    </div>
+  `;
+}
+
+function renderRadarSourceStatus(source) {
+  const className = freshnessClass(source?.freshness);
+  const markets = Array.isArray(source?.markets) ? source.markets.join(" / ") : "--";
+  return `
+    <article class="radar-source-card ${className}">
+      <div class="radar-source-head">
+        <strong>${escapeHtml(source?.label || source?.dataset || "--")}</strong>
+        ${renderStatusBadge(freshnessLabel(source?.freshness), className)}
+      </div>
+      <div class="radar-source-meta">
+        <span>最新：${escapeHtml(fallbackText(source?.latest))}</span>
+        <span>市場：${escapeHtml(markets)}</span>
+        <span>筆數：${escapeHtml(formatNumber(source?.actualCount))}</span>
+      </div>
+    </article>
+  `;
+}
+
+function renderShortTermRadarPage(payload) {
+  const pageMeta = document.querySelector("#radar-page-meta");
+  const summaryMetrics = document.querySelector("#radar-summary-metrics");
+  const candidateTable = document.querySelector("#radar-candidate-table");
+  const detail = document.querySelector("#radar-detail");
+  const sourceGrid = document.querySelector("#radar-source-grid");
+  const notices = document.querySelector("#radar-notices");
+  const summary = payload?.summary || {};
+  const candidates = Array.isArray(payload?.candidates) ? payload.candidates : [];
+  const topCandidates = candidates.slice(0, 20);
+
+  if (pageMeta) {
+    pageMeta.innerHTML = payload
+      ? [
+          `掃描日 ${fallbackText(payload.asOfDate)}`,
+          modeLabel(summary.mode),
+          `候選 ${fallbackText(summary.totalCandidates)} 檔`,
+          `產生時間 ${formatCompactDateTime(payload.createdAt)}`,
+        ]
+          .map((item) => `<span class="pill">${item}</span>`)
+          .join("")
+      : '<span class="pill">短線雷達資料尚未載入</span>';
+  }
+
+  renderMetricCards(summaryMetrics, [
+    ["掃描日", payload?.asOfDate],
+    ["候選檔數", summary.totalCandidates],
+    ["核心資料完成", summary.coreReadyCount],
+    ["最高分數", formatScore(summary.topScore)],
+    ["平均分數覆蓋", formatPct(summary.averageScoreCoverage)],
+    ["Slot 覆蓋", formatPct(summary.averageSlotCoverage)],
+  ]);
+
+  if (candidateTable) {
+    candidateTable.innerHTML = renderRadarCandidateTable(topCandidates);
+  }
+
+  if (detail) {
+    detail.innerHTML = renderRadarDetail(candidates[0]);
+  }
+
+  if (sourceGrid) {
+    const sources = Array.isArray(payload?.datasetStatus) ? payload.datasetStatus : [];
+    sourceGrid.innerHTML = sources.length
+      ? sources.map(renderRadarSourceStatus).join("")
+      : '<div class="empty-state">尚無資料源狀態。</div>';
+  }
+
+  if (notices) {
+    const noticeRows = Array.isArray(payload?.notices) && payload.notices.length
+      ? payload.notices
+      : ["本系統為交易規則量化與下單輔助工具，不提供個股投資建議、不保證收益。使用者須自行評估投資風險。"];
+    notices.innerHTML = noticeRows
+      .map((notice) => `<article class="radar-notice">${escapeHtml(notice)}</article>`)
+      .join("");
+  }
+}
+
 function wireAutoTradingFrame(manifest) {
   const data = manifest?.auto_trading || {};
   const frame = document.querySelector("#auto-trading-frame");
@@ -1009,12 +1317,18 @@ async function bootstrapPortal() {
   const manifest = await fetchPortalManifest();
 
   if (document.body.dataset.page === "portal-home") {
-    renderPortalHome(manifest);
+    const radar = await fetchShortTermRadarData();
+    renderPortalHome(manifest, radar);
   }
 
   if (document.body.dataset.page === "ab-daily-wrapper") {
     const abDaily = await fetchAbDailyData();
     renderAbDailyPage(abDaily);
+  }
+
+  if (document.body.dataset.page === "short-term-radar-wrapper") {
+    const radar = await fetchShortTermRadarData();
+    renderShortTermRadarPage(radar);
   }
 
   if (document.body.dataset.page === "auto-trading-wrapper") {

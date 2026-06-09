@@ -3,6 +3,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import {
+  Activity,
   ArrowRight,
   BarChart3,
   Bell,
@@ -12,6 +13,7 @@ import {
   ClipboardCheck,
   Cpu,
   FileCheck2,
+  Gauge,
   KeyRound,
   LineChart,
   LockKeyhole,
@@ -19,13 +21,18 @@ import {
   MonitorCheck,
   MousePointer2,
   Phone,
+  Scale,
   ScanSearch,
   ShieldCheck,
   Smartphone,
   Sparkles,
+  Target,
+  TrendingDown,
+  TrendingUp,
   X
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import radarSnapshotData from "@/data/shortTermRadarSnapshot.json";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const asset = (path: string) => `${basePath}${path}`;
@@ -36,7 +43,78 @@ type ShowcaseItem = {
   src: string;
 };
 
+type RadarScores = {
+  revenue: number | null;
+  expectationGap: number | null;
+  priceVolume: number | null;
+  themeGroup: number | null;
+  chip: number | null;
+  catalyst: number | null;
+};
+
+type RadarCandidate = {
+  rank: number;
+  symbol: string;
+  name: string | null;
+  industry: string | null;
+  scoreTotal: number | null;
+  scores: RadarScores;
+  riskPenalty: number | null;
+  stage: string | null;
+  entryZone: string | null;
+  reasons: string[];
+  riskFlags: string[];
+  lastClose: number | null;
+  ret20d: number | null;
+  ret60d: number | null;
+  volumeZ20: number | null;
+  volumeExpansionRatio: number | null;
+  breakoutFlag: boolean;
+  breakout120dFlag: boolean;
+  maAlignmentBullFlag: boolean;
+  mode: string | null;
+  scoreDataCoverageRatio: number | null;
+  robotSlotCoverageRatio: number | null;
+  robotSlotStatuses: Record<string, string>;
+  availableRadars: string[];
+  degradedRadars: string[];
+  coreDataReady: boolean;
+  createdAt: string | null;
+};
+
+type RadarDatasetStatus = {
+  dataset: string;
+  label: string;
+  markets: string[];
+  latest: string | null;
+  freshness: string;
+  freshnessBreakdown: Record<string, number>;
+  actualCount: number;
+  expectedCount: number;
+};
+
+type RadarSnapshot = {
+  asOfDate: string;
+  createdAt: string | null;
+  sourceReport: string;
+  summary: {
+    totalCandidates: number;
+    mode: string | null;
+    stageCounts: Record<string, number>;
+    entryZoneCounts: Record<string, number>;
+    coreReadyCount: number;
+    averageScoreCoverage: number | null;
+    averageSlotCoverage: number | null;
+    topScore: number | null;
+  };
+  candidates: RadarCandidate[];
+  datasetStatus: RadarDatasetStatus[];
+  notices: string[];
+};
+
 type MascotPose = "surprised" | "thumbs" | "glasses";
+
+const radarSnapshot = radarSnapshotData as unknown as RadarSnapshot;
 
 const mascotSrc: Record<MascotPose, string> = {
   surprised: "/mascots/robot-bull-surprised.png",
@@ -49,6 +127,8 @@ const navItems = [
   { label: "系統特色", href: "#features" },
   { label: "產品展示", href: "#showcase" },
   { label: "流程", href: "#process" },
+  { label: "績效指標", href: "#metrics" },
+  { label: "短線雷達", href: "#radar" },
   { label: "FAQ", href: "#faq" },
   { label: "聯絡我們", href: "#contact" }
 ];
@@ -105,6 +185,86 @@ const showcaseItems: ShowcaseItem[] = [
     title: "手機端控制",
     description: "手機查看已購策略、切換模擬 / 實盤、查看可用資金並以預算下單。",
     src: "/images/04-mobile-interface.png"
+  },
+  {
+    title: "品牌視覺方向",
+    description: "白藍色系、圓角卡片與機器牛 IP，讓商談展示保持專業、乾淨與可信。",
+    src: "/images/05-website-style-brief.png"
+  }
+];
+
+const performanceMetrics = [
+  {
+    title: "年化報酬率",
+    english: "CAGR / Annualized Return",
+    shortUse: "長期資金成長效率",
+    plainText: "把整段績效換算成每一年，快速看策略長期成長速度。",
+    format: "xx.xx%",
+    icon: TrendingUp
+  },
+  {
+    title: "最大回撤",
+    english: "MDD / Maximum Drawdown",
+    shortUse: "最慘下跌幅度",
+    plainText: "看策略曾經從資金高點跌到低點多少，評估使用者能否承受。",
+    format: "-xx.xx%",
+    icon: TrendingDown
+  },
+  {
+    title: "夏普率",
+    english: "Sharpe Ratio",
+    shortUse: "報酬穩定度",
+    plainText: "衡量策略承擔波動後，是否換到足夠穩定的結果。",
+    format: "x.xx",
+    icon: Activity
+  },
+  {
+    title: "獲利因子",
+    english: "Profit Factor",
+    shortUse: "總獲利覆蓋總虧損",
+    plainText: "比較所有獲利交易與所有虧損交易，確認交易品質是否健康。",
+    format: "x.xx",
+    icon: Scale
+  },
+  {
+    title: "每筆交易期望值",
+    english: "Expectancy",
+    shortUse: "每次出手是否正期望",
+    plainText: "看平均每交易一次的期望結果，避免只用勝率判斷策略。",
+    format: "+x.xx%",
+    icon: Target
+  }
+];
+
+const metricSummaryRows = [
+  ["年化報酬率", "CAGR / Annualized Return", "xx.xx%", "長期資金成長效率"],
+  ["最大回撤", "MDD / Maximum Drawdown", "-xx.xx%", "最慘下跌幅度"],
+  ["夏普率", "Sharpe Ratio", "x.xx", "報酬穩定度"],
+  ["獲利因子", "Profit Factor", "x.xx", "總獲利能否覆蓋總虧損"],
+  ["每筆交易期望值", "Expectancy", "+x.xx%", "平均每次交易期望"]
+];
+
+const radarScoreRows: Array<{ key: keyof RadarScores; label: string }> = [
+  { key: "revenue", label: "營收" },
+  { key: "expectationGap", label: "預期差" },
+  { key: "priceVolume", label: "價量" },
+  { key: "chip", label: "籌碼" },
+  { key: "catalyst", label: "催化" },
+  { key: "themeGroup", label: "題材" }
+];
+
+const radarSummaryCards = [
+  { label: "掃描日", value: radarSnapshot.asOfDate, detail: "依最新日線快照" },
+  { label: "候選清單", value: `${radarSnapshot.summary.totalCandidates} 檔`, detail: "條件掃描 Top 50" },
+  {
+    label: "早期觀察",
+    value: `${radarSnapshot.summary.entryZoneCounts.early_watch ?? 0} 檔`,
+    detail: "其餘維持 watch only"
+  },
+  {
+    label: "平均資料覆蓋",
+    value: formatPercent(radarSnapshot.summary.averageScoreCoverage),
+    detail: "依模型可用欄位計算"
   }
 ];
 
@@ -162,6 +322,10 @@ const faqs = [
     a: "不會。系統依使用者設定的條件顯示符合規則的結果，不提供個股投資建議。"
   },
   {
+    q: "短線雷達是交易指令嗎？",
+    a: "不是。短線雷達只是把已完成的資料做條件掃描，輸出觀察清單、理由與風險旗標，實際判斷與操作仍由使用者自行確認。"
+  },
+  {
     q: "是否接劵商 API？",
     a: "產品設計方向包含永豐 API 安裝精靈，協助使用者整理 API Key、CA 憑證與模擬 / 實盤流程。實際使用仍需使用者自行完成券商帳戶、API 與憑證申請。"
   },
@@ -174,6 +338,114 @@ const faqs = [
     a: "不會。任何策略與回測都不代表未來績效，本系統僅作為工具與流程輔助。"
   }
 ];
+
+function formatScore(value: number | null | undefined) {
+  if (typeof value !== "number") return "N/A";
+  return value.toFixed(value % 1 === 0 ? 0 : 1);
+}
+
+function formatPercent(value: number | null | undefined) {
+  if (typeof value !== "number") return "N/A";
+  return `${(value * 100).toFixed(1)}%`;
+}
+
+function formatSignedPercent(value: number | null | undefined) {
+  if (typeof value !== "number") return "N/A";
+  const percent = value * 100;
+  return `${percent > 0 ? "+" : ""}${percent.toFixed(1)}%`;
+}
+
+function formatRatio(value: number | null | undefined) {
+  if (typeof value !== "number") return "N/A";
+  return `${value.toFixed(2)}x`;
+}
+
+function formatPrice(value: number | null | undefined) {
+  if (typeof value !== "number") return "N/A";
+  return value.toLocaleString("zh-TW", {
+    maximumFractionDigits: value >= 100 ? 1 : 2
+  });
+}
+
+function formatDateTime(value: string | null | undefined) {
+  return value ? value.replace("T", " ") : "N/A";
+}
+
+function modeLabel(mode: string | null | undefined) {
+  const labels: Record<string, string> = {
+    full_short_term_radar: "完整雷達模式",
+    semi_full_short_term_radar: "半完整雷達模式",
+    simple_price_volume_mode: "價量簡化模式"
+  };
+  return mode ? labels[mode] ?? mode : "N/A";
+}
+
+function stageLabel(stage: string | null | undefined) {
+  const labels: Record<string, string> = {
+    S1: "S1 觀察",
+    S2: "S2 早期觀察",
+    S3: "S3 核心觀察",
+    S4: "S4 過熱檢查",
+    S5: "S5 風險控管"
+  };
+  return stage ? labels[stage] ?? stage : "N/A";
+}
+
+function entryZoneLabel(entryZone: string | null | undefined) {
+  const labels: Record<string, string> = {
+    early_watch: "早期觀察",
+    watch_only: "僅觀察",
+    qualified_watch: "待確認觀察",
+    avoid_chasing: "避免追高",
+    blocked: "暫不列入"
+  };
+  return entryZone ? labels[entryZone] ?? entryZone : "N/A";
+}
+
+function freshnessLabel(status: string) {
+  const labels: Record<string, string> = {
+    fresh: "已更新",
+    partial: "部分市場",
+    historical: "歷史快照",
+    stale: "待更新",
+    source_missing: "來源缺口",
+    unknown: "未確認"
+  };
+  return labels[status] ?? status;
+}
+
+function freshnessClass(status: string) {
+  const classes: Record<string, string> = {
+    fresh: "border-success/30 bg-success/10 text-[#15803d]",
+    partial: "border-[#f59e0b]/30 bg-[#fffbeb] text-[#92400e]",
+    historical: "border-primary/25 bg-mist text-primary",
+    stale: "border-[#ef4444]/25 bg-[#fff1f2] text-[#b91c1c]",
+    source_missing: "border-muted/25 bg-slate-50 text-muted",
+    unknown: "border-stroke bg-white text-muted"
+  };
+  return classes[status] ?? classes.unknown;
+}
+
+function scoreBarWidth(value: number | null | undefined) {
+  if (typeof value !== "number") return "0%";
+  return `${Math.max(0, Math.min(100, value))}%`;
+}
+
+function slotLabel(slot: string) {
+  const labels: Record<string, string> = {
+    PRICE_SLOT: "價量",
+    UNIVERSE_SLOT: "股票池",
+    REVENUE_SLOT: "營收",
+    CHIP_SLOT: "籌碼",
+    SURVEILLANCE_SLOT: "風控",
+    CATALYST_SLOT: "催化",
+    CORPORATE_SLOT: "公司行動",
+    FINANCIAL_SLOT: "財報",
+    VALUATION_SLOT: "估值",
+    CALENDAR_SLOT: "交易日"
+  };
+  return labels[slot] ?? slot;
+}
 
 function LogoMark() {
   return (
@@ -443,6 +715,318 @@ function ProcessTimeline() {
   );
 }
 
+function PerformanceMetricsSection() {
+  return (
+    <section id="metrics" className="bg-[linear-gradient(180deg,#ffffff_0%,#eef6ff_100%)] px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        <SectionHeader
+          eyebrow="績效指標標準"
+          title="每套模型先看同一組五大核心指標"
+          body="客戶不用先看一大串交易細節，只要先看這五個指標，就能快速理解策略的成長效率、風險、穩定度與交易品質。"
+        />
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+          {performanceMetrics.map(({ title, english, shortUse, plainText, format, icon: Icon }) => (
+            <article key={title} className="rounded-lg border border-stroke bg-white p-5 shadow-card">
+              <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-mist text-primary">
+                <Icon className="h-5 w-5" />
+              </div>
+              <p className="text-sm font-bold text-primary">{english}</p>
+              <h3 className="mt-2 text-xl font-black text-ink">{title}</h3>
+              <p className="mt-3 text-sm font-extrabold text-ink">{shortUse}</p>
+              <p className="mt-2 min-h-20 text-sm leading-7 text-muted">{plainText}</p>
+              <div className="mt-4 rounded-lg border border-line bg-mist/60 px-3 py-2 text-sm font-black text-ink">
+                顯示格式：{format}
+              </div>
+            </article>
+          ))}
+        </div>
+        <div className="mt-8 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
+          <article className="rounded-lg border border-stroke bg-white p-5 shadow-card md:p-6">
+            <div className="mb-5 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-primary text-white">
+                <Gauge className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-primary">固定摘要格式</p>
+                <h3 className="text-2xl font-black text-ink">所有策略報告都用同一張表先呈現</h3>
+              </div>
+            </div>
+            <div className="overflow-x-auto rounded-lg border border-stroke">
+              <table className="min-w-[680px] w-full border-collapse text-left text-sm">
+                <thead className="bg-mist text-ink">
+                  <tr>
+                    {["指標", "English", "數值", "客戶看到的重點"].map((heading) => (
+                      <th key={heading} className="border-b border-stroke px-4 py-3 font-black">
+                        {heading}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-stroke text-muted">
+                  {metricSummaryRows.map(([name, english, value, meaning]) => (
+                    <tr key={name} className="bg-white">
+                      <td className="px-4 py-3 font-extrabold text-ink">{name}</td>
+                      <td className="px-4 py-3">{english}</td>
+                      <td className="px-4 py-3 font-black text-primary">{value}</td>
+                      <td className="px-4 py-3">{meaning}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <aside className="rounded-lg border border-stroke bg-white p-5 shadow-card md:p-6">
+            <p className="text-sm font-bold text-primary">閱讀原則</p>
+            <h3 className="mt-2 text-2xl font-black text-ink">簡單，但不能只看單一數字</h3>
+            <div className="mt-5 grid gap-3">
+              {[
+                "勝率可以放在詳細統計，但不列入五大核心指標。",
+                "每份報告都要標示績效類型：Backtest、Paper Trading 或 Live Performance。",
+                "五大指標區不加入大盤、產業或其他外部比較，先看策略本身結果。",
+                "報告最後固定提醒：歷史績效不代表未來結果，實際交易會受成本、滑價、流動性與市場波動影響。"
+              ].map((item) => (
+                <div key={item} className="flex gap-3 rounded-lg bg-mist/70 p-3 text-sm font-semibold leading-7 text-ink">
+                  <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-success" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ShortTermRadarSection() {
+  const [selectedSymbol, setSelectedSymbol] = useState(radarSnapshot.candidates[0]?.symbol ?? "");
+  const selectedCandidate = useMemo(
+    () => radarSnapshot.candidates.find((candidate) => candidate.symbol === selectedSymbol) ?? radarSnapshot.candidates[0],
+    [selectedSymbol]
+  );
+  const topCandidates = radarSnapshot.candidates.slice(0, 12);
+
+  if (!selectedCandidate) return null;
+
+  return (
+    <section id="radar" className="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-8">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[linear-gradient(180deg,#eef6ff_0%,rgba(255,255,255,0)_78%)]" />
+      <div className="mx-auto max-w-7xl">
+        <SectionHeader
+          eyebrow="短線雷達"
+          title="用最新資料生成條件掃描觀察清單"
+          body="整合價量、營收、法人籌碼、催化事件、估值與風控資料，輸出可檢查的候選清單、模型理由與資料源狀態。"
+        />
+
+        <div className="mb-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {radarSummaryCards.map((card) => (
+            <article key={card.label} className="rounded-lg border border-stroke bg-white p-5 shadow-card">
+              <p className="text-sm font-bold text-muted">{card.label}</p>
+              <p className="mt-2 text-3xl font-black text-ink">{card.value}</p>
+              <p className="mt-2 text-sm leading-6 text-muted">{card.detail}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="grid gap-5 xl:grid-cols-[0.95fr_1.05fr]">
+          <article className="rounded-lg border border-stroke bg-white p-4 shadow-card md:p-5">
+            <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-sm font-bold text-primary">{modeLabel(radarSnapshot.summary.mode)}</p>
+                <h3 className="mt-1 text-2xl font-black text-ink">Top 12 條件掃描結果</h3>
+              </div>
+              <div className="rounded-lg bg-mist px-3 py-2 text-sm font-bold text-primary">
+                產出時間 {formatDateTime(radarSnapshot.createdAt)}
+              </div>
+            </div>
+
+            <div className="hidden grid-cols-[52px_minmax(0,1.4fr)_110px_90px] gap-3 border-b border-stroke px-3 pb-2 text-xs font-black text-muted md:grid">
+              <span>Rank</span>
+              <span>標的</span>
+              <span>狀態</span>
+              <span className="text-right">分數</span>
+            </div>
+            <div className="mt-2 grid max-h-[620px] gap-2 overflow-y-auto pr-1">
+              {topCandidates.map((candidate) => {
+                const active = candidate.symbol === selectedCandidate.symbol;
+                return (
+                  <button
+                    key={candidate.symbol}
+                    className={`w-full rounded-lg border p-3 text-left transition ${
+                      active ? "border-primary bg-mist shadow-card" : "border-stroke bg-white hover:border-primary/60 hover:bg-mist/50"
+                    }`}
+                    onClick={() => setSelectedSymbol(candidate.symbol)}
+                  >
+                    <div className="grid gap-3 md:grid-cols-[52px_minmax(0,1.4fr)_110px_90px] md:items-center">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-sm font-black text-white">
+                        {candidate.rank}
+                      </div>
+                      <div className="min-w-0">
+                        <p className="truncate text-base font-black text-ink">
+                          {candidate.symbol} {candidate.name ?? ""}
+                        </p>
+                        <p className="mt-1 line-clamp-2 text-xs leading-5 text-muted">
+                          {candidate.reasons[0] ?? "條件符合，待使用者自行確認。"}
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-2 md:block">
+                        <span className="inline-flex rounded-lg border border-line bg-white px-2.5 py-1 text-xs font-black text-primary">
+                          {stageLabel(candidate.stage)}
+                        </span>
+                        <span className="mt-0 inline-flex rounded-lg bg-white/70 px-2.5 py-1 text-xs font-bold text-muted md:mt-2">
+                          {entryZoneLabel(candidate.entryZone)}
+                        </span>
+                      </div>
+                      <div className="text-left md:text-right">
+                        <p className="text-xl font-black text-ink">{formatScore(candidate.scoreTotal)}</p>
+                        <p className="text-xs font-bold text-muted">cover {formatPercent(candidate.scoreDataCoverageRatio)}</p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </article>
+
+          <article className="rounded-lg border border-stroke bg-white p-5 shadow-card md:p-6">
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
+              <div className="min-w-0">
+                <p className="text-sm font-bold text-primary">目前選取</p>
+                <h3 className="mt-1 text-3xl font-black text-ink">
+                  {selectedCandidate.symbol} {selectedCandidate.name}
+                </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <span className="rounded-lg bg-mist px-3 py-1.5 text-sm font-black text-primary">
+                    {stageLabel(selectedCandidate.stage)}
+                  </span>
+                  <span className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm font-bold text-muted">
+                    {entryZoneLabel(selectedCandidate.entryZone)}
+                  </span>
+                  <span className="rounded-lg border border-line bg-white px-3 py-1.5 text-sm font-bold text-muted">
+                    核心資料 {selectedCandidate.coreDataReady ? "完整" : "需留意"}
+                  </span>
+                </div>
+              </div>
+              <div className="flex h-24 w-24 shrink-0 flex-col items-center justify-center rounded-lg bg-primary text-white shadow-soft">
+                <span className="text-3xl font-black">{formatScore(selectedCandidate.scoreTotal)}</span>
+                <span className="text-xs font-bold text-white/75">總分</span>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                ["收盤價", formatPrice(selectedCandidate.lastClose)],
+                ["20 日變化", formatSignedPercent(selectedCandidate.ret20d)],
+                ["60 日變化", formatSignedPercent(selectedCandidate.ret60d)],
+                ["量能倍數", formatRatio(selectedCandidate.volumeExpansionRatio)]
+              ].map(([label, value]) => (
+                <div key={label} className="rounded-lg border border-stroke bg-mist/45 p-4">
+                  <p className="text-xs font-bold text-muted">{label}</p>
+                  <p className="mt-2 text-xl font-black text-ink">{value}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {radarScoreRows.map(({ key, label }) => {
+                const score = selectedCandidate.scores[key];
+                return (
+                  <div key={key} className="rounded-lg border border-stroke bg-white p-3">
+                    <div className="mb-2 flex items-center justify-between gap-3">
+                      <span className="text-sm font-black text-ink">{label}</span>
+                      <span className="text-sm font-black text-primary">{formatScore(score)}</span>
+                    </div>
+                    <div className="h-2 rounded-full bg-line">
+                      <div className="h-2 rounded-full bg-primary" style={{ width: scoreBarWidth(score) }} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-6 grid gap-4 lg:grid-cols-2">
+              <div>
+                <p className="mb-3 text-sm font-black text-ink">模型理由</p>
+                <div className="grid gap-2">
+                  {selectedCandidate.reasons.map((reason) => (
+                    <div key={reason} className="flex gap-2 rounded-lg bg-mist/70 p-3 text-sm font-semibold leading-6 text-ink">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-success" />
+                      <span>{reason}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <p className="mb-3 text-sm font-black text-ink">風險旗標</p>
+                <div className="grid gap-2">
+                  {(selectedCandidate.riskFlags.length ? selectedCandidate.riskFlags : ["目前沒有模型標記的風險旗標。"]).map((risk) => (
+                    <div key={risk} className="rounded-lg border border-line bg-white p-3 text-sm font-semibold leading-6 text-muted">
+                      {risk}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-lg border border-line bg-mist p-4">
+              <div className="mb-3 flex items-center gap-2 text-sm font-black text-primary">
+                <ShieldCheck className="h-4 w-4" />
+                模型槽位狀態
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {Object.entries(selectedCandidate.robotSlotStatuses).map(([slot, status]) => (
+                  <span key={slot} className="rounded-lg bg-white px-3 py-1.5 text-xs font-bold text-ink">
+                    {slotLabel(slot)}：{status === "installed" ? "已接入" : status}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div className="mt-6 rounded-lg border border-stroke bg-white p-5 shadow-card md:p-6">
+          <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-bold text-primary">資料源健康度</p>
+              <h3 className="text-2xl font-black text-ink">前台同步揭露資料限制</h3>
+            </div>
+            <p className="text-sm font-semibold text-muted">來源：{radarSnapshot.sourceReport}</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {radarSnapshot.datasetStatus.map((status) => (
+              <article key={status.dataset} className={`rounded-lg border p-4 ${freshnessClass(status.freshness)}`}>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <h4 className="text-base font-black">{status.label}</h4>
+                    <p className="mt-1 text-xs font-bold opacity-70">{status.markets.join(" / ") || "市場未標記"}</p>
+                  </div>
+                  <span className="rounded-lg bg-white/70 px-2 py-1 text-xs font-black">
+                    {freshnessLabel(status.freshness)}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm font-semibold">
+                  最新：{status.latest ?? (status.freshness === "source_missing" ? "未接入" : "待補資料")}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-6 rounded-lg border border-line bg-mist p-5">
+          <div className="grid gap-3 md:grid-cols-3">
+            {radarSnapshot.notices.map((notice) => (
+              <div key={notice} className="flex gap-3 text-sm font-bold leading-7 text-ink">
+                <ShieldCheck className="mt-1 h-5 w-5 shrink-0 text-primary" />
+                <span>{notice}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ImageShowcase({
   onOpen
 }: {
@@ -666,7 +1250,7 @@ function Footer() {
         </div>
         <div className="grid gap-6 sm:grid-cols-4">
           {[
-            ["產品", "系統特色", "產品展示", "流程說明"],
+            ["產品", "系統特色", "短線雷達", "產品展示", "流程說明"],
             ["資源", "教學文件", "常見問題", "更新公告"],
             ["公司", "關於我們", "服務條款", "隱私政策"],
             ["聯絡我們", "service@autoquant-trade.com", "02-1234-5678", "週一至週五 09:00 - 18:00"]
@@ -773,6 +1357,8 @@ export default function Home() {
         <HeroSection />
         <ValueCards />
         <ProcessTimeline />
+        <PerformanceMetricsSection />
+        <ShortTermRadarSection />
         <ImageShowcase onOpen={setActiveIndex} />
         <ProductDetailSection />
         <ComplianceSection />

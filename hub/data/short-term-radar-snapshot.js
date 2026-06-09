@@ -1,0 +1,3252 @@
+window.__SHORT_TERM_RADAR_DATA__ = {
+  "asOfDate": "2026-06-08",
+  "createdAt": "2026-06-09T08:14:56",
+  "sourceReport": "reports/short_term_radar/scan_2026-06-08.csv",
+  "summary": {
+    "totalCandidates": 50,
+    "mode": "full_short_term_radar",
+    "stageCounts": {
+      "S2": 1,
+      "S1": 49
+    },
+    "entryZoneCounts": {
+      "early_watch": 1,
+      "watch_only": 49
+    },
+    "coreReadyCount": 22,
+    "averageScoreCoverage": 0.794,
+    "averageSlotCoverage": 1,
+    "topScore": 55.95
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "symbol": "2597",
+      "name": "潤弘",
+      "industry": null,
+      "scoreTotal": 55.95,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 66,
+        "themeGroup": null,
+        "chip": 75,
+        "catalyst": 15
+      },
+      "riskPenalty": 0,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "突破 60 日整理區",
+        "成交量為 20 日均量 3.0 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 184.5,
+      "ret20d": 0.1826923076923077,
+      "ret60d": 0.11818181818181817,
+      "volumeZ20": 2.0121662053392924,
+      "volumeExpansionRatio": 2.9726623996761954,
+      "breakoutFlag": true,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 2,
+      "symbol": "2379",
+      "name": "瑞昱",
+      "industry": null,
+      "scoreTotal": 49.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 85,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.5 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 643,
+      "ret20d": 0.08614864864864868,
+      "ret60d": 0.3978260869565218,
+      "volumeZ20": 1.188808576529846,
+      "volumeExpansionRatio": 1.5078541544193529,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 3,
+      "symbol": "2727",
+      "name": "王品",
+      "industry": null,
+      "scoreTotal": 49.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 95,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 1.9 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 246,
+      "ret20d": 0.049040511727078906,
+      "ret60d": 0.07423580786026207,
+      "volumeZ20": 2.113270571583029,
+      "volumeExpansionRatio": 1.8914228018232744,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 4,
+      "symbol": "4771",
+      "name": "望隼",
+      "industry": null,
+      "scoreTotal": 49.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": 15
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.7 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 196,
+      "ret20d": 0.023498694516971286,
+      "ret60d": 0.12643678160919536,
+      "volumeZ20": 0.8943966519424311,
+      "volumeExpansionRatio": 1.6950273219192782,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 5,
+      "symbol": "3023",
+      "name": "信邦",
+      "industry": null,
+      "scoreTotal": 47.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 75,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 2.0 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 329,
+      "ret20d": 0.08760330578512399,
+      "ret60d": 0.45575221238938046,
+      "volumeZ20": 2.2142264904642137,
+      "volumeExpansionRatio": 2.0398699676876006,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 6,
+      "symbol": "2615",
+      "name": "萬海",
+      "industry": null,
+      "scoreTotal": 47.7,
+      "scores": {
+        "revenue": 40,
+        "expectationGap": 100,
+        "priceVolume": 66,
+        "themeGroup": null,
+        "chip": 95,
+        "catalyst": 50
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 60 日整理區",
+        "成交量為 20 日均量 2.0 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 86.1,
+      "ret20d": 0.12549019607843137,
+      "ret60d": 0.08712125401048953,
+      "volumeZ20": 1.9319149245097154,
+      "volumeExpansionRatio": 2.0208979707532544,
+      "breakoutFlag": true,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 7,
+      "symbol": "5386",
+      "name": "青雲",
+      "industry": null,
+      "scoreTotal": 45.1,
+      "scores": {
+        "revenue": 80,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 75,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 511,
+      "ret20d": 0.08723404255319145,
+      "ret60d": 0.6248012718600955,
+      "volumeZ20": 0.5059009344723014,
+      "volumeExpansionRatio": 1.3886157543974653,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 8,
+      "symbol": "2855",
+      "name": "統一證",
+      "industry": null,
+      "scoreTotal": 44.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 75,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": 35
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 2.9 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 59.1,
+      "ret20d": 0.47750000000000004,
+      "ret60d": 0.9898989387820738,
+      "volumeZ20": 2.2116188358717004,
+      "volumeExpansionRatio": 2.905082043146926,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 9,
+      "symbol": "6885",
+      "name": "全福生技",
+      "industry": null,
+      "scoreTotal": 44.2,
+      "scores": {
+        "revenue": 80,
+        "expectationGap": 100,
+        "priceVolume": 66,
+        "themeGroup": null,
+        "chip": 10,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 60 日整理區",
+        "成交量為 20 日均量 2.4 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 26.55,
+      "ret20d": 0.16447368421052633,
+      "ret60d": 0.06626507657621872,
+      "volumeZ20": 1.967145239424157,
+      "volumeExpansionRatio": 2.402728712227746,
+      "breakoutFlag": true,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 10,
+      "symbol": "6021",
+      "name": "美好證",
+      "industry": null,
+      "scoreTotal": 42.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 0,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 2.7 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 44.3,
+      "ret20d": 0.2675250357653789,
+      "ret60d": 0.41307814992025493,
+      "volumeZ20": 2.0458570752202965,
+      "volumeExpansionRatio": 2.6576105886450714,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 11,
+      "symbol": "6192",
+      "name": "巨路",
+      "industry": null,
+      "scoreTotal": 42.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 35,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 129,
+      "ret20d": 0.040322580645161255,
+      "ret60d": 0.040322580645161255,
+      "volumeZ20": -1.0646795733829744,
+      "volumeExpansionRatio": 0.45402438875898876,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 12,
+      "symbol": "6957",
+      "name": "裕慶-KY",
+      "industry": null,
+      "scoreTotal": 42.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 5,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.5 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 191.5,
+      "ret20d": 0.18209876543209869,
+      "ret60d": 0.1968749999999999,
+      "volumeZ20": 0.6273967782056261,
+      "volumeExpansionRatio": 1.4753643336471889,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 13,
+      "symbol": "7788",
+      "name": "松川精密",
+      "industry": null,
+      "scoreTotal": 42.35,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 10,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 2.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 224,
+      "ret20d": 0.30612244897959173,
+      "ret60d": 0.4933333333333334,
+      "volumeZ20": 1.9573214452507757,
+      "volumeExpansionRatio": 2.3732194916735136,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 14,
+      "symbol": "2820",
+      "name": "華票",
+      "industry": null,
+      "scoreTotal": 41.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 0,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 17.2,
+      "ret20d": 0.020771513353115667,
+      "ret60d": 0.017751502262803864,
+      "volumeZ20": 0.5704900190199763,
+      "volumeExpansionRatio": 1.3922470148563795,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 15,
+      "symbol": "5880",
+      "name": "合庫金",
+      "industry": null,
+      "scoreTotal": 41.6,
+      "scores": {
+        "revenue": 50,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 20,
+        "catalyst": 15
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.2 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 23.45,
+      "ret20d": 0.017353579175704903,
+      "ret60d": 0.015151498387464768,
+      "volumeZ20": 0.3764882502248856,
+      "volumeExpansionRatio": 1.2270883727672421,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 16,
+      "symbol": "3406",
+      "name": "玉晶光",
+      "industry": null,
+      "scoreTotal": 41.35,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 10,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 2.1 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 682,
+      "ret20d": 0.34782608695652173,
+      "ret60d": 0.6613885505481121,
+      "volumeZ20": 1.4444382745786133,
+      "volumeExpansionRatio": 2.0774727077870283,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 17,
+      "symbol": "2542",
+      "name": "興富發",
+      "industry": null,
+      "scoreTotal": 41,
+      "scores": {
+        "revenue": 80,
+        "expectationGap": 80,
+        "priceVolume": 20,
+        "themeGroup": null,
+        "chip": 65,
+        "catalyst": 45
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.5 倍，屬於有效放量區",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 43,
+      "ret20d": 0.07499999999999996,
+      "ret60d": 0.19444444444444442,
+      "volumeZ20": 1.0632598555793873,
+      "volumeExpansionRatio": 1.4710349295619471,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 18,
+      "symbol": "2451",
+      "name": "創見",
+      "industry": null,
+      "scoreTotal": 40.6,
+      "scores": {
+        "revenue": 80,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.2 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 321.5,
+      "ret20d": 0.028799999999999937,
+      "ret60d": 0.4613636363636364,
+      "volumeZ20": 0.5230159705482134,
+      "volumeExpansionRatio": 1.2287071607558282,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 19,
+      "symbol": "5351",
+      "name": "鈺創",
+      "industry": null,
+      "scoreTotal": 40.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 20,
+        "catalyst": 45
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.9 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 86.2,
+      "ret20d": 0.14780292942743012,
+      "ret60d": 0.5017421602787457,
+      "volumeZ20": 2.0571225638020514,
+      "volumeExpansionRatio": 1.8711783392257593,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 20,
+      "symbol": "1533",
+      "name": "車王電",
+      "industry": null,
+      "scoreTotal": 39.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 39.9,
+      "ret20d": 0.1787296898079762,
+      "ret60d": 0.3366834000032075,
+      "volumeZ20": 0.46070572326821124,
+      "volumeExpansionRatio": 1.3795176980639543,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 21,
+      "symbol": "6996",
+      "name": "力領科技",
+      "industry": null,
+      "scoreTotal": 39.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 35,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 192.5,
+      "ret20d": 0.04054054054054057,
+      "ret60d": 0.10951008645533133,
+      "volumeZ20": -1.2526299283529176,
+      "volumeExpansionRatio": 0.3523412146499768,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 22,
+      "symbol": "1342",
+      "name": "八貫",
+      "industry": null,
+      "scoreTotal": 39.45,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 66,
+        "themeGroup": null,
+        "chip": 0,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 60 日整理區",
+        "成交量為 20 日均量 3.3 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 104,
+      "ret20d": 0.08786610878661105,
+      "ret60d": 0.09820489283479783,
+      "volumeZ20": 2.5211063893653214,
+      "volumeExpansionRatio": 3.3346602052100067,
+      "breakoutFlag": true,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 23,
+      "symbol": "2059",
+      "name": "川湖",
+      "industry": null,
+      "scoreTotal": 39.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 83,
+        "themeGroup": null,
+        "chip": 65,
+        "catalyst": null
+      },
+      "riskPenalty": 18,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 2.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "估值偏熱",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 5620,
+      "ret20d": 0.0563909774436091,
+      "ret60d": 0.8366013071895424,
+      "volumeZ20": 1.8902202927230007,
+      "volumeExpansionRatio": 2.440503489913293,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 24,
+      "symbol": "3706",
+      "name": "神達",
+      "industry": null,
+      "scoreTotal": 39.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 13,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": 50
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 92.4,
+      "ret20d": 0.07192575406032486,
+      "ret60d": 0.16519541543639082,
+      "volumeZ20": 0.11758397160561047,
+      "volumeExpansionRatio": 1.0991098135539437,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 25,
+      "symbol": "2364",
+      "name": "倫飛",
+      "industry": null,
+      "scoreTotal": 38.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 76.1,
+      "ret20d": 0.19092331768388093,
+      "ret60d": 0.24143557825677275,
+      "volumeZ20": 0.31669870394418065,
+      "volumeExpansionRatio": 1.431935691418029,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 26,
+      "symbol": "5871",
+      "name": "中租-KY",
+      "industry": null,
+      "scoreTotal": 38.85,
+      "scores": {
+        "revenue": 15,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": 50
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.7 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 118,
+      "ret20d": 0.04888888888888898,
+      "ret60d": 0.13461538461538458,
+      "volumeZ20": 1.389986298565642,
+      "volumeExpansionRatio": 1.7275474410677762,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 27,
+      "symbol": "5410",
+      "name": "國眾",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 40.05,
+      "ret20d": 0.09128065395095342,
+      "ret60d": 0.3024390243902437,
+      "volumeZ20": 0.5834070492996016,
+      "volumeExpansionRatio": 1.4170706371191135,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 28,
+      "symbol": "1514",
+      "name": "亞力",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.7 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 135,
+      "ret20d": 0.09311740890688269,
+      "ret60d": 0.2053571428571428,
+      "volumeZ20": 0.8738338954634788,
+      "volumeExpansionRatio": 1.7455468087679795,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 29,
+      "symbol": "1909",
+      "name": "榮成",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 25,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 0,
+        "catalyst": 65
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.7 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 9.74,
+      "ret20d": 0.062159214830970644,
+      "ret60d": 0.06331879500541171,
+      "volumeZ20": 0.7199158972227968,
+      "volumeExpansionRatio": 1.711986777369894,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 30,
+      "symbol": "2838",
+      "name": "聯邦銀",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 53,
+        "themeGroup": null,
+        "chip": 0,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 1.3 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 21.55,
+      "ret20d": 0.048661800486617945,
+      "ret60d": 0.0883838803217678,
+      "volumeZ20": 0.999586932784829,
+      "volumeExpansionRatio": 1.3145998243757107,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 31,
+      "symbol": "3231",
+      "name": "緯創",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 13,
+        "themeGroup": null,
+        "chip": 95,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 171,
+      "ret20d": 0.16723549488054612,
+      "ret60d": 0.3255813953488371,
+      "volumeZ20": -0.027254555325759124,
+      "volumeExpansionRatio": 0.9774542561911453,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 32,
+      "symbol": "6209",
+      "name": "今國光",
+      "industry": null,
+      "scoreTotal": 38.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 2.1 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 87.9,
+      "ret20d": 0.331818181818182,
+      "ret60d": 0.6936415687034307,
+      "volumeZ20": 1.5086416075821463,
+      "volumeExpansionRatio": 2.139673820823041,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 33,
+      "symbol": "4306",
+      "name": "炎洲",
+      "industry": null,
+      "scoreTotal": 38.1,
+      "scores": {
+        "revenue": 40,
+        "expectationGap": 100,
+        "priceVolume": 13,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 14.95,
+      "ret20d": 0.13688212927756638,
+      "ret60d": 0.11985015526674658,
+      "volumeZ20": 0.10108852811024294,
+      "volumeExpansionRatio": 1.0562847914751827,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 34,
+      "symbol": "3045",
+      "name": "台灣大",
+      "industry": null,
+      "scoreTotal": 37.85,
+      "scores": {
+        "revenue": 25,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 75,
+        "catalyst": 15
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 116,
+      "ret20d": 0.05454545454545445,
+      "ret60d": 0.08920187793427226,
+      "volumeZ20": -1.2241662833706097,
+      "volumeExpansionRatio": 0.48933729556204725,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 35,
+      "symbol": "2408",
+      "name": "南亞科",
+      "industry": null,
+      "scoreTotal": 37.6,
+      "scores": {
+        "revenue": 80,
+        "expectationGap": 100,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 360,
+      "ret20d": 0.3138686131386861,
+      "ret60d": 0.5584415584415585,
+      "volumeZ20": -0.4589765713400238,
+      "volumeExpansionRatio": 0.8473797270253054,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 36,
+      "symbol": "3088",
+      "name": "艾訊",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 85,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 138.5,
+      "ret20d": 0.11244979919678721,
+      "ret60d": 0.7247820672478207,
+      "volumeZ20": -1.5094131343338804,
+      "volumeExpansionRatio": 0.5931495405179615,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 37,
+      "symbol": "6126",
+      "name": "信音",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 2.8 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 42.5,
+      "ret20d": 0.328125,
+      "ret60d": 0.28787878787878785,
+      "volumeZ20": 1.5682420380463749,
+      "volumeExpansionRatio": 2.84898973627284,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 38,
+      "symbol": "1773",
+      "name": "勝一",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 85,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 175,
+      "ret20d": 0.01449275362318847,
+      "ret60d": 0.25,
+      "volumeZ20": -0.7875868608055924,
+      "volumeExpansionRatio": 0.5755535087640054,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 39,
+      "symbol": "2103",
+      "name": "台橡",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.2 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 21.7,
+      "ret20d": 0.06896551724137923,
+      "ret60d": 0.053398038745657184,
+      "volumeZ20": 0.3962242547474701,
+      "volumeExpansionRatio": 1.2041772310611882,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 40,
+      "symbol": "3550",
+      "name": "聯穎",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 3.2 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 24.05,
+      "ret20d": 0.12646370023419196,
+      "ret60d": 0.5173501212098968,
+      "volumeZ20": 2.6869010390786703,
+      "volumeExpansionRatio": 3.2309641265146722,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 41,
+      "symbol": "6214",
+      "name": "精誠",
+      "industry": null,
+      "scoreTotal": 37.35,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 35,
+        "catalyst": 25
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.2 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 144.5,
+      "ret20d": 0.15139442231075706,
+      "ret60d": 0.3196347031963471,
+      "volumeZ20": 0.22126929492395486,
+      "volumeExpansionRatio": 1.2235313105928636,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 42,
+      "symbol": "1447",
+      "name": "力鵬",
+      "industry": null,
+      "scoreTotal": 36.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 13,
+        "themeGroup": null,
+        "chip": 5,
+        "catalyst": 0
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [],
+      "lastClose": 6.41,
+      "ret20d": 0.29494949494949485,
+      "ret60d": 0.1697080251258376,
+      "volumeZ20": -0.3323428981455756,
+      "volumeExpansionRatio": 0.7682118909097743,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 43,
+      "symbol": "2105",
+      "name": "正新",
+      "industry": null,
+      "scoreTotal": 36.85,
+      "scores": {
+        "revenue": 25,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 2.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 34.1,
+      "ret20d": 0.06230529595015577,
+      "ret60d": 0.2092198254410811,
+      "volumeZ20": 1.8862384932344636,
+      "volumeExpansionRatio": 2.391655585696094,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 44,
+      "symbol": "2382",
+      "name": "廣達",
+      "industry": null,
+      "scoreTotal": 36.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 30,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.4 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 390.5,
+      "ret20d": 0.1468428781204112,
+      "ret60d": 0.3823008849557523,
+      "volumeZ20": 0.4996527730279801,
+      "volumeExpansionRatio": 1.3555918149574373,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 45,
+      "symbol": "2912",
+      "name": "統一超",
+      "industry": null,
+      "scoreTotal": 36.6,
+      "scores": {
+        "revenue": 40,
+        "expectationGap": 100,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 20,
+        "catalyst": null
+      },
+      "riskPenalty": 0,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 232,
+      "ret20d": 0,
+      "ret60d": 0.06666666666666665,
+      "volumeZ20": -0.376941803498117,
+      "volumeExpansionRatio": 0.7133070926174375,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 46,
+      "symbol": "5607",
+      "name": "遠雄港",
+      "industry": null,
+      "scoreTotal": 36.35,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 100,
+        "priceVolume": 28,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.3 倍，屬於有效放量區",
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 53.3,
+      "ret20d": 0.026974951830443183,
+      "ret60d": 0.059642163189717934,
+      "volumeZ20": 0.6206742887566858,
+      "volumeExpansionRatio": 1.3030227974358612,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 47,
+      "symbol": "2882",
+      "name": "國泰金",
+      "industry": null,
+      "scoreTotal": 36.1,
+      "scores": {
+        "revenue": 50,
+        "expectationGap": 100,
+        "priceVolume": 63,
+        "themeGroup": null,
+        "chip": 10,
+        "catalyst": 0
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "突破 120 日整理區",
+        "成交量為 20 日均量 1.5 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 100,
+      "ret20d": 0.25,
+      "ret60d": 0.4064697910844246,
+      "volumeZ20": 1.371703733587998,
+      "volumeExpansionRatio": 1.4856108448216259,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 48,
+      "symbol": "6690",
+      "name": "安碁資訊",
+      "industry": null,
+      "scoreTotal": 35.85,
+      "scores": {
+        "revenue": 55,
+        "expectationGap": 100,
+        "priceVolume": 38,
+        "themeGroup": null,
+        "chip": 45,
+        "catalyst": null
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "成交量為 20 日均量 1.3 倍，屬於有效放量區",
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高",
+        "catalyst 缺資料，缺少 1-6 個月重估催化劑"
+      ],
+      "lastClose": 182,
+      "ret20d": 0.07058823529411762,
+      "ret60d": 0.1234567901234569,
+      "volumeZ20": 0.22557207873809315,
+      "volumeExpansionRatio": 1.2630844382414514,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.75,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip"
+      ],
+      "degradedRadars": [
+        "theme_group",
+        "catalyst"
+      ],
+      "coreDataReady": false,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 49,
+      "symbol": "1449",
+      "name": "佳和",
+      "industry": null,
+      "scoreTotal": 35.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 13,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": 35
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "站上 20 日與 60 日均線",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 13.55,
+      "ret20d": 0.04633204633204646,
+      "ret60d": 0.2843601663533404,
+      "volumeZ20": -0.6249101273062825,
+      "volumeExpansionRatio": 0.5224680085501664,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    },
+    {
+      "rank": 50,
+      "symbol": "2027",
+      "name": "大成鋼",
+      "industry": null,
+      "scoreTotal": 35.85,
+      "scores": {
+        "revenue": 65,
+        "expectationGap": 90,
+        "priceVolume": 23,
+        "themeGroup": null,
+        "chip": 55,
+        "catalyst": 15
+      },
+      "riskPenalty": 10,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "均線結構轉為多頭排列",
+        "價量轉強但尚未完全過熱，預期差仍可接受"
+      ],
+      "riskFlags": [
+        "注意股，短線風險升高"
+      ],
+      "lastClose": 43.8,
+      "ret20d": 0.10606060606060597,
+      "ret60d": 0.2016460653831771,
+      "volumeZ20": -0.6885203736035707,
+      "volumeExpansionRatio": 0.7369679733573121,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "full_short_term_radar",
+      "scoreDataCoverageRatio": 0.85,
+      "robotSlotCoverageRatio": 1,
+      "robotSlotStatuses": {
+        "PRICE_SLOT": "installed",
+        "UNIVERSE_SLOT": "installed",
+        "REVENUE_SLOT": "installed",
+        "CHIP_SLOT": "installed",
+        "SURVEILLANCE_SLOT": "installed",
+        "CATALYST_SLOT": "installed",
+        "CORPORATE_SLOT": "installed",
+        "FINANCIAL_SLOT": "installed",
+        "VALUATION_SLOT": "installed",
+        "CALENDAR_SLOT": "installed"
+      },
+      "availableRadars": [
+        "revenue",
+        "expectation_gap",
+        "price_volume",
+        "chip",
+        "catalyst"
+      ],
+      "degradedRadars": [
+        "theme_group"
+      ],
+      "coreDataReady": true,
+      "createdAt": "2026-06-09T08:14:56"
+    }
+  ],
+  "datasetStatus": [
+    {
+      "dataset": "prices_daily",
+      "label": "日線價量",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-06-08",
+      "freshness": "fresh",
+      "freshnessBreakdown": {
+        "fresh": 2
+      },
+      "actualCount": 2,
+      "expectedCount": 12
+    },
+    {
+      "dataset": "monthly_revenue",
+      "label": "月營收",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": null,
+      "freshness": "stale",
+      "freshnessBreakdown": {
+        "stale": 2
+      },
+      "actualCount": 0,
+      "expectedCount": 0
+    },
+    {
+      "dataset": "institutional_trading",
+      "label": "法人籌碼",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-06-08",
+      "freshness": "fresh",
+      "freshnessBreakdown": {
+        "fresh": 2
+      },
+      "actualCount": 2,
+      "expectedCount": 12
+    },
+    {
+      "dataset": "margin_short",
+      "label": "融資融券",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-06-08",
+      "freshness": "partial",
+      "freshnessBreakdown": {
+        "stale": 1,
+        "fresh": 1
+      },
+      "actualCount": 1,
+      "expectedCount": 12
+    },
+    {
+      "dataset": "surveillance",
+      "label": "注意 / 處置",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": null,
+      "freshness": "stale",
+      "freshnessBreakdown": {
+        "stale": 2
+      },
+      "actualCount": 0,
+      "expectedCount": 12
+    },
+    {
+      "dataset": "material_events",
+      "label": "重大訊息",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-05-12",
+      "freshness": "fresh",
+      "freshnessBreakdown": {
+        "fresh": 2
+      },
+      "actualCount": 1073,
+      "expectedCount": 0
+    },
+    {
+      "dataset": "corporate_actions",
+      "label": "除權息 / 公司行動",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-07-23",
+      "freshness": "fresh",
+      "freshnessBreakdown": {
+        "fresh": 2
+      },
+      "actualCount": 1224,
+      "expectedCount": 0
+    },
+    {
+      "dataset": "financial_statement",
+      "label": "財報",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-03-31",
+      "freshness": "fresh",
+      "freshnessBreakdown": {
+        "fresh": 2
+      },
+      "actualCount": 1094,
+      "expectedCount": 0
+    },
+    {
+      "dataset": "valuation",
+      "label": "估值",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": "2026-06-08",
+      "freshness": "partial",
+      "freshnessBreakdown": {
+        "fresh": 1,
+        "stale": 1
+      },
+      "actualCount": 1,
+      "expectedCount": 12
+    },
+    {
+      "dataset": "tdcc_distribution",
+      "label": "TDCC 股權分散",
+      "markets": [
+        "TPEX",
+        "TWSE",
+        "Unknown"
+      ],
+      "latest": "2026-06-05",
+      "freshness": "historical",
+      "freshnessBreakdown": {
+        "stale": 3
+      },
+      "actualCount": 3,
+      "expectedCount": 6
+    },
+    {
+      "dataset": "broker_branch_flow",
+      "label": "分點進出",
+      "markets": [
+        "TPEX",
+        "TWSE"
+      ],
+      "latest": null,
+      "freshness": "source_missing",
+      "freshnessBreakdown": {
+        "source_missing": 2
+      },
+      "actualCount": 0,
+      "expectedCount": 0
+    }
+  ],
+  "notices": [
+    "短線雷達是條件掃描與觀察清單，不是買賣建議。",
+    "候選結果需由使用者自行確認，並搭配交易成本、流動性、滑價與風險承受度評估。",
+    "部分資料源受官方公告節奏、來源限制或市場別差異影響，請以資料源狀態為準。"
+  ]
+};
