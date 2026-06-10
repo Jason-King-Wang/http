@@ -469,11 +469,80 @@ function reasonForPool(row, pool) {
   return pool === "a" ? row.a_reason || "" : row.b_reason || "";
 }
 
+function intradayTrendPoints(row) {
+  const trend = row?.intraday_15m;
+  if (!trend || trend.status !== "ok" || !Array.isArray(trend.points)) {
+    return [];
+  }
+  return trend.points
+    .map((point) => ({
+      time: String(point?.time || "").trim(),
+      price: asNumber(point?.price),
+      changePct: asNumber(point?.change_pct),
+    }))
+    .filter((point) => point.price !== null);
+}
+
+function renderIntradayMiniChart(row) {
+  const trend = row?.intraday_15m;
+  const points = intradayTrendPoints(row);
+  const modeLabel = trend?.mode_label || "15分鐘走勢";
+  if (!points.length) {
+    return `
+      <div class="intraday-mini intraday-empty" title="目前沒有 15 分鐘走勢資料">
+        <span>15m</span>
+        <small>無資料</small>
+      </div>
+    `;
+  }
+
+  const width = 150;
+  const height = 44;
+  const padX = 5;
+  const padY = 6;
+  const prices = points.map((point) => point.price);
+  let min = Math.min(...prices);
+  let max = Math.max(...prices);
+  if (min === max) {
+    min -= Math.max(0.1, min * 0.001);
+    max += Math.max(0.1, max * 0.001);
+  }
+  const span = max - min || 1;
+  const coords = points.map((point, index) => {
+    const x = points.length === 1
+      ? width / 2
+      : padX + (index / (points.length - 1)) * (width - padX * 2);
+    const y = padY + ((max - point.price) / span) * (height - padY * 2);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  const endChange = asNumber(trend?.change_pct);
+  const tone = toneForSignedNumber(endChange);
+  const first = points[0];
+  const last = points[points.length - 1];
+  const title = `${modeLabel}: ${first.time || "--"} ${formatNumber(first.price)} → ${last.time || "--"} ${formatNumber(last.price)}`;
+  const lastCoord = coords[coords.length - 1].split(",");
+
+  return `
+    <div class="intraday-mini ${tone}" title="${escapeHtml(title)}">
+      <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(title)}">
+        <line class="intraday-grid-line" x1="${padX}" y1="${height - padY}" x2="${width - padX}" y2="${height - padY}"></line>
+        <polyline points="${coords.join(" ")}"></polyline>
+        <circle cx="${lastCoord[0]}" cy="${lastCoord[1]}" r="2.8"></circle>
+      </svg>
+      <div class="intraday-meta">
+        <span>${escapeHtml(modeLabel)}</span>
+        <strong>${escapeHtml(formatSignedPctPoints(endChange))}</strong>
+      </div>
+    </div>
+  `;
+}
+
 function renderAbRow(row, pool) {
   return `
     <tr>
       <td>${escapeHtml(row.stock_id)}</td>
       <td>${escapeHtml(row.stock_name)}</td>
+      <td>${renderIntradayMiniChart(row)}</td>
       <td>${renderSelectionTag(row.selection_tag)}</td>
       <td>${escapeHtml(row.theme || "--")}</td>
       <td>${escapeHtml(formatNumber(row.week_entry_price))}</td>
@@ -495,7 +564,7 @@ function renderPoolTable(title, pool, rows, options = {}) {
   const weekSummary = summarizePool(rows, "week");
   const body = rows.length
     ? rows.map((row) => renderAbRow(row, pool)).join("")
-    : '<tr><td class="empty-cell" colspan="13">這一池目前沒有預選股。</td></tr>';
+    : '<tr><td class="empty-cell" colspan="14">這一池目前沒有預選股。</td></tr>';
   const summaryReturnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(summary.returnPct);
   const summaryPnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(summary.pnl);
   const weekReturnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(weekSummary.returnPct);
@@ -522,6 +591,7 @@ function renderPoolTable(title, pool, rows, options = {}) {
             <tr>
               <th>股號</th>
               <th>股名</th>
+              <th>15分鐘走勢</th>
               <th>重疊</th>
               <th>主題</th>
               <th>周一9:10價</th>
@@ -563,6 +633,10 @@ function buildAbPills(entry) {
     `B 預選 ${fallbackText(entry.b_count)}`,
     `重疊 ${fallbackText(entry.ab_count)}`,
   ];
+  const intraday = entry?.intraday_15m_summary;
+  if (intraday?.mode_label) {
+    pills.push(`15分 ${intraday.mode_label} ${fallbackText(intraday.ok_count)}/${fallbackText(intraday.stock_count)}`);
+  }
   if (entry?.rotation_shadow_action) {
     pills.push(`輪動 ${rotationConclusionText(entry)}`);
   }
