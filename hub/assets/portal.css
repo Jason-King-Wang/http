@@ -24,11 +24,19 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background:
     linear-gradient(rgba(22, 33, 46, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(22, 33, 46, 0.035) 1px, transparent 1px),
@@ -47,7 +55,7 @@ select {
 
 .page-shell {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .ambient {
@@ -755,6 +763,9 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
 .table-wrap {
   max-width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .ab-history-table {
@@ -1385,7 +1396,7 @@ body::before {
 
 .page-shell {
   min-height: 100vh;
-  overflow: clip;
+  overflow: visible;
   isolation: isolate;
 }
 
@@ -2389,5 +2400,281 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
 
   body[data-page="portal-home"] .site-card:nth-child(n) {
     grid-column: auto;
+  }
+}
+
+/* Mobile stability pass: keep the page vertically scrollable and move wide controls/tables into inner scrollers. */
+@media (max-width: 900px) {
+  html,
+  body {
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .page-shell {
+    min-height: 100dvh;
+    overflow: visible;
+  }
+
+  .page-shell::before {
+    display: none;
+  }
+
+  .site,
+  body[data-page="ab-daily-wrapper"] .site,
+  body[data-page="short-term-radar-wrapper"] .site,
+  body[data-page="sell-model-wrapper"] .site,
+  body[data-page="auto-trading-wrapper"] .site {
+    width: 100%;
+    padding: 0.55rem 0.62rem 2.4rem;
+  }
+
+  .topbar {
+    position: relative;
+    top: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 0.58rem;
+    width: 100%;
+    padding: 0.62rem;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .brand strong,
+  .brand span {
+    overflow-wrap: anywhere;
+  }
+
+  .nav-links {
+    width: 100%;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: 0.16rem;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .nav-links::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-links a {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .hero,
+  body[data-page="auto-trading-wrapper"] .auto-hero {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 0.9rem;
+  }
+
+  .hero-panel,
+  .card,
+  .radar-summary-shell,
+  .radar-table-card,
+  .radar-detail-card {
+    min-width: 0;
+  }
+
+  .hero-panel {
+    padding: 0.9rem;
+  }
+
+  .pill-row,
+  .frame-actions {
+    gap: 0.45rem;
+  }
+
+  .pill {
+    max-width: 100%;
+    min-height: 2rem;
+    padding: 0.44rem 0.62rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .metric {
+    min-width: 0;
+    padding: 0.64rem;
+  }
+
+  .metric strong {
+    font-size: 1.02rem;
+    overflow-wrap: anywhere;
+  }
+
+  .table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .radar-layout,
+  .radar-source-grid,
+  .radar-notice-grid,
+  .radar-detail-grid,
+  .radar-score-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .radar-table {
+    min-width: 960px;
+  }
+
+  .radar-golden-table {
+    min-width: 760px;
+  }
+
+  .radar-history-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .radar-day-panel {
+    min-width: 0;
+    padding: 0.72rem;
+  }
+
+  .radar-day-list li {
+    grid-template-columns: 1.8rem minmax(0, 1fr) 3rem;
+  }
+
+  .radar-detail-card {
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  body[data-page="short-term-radar-wrapper"] .hero h1,
+  body[data-page="ab-daily-wrapper"] .hero h1,
+  body[data-page="auto-trading-wrapper"] .hero h1,
+  body[data-page="sell-model-wrapper"] .hero h1,
+  .hero h1 {
+    font-size: 1.82rem;
+    line-height: 1.08;
+  }
+
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .radar-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .radar-table thead {
+    display: none;
+  }
+
+  .radar-table tbody {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .radar-table tr {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.78rem;
+    border: 1px solid rgba(13, 18, 15, 0.1);
+    border-radius: var(--radius-sm);
+    background: #f8fbf4;
+  }
+
+  .radar-table td {
+    display: grid;
+    grid-template-columns: 5.8rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.55rem;
+    width: 100%;
+    padding: 0.28rem 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .radar-table td::before {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .radar-table td:nth-child(1)::before {
+    content: "Rank";
+  }
+
+  .radar-table td:nth-child(2)::before {
+    content: "Stock";
+  }
+
+  .radar-table td:nth-child(3)::before {
+    content: "Stage";
+  }
+
+  .radar-table td:nth-child(4)::before {
+    content: "Score";
+  }
+
+  .radar-table td:nth-child(5)::before {
+    content: "Close";
+  }
+
+  .radar-table td:nth-child(6)::before {
+    content: "20D";
+  }
+
+  .radar-table td:nth-child(7)::before {
+    content: "60D";
+  }
+
+  .radar-table td:nth-child(8)::before {
+    content: "Volume";
+  }
+
+  .radar-table td:nth-child(9)::before {
+    content: "Coverage";
+  }
+
+  .radar-table td:nth-child(10)::before {
+    content: "Note";
+  }
+
+  .radar-table .radar-stock {
+    min-width: 0;
+  }
+
+  .radar-table .score-pill,
+  .radar-table .radar-status-badge {
+    justify-self: start;
+    white-space: normal;
+    text-align: left;
+  }
+
+  .radar-table td.risk-cell {
+    max-width: none;
+    overflow-wrap: anywhere;
   }
 }
