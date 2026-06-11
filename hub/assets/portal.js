@@ -1102,6 +1102,117 @@ function renderRadarCandidateTable(candidates) {
   `;
 }
 
+function renderRadarGoldenPanel(golden) {
+  const rows = Array.isArray(golden?.candidates) ? golden.candidates : [];
+  const tierCounts = golden?.tierCounts || {};
+  const meta = [
+    `Window ${fallbackText(golden?.windowDays)} trading days`,
+    `Top5 ${fallbackText(tierCounts.top5 || 0)}`,
+    `Top10 ${fallbackText(tierCounts.top10 || 0)}`,
+    `Top20 ${fallbackText(rows.length)}`,
+  ];
+  const body = rows.length
+    ? rows
+        .map(
+          (item) => `
+            <tr>
+              <td><span class="golden-tier golden-tier-${escapeHtml(item.tier || "top20")}">${escapeHtml(item.tier || "top20")}</span></td>
+              <td>
+                <div class="radar-stock">
+                  <strong>${escapeHtml([item.symbol, item.name].filter(Boolean).join(" ") || "--")}</strong>
+                  <span>${escapeHtml(item.industry || "--")}</span>
+                </div>
+              </td>
+              <td>${escapeHtml(formatNumber(item.latestRank))}</td>
+              <td>${escapeHtml(formatScore(item.latestScore))}</td>
+              <td>${escapeHtml(formatNumber(item.averageRank))}</td>
+              <td>${escapeHtml(formatNumber(item.worstRank))}</td>
+              <td class="rank-path">${escapeHtml((item.rankPath || []).join(" / "))}</td>
+            </tr>
+          `
+        )
+        .join("")
+    : '<tr><td class="empty-cell" colspan="7">最近 10 個交易日沒有每天都進 Top20 的股票。</td></tr>';
+
+  return `
+    <section class="radar-golden-band">
+      <div class="section-head compact-head">
+        <div>
+          <p class="eyebrow">Golden Watch</p>
+          <h3>黃金 Top20</h3>
+        </div>
+        <div class="pill-row compact-pills">
+          ${meta.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("")}
+        </div>
+      </div>
+      <p class="mini-note">${escapeHtml(golden?.rule || "連續 10 個交易日都進 Top20；若每天都進 Top5/Top10，升級標示。")}</p>
+      <div class="table-wrap">
+        <table class="ab-history-table radar-golden-table">
+          <thead>
+            <tr>
+              <th>級別</th>
+              <th>股票</th>
+              <th>最新排名</th>
+              <th>最新分數</th>
+              <th>平均排名</th>
+              <th>最差排名</th>
+              <th>10日路徑</th>
+            </tr>
+          </thead>
+          <tbody>${body}</tbody>
+        </table>
+      </div>
+    </section>
+  `;
+}
+
+function renderRadarHistoryPanel(history) {
+  const days = Array.isArray(history?.daily) ? history.daily : [];
+  if (!days.length) {
+    return "";
+  }
+
+  return `
+    <section class="radar-history-band">
+      <div class="section-head compact-head">
+        <div>
+          <p class="eyebrow">Last 10 Trading Days</p>
+          <h3>10日 Top20 名單</h3>
+        </div>
+        <span class="pill">${escapeHtml(fallbackText(history.startDate))} - ${escapeHtml(fallbackText(history.endDate))}</span>
+      </div>
+      <div class="radar-history-grid">
+        ${days
+          .map((day) => {
+            const candidates = Array.isArray(day.candidates) ? day.candidates.slice(0, 20) : [];
+            return `
+              <article class="radar-day-panel">
+                <div class="radar-day-head">
+                  <strong>${escapeHtml(day.asOfDate || "--")}</strong>
+                  <span>${escapeHtml(formatNumber(day.count))} 檔</span>
+                </div>
+                <ol class="radar-day-list">
+                  ${candidates
+                    .map(
+                      (candidate) => `
+                        <li>
+                          <span class="radar-rank-chip">${escapeHtml(candidate.rank)}</span>
+                          <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
+                          <strong>${escapeHtml(formatScore(candidate.scoreTotal))}</strong>
+                        </li>
+                      `
+                    )
+                    .join("")}
+                </ol>
+              </article>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
 function renderRadarScoreGrid(candidate) {
   const scores = candidate?.scores || {};
   const rows = [
@@ -1218,6 +1329,8 @@ function renderShortTermRadarPage(payload) {
   const summary = payload?.summary || {};
   const candidates = Array.isArray(payload?.candidates) ? payload.candidates : [];
   const topCandidates = candidates.slice(0, 20);
+  const history = payload?.history || {};
+  const golden = payload?.golden || history.golden || {};
 
   if (pageMeta) {
     pageMeta.innerHTML = payload
@@ -1242,7 +1355,7 @@ function renderShortTermRadarPage(payload) {
   ]);
 
   if (candidateTable) {
-    candidateTable.innerHTML = renderRadarCandidateTable(topCandidates);
+    candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates)}${renderRadarHistoryPanel(history)}`;
   }
 
   if (detail) {

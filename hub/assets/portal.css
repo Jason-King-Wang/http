@@ -986,6 +986,125 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   vertical-align: top;
 }
 
+.radar-golden-band,
+.radar-history-band {
+  display: grid;
+  gap: 0.8rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(22, 33, 46, 0.1);
+}
+
+.compact-head {
+  gap: 0.75rem;
+}
+
+.radar-golden-table {
+  min-width: 820px;
+}
+
+.golden-tier {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.2rem;
+  min-height: 2rem;
+  padding: 0.35rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+  background: rgba(12, 143, 122, 0.12);
+  color: var(--accent-strong);
+}
+
+.golden-tier-top5 {
+  background: rgba(238, 108, 77, 0.15);
+  color: #a13f28;
+}
+
+.golden-tier-top10 {
+  background: rgba(29, 53, 87, 0.12);
+  color: var(--navy);
+}
+
+.rank-path {
+  min-width: 8rem;
+  color: var(--muted);
+  font-family: var(--font-display);
+  white-space: nowrap;
+}
+
+.radar-history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0.85rem;
+}
+
+.radar-day-panel {
+  display: grid;
+  gap: 0.65rem;
+  padding: 0.9rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(22, 33, 46, 0.08);
+}
+
+.radar-day-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.radar-day-head span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 760;
+}
+
+.radar-day-list {
+  display: grid;
+  gap: 0.38rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.radar-day-list li {
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr) 3.3rem;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 2rem;
+  color: var(--ink);
+}
+
+.radar-day-list li > span:nth-child(2) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.radar-day-list strong {
+  text-align: right;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+}
+
+.radar-rank-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: rgba(22, 33, 46, 0.07);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 850;
+}
+
 .radar-stock {
   display: grid;
   gap: 0.18rem;
