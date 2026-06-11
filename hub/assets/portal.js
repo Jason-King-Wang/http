@@ -310,6 +310,7 @@ function formatCompactDateTime(value) {
 function modeLabel(mode) {
   const labels = {
     full_short_term_radar: "完整短線雷達",
+    explosive_radar_v2_current: "爆發短線雷達 v2",
   };
   return labels[mode] || mode || "--";
 }
@@ -1105,11 +1106,11 @@ function renderRadarScoreGrid(candidate) {
   const scores = candidate?.scores || {};
   const rows = [
     ["營收", scores.revenue],
-    ["預期差", scores.expectationGap],
-    ["價量", scores.priceVolume],
-    ["題材群", scores.themeGroup],
+    ["v2 動能", scores.expectationGap],
+    ["價格 / RS", scores.priceVolume],
+    ["題材", scores.themeGroup],
     ["籌碼", scores.chip],
-    ["事件", scores.catalyst],
+    ["市場熱度", scores.catalyst],
   ];
 
   return `
