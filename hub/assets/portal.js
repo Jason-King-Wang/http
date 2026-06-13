@@ -35,10 +35,6 @@ async function fetchAbDailyData() {
 }
 
 async function fetchShortTermRadarData() {
-  if (window.__SHORT_TERM_RADAR_DATA__) {
-    return window.__SHORT_TERM_RADAR_DATA__;
-  }
-
   const basePath = document.body.dataset.page === "portal-home" ? "./" : "../";
   try {
     const response = await fetch(`${basePath}data/short-term-radar-snapshot.json?v=${Date.now()}`, {
@@ -49,7 +45,7 @@ async function fetchShortTermRadarData() {
     }
     return await response.json();
   } catch (_error) {
-    return null;
+    return window.__SHORT_TERM_RADAR_DATA__ || null;
   }
 }
 
