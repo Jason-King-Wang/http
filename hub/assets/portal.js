@@ -290,6 +290,109 @@ function renderMetricCards(target, rows) {
     .join("");
 }
 
+function renderHelpCard(key, title, rows, note = "") {
+  const body = rows
+    .map(
+      ([label, description]) => `
+        <div class="radar-help-row">
+          <dt>${escapeHtml(label)}</dt>
+          <dd>${escapeHtml(description)}</dd>
+        </div>
+      `
+    )
+    .join("");
+  const noteHtml = note ? `<p class="radar-help-note">${escapeHtml(note)}</p>` : "";
+  return `
+    <details class="radar-help-card" data-help-key="${escapeHtml(key)}">
+      <summary>
+        <span class="radar-help-kicker">說明</span>
+        <strong>${escapeHtml(title)}</strong>
+      </summary>
+      <div class="radar-help-body">
+        <dl>${body}</dl>
+        ${noteHtml}
+      </div>
+    </details>
+  `;
+}
+
+function mountHelpCard(anchor, key, title, rows, note = "", position = "beforebegin") {
+  if (!anchor) {
+    return;
+  }
+  const html = renderHelpCard(key, title, rows, note);
+  const existing = document.querySelector(`[data-help-key="${key}"]`);
+  if (existing) {
+    existing.outerHTML = html;
+    return;
+  }
+  anchor.insertAdjacentHTML(position, html);
+}
+
+const RADAR_HELP = {
+  overview: [
+    ["這頁用途", "短線雷達是研究用選股雷達，目標是找出短中期可能強勢的股票，不是自動下單系統。"],
+    ["資料時間", "頁面上的日期代表目前公開 snapshot 的出榜日；名單用當天以前可取得的資料產生。"],
+    ["怎麼看", "先看黃金榜和成效追蹤，再看普通 Top20 名單與個股細節。"],
+  ],
+  summary: [
+    ["出榜日", "這份短線雷達名單對應的交易日。"],
+    ["候選數", "本次公開列出的股票數量。"],
+    ["分數", "雷達綜合動能、相對強度、籌碼、營收、族群與風險後的排序分數。"],
+    ["覆蓋", "這是資料完整度，不是勝率；越接近 100% 代表可用資料越完整。"],
+  ],
+  effectiveness: [
+    ["X 軸", "每一個點是一個歷史出榜日，也就是那一天產生的黃金榜或 Top20。"],
+    ["Y 軸", "那天出榜後，往後持有 20 / 60 / 120 個交易日的平均漲跌幅。"],
+    ["虛線", "橘色水平虛線是 0% 基準線；線在上方代表該出榜日往後報酬為正。"],
+    ["黃金榜", "連續 10 個交易日都在 Top20 內的精選名單。"],
+    ["普通 Top20", "同一天原始短線雷達 Top20，沒有經過連續上榜條件過濾。"],
+    ["外部最佳", "同一天同一區間，在 0050、台積電、台股加權三者裡表現最好的 benchmark。"],
+    ["樣本天", "可計算該 horizon 的歷史出榜日數；越長的 120 日會少掉較近期還沒滿 120 日的出榜日。"],
+  ],
+  golden: [
+    ["黃金榜", "用穩定性過濾普通 Top20：必須連續 10 個交易日都在 Top20。"],
+    ["Top5 / Top10 / Top20 tier", "如果這 10 天每天都在 Top5，就列為 Top5 tier；每天都在 Top10 則列 Top10；其餘連續 Top20 是 Top20 tier。"],
+    ["最新排名", "這檔股票在最新出榜日的排名。"],
+    ["平均排名", "最近 10 個交易日上榜排名的平均值，越小代表越穩定靠前。"],
+    ["最差排名", "最近 10 個交易日中最差的一次排名，用來看穩定度。"],
+    ["10 日路徑", "這檔股票過去 10 個交易日每天的排名變化。"],
+  ],
+  watchlist: [
+    ["排序", "本次短線雷達的排名。"],
+    ["標的", "股票代號、名稱與產業。"],
+    ["階段", "雷達給的觀察強度與是否需要人工確認。"],
+    ["分數", "綜合排序分數，越高代表雷達越偏好。"],
+    ["收盤", "出榜資料日的收盤價。"],
+    ["20 日 / 60 日", "過去 20 / 60 個交易日的已發生漲跌幅，不是未來預測。"],
+    ["量能", "目前成交量相對於 20 日均量的倍數。"],
+    ["覆蓋", "這檔股票本次算分資料完整度，不是勝率。"],
+    ["風險摘要", "例如短線過熱、近期大跌、注意股或資料缺口等提醒。"],
+  ],
+  history: [
+    ["10 天名單", "列出最近 10 個交易日的普通 Top20，黃金榜就是從這 10 天連續上榜者篩出來。"],
+    ["用途", "用來看一檔股票是剛衝進榜，還是已經穩定多天排在前面。"],
+    ["分數", "每一天當時的雷達分數，不是用今天資料回填。"],
+  ],
+  detail: [
+    ["Top Observation", "右側細節預設顯示目前排名第一的標的。"],
+    ["分數拆解", "下面各小格顯示營收、價量、族群、籌碼、催化等分項。"],
+    ["雷達理由", "列出它為什麼被短線雷達排上來。"],
+    ["覆蓋狀態", "顯示哪些雷達資料可用、哪些資料不足或降級。"],
+  ],
+  dataHealth: [
+    ["Data Health", "檢查短線雷達本輪用到的資料表是否存在、最新日期與資料量。"],
+    ["Fresh", "代表該資料源近期有更新。"],
+    ["Historical / Partial", "代表資料可用但可能不是當天最新，或只覆蓋部分欄位。"],
+    ["Source missing", "代表該資料源目前缺失，雷達會降級或限制該項分數。"],
+  ],
+  notices: [
+    ["Compliance", "這裡放研究限制、資料限制與非投資建議聲明。"],
+    ["研究頁", "短線雷達是研究與觀察工具，不代表保證獲利或下單建議。"],
+    ["資料限制", "外部資料、交易所資料或歷史資料若延遲，頁面會以目前可用資料呈現。"],
+  ],
+};
+
 function formatScore(value) {
   const number = asNumber(value);
   return number === null ? "--" : number.toFixed(1);
@@ -1078,6 +1181,7 @@ function renderRadarCandidateTable(candidates) {
   }
 
   return `
+    ${renderHelpCard("current-watchlist", "普通 Top20 表格怎麼看", RADAR_HELP.watchlist, "20 日、60 日、量能、覆蓋都是出榜當下已知資訊，不是未來績效。")}
     <table class="ab-history-table radar-table">
       <thead>
         <tr>
@@ -1141,6 +1245,7 @@ function renderRadarGoldenPanel(golden) {
           ${meta.map((item) => `<span class="pill">${escapeHtml(item)}</span>`).join("")}
         </div>
       </div>
+      ${renderHelpCard("golden-watch", "黃金榜怎麼篩", RADAR_HELP.golden, "黃金榜是短線雷達的精選穩定名單；它不是另一套自動交易策略。")}
       <p class="mini-note">${escapeHtml(golden?.rule || "連續 10 個交易日都進 Top20；若每天都進 Top5/Top10，升級標示。")}</p>
       <div class="table-wrap">
         <table class="ab-history-table radar-golden-table">
@@ -1177,6 +1282,7 @@ function renderRadarHistoryPanel(history) {
         </div>
         <span class="pill">${escapeHtml(fallbackText(history.startDate))} - ${escapeHtml(fallbackText(history.endDate))}</span>
       </div>
+      ${renderHelpCard("radar-history", "最近 10 個交易日怎麼看", RADAR_HELP.history)}
       <div class="radar-history-grid">
         ${days
           .map((day) => {
@@ -1359,6 +1465,7 @@ function renderRadarEffectiveness(effectiveness) {
         <span class="pill">內部比較：黃金榜 vs 普通 Top20</span>
         <span class="pill">外部比較：0050 / 台積電 / 台股加權 / 三者最佳</span>
       </div>
+      ${renderHelpCard("radar-effectiveness", "成效追蹤圖表怎麼看", RADAR_HELP.effectiveness, "這裡看的是歷史每個出榜日往後固定交易日的結果，不是每日淨值曲線。")}
       <div class="effectiveness-legend">
         ${series
           .map((item) => `<span><i style="background:${item.color}"></i>${escapeHtml(item.label)}</span>`)
@@ -1423,6 +1530,7 @@ function renderRadarDetail(candidate) {
     return `
       <p class="eyebrow">Detail</p>
       <h2>尚無觀察資料</h2>
+      ${renderHelpCard("radar-detail-empty", "右側細節怎麼看", RADAR_HELP.detail)}
       <p class="section-copy">短線雷達 snapshot 尚未提供候選清單。</p>
     `;
   }
@@ -1435,6 +1543,7 @@ function renderRadarDetail(candidate) {
   return `
     <p class="eyebrow">Top Observation</p>
     <h2>${escapeHtml(stockLabel || "--")}</h2>
+    ${renderHelpCard("radar-detail", "右側細節怎麼看", RADAR_HELP.detail)}
     <p class="section-copy">
       目前排序第 ${escapeHtml(candidate.rank || "--")}，${escapeHtml(stageLabel(candidate.stage))}，
       ${escapeHtml(entryZoneLabel(candidate.entryZone))}。此區僅呈現條件掃描結果與資料狀態。
@@ -1522,8 +1631,10 @@ function renderShortTermRadarPage(payload) {
           .map((item) => `<span class="pill">${item}</span>`)
           .join("")
       : '<span class="pill">短線雷達資料尚未載入</span>';
+    mountHelpCard(pageMeta, "radar-overview", "這頁怎麼看", RADAR_HELP.overview, "所有說明卡預設收起，點開後會在原本位置展開，不會蓋住圖表或表格。", "afterend");
   }
 
+  mountHelpCard(summaryMetrics, "radar-summary", "Snapshot 指標怎麼看", RADAR_HELP.summary);
   renderMetricCards(summaryMetrics, [
     ["掃描日", payload?.asOfDate],
     ["候選檔數", summary.totalCandidates],
@@ -1546,6 +1657,7 @@ function renderShortTermRadarPage(payload) {
   }
 
   if (sourceGrid) {
+    mountHelpCard(sourceGrid, "radar-data-health", "Data Health 怎麼看", RADAR_HELP.dataHealth);
     const sources = Array.isArray(payload?.datasetStatus) ? payload.datasetStatus : [];
     sourceGrid.innerHTML = sources.length
       ? sources.map(renderRadarSourceStatus).join("")
@@ -1553,6 +1665,7 @@ function renderShortTermRadarPage(payload) {
   }
 
   if (notices) {
+    mountHelpCard(notices, "radar-compliance", "Compliance 怎麼看", RADAR_HELP.notices);
     const noticeRows = Array.isArray(payload?.notices) && payload.notices.length
       ? payload.notices
       : ["本系統為交易規則量化與下單輔助工具，不提供個股投資建議、不保證收益。使用者須自行評估投資風險。"];

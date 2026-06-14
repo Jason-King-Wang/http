@@ -1007,6 +1007,106 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   border-bottom: 1px solid rgba(22, 33, 46, 0.1);
 }
 
+.radar-help-card {
+  min-width: 0;
+  margin: 0.25rem 0 0.2rem;
+  border: 1px solid rgba(12, 143, 122, 0.18);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.68);
+  overflow: hidden;
+}
+
+.radar-help-card summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.55rem;
+  padding: 0.64rem 0.78rem;
+  cursor: pointer;
+  list-style: none;
+  color: var(--ink);
+}
+
+.radar-help-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.radar-help-card summary::after {
+  content: "+";
+  margin-left: auto;
+  width: 1.55rem;
+  height: 1.55rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: rgba(12, 143, 122, 0.1);
+  color: var(--accent-strong);
+  font-weight: 900;
+}
+
+.radar-help-card[open] summary::after {
+  content: "-";
+}
+
+.radar-help-card summary strong {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.radar-help-kicker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  min-height: 1.55rem;
+  padding: 0.24rem 0.52rem;
+  border-radius: 999px;
+  background: rgba(12, 143, 122, 0.12);
+  color: var(--accent-strong);
+  font-size: 0.76rem;
+  font-weight: 850;
+}
+
+.radar-help-body {
+  padding: 0 0.78rem 0.82rem;
+}
+
+.radar-help-body dl {
+  display: grid;
+  gap: 0.42rem;
+  margin: 0;
+}
+
+.radar-help-row {
+  display: grid;
+  grid-template-columns: minmax(5.8rem, 0.34fr) minmax(0, 1fr);
+  gap: 0.68rem;
+  padding: 0.55rem 0;
+  border-top: 1px solid rgba(22, 33, 46, 0.08);
+}
+
+.radar-help-row dt {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 850;
+}
+
+.radar-help-row dd {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.62;
+  overflow-wrap: anywhere;
+}
+
+.radar-help-note {
+  margin: 0.72rem 0 0;
+  padding: 0.62rem 0.7rem;
+  border-radius: var(--radius-sm);
+  background: rgba(238, 108, 77, 0.09);
+  color: #8f3f2d;
+  line-height: 1.62;
+}
+
 .compact-head {
   gap: 0.75rem;
 }
@@ -2706,6 +2806,15 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
   .effectiveness-panel-head,
   .effectiveness-meta-row {
     align-items: stretch;
+  }
+
+  .radar-help-card summary {
+    align-items: flex-start;
+  }
+
+  .radar-help-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 
   .radar-day-panel {
