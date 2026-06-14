@@ -176,6 +176,28 @@ function radarWeeklyChartEntry(payload, symbol) {
   return bySymbol[String(symbol || "").trim()] || null;
 }
 
+function weeklyChartContextWindow(entry, selectedDate, payload) {
+  const candles = Array.isArray(entry?.candles) ? entry.candles : [];
+  if (!candles.length) {
+    return { visible: [], selectedIndex: -1, signalWeek: "", lookbackWeeks: 0 };
+  }
+  const chartMeta = payload?.weeklyCharts || {};
+  const lookbackWeeks = Math.max(0, Math.round(asNumber(entry?.lookbackWeeks) ?? asNumber(chartMeta?.lookbackWeeks) ?? 52));
+  const signalDate = selectedDate || entry?.firstSelectedDate || "";
+  let selectedIndex = signalDate ? candles.findIndex((item) => String(item.week || "") >= signalDate) : -1;
+  if (selectedIndex < 0) {
+    selectedIndex = candles.length - 1;
+  }
+  const startIndex = Math.max(0, selectedIndex - lookbackWeeks);
+  const visible = candles.slice(startIndex);
+  return {
+    visible,
+    selectedIndex: selectedIndex - startIndex,
+    signalWeek: candles[selectedIndex]?.week || signalDate,
+    lookbackWeeks,
+  };
+}
+
 function renderRadarWeeklyChart(symbol, name, selectedDate, payload) {
   const entry = radarWeeklyChartEntry(payload, symbol);
   const stockLabel = [symbol, name || entry?.name].filter(Boolean).join(" ");
@@ -284,6 +306,131 @@ function renderRadarWeeklyCandlesSvg(candles) {
   `;
 }
 
+function renderRadarWeeklyChartContextual(symbol, name, selectedDate, payload) {
+  const entry = radarWeeklyChartEntry(payload, symbol);
+  const stockLabel = [symbol, name || entry?.name].filter(Boolean).join(" ");
+  if (!entry || !Array.isArray(entry.candles) || !entry.candles.length) {
+    return `
+      <div class="radar-weekly-chart">
+        <div class="weekly-chart-empty">
+          <strong>${escapeHtml(stockLabel || symbol || "--")}</strong>
+          <span>本機日K目前沒有可聚合的周K資料。</span>
+        </div>
+      </div>
+    `;
+  }
+
+  const signalDate = selectedDate || entry.firstSelectedDate || "";
+  const windowed = weeklyChartContextWindow(entry, signalDate, payload);
+  const visible = windowed.visible.length ? windowed.visible : entry.candles;
+  const first = visible[0] || {};
+  const last = visible[visible.length - 1] || {};
+  const firstBase = asNumber(first.open) ?? asNumber(first.close);
+  const lastClose = asNumber(last.close);
+  const returnPct = firstBase && lastClose !== null ? (lastClose - firstBase) / firstBase : null;
+  const returnClass = returnPct === null ? "trend-flat" : returnPct >= 0 ? "trend-positive" : "trend-negative";
+
+  return `
+    <div class="radar-weekly-chart">
+      <div class="weekly-chart-head">
+        <div>
+          <strong>${escapeHtml(stockLabel || symbol)}</strong>
+          <span>周K｜上榜日 ${escapeHtml(signalDate || "--")}，標在 ${escapeHtml(windowed.signalWeek || "--")}｜顯示 ${escapeHtml(first.week || "--")} 到 ${escapeHtml(entry.lastDate || last.week || "--")}</span>
+        </div>
+        <div class="weekly-chart-metrics">
+          <span>${escapeHtml(formatNumber(visible.length))} 周</span>
+          <span>前置 ${escapeHtml(formatNumber(windowed.lookbackWeeks))} 周</span>
+          <span>最新 ${escapeHtml(formatNumber(lastClose))}</span>
+          <span class="${returnClass}">${escapeHtml(formatPct(returnPct))}</span>
+        </div>
+      </div>
+      ${renderRadarWeeklyCandlesSvgContextual(visible, windowed.selectedIndex)}
+      <div class="weekly-chart-note">垂直標線是該列的上榜週；左側保留上榜前背景，右側一路顯示到目前本機最新周K。</div>
+    </div>
+  `;
+}
+
+function renderRadarWeeklyCandlesSvgContextual(candles, selectedIndex = -1) {
+  const rows = candles
+    .map((item) => ({
+      week: item.week,
+      open: asNumber(item.open),
+      high: asNumber(item.high),
+      low: asNumber(item.low),
+      close: asNumber(item.close),
+    }))
+    .filter((item) => item.week && item.open !== null && item.high !== null && item.low !== null && item.close !== null);
+  if (!rows.length) {
+    return '<div class="weekly-chart-empty"><span>周K資料不足。</span></div>';
+  }
+
+  const width = Math.max(720, rows.length * 9 + 80);
+  const height = 260;
+  const padX = 46;
+  const padTop = 18;
+  const padBottom = 34;
+  const highs = rows.map((item) => item.high);
+  const lows = rows.map((item) => item.low);
+  const maxPrice = Math.max(...highs);
+  const minPrice = Math.min(...lows);
+  const span = maxPrice - minPrice || Math.max(maxPrice, 1);
+  const y = (value) => padTop + ((maxPrice - value) / span) * (height - padTop - padBottom);
+  const step = (width - padX * 2) / Math.max(rows.length, 1);
+  const candleWidth = Math.max(3, Math.min(8, step * 0.56));
+
+  const grid = [0, 0.25, 0.5, 0.75, 1]
+    .map((ratio) => {
+      const price = maxPrice - span * ratio;
+      const yy = y(price);
+      return `<g class="weekly-grid"><line x1="${padX}" y1="${yy.toFixed(2)}" x2="${width - padX}" y2="${yy.toFixed(2)}"></line><text x="8" y="${(yy + 4).toFixed(2)}">${escapeHtml(formatNumber(price))}</text></g>`;
+    })
+    .join("");
+
+  const bodies = rows
+    .map((item, index) => {
+      const x = padX + index * step + step / 2;
+      const yHigh = y(item.high);
+      const yLow = y(item.low);
+      const yOpen = y(item.open);
+      const yClose = y(item.close);
+      const top = Math.min(yOpen, yClose);
+      const bodyHeight = Math.max(1.5, Math.abs(yClose - yOpen));
+      const klass = item.close >= item.open ? "weekly-candle-up" : "weekly-candle-down";
+      return `<g class="${klass}"><line x1="${x.toFixed(2)}" y1="${yHigh.toFixed(2)}" x2="${x.toFixed(2)}" y2="${yLow.toFixed(2)}"></line><rect x="${(x - candleWidth / 2).toFixed(2)}" y="${top.toFixed(2)}" width="${candleWidth.toFixed(2)}" height="${bodyHeight.toFixed(2)}" rx="1"></rect></g>`;
+    })
+    .join("");
+
+  const marker =
+    selectedIndex >= 0 && selectedIndex < rows.length
+      ? (() => {
+          const x = padX + selectedIndex * step + step / 2;
+          const textX = Math.min(width - padX, x + 6);
+          const textAnchor = x > width - padX - 64 ? "end" : "start";
+          return `
+            <g class="weekly-signal-marker">
+              <line x1="${x.toFixed(2)}" y1="${padTop}" x2="${x.toFixed(2)}" y2="${height - padBottom}"></line>
+              <text x="${textX.toFixed(2)}" y="${padTop + 13}" text-anchor="${textAnchor}">上榜週</text>
+            </g>
+          `;
+        })()
+      : "";
+
+  const first = rows[0]?.week || "";
+  const last = rows[rows.length - 1]?.week || "";
+  return `
+    <svg class="weekly-k-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="weekly candlestick chart">
+      ${grid}
+      ${bodies}
+      ${marker}
+      <g class="weekly-axis">
+        <line x1="${padX}" y1="${height - padBottom}" x2="${width - padX}" y2="${height - padBottom}"></line>
+        <text x="${padX}" y="${height - 10}">${escapeHtml(first)}</text>
+        <text x="${width - padX}" y="${height - 10}" text-anchor="end">${escapeHtml(last)}</text>
+      </g>
+    </svg>
+  `;
+}
+
 function closeRadarWeeklyCharts(root) {
   root.querySelectorAll(".radar-weekly-chart-row, .radar-weekly-chart-list-item, .radar-weekly-chart-block").forEach((node) => node.remove());
   root.querySelectorAll(".radar-stock-trigger.is-active").forEach((node) => node.classList.remove("is-active"));
@@ -314,7 +461,7 @@ function wireRadarWeeklyChartToggles(root, payload) {
       return;
     }
     trigger.classList.add("is-active");
-    const chartHtml = renderRadarWeeklyChart(symbol, name, selectedDate, payloadForChart);
+    const chartHtml = renderRadarWeeklyChartContextual(symbol, name, selectedDate, payloadForChart);
     const row = trigger.closest("tr");
     if (row) {
       const chartRow = document.createElement("tr");

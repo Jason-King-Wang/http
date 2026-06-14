@@ -1357,6 +1357,18 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   stroke-width: 1;
 }
 
+.weekly-signal-marker line {
+  stroke: #1d3557;
+  stroke-width: 2;
+  stroke-dasharray: 5 4;
+}
+
+.weekly-signal-marker text {
+  fill: #1d3557;
+  font-size: 12px;
+  font-weight: 900;
+}
+
 .weekly-candle-up line,
 .weekly-candle-up rect {
   stroke: #b23a2c;
