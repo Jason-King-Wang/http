@@ -1267,49 +1267,102 @@ function renderRadarGoldenPanel(golden) {
   `;
 }
 
+function renderDailyTop20Card(day, isGoldenWindow) {
+  const candidates = Array.isArray(day?.candidates) ? day.candidates.slice(0, 20) : [];
+  return `
+    <details class="radar-day-panel ${isGoldenWindow ? "is-golden-window" : ""}">
+      <summary class="radar-day-head">
+        <strong>${escapeHtml(day?.asOfDate || "--")}</strong>
+        <span>${isGoldenWindow ? "黃金榜窗口 / " : ""}${escapeHtml(formatNumber(day?.count || candidates.length))} 檔</span>
+      </summary>
+      <ol class="radar-day-list">
+        ${candidates
+          .map(
+            (candidate) => `
+              <li>
+                <span class="radar-rank-chip">${escapeHtml(candidate.rank)}</span>
+                <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
+                <strong>${escapeHtml(formatScore(candidate.scoreTotal))}</strong>
+              </li>
+            `
+          )
+          .join("")}
+      </ol>
+    </details>
+  `;
+}
+
+function renderGoldenHistoryCard(day) {
+  const candidates = Array.isArray(day?.candidates) ? day.candidates : [];
+  const tierCounts = day?.tierCounts || {};
+  return `
+    <details class="radar-day-panel radar-golden-history-card">
+      <summary class="radar-day-head">
+        <strong>${escapeHtml(day?.asOfDate || "--")}</strong>
+        <span>${escapeHtml(formatNumber(candidates.length))} 檔 / Top5 ${escapeHtml(formatNumber(tierCounts.top5 || 0))} / Top10 ${escapeHtml(formatNumber(tierCounts.top10 || 0))}</span>
+      </summary>
+      <p class="mini-note">窗口：${escapeHtml(fallbackText(day?.windowStart))} - ${escapeHtml(fallbackText(day?.windowEnd))}</p>
+      <ol class="radar-day-list radar-golden-history-list">
+        ${candidates
+          .map(
+            (candidate) => `
+              <li>
+                <span class="golden-tier golden-tier-${escapeHtml(candidate.tier || "top20")}">${escapeHtml(candidate.tier || "top20")}</span>
+                <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
+                <strong>${escapeHtml(formatScore(candidate.latestScore))}</strong>
+              </li>
+            `
+          )
+          .join("")}
+      </ol>
+    </details>
+  `;
+}
+
 function renderRadarHistoryPanel(history) {
   const days = Array.isArray(history?.daily) ? history.daily : [];
   if (!days.length) {
     return "";
   }
+  const highlightDates = new Set(Array.isArray(history?.highlightLatestDays) ? history.highlightLatestDays : days.slice(0, 10).map((day) => day.asOfDate));
 
   return `
     <section class="radar-history-band">
       <div class="section-head compact-head">
         <div>
-          <p class="eyebrow">Last 10 Trading Days</p>
-          <h3>10日 Top20 名單</h3>
+          <p class="eyebrow">Daily Top20</p>
+          <h3>每日 Top20 名單</h3>
         </div>
-        <span class="pill">${escapeHtml(fallbackText(history.startDate))} - ${escapeHtml(fallbackText(history.endDate))}</span>
+        <span class="pill">${escapeHtml(formatNumber(days.length))} 天 / ${escapeHtml(fallbackText(history.startDate))} - ${escapeHtml(fallbackText(history.endDate))}</span>
       </div>
-      ${renderHelpCard("radar-history", "最近 10 個交易日怎麼看", RADAR_HELP.history)}
+      ${renderHelpCard("radar-history", "每日 Top20 名單怎麼看", RADAR_HELP.history, "每張日期小卡預設收合；最新 10 個交易日是目前黃金榜的形成窗口，所以用金色標出。")}
       <div class="radar-history-grid">
-        ${days
-          .map((day) => {
-            const candidates = Array.isArray(day.candidates) ? day.candidates.slice(0, 20) : [];
-            return `
-              <article class="radar-day-panel">
-                <div class="radar-day-head">
-                  <strong>${escapeHtml(day.asOfDate || "--")}</strong>
-                  <span>${escapeHtml(formatNumber(day.count))} 檔</span>
-                </div>
-                <ol class="radar-day-list">
-                  ${candidates
-                    .map(
-                      (candidate) => `
-                        <li>
-                          <span class="radar-rank-chip">${escapeHtml(candidate.rank)}</span>
-                          <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
-                          <strong>${escapeHtml(formatScore(candidate.scoreTotal))}</strong>
-                        </li>
-                      `
-                    )
-                    .join("")}
-                </ol>
-              </article>
-            `;
-          })
-          .join("")}
+        ${days.map((day) => renderDailyTop20Card(day, highlightDates.has(day.asOfDate))).join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderRadarGoldenHistoryPanel(history) {
+  const days = Array.isArray(history?.goldenHistory) ? history.goldenHistory : [];
+  const latestGoldenDate = history?.golden?.asOfDate || days[0]?.asOfDate;
+  const pastDays = days.filter((day) => day.asOfDate !== latestGoldenDate);
+  if (!pastDays.length) {
+    return "";
+  }
+
+  return `
+    <section class="radar-history-band radar-golden-history-band">
+      <div class="section-head compact-head">
+        <div>
+          <p class="eyebrow">Golden History</p>
+          <h3>過往黃金榜</h3>
+        </div>
+        <span class="pill">${escapeHtml(formatNumber(pastDays.length))} 天 / 最新已在上方顯示</span>
+      </div>
+      ${renderHelpCard("radar-golden-history", "過往黃金榜怎麼看", RADAR_HELP.golden, "每張日期小卡都是該日用前 10 個交易日 Top20 形成的黃金榜；預設收合，點開才看股票。")}
+      <div class="radar-history-grid">
+        ${pastDays.map(renderGoldenHistoryCard).join("")}
       </div>
     </section>
   `;
@@ -1649,7 +1702,7 @@ function renderShortTermRadarPage(payload) {
   }
 
   if (candidateTable) {
-    candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates)}${renderRadarHistoryPanel(history)}`;
+    candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates)}${renderRadarHistoryPanel(history)}${renderRadarGoldenHistoryPanel(history)}`;
   }
 
   if (detail) {

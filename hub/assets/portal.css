@@ -1162,6 +1162,34 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   border: 1px solid rgba(22, 33, 46, 0.08);
 }
 
+.radar-day-panel summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.radar-day-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.radar-day-panel[open] {
+  background: rgba(255, 255, 255, 0.78);
+  border-color: rgba(12, 143, 122, 0.2);
+}
+
+.radar-day-panel.is-golden-window {
+  background:
+    linear-gradient(135deg, rgba(255, 197, 71, 0.22), rgba(255, 255, 255, 0.76)),
+    rgba(255, 255, 255, 0.72);
+  border-color: rgba(191, 133, 24, 0.28);
+  box-shadow: inset 4px 0 0 rgba(191, 133, 24, 0.86);
+}
+
+.radar-golden-history-card {
+  background:
+    linear-gradient(135deg, rgba(12, 143, 122, 0.08), rgba(255, 255, 255, 0.74)),
+    rgba(255, 255, 255, 0.68);
+}
+
 .radar-day-head {
   display: flex;
   align-items: center;
@@ -1190,6 +1218,10 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   gap: 0.45rem;
   min-height: 2rem;
   color: var(--ink);
+}
+
+.radar-golden-history-list li {
+  grid-template-columns: 4.4rem minmax(0, 1fr) 3.3rem;
 }
 
 .radar-day-list li > span:nth-child(2) {
