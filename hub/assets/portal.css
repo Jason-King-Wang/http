@@ -978,6 +978,7 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
 
 .radar-summary-shell,
 .radar-table-card,
+.radar-effectiveness-card,
 .radar-detail-card {
   min-width: 0;
 }
@@ -1254,6 +1255,158 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   border-color: rgba(29, 53, 87, 0.18);
   background: rgba(247, 249, 252, 0.78);
   color: var(--muted);
+}
+
+.radar-effectiveness-card {
+  display: grid;
+  gap: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.radar-effectiveness-wrap {
+  display: grid;
+  gap: 1rem;
+}
+
+.effectiveness-meta-row,
+.effectiveness-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.effectiveness-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 750;
+}
+
+.effectiveness-legend i {
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.74);
+}
+
+.radar-effectiveness-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.effectiveness-horizon-panel {
+  display: grid;
+  gap: 0.82rem;
+  min-width: 0;
+  padding: 0.95rem;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.66);
+  border: 1px solid rgba(22, 33, 46, 0.08);
+}
+
+.effectiveness-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.72rem;
+}
+
+.effectiveness-panel-head h3 {
+  font-size: 1.12rem;
+}
+
+.effectiveness-chart {
+  min-height: 150px;
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(rgba(22, 33, 46, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(22, 33, 46, 0.04) 1px, transparent 1px),
+    rgba(248, 251, 244, 0.86);
+  background-size: 22px 22px;
+  border: 1px solid rgba(22, 33, 46, 0.07);
+}
+
+.effectiveness-empty-chart {
+  display: grid;
+  place-items: center;
+  min-height: 135px;
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.effectiveness-chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.effectiveness-chart-svg line {
+  stroke: rgba(22, 33, 46, 0.12);
+  stroke-width: 1;
+}
+
+.effectiveness-chart-svg .zero-line {
+  stroke: rgba(238, 108, 77, 0.5);
+  stroke-dasharray: 5 5;
+}
+
+.effectiveness-chart-svg text {
+  fill: var(--muted);
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+}
+
+.effectiveness-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.effectiveness-metric {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+  padding: 0.58rem;
+  border-radius: var(--radius-sm);
+  background: rgba(13, 18, 15, 0.045);
+  border: 1px solid rgba(22, 33, 46, 0.06);
+}
+
+.effectiveness-metric span {
+  color: var(--muted);
+  font-size: 0.76rem;
+  font-weight: 760;
+}
+
+.effectiveness-metric strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.effectiveness-table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+}
+
+.effectiveness-table th,
+.effectiveness-table td {
+  padding: 0.75rem;
+  border-bottom: 1px solid rgba(22, 33, 46, 0.08);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.effectiveness-table th {
+  color: var(--muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .radar-notice {
@@ -2279,6 +2432,7 @@ body[data-page="portal-home"] .site-card:nth-child(6) .pill {
 .ab-history-shell,
 .radar-table-card,
 .radar-summary-shell,
+.radar-effectiveness-card,
 .radar-detail-card {
   background: #eef4e9;
   border-color: rgba(243, 247, 238, 0.2);
@@ -2482,6 +2636,7 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
   .card,
   .radar-summary-shell,
   .radar-table-card,
+  .radar-effectiveness-card,
   .radar-detail-card {
     min-width: 0;
   }
@@ -2528,6 +2683,7 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
   }
 
   .radar-layout,
+  .radar-effectiveness-grid,
   .radar-source-grid,
   .radar-notice-grid,
   .radar-detail-grid,
@@ -2545,6 +2701,11 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
 
   .radar-history-grid {
     grid-template-columns: 1fr;
+  }
+
+  .effectiveness-panel-head,
+  .effectiveness-meta-row {
+    align-items: stretch;
   }
 
   .radar-day-panel {
@@ -2573,6 +2734,10 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
 
   .metric-grid {
     grid-template-columns: 1fr;
+  }
+
+  .effectiveness-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .card {

@@ -1209,6 +1209,188 @@ function renderRadarHistoryPanel(history) {
   `;
 }
 
+function renderEffectivenessSparkline(points, series) {
+  const rows = Array.isArray(points) ? points.filter((point) => point && point.date) : [];
+  const usable = rows.filter((point) => series.some((item) => asNumber(point[item.key]) !== null));
+  if (usable.length < 2) {
+    return '<div class="effectiveness-empty-chart">可視化資料累積中</div>';
+  }
+
+  const width = 640;
+  const height = 180;
+  const padX = 34;
+  const padY = 24;
+  const values = [];
+  usable.forEach((point) => {
+    series.forEach((item) => {
+      const value = asNumber(point[item.key]);
+      if (value !== null) {
+        values.push(value);
+      }
+    });
+  });
+
+  let min = Math.min(...values);
+  let max = Math.max(...values);
+  if (Math.abs(max - min) < 0.0001) {
+    min -= 1;
+    max += 1;
+  }
+  const span = max - min;
+  const xFor = (index) => padX + (index * (width - padX * 2)) / Math.max(1, usable.length - 1);
+  const yFor = (value) => height - padY - ((value - min) / span) * (height - padY * 2);
+  const zeroY = min < 0 && max > 0 ? yFor(0) : null;
+
+  const paths = series
+    .map((item) => {
+      const segments = [];
+      usable.forEach((point, index) => {
+        const value = asNumber(point[item.key]);
+        if (value === null) {
+          return;
+        }
+        segments.push(`${segments.length ? "L" : "M"}${xFor(index).toFixed(2)},${yFor(value).toFixed(2)}`);
+      });
+      if (!segments.length) {
+        return "";
+      }
+      return `<path d="${segments.join(" ")}" fill="none" stroke="${item.color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+    })
+    .join("");
+
+  const firstDate = usable[0]?.date || "";
+  const lastDate = usable[usable.length - 1]?.date || "";
+  return `
+    <svg class="effectiveness-chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="短線雷達成效曲線">
+      <line x1="${padX}" x2="${width - padX}" y1="${padY}" y2="${padY}" />
+      <line x1="${padX}" x2="${width - padX}" y1="${height - padY}" y2="${height - padY}" />
+      ${zeroY === null ? "" : `<line class="zero-line" x1="${padX}" x2="${width - padX}" y1="${zeroY.toFixed(2)}" y2="${zeroY.toFixed(2)}" />`}
+      ${paths}
+      <text x="${padX}" y="${height - 5}">${escapeHtml(firstDate)}</text>
+      <text x="${width - padX}" y="${height - 5}" text-anchor="end">${escapeHtml(lastDate)}</text>
+      <text x="${padX}" y="16">${escapeHtml(formatSignedPctPoints(max))}</text>
+      <text x="${padX}" y="${height - 30}">${escapeHtml(formatSignedPctPoints(min))}</text>
+    </svg>
+  `;
+}
+
+function renderEffectivenessMetric(label, value, options = {}) {
+  const className = options.signed ? toneForSignedNumber(value) : "";
+  const formatter = options.signed ? formatSignedPctPoints : formatPctPoints;
+  return `
+    <div class="effectiveness-metric">
+      <span>${escapeHtml(label)}</span>
+      <strong class="${className}">${escapeHtml(formatter(value))}</strong>
+    </div>
+  `;
+}
+
+function renderRadarEffectiveness(effectiveness) {
+  const horizons = effectiveness?.horizons || {};
+  const curves = effectiveness?.curves || {};
+  const range = effectiveness?.range || {};
+  const horizonKeys = ["20d", "60d", "120d"];
+  const series = [
+    { key: "golden", label: "黃金榜", color: "#0c8f7a" },
+    { key: "top20", label: "普通 Top20", color: "#1d3557" },
+    { key: "bestExternal", label: "外部三者最佳", color: "#ee6c4d" },
+  ];
+
+  if (!effectiveness || !Object.keys(horizons).length) {
+    return '<div class="empty-state">黃金榜成效快照尚未產生；下一次短線雷達更新會補上。</div>';
+  }
+
+  const cards = horizonKeys
+    .map((key) => {
+      const horizon = horizons[key] || {};
+      const internal = horizon.internal || {};
+      const external = horizon.external || {};
+      return `
+        <article class="effectiveness-horizon-panel">
+          <div class="effectiveness-panel-head">
+            <div>
+              <p class="eyebrow">Horizon</p>
+              <h3>${escapeHtml(horizon.label || key)}</h3>
+            </div>
+            <span class="pill">${escapeHtml(formatNumber(internal.days || external.days))} 天樣本</span>
+          </div>
+          <div class="effectiveness-chart">
+            ${renderEffectivenessSparkline(curves[key] || [], series)}
+          </div>
+          <div class="effectiveness-metrics">
+            ${renderEffectivenessMetric("黃金榜平均", internal.goldenAvgPct)}
+            ${renderEffectivenessMetric("普通 Top20", internal.top20AvgPct)}
+            ${renderEffectivenessMetric("外部最佳", external.bestExternalAvgPct)}
+            ${renderEffectivenessMetric("黃金 - Top20", internal.goldenMinusTop20Pct, { signed: true })}
+            ${renderEffectivenessMetric("黃金 - 外部最佳", external.goldenMinusBestExternalPct, { signed: true })}
+            ${renderEffectivenessMetric("每日勝外部", external.goldenBeatBestExternalDailyPct)}
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+
+  const benchmarkRows = horizonKeys
+    .map((key) => {
+      const horizon = horizons[key] || {};
+      const internal = horizon.internal || {};
+      const external = horizon.external || {};
+      const benchmarks = external.benchmarks || {};
+      return `
+        <tr>
+          <td>${escapeHtml(horizon.label || key)}</td>
+          <td>${escapeHtml(formatPctPoints(internal.goldenAvgPct))}</td>
+          <td>${escapeHtml(formatPctPoints(internal.top20AvgPct))}</td>
+          <td>${escapeHtml(formatPctPoints(benchmarks["0050"]?.avgPct))}</td>
+          <td>${escapeHtml(formatPctPoints(benchmarks["2330"]?.avgPct))}</td>
+          <td>${escapeHtml(formatPctPoints(benchmarks.TAIEX?.avgPct))}</td>
+          <td>${escapeHtml(formatPctPoints(external.bestExternalAvgPct))}</td>
+          <td class="${toneForSignedNumber(external.goldenMinusBestExternalPct)}">${escapeHtml(formatSignedPctPoints(external.goldenMinusBestExternalPct))}</td>
+          <td>${escapeHtml(formatNumber(external.days || internal.days))}</td>
+        </tr>
+      `;
+    })
+    .join("");
+
+  return `
+    <div class="radar-effectiveness-wrap">
+      <div class="effectiveness-meta-row">
+        <span class="pill">區間 ${escapeHtml(fallbackText(range.start))} - ${escapeHtml(fallbackText(range.end))}</span>
+        <span class="pill">內部比較：黃金榜 vs 普通 Top20</span>
+        <span class="pill">外部比較：0050 / 台積電 / 台股加權 / 三者最佳</span>
+      </div>
+      <div class="effectiveness-legend">
+        ${series
+          .map((item) => `<span><i style="background:${item.color}"></i>${escapeHtml(item.label)}</span>`)
+          .join("")}
+      </div>
+      <div class="radar-effectiveness-grid">${cards}</div>
+      <div class="table-wrap effectiveness-table-wrap">
+        <table class="effectiveness-table">
+          <thead>
+            <tr>
+              <th>區間</th>
+              <th>黃金榜</th>
+              <th>普通 Top20</th>
+              <th>0050</th>
+              <th>台積電</th>
+              <th>台股加權</th>
+              <th>外部最佳</th>
+              <th>黃金差距</th>
+              <th>樣本天</th>
+            </tr>
+          </thead>
+          <tbody>${benchmarkRows}</tbody>
+        </table>
+      </div>
+      <p class="mini-note">
+        固定 20/60/120 交易日 horizon；太晚、還沒有足夠未來交易日的訊號不納入該 horizon。
+        外部基準使用 TWSE 官方月資料。這是研究用成效追蹤，不是交易建議。
+      </p>
+    </div>
+  `;
+}
+
 function renderRadarScoreGrid(candidate) {
   const scores = candidate?.scores || {};
   const rows = [
@@ -1320,6 +1502,7 @@ function renderShortTermRadarPage(payload) {
   const summaryMetrics = document.querySelector("#radar-summary-metrics");
   const candidateTable = document.querySelector("#radar-candidate-table");
   const detail = document.querySelector("#radar-detail");
+  const effectiveness = document.querySelector("#radar-effectiveness");
   const sourceGrid = document.querySelector("#radar-source-grid");
   const notices = document.querySelector("#radar-notices");
   const summary = payload?.summary || {};
@@ -1349,6 +1532,10 @@ function renderShortTermRadarPage(payload) {
     ["平均分數覆蓋", formatPct(summary.averageScoreCoverage)],
     ["Slot 覆蓋", formatPct(summary.averageSlotCoverage)],
   ]);
+
+  if (effectiveness) {
+    effectiveness.innerHTML = renderRadarEffectiveness(payload?.effectiveness);
+  }
 
   if (candidateTable) {
     candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates)}${renderRadarHistoryPanel(history)}`;
