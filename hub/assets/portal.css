@@ -1236,6 +1236,153 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   font-size: 0.88rem;
 }
 
+.radar-weekly-chart-row td {
+  padding: 0.8rem 0.65rem 1rem;
+  white-space: normal;
+  background: rgba(248, 251, 244, 0.9);
+}
+
+.radar-day-list li.radar-weekly-chart-list-item {
+  display: block;
+  min-height: 0;
+  padding: 0.45rem 0 0.7rem;
+}
+
+.radar-weekly-chart-block {
+  margin-top: 0.65rem;
+}
+
+.radar-weekly-chart {
+  display: grid;
+  gap: 0.7rem;
+  min-width: 0;
+  padding: 0.82rem;
+  border: 1px solid rgba(12, 143, 122, 0.18);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 251, 244, 0.9)),
+    #fff;
+  box-shadow: 0 14px 32px rgba(22, 33, 46, 0.07);
+}
+
+.weekly-chart-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.85rem;
+  min-width: 0;
+}
+
+.weekly-chart-head > div:first-child {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.weekly-chart-head strong {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.weekly-chart-head span,
+.weekly-chart-note {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.weekly-chart-metrics {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  min-width: 9rem;
+}
+
+.weekly-chart-metrics span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.8rem;
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(22, 33, 46, 0.06);
+  color: var(--ink);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.weekly-chart-metrics .trend-positive {
+  background: rgba(193, 73, 58, 0.1);
+  color: #b23a2c;
+}
+
+.weekly-chart-metrics .trend-negative {
+  background: rgba(12, 143, 122, 0.1);
+  color: var(--accent-strong);
+}
+
+.weekly-chart-metrics .trend-flat {
+  color: var(--muted);
+}
+
+.weekly-k-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 210px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(22, 33, 46, 0.08);
+  background:
+    linear-gradient(180deg, rgba(22, 33, 46, 0.025), transparent),
+    #fbfdf8;
+}
+
+.weekly-grid line {
+  stroke: rgba(22, 33, 46, 0.1);
+  stroke-width: 1;
+  stroke-dasharray: 3 5;
+}
+
+.weekly-grid text,
+.weekly-axis text {
+  fill: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.weekly-axis line {
+  stroke: rgba(22, 33, 46, 0.2);
+  stroke-width: 1;
+}
+
+.weekly-candle-up line,
+.weekly-candle-up rect {
+  stroke: #b23a2c;
+  fill: rgba(193, 73, 58, 0.72);
+}
+
+.weekly-candle-down line,
+.weekly-candle-down rect {
+  stroke: var(--accent-strong);
+  fill: rgba(12, 143, 122, 0.72);
+}
+
+.weekly-candle-up line,
+.weekly-candle-down line {
+  stroke-width: 1.4;
+}
+
+.weekly-chart-empty {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.78rem;
+  border-radius: var(--radius-sm);
+  background: rgba(22, 33, 46, 0.045);
+  color: var(--muted);
+}
+
 .radar-rank-chip {
   display: inline-flex;
   align-items: center;
@@ -1253,6 +1400,41 @@ body[data-page="ab-daily-wrapper"] .hero-panel {
   display: grid;
   gap: 0.18rem;
   min-width: 9rem;
+}
+
+.radar-stock-trigger {
+  appearance: none;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px dashed rgba(12, 143, 122, 0.42);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 850;
+  text-align: left;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.radar-stock-trigger:hover,
+.radar-stock-trigger:focus-visible,
+.radar-stock-trigger.is-active {
+  color: var(--accent-strong);
+  border-bottom-color: currentColor;
+}
+
+.radar-stock-trigger:focus-visible {
+  outline: 2px solid rgba(12, 143, 122, 0.28);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
+}
+
+.radar-stock-trigger.compact {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .radar-stock span {
@@ -2982,5 +3164,35 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
   .radar-table td.risk-cell {
     max-width: none;
     overflow-wrap: anywhere;
+  }
+
+  .radar-table tr.radar-weekly-chart-row {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .radar-table tr.radar-weekly-chart-row td {
+    display: block;
+    width: 100%;
+    padding: 0;
+  }
+
+  .radar-table tr.radar-weekly-chart-row td::before {
+    content: none;
+  }
+
+  .weekly-chart-head {
+    display: grid;
+  }
+
+  .weekly-chart-metrics {
+    justify-content: flex-start;
+    min-width: 0;
+  }
+
+  .weekly-k-svg {
+    min-height: 190px;
   }
 }

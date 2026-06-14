@@ -151,6 +151,196 @@ function escapeHtml(value) {
     .replaceAll("'", "&#39;");
 }
 
+function radarChartStockTrigger(item, selectedDate, className = "") {
+  const symbol = String(item?.symbol ?? "").trim();
+  const name = String(item?.name ?? "").trim();
+  const label = [symbol, name].filter(Boolean).join(" ") || "--";
+  if (!symbol) {
+    return `<span>${escapeHtml(label)}</span>`;
+  }
+  return `
+    <button
+      type="button"
+      class="radar-stock-trigger ${escapeHtml(className)}"
+      data-weekly-symbol="${escapeHtml(symbol)}"
+      data-weekly-name="${escapeHtml(name)}"
+      data-weekly-date="${escapeHtml(selectedDate || "")}"
+      aria-label="${escapeHtml(`查看 ${label} 周K`)}"
+    >${escapeHtml(label)}</button>
+  `;
+}
+
+function radarWeeklyChartEntry(payload, symbol) {
+  const charts = payload?.weeklyCharts || window.__RADAR_WEEKLY_CHARTS__ || {};
+  const bySymbol = charts?.bySymbol || {};
+  return bySymbol[String(symbol || "").trim()] || null;
+}
+
+function renderRadarWeeklyChart(symbol, name, selectedDate, payload) {
+  const entry = radarWeeklyChartEntry(payload, symbol);
+  const stockLabel = [symbol, name || entry?.name].filter(Boolean).join(" ");
+  if (!entry || !Array.isArray(entry.candles) || !entry.candles.length) {
+    return `
+      <div class="radar-weekly-chart">
+        <div class="weekly-chart-empty">
+          <strong>${escapeHtml(stockLabel || symbol || "--")}</strong>
+          <span>本機日K目前沒有可聚合的周K資料。</span>
+        </div>
+      </div>
+    `;
+  }
+
+  const startDate = selectedDate || entry.firstSelectedDate || "";
+  const candles = startDate ? entry.candles.filter((item) => String(item.week || "") >= startDate) : entry.candles;
+  const visible = candles.length ? candles : entry.candles;
+  const first = visible[0] || {};
+  const last = visible[visible.length - 1] || {};
+  const firstBase = asNumber(first.open) ?? asNumber(first.close);
+  const lastClose = asNumber(last.close);
+  const returnPct = firstBase && lastClose !== null ? (lastClose - firstBase) / firstBase : null;
+  const returnClass = returnPct === null ? "trend-flat" : returnPct >= 0 ? "trend-positive" : "trend-negative";
+
+  return `
+    <div class="radar-weekly-chart">
+      <div class="weekly-chart-head">
+        <div>
+          <strong>${escapeHtml(stockLabel || symbol)}</strong>
+          <span>周K｜上榜日 ${escapeHtml(startDate || "--")} 到 ${escapeHtml(entry.lastDate || last.week || "--")}</span>
+        </div>
+        <div class="weekly-chart-metrics">
+          <span>${escapeHtml(formatNumber(visible.length))} 周</span>
+          <span>最新 ${escapeHtml(formatNumber(lastClose))}</span>
+          <span class="${returnClass}">${escapeHtml(formatPct(returnPct))}</span>
+        </div>
+      </div>
+      ${renderRadarWeeklyCandlesSvg(visible)}
+      <div class="weekly-chart-note">紅K代表周收盤高於周開盤，綠K代表低於周開盤；資料由本機日K每周重新聚合。</div>
+    </div>
+  `;
+}
+
+function renderRadarWeeklyCandlesSvg(candles) {
+  const rows = candles
+    .map((item) => ({
+      week: item.week,
+      open: asNumber(item.open),
+      high: asNumber(item.high),
+      low: asNumber(item.low),
+      close: asNumber(item.close),
+    }))
+    .filter((item) => item.week && item.open !== null && item.high !== null && item.low !== null && item.close !== null);
+  if (!rows.length) {
+    return '<div class="weekly-chart-empty"><span>周K資料不足。</span></div>';
+  }
+
+  const width = Math.max(720, rows.length * 9 + 80);
+  const height = 260;
+  const padX = 46;
+  const padTop = 18;
+  const padBottom = 34;
+  const highs = rows.map((item) => item.high);
+  const lows = rows.map((item) => item.low);
+  const maxPrice = Math.max(...highs);
+  const minPrice = Math.min(...lows);
+  const span = maxPrice - minPrice || Math.max(maxPrice, 1);
+  const y = (value) => padTop + ((maxPrice - value) / span) * (height - padTop - padBottom);
+  const step = (width - padX * 2) / Math.max(rows.length, 1);
+  const candleWidth = Math.max(3, Math.min(8, step * 0.56));
+
+  const grid = [0, 0.25, 0.5, 0.75, 1]
+    .map((ratio) => {
+      const price = maxPrice - span * ratio;
+      const yy = y(price);
+      return `<g class="weekly-grid"><line x1="${padX}" y1="${yy.toFixed(2)}" x2="${width - padX}" y2="${yy.toFixed(2)}"></line><text x="8" y="${(yy + 4).toFixed(2)}">${escapeHtml(formatNumber(price))}</text></g>`;
+    })
+    .join("");
+
+  const bodies = rows
+    .map((item, index) => {
+      const x = padX + index * step + step / 2;
+      const yHigh = y(item.high);
+      const yLow = y(item.low);
+      const yOpen = y(item.open);
+      const yClose = y(item.close);
+      const top = Math.min(yOpen, yClose);
+      const bodyHeight = Math.max(1.5, Math.abs(yClose - yOpen));
+      const klass = item.close >= item.open ? "weekly-candle-up" : "weekly-candle-down";
+      return `<g class="${klass}"><line x1="${x.toFixed(2)}" y1="${yHigh.toFixed(2)}" x2="${x.toFixed(2)}" y2="${yLow.toFixed(2)}"></line><rect x="${(x - candleWidth / 2).toFixed(2)}" y="${top.toFixed(2)}" width="${candleWidth.toFixed(2)}" height="${bodyHeight.toFixed(2)}" rx="1"></rect></g>`;
+    })
+    .join("");
+
+  const first = rows[0]?.week || "";
+  const last = rows[rows.length - 1]?.week || "";
+  return `
+    <svg class="weekly-k-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="weekly candlestick chart">
+      ${grid}
+      ${bodies}
+      <g class="weekly-axis">
+        <line x1="${padX}" y1="${height - padBottom}" x2="${width - padX}" y2="${height - padBottom}"></line>
+        <text x="${padX}" y="${height - 10}">${escapeHtml(first)}</text>
+        <text x="${width - padX}" y="${height - 10}" text-anchor="end">${escapeHtml(last)}</text>
+      </g>
+    </svg>
+  `;
+}
+
+function closeRadarWeeklyCharts(root) {
+  root.querySelectorAll(".radar-weekly-chart-row, .radar-weekly-chart-list-item, .radar-weekly-chart-block").forEach((node) => node.remove());
+  root.querySelectorAll(".radar-stock-trigger.is-active").forEach((node) => node.classList.remove("is-active"));
+}
+
+function wireRadarWeeklyChartToggles(root, payload) {
+  if (!root) {
+    return;
+  }
+  root.__radarPayload = payload || {};
+  if (root.dataset.weeklyChartWired === "1") {
+    return;
+  }
+  root.dataset.weeklyChartWired = "1";
+  root.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-weekly-symbol]");
+    if (!trigger || !root.contains(trigger)) {
+      return;
+    }
+    event.preventDefault();
+    const wasActive = trigger.classList.contains("is-active");
+    const symbol = trigger.dataset.weeklySymbol || "";
+    const name = trigger.dataset.weeklyName || "";
+    const selectedDate = trigger.dataset.weeklyDate || "";
+    const payloadForChart = root.__radarPayload || window.__SHORT_TERM_RADAR_CURRENT_PAYLOAD__ || {};
+    closeRadarWeeklyCharts(root);
+    if (wasActive) {
+      return;
+    }
+    trigger.classList.add("is-active");
+    const chartHtml = renderRadarWeeklyChart(symbol, name, selectedDate, payloadForChart);
+    const row = trigger.closest("tr");
+    if (row) {
+      const chartRow = document.createElement("tr");
+      chartRow.className = "radar-weekly-chart-row";
+      const cell = document.createElement("td");
+      cell.colSpan = Math.max(row.children.length, 1);
+      cell.innerHTML = chartHtml;
+      chartRow.appendChild(cell);
+      row.after(chartRow);
+      return;
+    }
+    const item = trigger.closest("li");
+    if (item) {
+      const chartItem = document.createElement("li");
+      chartItem.className = "radar-weekly-chart-list-item";
+      chartItem.innerHTML = chartHtml;
+      item.after(chartItem);
+      return;
+    }
+    const block = document.createElement("div");
+    block.className = "radar-weekly-chart-block";
+    block.innerHTML = chartHtml;
+    trigger.after(block);
+  });
+}
+
 function asBool(value) {
   if (value === true || value === 1) {
     return true;
@@ -1148,8 +1338,7 @@ function renderAbDailyPage(payload) {
   }
 }
 
-function renderRadarCandidateRow(candidate) {
-  const stockLabel = [candidate?.symbol, candidate?.name].filter(Boolean).join(" ");
+function renderRadarCandidateRow(candidate, selectedDate) {
   const stage = `${stageLabel(candidate?.stage)} / ${entryZoneLabel(candidate?.entryZone)}`;
   const volumeRatio = asNumber(candidate?.volumeExpansionRatio);
   const volumeText = volumeRatio === null ? "--" : `${formatNumber(volumeRatio)}x`;
@@ -1159,7 +1348,7 @@ function renderRadarCandidateRow(candidate) {
       <td>${escapeHtml(candidate?.rank || "--")}</td>
       <td>
         <div class="radar-stock">
-          <strong>${escapeHtml(stockLabel || "--")}</strong>
+          <strong>${radarChartStockTrigger(candidate, selectedDate)}</strong>
           <span>${escapeHtml(candidate?.industry || "產業未標記")}</span>
         </div>
       </td>
@@ -1175,7 +1364,7 @@ function renderRadarCandidateRow(candidate) {
   `;
 }
 
-function renderRadarCandidateTable(candidates) {
+function renderRadarCandidateTable(candidates, selectedDate) {
   if (!candidates.length) {
     return '<div class="empty-state">目前沒有可呈現的短線雷達觀察清單。</div>';
   }
@@ -1197,7 +1386,7 @@ function renderRadarCandidateTable(candidates) {
           <th>風險標記</th>
         </tr>
       </thead>
-      <tbody>${candidates.map(renderRadarCandidateRow).join("")}</tbody>
+      <tbody>${candidates.map((candidate) => renderRadarCandidateRow(candidate, selectedDate)).join("")}</tbody>
     </table>
   `;
 }
@@ -1205,6 +1394,7 @@ function renderRadarCandidateTable(candidates) {
 function renderRadarGoldenPanel(golden) {
   const rows = Array.isArray(golden?.candidates) ? golden.candidates : [];
   const tierCounts = golden?.tierCounts || {};
+  const selectedDate = golden?.asOfDate || golden?.windowEnd || "";
   const meta = [
     `Window ${fallbackText(golden?.windowDays)} trading days`,
     `Top5 ${fallbackText(tierCounts.top5 || 0)}`,
@@ -1219,7 +1409,7 @@ function renderRadarGoldenPanel(golden) {
               <td><span class="golden-tier golden-tier-${escapeHtml(item.tier || "top20")}">${escapeHtml(item.tier || "top20")}</span></td>
               <td>
                 <div class="radar-stock">
-                  <strong>${escapeHtml([item.symbol, item.name].filter(Boolean).join(" ") || "--")}</strong>
+                  <strong>${radarChartStockTrigger(item, selectedDate)}</strong>
                   <span>${escapeHtml(item.industry || "--")}</span>
                 </div>
               </td>
@@ -1281,7 +1471,7 @@ function renderDailyTop20Card(day, isGoldenWindow) {
             (candidate) => `
               <li>
                 <span class="radar-rank-chip">${escapeHtml(candidate.rank)}</span>
-                <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
+                <span>${radarChartStockTrigger(candidate, day?.asOfDate, "compact")}</span>
                 <strong>${escapeHtml(formatScore(candidate.scoreTotal))}</strong>
               </li>
             `
@@ -1308,7 +1498,7 @@ function renderGoldenHistoryCard(day) {
             (candidate) => `
               <li>
                 <span class="golden-tier golden-tier-${escapeHtml(candidate.tier || "top20")}">${escapeHtml(candidate.tier || "top20")}</span>
-                <span>${escapeHtml([candidate.symbol, candidate.name].filter(Boolean).join(" "))}</span>
+                <span>${radarChartStockTrigger(candidate, day?.asOfDate, "compact")}</span>
                 <strong>${escapeHtml(formatScore(candidate.latestScore))}</strong>
               </li>
             `
@@ -1672,6 +1862,8 @@ function renderShortTermRadarPage(payload) {
   const topCandidates = candidates.slice(0, 20);
   const history = payload?.history || {};
   const golden = payload?.golden || history.golden || {};
+  window.__SHORT_TERM_RADAR_CURRENT_PAYLOAD__ = payload || {};
+  window.__RADAR_WEEKLY_CHARTS__ = payload?.weeklyCharts || {};
 
   if (pageMeta) {
     pageMeta.innerHTML = payload
@@ -1702,7 +1894,8 @@ function renderShortTermRadarPage(payload) {
   }
 
   if (candidateTable) {
-    candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates)}${renderRadarHistoryPanel(history)}${renderRadarGoldenHistoryPanel(history)}`;
+    candidateTable.innerHTML = `${renderRadarGoldenPanel(golden)}${renderRadarCandidateTable(topCandidates, payload?.asOfDate)}${renderRadarHistoryPanel(history)}${renderRadarGoldenHistoryPanel(history)}`;
+    wireRadarWeeklyChartToggles(candidateTable, payload);
   }
 
   if (detail) {
