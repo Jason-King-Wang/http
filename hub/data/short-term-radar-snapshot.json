@@ -1,6 +1,6 @@
 {
   "asOfDate": "2026-06-12",
-  "createdAt": "2026-06-14T15:16:27+08:00",
+  "createdAt": "2026-06-14T15:26:14+08:00",
   "sourceReport": "reports/short_term_radar/current_explosive_radar_v2_2026-06-11/current_explosive_radar_v2_top50_2026-06-12.csv",
   "summary": {
     "totalCandidates": 50,
@@ -91,7 +91,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 2,
@@ -142,7 +142,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 3,
@@ -193,7 +193,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 4,
@@ -245,7 +245,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 5,
@@ -296,7 +296,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 6,
@@ -347,7 +347,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 7,
@@ -398,7 +398,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 8,
@@ -449,7 +449,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 9,
@@ -499,7 +499,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 10,
@@ -550,7 +550,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 11,
@@ -602,7 +602,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 12,
@@ -652,7 +652,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 13,
@@ -704,7 +704,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 14,
@@ -756,7 +756,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 15,
@@ -808,7 +808,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 16,
@@ -859,7 +859,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 17,
@@ -910,7 +910,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 18,
@@ -961,7 +961,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 19,
@@ -1013,7 +1013,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 20,
@@ -1064,7 +1064,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 21,
@@ -1114,7 +1114,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 22,
@@ -1165,7 +1165,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 23,
@@ -1216,7 +1216,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 24,
@@ -1267,7 +1267,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 25,
@@ -1318,7 +1318,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 26,
@@ -1369,7 +1369,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 27,
@@ -1420,7 +1420,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 28,
@@ -1471,7 +1471,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 29,
@@ -1522,7 +1522,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 30,
@@ -1573,7 +1573,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 31,
@@ -1624,7 +1624,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 32,
@@ -1675,7 +1675,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 33,
@@ -1725,7 +1725,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 34,
@@ -1776,7 +1776,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 35,
@@ -1827,7 +1827,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 36,
@@ -1878,7 +1878,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 37,
@@ -1930,7 +1930,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 38,
@@ -1980,7 +1980,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 39,
@@ -2032,7 +2032,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 40,
@@ -2083,7 +2083,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 41,
@@ -2134,7 +2134,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 42,
@@ -2185,7 +2185,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 43,
@@ -2235,7 +2235,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 44,
@@ -2286,7 +2286,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 45,
@@ -2337,7 +2337,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 46,
@@ -2386,7 +2386,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 47,
@@ -2437,7 +2437,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 48,
@@ -2487,7 +2487,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 49,
@@ -2537,7 +2537,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     },
     {
       "rank": 50,
@@ -2588,7 +2588,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-14T15:16:58+08:00"
+      "createdAt": "2026-06-14T15:26:43+08:00"
     }
   ],
   "golden": {
@@ -230369,7 +230369,7 @@
     "kind": "weekly_ohlcv_from_local_daily_prices",
     "weekEnding": "Friday",
     "lookbackWeeks": 52,
-    "generatedAt": "2026-06-14T15:17:03+08:00",
+    "generatedAt": "2026-06-14T15:26:48+08:00",
     "priceStartDate": "2021-04-22",
     "priceLastDate": "2026-06-12",
     "symbolCount": 77,
