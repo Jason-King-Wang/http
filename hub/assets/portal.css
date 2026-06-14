@@ -3166,6 +3166,82 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
     overflow-wrap: anywhere;
   }
 
+  .radar-golden-table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .radar-golden-table thead {
+    display: none;
+  }
+
+  .radar-golden-table tbody {
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .radar-golden-table tr {
+    display: grid;
+    gap: 0.35rem;
+    padding: 0.78rem;
+    border: 1px solid rgba(13, 18, 15, 0.1);
+    border-radius: var(--radius-sm);
+    background: #f8fbf4;
+  }
+
+  .radar-golden-table td {
+    display: grid;
+    grid-template-columns: 5.8rem minmax(0, 1fr);
+    align-items: start;
+    gap: 0.55rem;
+    width: 100%;
+    padding: 0.28rem 0;
+    border-bottom: 0;
+    white-space: normal;
+  }
+
+  .radar-golden-table td::before {
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 800;
+  }
+
+  .radar-golden-table td:nth-child(1)::before {
+    content: "Level";
+  }
+
+  .radar-golden-table td:nth-child(2)::before {
+    content: "Stock";
+  }
+
+  .radar-golden-table td:nth-child(3)::before {
+    content: "Latest";
+  }
+
+  .radar-golden-table td:nth-child(4)::before {
+    content: "Score";
+  }
+
+  .radar-golden-table td:nth-child(5)::before {
+    content: "Avg";
+  }
+
+  .radar-golden-table td:nth-child(6)::before {
+    content: "Worst";
+  }
+
+  .radar-golden-table td:nth-child(7)::before {
+    content: "Path";
+  }
+
+  .radar-golden-table .radar-stock,
+  .radar-golden-table .rank-path {
+    min-width: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
   .radar-table tr.radar-weekly-chart-row {
     display: block;
     padding: 0;
@@ -3173,12 +3249,22 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
     background: transparent;
   }
 
+  .radar-golden-table tr.radar-weekly-chart-row,
+  .radar-table tr.radar-weekly-chart-row {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .radar-golden-table tr.radar-weekly-chart-row td,
   .radar-table tr.radar-weekly-chart-row td {
     display: block;
     width: 100%;
     padding: 0;
   }
 
+  .radar-golden-table tr.radar-weekly-chart-row td::before,
   .radar-table tr.radar-weekly-chart-row td::before {
     content: none;
   }
