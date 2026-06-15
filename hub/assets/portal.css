@@ -3684,3 +3684,481 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
     min-height: 190px;
   }
 }
+
+/* AB Daily art direction polish: keep the data surface dense, readable, and mobile-first. */
+body[data-page="ab-daily-wrapper"] {
+  --ab-panel: #f6f8f1;
+  --ab-panel-soft: #eef4e9;
+  --ab-rail: #172019;
+  --ab-rail-deep: #08100c;
+  --ab-line: rgba(13, 18, 15, 0.12);
+  --ab-amber: #d9a424;
+  --ab-shadow: 0 22px 70px rgba(0, 0, 0, 0.24);
+}
+
+body[data-page="ab-daily-wrapper"] .topbar,
+body[data-page="ab-daily-wrapper"] .hero,
+body[data-page="ab-daily-wrapper"] .card,
+body[data-page="ab-daily-wrapper"] .pool-card,
+body[data-page="ab-daily-wrapper"] .history-card,
+body[data-page="ab-daily-wrapper"] .hero-panel,
+body[data-page="ab-daily-wrapper"] .nav-links a,
+body[data-page="ab-daily-wrapper"] .action-link {
+  border-radius: 8px;
+}
+
+body[data-page="ab-daily-wrapper"] .topbar {
+  background: rgba(8, 16, 12, 0.92);
+  border-color: rgba(243, 247, 238, 0.12);
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.24);
+}
+
+body[data-page="ab-daily-wrapper"] .hero {
+  box-shadow: inset 0 0 0 1px rgba(78, 224, 180, 0.06), var(--ab-shadow);
+}
+
+body[data-page="ab-daily-wrapper"] .ab-latest-shell,
+body[data-page="ab-daily-wrapper"] .ab-history-shell {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0) 13rem),
+    var(--ab-panel);
+  border-color: rgba(243, 247, 238, 0.28);
+  box-shadow: var(--ab-shadow);
+}
+
+body[data-page="ab-daily-wrapper"] .section-head {
+  align-items: start;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(13, 18, 15, 0.08);
+}
+
+body[data-page="ab-daily-wrapper"] .section-copy {
+  max-width: 78ch;
+}
+
+body[data-page="ab-daily-wrapper"] .latest-toggle,
+body[data-page="ab-daily-wrapper"] .history-summary-toggle,
+body[data-page="ab-daily-wrapper"] .history-toggle {
+  border-radius: 8px;
+  border-color: rgba(13, 18, 15, 0.12);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 8px 20px rgba(13, 18, 15, 0.06);
+}
+
+body[data-page="ab-daily-wrapper"] .history-summary-toggle.is-active,
+body[data-page="ab-daily-wrapper"] .history-toggle[aria-expanded="true"] {
+  background: #0c8f7a;
+  border-color: #0c8f7a;
+  color: #ffffff;
+}
+
+body[data-page="ab-daily-wrapper"] .pill {
+  border-radius: 7px;
+}
+
+body[data-page="ab-daily-wrapper"] #ab-latest-pills .pill,
+body[data-page="ab-daily-wrapper"] .ab-summary-card,
+body[data-page="ab-daily-wrapper"] .rotation-status-item {
+  border-color: rgba(13, 18, 15, 0.1);
+  background: rgba(255, 255, 255, 0.56);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-grid {
+  gap: 1.05rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card {
+  padding: 1rem;
+  background:
+    linear-gradient(120deg, rgba(78, 224, 180, 0.09), transparent 24rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 16rem),
+    var(--ab-rail);
+  border-color: rgba(78, 224, 180, 0.24);
+  box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card-b {
+  border-color: rgba(217, 164, 36, 0.28);
+  box-shadow: inset 4px 0 0 rgba(217, 164, 36, 0.75), 0 18px 54px rgba(0, 0, 0, 0.24);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-head {
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, auto);
+  align-items: start;
+  gap: 1rem;
+  padding-bottom: 0.78rem;
+  border-bottom: 1px solid rgba(243, 247, 238, 0.1);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-head .compact-pills {
+  justify-content: end;
+  max-width: 48rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-head .compact-pills .pill {
+  min-height: 2rem;
+  background: rgba(243, 247, 238, 0.075);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .table-wrap {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-color: rgba(243, 247, 238, 0.12);
+  background: var(--ab-rail-deep);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .table-wrap::-webkit-scrollbar {
+  height: 0.72rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .table-wrap::-webkit-scrollbar-track {
+  background: rgba(243, 247, 238, 0.06);
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .table-wrap::-webkit-scrollbar-thumb {
+  background: rgba(78, 224, 180, 0.3);
+  border-radius: 999px;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table {
+  min-width: 1680px;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th,
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td {
+  padding: 0.54rem 0.6rem;
+  font-size: 0.84rem;
+  line-height: 1.38;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(1),
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(1) {
+  min-width: 4.8rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(2),
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(2) {
+  min-width: 10rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(3),
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3) {
+  min-width: 9.2rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(5),
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(5) {
+  min-width: 8.8rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(n+6):nth-child(-n+13),
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(n+6):nth-child(-n+13) {
+  min-width: 6.7rem;
+}
+
+body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table th:nth-child(14),
+body[data-page="ab-daily-wrapper"] .pool-card .reason-cell {
+  min-width: 24rem;
+  max-width: 28rem;
+  white-space: normal;
+  line-height: 1.5;
+}
+
+body[data-page="ab-daily-wrapper"] .ab-stock-trigger {
+  border-radius: 7px;
+}
+
+body[data-page="ab-daily-wrapper"] .rotation-status-band {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: inset 3px 0 0 rgba(0, 127, 95, 0.18);
+}
+
+body[data-page="ab-daily-wrapper"] .ab-summary-card {
+  box-shadow: 0 8px 24px rgba(13, 18, 15, 0.05);
+}
+
+body[data-page="ab-daily-wrapper"] .ab-summary-card.is-latest {
+  box-shadow: inset 3px 0 0 rgba(0, 127, 95, 0.75), 0 10px 28px rgba(13, 18, 15, 0.08);
+}
+
+body[data-page="ab-daily-wrapper"] .history-card {
+  box-shadow: 0 14px 42px rgba(13, 18, 15, 0.1);
+}
+
+@media (max-width: 900px) {
+  body[data-page="ab-daily-wrapper"] .pool-head {
+    grid-template-columns: 1fr;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-head .compact-pills {
+    justify-content: start;
+    max-width: none;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table {
+    min-width: 1500px;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="ab-daily-wrapper"] .site {
+    gap: 0.82rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-latest-shell,
+  body[data-page="ab-daily-wrapper"] .ab-history-shell,
+  body[data-page="ab-daily-wrapper"] .pool-card {
+    padding: 0.82rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .section-head {
+    gap: 0.65rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .history-summary-toggle,
+  body[data-page="ab-daily-wrapper"] .latest-toggle {
+    width: auto;
+    min-width: 0;
+  }
+
+  body[data-page="ab-daily-wrapper"] #ab-latest-pills {
+    gap: 0.42rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] #ab-latest-pills .pill {
+    min-height: 2rem;
+    padding: 0.42rem 0.56rem;
+    white-space: normal;
+  }
+
+  body[data-page="ab-daily-wrapper"] .rotation-status-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .rotation-status-item {
+    padding: 0.52rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-head {
+    margin-bottom: 0.68rem;
+    padding-bottom: 0.68rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-head .compact-pills {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-head .compact-pills .pill {
+    justify-content: center;
+    min-width: 0;
+    min-height: 2.15rem;
+    padding: 0.42rem 0.48rem;
+    text-align: center;
+    white-space: normal;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .table-wrap {
+    overflow: visible;
+    border: 0;
+    background: transparent;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table {
+    width: 100%;
+    min-width: 0;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table tbody {
+    gap: 0.72rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table tr:not(.ab-intraday-detail-row) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.34rem;
+    padding: 0.52rem;
+    border-color: rgba(243, 247, 238, 0.14);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent 7rem),
+      #0d1510;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:not(.empty-cell) {
+    display: block;
+    min-width: 0;
+    min-height: 2.28rem;
+    padding: 0.3rem 0.42rem;
+    border: 1px solid rgba(243, 247, 238, 0.08);
+    border-radius: 7px;
+    background: rgba(243, 247, 238, 0.04);
+    font-size: 0.8rem;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:not(.empty-cell)::before {
+    display: block;
+    margin-bottom: 0.12rem;
+    color: rgba(243, 247, 238, 0.52);
+    font-size: 0.64rem;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(1),
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(4),
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(5),
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(n+6):nth-child(-n+13) {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.36rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(1)::before,
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(4)::before,
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(5)::before,
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(n+6):nth-child(-n+13)::before {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(2),
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3),
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(1)::before {
+    content: "股號";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(2)::before {
+    content: "股名";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3)::before {
+    content: "定版";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(4)::before {
+    content: "池";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(5)::before {
+    content: "主題";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(6)::before {
+    content: "9:10價";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(7)::before {
+    content: "9:10%";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(8)::before {
+    content: "9:10損益";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(9)::before {
+    content: "開盤";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(10)::before {
+    content: "收盤";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(11)::before {
+    content: "漲跌%";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(12)::before {
+    content: "漲跌";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(13)::before {
+    content: "一張";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(14)::before {
+    content: "理由";
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3) {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3)::before {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    padding-top: 0.08rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .ab-history-table td:nth-child(3) .ab-finalize-snapshot {
+    justify-items: end;
+    text-align: right;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell {
+    max-width: none;
+    max-height: 5.85rem;
+    overflow: auto;
+    border-color: rgba(217, 164, 36, 0.24);
+    background: rgba(217, 164, 36, 0.075);
+    color: rgba(243, 247, 238, 0.82);
+    line-height: 1.48;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell::before {
+    color: #f1c85c;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell::-webkit-scrollbar {
+    width: 0.42rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell::-webkit-scrollbar-track {
+    background: rgba(243, 247, 238, 0.08);
+    border-radius: 999px;
+  }
+
+  body[data-page="ab-daily-wrapper"] .pool-card .reason-cell::-webkit-scrollbar-thumb {
+    background: rgba(241, 200, 92, 0.62);
+    border-radius: 999px;
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-stock-trigger {
+    width: 100%;
+    max-width: none;
+    justify-content: space-between;
+    padding: 0.38rem 0.5rem;
+    background: rgba(78, 224, 180, 0.07);
+    border-color: rgba(78, 224, 180, 0.16);
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-finalize-snapshot strong {
+    font-size: 0.9rem;
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-intraday-detail-row {
+    grid-column: 1 / -1;
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-intraday-detail-row td {
+    border: 0;
+    background: transparent;
+  }
+
+  body[data-page="ab-daily-wrapper"] .ab-summary-card {
+    padding: 0.72rem;
+    gap: 0.56rem;
+  }
+}
