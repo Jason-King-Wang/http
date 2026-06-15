@@ -15,6 +15,8 @@ async function fetchPortalManifest() {
   }
 }
 
+const AB_HISTORY_EAGER_DETAIL_COUNT = 2;
+
 async function fetchAbDailyData() {
   if (window.__PUBLIC_AB_DAILY_DATA__) {
     return window.__PUBLIC_AB_DAILY_DATA__;
@@ -1188,20 +1190,20 @@ function renderAbRow(row, pool, tradeDate) {
   const finalized = isFinalizedForPool(row, pool);
   return `
     <tr class="${finalized ? "is-finalized-row" : ""}">
-      <td>${escapeHtml(row.stock_id)}</td>
-      <td>${renderAbStockName(row, pool, tradeDate)}</td>
-      <td>${renderFinalizeSnapshot(row, pool)}</td>
-      <td>${renderSelectionTag(row.selection_tag)}</td>
-      <td>${escapeHtml(row.theme || "--")}</td>
-      <td>${escapeHtml(formatNumber(row.week_entry_price))}</td>
-      <td>${escapeHtml(formatSignedPctPoints(row.week_entry_return_pct))}</td>
-      <td>${escapeHtml(formatSignedMoney(row.week_entry_pnl_twd))}</td>
-      <td>${escapeHtml(formatNumber(row.open_price))}</td>
-      <td>${escapeHtml(formatNumber(row.close_price))}</td>
-      <td>${escapeHtml(formatSignedPctPoints(row.change_pct))}</td>
-      <td>${escapeHtml(formatSignedNumber(row.change_amount))}</td>
-      <td>${escapeHtml(formatSignedMoney(row.lot_pnl_twd))}</td>
-      <td class="reason-cell">${escapeHtml(reasonForPool(row, pool) || "--")}</td>
+      <td data-label="股號">${escapeHtml(row.stock_id)}</td>
+      <td data-label="股名 / 走勢">${renderAbStockName(row, pool, tradeDate)}</td>
+      <td data-label="定版時漲幅">${renderFinalizeSnapshot(row, pool)}</td>
+      <td data-label="重疊">${renderSelectionTag(row.selection_tag)}</td>
+      <td data-label="主題">${escapeHtml(row.theme || "--")}</td>
+      <td data-label="周一9:10價">${escapeHtml(formatNumber(row.week_entry_price))}</td>
+      <td data-label="周一9.10分買的話%">${escapeHtml(formatSignedPctPoints(row.week_entry_return_pct))}</td>
+      <td data-label="周一9.10損益">${escapeHtml(formatSignedMoney(row.week_entry_pnl_twd))}</td>
+      <td data-label="開盤價">${escapeHtml(formatNumber(row.open_price))}</td>
+      <td data-label="收盤價">${escapeHtml(formatNumber(row.close_price))}</td>
+      <td data-label="漲跌幅%">${escapeHtml(formatSignedPctPoints(row.change_pct))}</td>
+      <td data-label="漲跌實際">${escapeHtml(formatSignedNumber(row.change_amount))}</td>
+      <td data-label="一張損益">${escapeHtml(formatSignedMoney(row.lot_pnl_twd))}</td>
+      <td data-label="LLM 理由" class="reason-cell">${escapeHtml(reasonForPool(row, pool) || "--")}</td>
     </tr>
   `;
 }
@@ -1458,6 +1460,9 @@ function renderAbDailyHistorySummaryTable(history) {
       <strong>每日 A/B 摘要表</strong>
       <span class="mini-note">每天只看 A 預選、B 預選、各買一張與週一 9:10 兩組損益。</span>
     </div>
+    <div class="ab-history-mobile-summary" aria-label="每日 A/B 手機摘要">
+      ${history.map((entry, index) => renderAbDailyHistorySummaryCard(entry, index === 0)).join("")}
+    </div>
     <div class="table-wrap ab-history-table-wrap">
       <table class="ab-history-table ab-history-summary-table">
         <thead>
@@ -1485,10 +1490,13 @@ function hasVisibleAbRows(entry) {
   return isAbSourceMissing(entry) || (Array.isArray(entry?.rows) && entry.rows.length > 0);
 }
 
-function renderHistoryToggleButton() {
+function renderHistoryToggleButton(options = {}) {
+  const rendered = options.rendered !== false;
+  const collapsed = options.collapsed === true;
+  const label = rendered ? (collapsed ? "展開" : "收起") : "載入明細";
   return `
-    <button class="history-toggle" type="button" data-history-toggle aria-expanded="true">
-      收起
+    <button class="history-toggle" type="button" data-history-toggle aria-expanded="${collapsed || !rendered ? "false" : "true"}">
+      ${label}
     </button>
   `;
 }
@@ -1519,6 +1527,20 @@ function wireAbHistoryToggles(historyList) {
       return;
     }
 
+    if (card.dataset.detailsRendered !== "true") {
+      const index = Number(card.dataset.historyIndex);
+      const entry = historyList.__abDailyHistory?.[index];
+      const body = card.querySelector(".history-body");
+      if (entry && body) {
+        body.innerHTML = renderAbHistoryCardBody(entry);
+        card.dataset.detailsRendered = "true";
+        card.classList.remove("is-deferred");
+        card.classList.remove("is-collapsed");
+        syncHistoryCardToggle(card, false);
+      }
+      return;
+    }
+
     const collapsed = card.classList.toggle("is-collapsed");
     syncHistoryCardToggle(card, collapsed);
   });
@@ -1526,14 +1548,34 @@ function wireAbHistoryToggles(historyList) {
   historyList.dataset.toggleBound = "true";
 }
 
+function renderAbHistoryCardBody(entry) {
+  return isAbSourceMissing(entry)
+    ? renderSourceMissingPanel(entry)
+    : `${renderRotationStatusBand(entry)}<div class="pool-grid">${renderPoolGrid(entry)}</div>`;
+}
+
+function renderDeferredHistoryBody(entry) {
+  const rows = getAbRows(entry);
+  return `
+    <div class="history-deferred">
+      <strong>${escapeHtml(entry?.trade_date || "--")} 明細尚未載入</strong>
+      <span>這天有 ${escapeHtml(formatNumber(rows.length))} 筆股票列。為了讓手機版不一次塞滿表格，點「載入明細」再展開。</span>
+    </div>
+  `;
+}
+
 function renderAbHistoryCards(history) {
   return history
     .map((entry, index) => {
-      const body = isAbSourceMissing(entry)
-        ? renderSourceMissingPanel(entry)
-        : `${renderRotationStatusBand(entry)}<div class="pool-grid">${renderPoolGrid(entry)}</div>`;
+      const rendered = index < AB_HISTORY_EAGER_DETAIL_COUNT || isAbSourceMissing(entry);
+      const collapsed = index !== 0;
+      const body = rendered ? renderAbHistoryCardBody(entry) : renderDeferredHistoryBody(entry);
       return `
-        <article class="history-card ${index === 0 ? "is-latest" : ""}">
+        <article
+          class="history-card ${index === 0 ? "is-latest" : ""} ${collapsed ? "is-collapsed" : ""} ${rendered ? "" : "is-deferred"}"
+          data-history-index="${index}"
+          data-details-rendered="${rendered ? "true" : "false"}"
+        >
           <div class="history-head">
             <div>
               <p class="eyebrow">History</p>
@@ -1545,7 +1587,7 @@ function renderAbHistoryCards(history) {
                   .map((item) => `<span class="pill">${item}</span>`)
                   .join("")}
               </div>
-              ${renderHistoryToggleButton()}
+              ${renderHistoryToggleButton({ rendered, collapsed })}
             </div>
           </div>
           <div class="history-body">
@@ -1820,6 +1862,57 @@ function renderRadarGoldenPanel(golden) {
         </table>
       </div>
     </section>
+  `;
+}
+
+function renderAbSummaryMetric(label, summary, options = {}) {
+  const nonTradingSelectionDay = options.nonTradingSelectionDay === true;
+  const returnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(summary?.returnPct);
+  const pnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(summary?.pnl);
+  const tone = nonTradingSelectionDay ? "trend-flat" : toneForSignedNumber(summary?.pnl);
+  return `
+    <div class="ab-summary-metric">
+      <span>${escapeHtml(label)}</span>
+      <strong class="${tone}">${escapeHtml(returnText)}</strong>
+      <small>${escapeHtml(pnlText)}</small>
+    </div>
+  `;
+}
+
+function renderAbDailyHistorySummaryCard(entry, isLatest) {
+  if (isAbSourceMissing(entry)) {
+    return `
+      <article class="ab-summary-card ${isLatest ? "is-latest" : ""} source-missing-card-lite">
+        <div class="ab-summary-date">
+          <strong>${escapeHtml(entry.trade_date || "--")}</strong>
+          <span>${escapeHtml(entry.phase_label || "來源缺失")}</span>
+        </div>
+        <p>${escapeHtml(sourceMissingText(entry))}</p>
+      </article>
+    `;
+  }
+
+  const aRows = rowsForPool(entry, "a");
+  const bRows = rowsForPool(entry, "b");
+  const nonTradingSelectionDay = entry?.non_trading_selection_day === true;
+  return `
+    <article class="ab-summary-card ${isLatest ? "is-latest" : ""}">
+      <div class="ab-summary-date">
+        <strong>${escapeHtml(entry.trade_date || "--")}</strong>
+        <span>${escapeHtml(entry.phase_label || entry.phase || "--")}</span>
+      </div>
+      <div class="ab-summary-stock-row">
+        ${renderAbStockList(aRows, "A")}
+        ${renderAbStockList(bRows, "B")}
+      </div>
+      <div class="ab-summary-metric-grid">
+        ${renderAbSummaryMetric("A 各買一張", summarizePool(aRows), { nonTradingSelectionDay })}
+        ${renderAbSummaryMetric("B 各買一張", summarizePool(bRows), { nonTradingSelectionDay })}
+        ${renderAbSummaryMetric("全部各買一張", buildAbAllSummary(entry), { nonTradingSelectionDay })}
+        ${renderAbSummaryMetric("全部週一 9:10", buildAbAllSummary(entry, "week"), { nonTradingSelectionDay })}
+      </div>
+      <span class="metric-sub">${escapeHtml(rotationCompactText(entry))}</span>
+    </article>
   `;
 }
 
