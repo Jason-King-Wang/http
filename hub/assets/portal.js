@@ -974,12 +974,223 @@ function renderIntradayMiniChart(row) {
   `;
 }
 
-function renderAbRow(row, pool) {
+function finalizeSide(pool) {
+  return pool === "a" ? "A" : "B";
+}
+
+function finalizeForPool(row, pool) {
+  const side = finalizeSide(pool);
+  const finalize = row?.finalize;
+  if (!finalize || typeof finalize !== "object") {
+    return null;
+  }
+  const entry = finalize[side];
+  return entry && typeof entry === "object" ? entry : null;
+}
+
+function isFinalizedForPool(row, pool) {
+  return finalizeForPool(row, pool)?.finalized === true;
+}
+
+function compactTime(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "--";
+  }
+  const isoMatch = text.match(/T(\d{2}:\d{2})/);
+  if (isoMatch) {
+    return isoMatch[1];
+  }
+  const plainMatch = text.match(/\b(\d{2}:\d{2})\b/);
+  return plainMatch ? plainMatch[1] : text;
+}
+
+function registerAbIntradayRow(row, pool, tradeDate) {
+  window.__AB_INTRADAY_ROW_MAP__ = window.__AB_INTRADAY_ROW_MAP__ || {};
+  const key = `${tradeDate || "latest"}-${pool}-${row?.stock_id || row?.stock_name || "row"}`;
+  window.__AB_INTRADAY_ROW_MAP__[key] = { row, pool, tradeDate };
+  return key;
+}
+
+function renderAbStockName(row, pool, tradeDate) {
+  const finalized = isFinalizedForPool(row, pool);
+  const side = finalizeSide(pool);
+  const key = registerAbIntradayRow(row, pool, tradeDate);
+  const label = row.stock_name || row.stock_id || "--";
   return `
-    <tr>
+    <button
+      type="button"
+      class="ab-stock-trigger ${finalized ? "ab-finalized-name" : ""}"
+      data-ab-intraday-toggle
+      data-ab-row-key="${escapeHtml(key)}"
+      aria-expanded="false"
+      title="${escapeHtml("點擊查看定版當時走勢")}"
+    >
+      <span>${escapeHtml(label)}</span>
+      ${finalized ? `<span class="ab-finalize-chip">定版 ${escapeHtml(side)}</span>` : ""}
+    </button>
+  `;
+}
+
+function finalizeSnapshotValue(row, pool, key, fallbackKey) {
+  const finalize = finalizeForPool(row, pool);
+  const directValue = asNumber(row?.[fallbackKey]);
+  const finalizeValue = finalize ? asNumber(finalize[key]) : null;
+  const intradayKey = fallbackKey.replace("finalize_intraday_", "");
+  const intradayValue = asNumber(row?.intraday_15m?.[intradayKey]);
+  return directValue ?? finalizeValue ?? intradayValue;
+}
+
+function renderFinalizeSnapshot(row, pool) {
+  const finalize = finalizeForPool(row, pool);
+  const finalized = finalize?.finalized === true;
+  const change = finalizeSnapshotValue(row, pool, "friday_close_to_finalize_pct", "finalize_intraday_change_pct");
+  const price = finalizeSnapshotValue(row, pool, "finalize_price", "finalize_intraday_price");
+  const asOf = row?.finalize_intraday_as_of || finalize?.finalize_as_of || row?.intraday_15m?.as_of || "";
+  const tone = toneForSignedNumber(change);
+  const label = finalized ? "定版" : finalize ? "觀察" : "快照";
+  return `
+    <div class="ab-finalize-snapshot ${finalized ? "is-finalized" : ""}">
+      <strong class="${tone}">${escapeHtml(formatSignedPctPoints(change))}</strong>
+      <span>${escapeHtml(formatNumber(price))} · ${escapeHtml(compactTime(asOf))}</span>
+      <small>${escapeHtml(label)}</small>
+    </div>
+  `;
+}
+
+function renderAbIntradayDetailChart(row) {
+  const trend = row?.intraday_15m;
+  const points = intradayTrendPoints(row);
+  const modeLabel = trend?.mode_label || "15分鐘走勢";
+  if (!points.length) {
+    return `
+      <div class="ab-intraday-detail is-empty">
+        <strong>${escapeHtml(row?.stock_id || "")} ${escapeHtml(row?.stock_name || "")}</strong>
+        <span>目前沒有可用的定版走勢資料。</span>
+      </div>
+    `;
+  }
+
+  const width = 640;
+  const height = 170;
+  const padX = 38;
+  const padTop = 18;
+  const padBottom = 30;
+  const prices = points.map((point) => point.price);
+  let min = Math.min(...prices);
+  let max = Math.max(...prices);
+  if (min === max) {
+    min -= Math.max(0.1, min * 0.001);
+    max += Math.max(0.1, max * 0.001);
+  }
+  const span = max - min || 1;
+  const xFor = (index) => points.length === 1
+    ? width / 2
+    : padX + (index / (points.length - 1)) * (width - padX * 2);
+  const yFor = (price) => padTop + ((max - price) / span) * (height - padTop - padBottom);
+  const coords = points.map((point, index) => `${xFor(index).toFixed(1)},${yFor(point.price).toFixed(1)}`);
+  const last = points[points.length - 1];
+  const first = points[0];
+  const lastCoord = coords[coords.length - 1].split(",");
+  const tone = toneForSignedNumber(trend?.change_pct);
+  const gridValues = [max, min + span / 2, min];
+  const grid = gridValues
+    .map((price) => {
+      const y = yFor(price);
+      return `<g class="ab-intraday-grid"><line x1="${padX}" y1="${y.toFixed(1)}" x2="${width - padX}" y2="${y.toFixed(1)}"></line><text x="4" y="${(y + 4).toFixed(1)}">${escapeHtml(formatNumber(price))}</text></g>`;
+    })
+    .join("");
+
+  return `
+    <div class="ab-intraday-detail ${tone}">
+      <div class="ab-intraday-detail-head">
+        <div>
+          <strong>${escapeHtml(row?.stock_id || "")} ${escapeHtml(row?.stock_name || "")}</strong>
+          <span>${escapeHtml(modeLabel)} · ${escapeHtml(first.time || "--")} 至 ${escapeHtml(last.time || compactTime(trend?.as_of))}</span>
+        </div>
+        <div class="ab-intraday-detail-metrics">
+          <span>${escapeHtml(formatNumber(trend?.last_price))}</span>
+          <strong>${escapeHtml(formatSignedPctPoints(trend?.change_pct))}</strong>
+        </div>
+      </div>
+      <svg class="ab-intraday-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(`${row?.stock_id || ""} ${modeLabel}`)}">
+        ${grid}
+        <polyline points="${coords.join(" ")}"></polyline>
+        <circle cx="${lastCoord[0]}" cy="${lastCoord[1]}" r="4"></circle>
+        <g class="ab-intraday-axis">
+          <text x="${padX}" y="${height - 8}">${escapeHtml(first.time || "--")}</text>
+          <text x="${width - padX}" y="${height - 8}" text-anchor="end">${escapeHtml(last.time || compactTime(trend?.as_of))}</text>
+        </g>
+      </svg>
+    </div>
+  `;
+}
+
+function renderAbIntradayDetailPanel(row, pool) {
+  const finalize = finalizeForPool(row, pool);
+  const reason = finalize?.selection_reason || finalize?.rejection_reason || reasonForPool(row, pool) || "";
+  return `
+    ${renderAbIntradayDetailChart(row)}
+    ${reason ? `<p class="ab-intraday-reason">${escapeHtml(reason)}</p>` : ""}
+  `;
+}
+
+function wireAbIntradayToggles(root) {
+  if (!root || root.dataset.abIntradayToggleBound === "true") {
+    return;
+  }
+
+  root.addEventListener("click", (event) => {
+    const trigger = event.target.closest("[data-ab-intraday-toggle]");
+    if (!trigger || !root.contains(trigger)) {
+      return;
+    }
+    event.preventDefault();
+
+    const key = trigger.dataset.abRowKey || "";
+    const entry = window.__AB_INTRADAY_ROW_MAP__?.[key];
+    const row = trigger.closest("tr");
+    if (!entry || !row) {
+      return;
+    }
+
+    const tableBody = row.parentElement;
+    const next = row.nextElementSibling;
+    if (next?.classList.contains("ab-intraday-detail-row") && next.dataset.abRowKey === key) {
+      next.remove();
+      trigger.classList.remove("is-active");
+      trigger.setAttribute("aria-expanded", "false");
+      return;
+    }
+
+    tableBody?.querySelectorAll(".ab-intraday-detail-row").forEach((node) => node.remove());
+    tableBody?.querySelectorAll("[data-ab-intraday-toggle].is-active").forEach((node) => {
+      node.classList.remove("is-active");
+      node.setAttribute("aria-expanded", "false");
+    });
+
+    const detailRow = document.createElement("tr");
+    detailRow.className = "ab-intraday-detail-row";
+    detailRow.dataset.abRowKey = key;
+    const cell = document.createElement("td");
+    cell.colSpan = Math.max(row.children.length, 1);
+    cell.innerHTML = renderAbIntradayDetailPanel(entry.row, entry.pool);
+    detailRow.appendChild(cell);
+    row.after(detailRow);
+    trigger.classList.add("is-active");
+    trigger.setAttribute("aria-expanded", "true");
+  });
+
+  root.dataset.abIntradayToggleBound = "true";
+}
+
+function renderAbRow(row, pool, tradeDate) {
+  const finalized = isFinalizedForPool(row, pool);
+  return `
+    <tr class="${finalized ? "is-finalized-row" : ""}">
       <td>${escapeHtml(row.stock_id)}</td>
-      <td>${escapeHtml(row.stock_name)}</td>
-      <td>${renderIntradayMiniChart(row)}</td>
+      <td>${renderAbStockName(row, pool, tradeDate)}</td>
+      <td>${renderFinalizeSnapshot(row, pool)}</td>
       <td>${renderSelectionTag(row.selection_tag)}</td>
       <td>${escapeHtml(row.theme || "--")}</td>
       <td>${escapeHtml(formatNumber(row.week_entry_price))}</td>
@@ -997,10 +1208,11 @@ function renderAbRow(row, pool) {
 
 function renderPoolTable(title, pool, rows, options = {}) {
   const nonTradingSelectionDay = options.nonTradingSelectionDay === true;
+  const tradeDate = options.tradeDate || "";
   const summary = summarizePool(rows);
   const weekSummary = summarizePool(rows, "week");
   const body = rows.length
-    ? rows.map((row) => renderAbRow(row, pool)).join("")
+    ? rows.map((row) => renderAbRow(row, pool, tradeDate || row?.daily_trade_date || row?.week_entry_date || "")).join("")
     : '<tr><td class="empty-cell" colspan="14">這一池目前沒有預選股。</td></tr>';
   const summaryReturnText = nonTradingSelectionDay ? "NA" : formatSignedPctPoints(summary.returnPct);
   const summaryPnlText = nonTradingSelectionDay ? "NA" : formatSignedMoney(summary.pnl);
@@ -1027,8 +1239,8 @@ function renderPoolTable(title, pool, rows, options = {}) {
           <thead>
             <tr>
               <th>股號</th>
-              <th>股名</th>
-              <th>15分鐘走勢</th>
+              <th>股名 / 走勢</th>
+              <th>定版時漲幅</th>
               <th>重疊</th>
               <th>主題</th>
               <th>周一9:10價</th>
@@ -1073,6 +1285,10 @@ function buildAbPills(entry) {
   const intraday = entry?.intraday_15m_summary;
   if (intraday?.mode_label) {
     pills.push(`15分 ${intraday.mode_label} ${fallbackText(intraday.ok_count)}/${fallbackText(intraday.stock_count)}`);
+  }
+  const finalize = entry?.finalize;
+  if (finalize?.available) {
+    pills.push(`定版 A${fallbackText(finalize.a_finalize_count)} / B${fallbackText(finalize.b_finalize_count)}`);
   }
   if (entry?.rotation_shadow_action) {
     pills.push(`輪動 ${rotationConclusionText(entry)}`);
@@ -1413,6 +1629,9 @@ function renderAbDailyPage(payload) {
   if (!latestPools || !latestSummary || !latestPills || !historyList || !pageMeta) {
     return;
   }
+
+  window.__AB_INTRADAY_ROW_MAP__ = {};
+  wireAbIntradayToggles(document.body);
 
   if (!history.length) {
     pageMeta.innerHTML = '<span class="pill">目前沒有資料</span>';

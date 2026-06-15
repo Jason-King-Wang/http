@@ -6,7 +6,7 @@
     <meta name="description" content="每日版本的 AB 選股模型輸出頁面，整合進交易儀表板總入口。" />
     <title>每日 AB | 交易儀表板總入口</title>
     <link rel="icon" href="../sell-model-embed/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../assets/portal.css?v=20260614-radar-json-live" />
+    <link rel="stylesheet" href="../assets/portal.css?v=20260615-ab-finalize-overlay" />
   </head>
   <body data-page="ab-daily-wrapper">
     <div class="page-shell">
@@ -37,7 +37,7 @@
             <h1>每日版本的 AB 選股模型輸出</h1>
             <p>
               這頁專門看每天的 LLM A 預選與 B 預選。最新一天放最上面，下面保留逐日歷史；
-              這裡不再收斂成 AB 定版，只記錄兩個預選池與當天表現。
+              這裡同步保留 AB 預選池、定版標記、定版時漲幅；點股名可展開當時走勢。
             </p>
             <div class="pill-row" id="ab-page-meta"></div>
           </div>
@@ -96,7 +96,7 @@
       </main>
     </div>
 
-    <script src="../data/portal-manifest.js?v=20260614-radar-json-live"></script>
-    <script src="../assets/portal.js?v=20260614-radar-json-live"></script>
+    <script src="../data/portal-manifest.js?v=20260615-ab-finalize-overlay"></script>
+    <script src="../assets/portal.js?v=20260615-ab-finalize-overlay"></script>
   </body>
 </html>

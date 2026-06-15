@@ -2842,6 +2842,185 @@ body[data-page="auto-trading-wrapper"] .auto-frame-shell .iframe-wrap {
   color: #56d7ad;
 }
 
+.ab-stock-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  max-width: 12rem;
+  min-height: 2rem;
+  padding: 0.2rem 0.45rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 850;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ab-stock-trigger span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ab-stock-trigger:hover,
+.ab-stock-trigger.is-active {
+  background: rgba(86, 215, 173, 0.1);
+  border-color: rgba(86, 215, 173, 0.28);
+}
+
+.ab-finalized-name {
+  border: 2px solid #d9a424;
+  background: rgba(217, 164, 36, 0.12);
+  color: #ffe0a3;
+  box-shadow: 0 0 0 1px rgba(255, 224, 163, 0.14), 0 8px 24px rgba(217, 164, 36, 0.16);
+}
+
+.ab-finalized-name:hover,
+.ab-finalized-name.is-active {
+  background: rgba(217, 164, 36, 0.18);
+  border-color: #f1c85c;
+}
+
+.ab-finalize-chip {
+  flex: 0 0 auto;
+  padding: 0.08rem 0.28rem;
+  border-radius: var(--radius-sm);
+  background: rgba(217, 164, 36, 0.22);
+  color: #ffe7af;
+  font-size: 0.68rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.ab-finalize-snapshot {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 6.2rem;
+  line-height: 1.15;
+}
+
+.ab-finalize-snapshot strong {
+  font-size: 0.96rem;
+}
+
+.ab-finalize-snapshot span,
+.ab-finalize-snapshot small {
+  color: rgba(243, 247, 238, 0.64);
+  font-size: 0.74rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.ab-finalize-snapshot.is-finalized small {
+  color: #f1c85c;
+}
+
+.ab-history-table tr.is-finalized-row td {
+  background: rgba(217, 164, 36, 0.045);
+}
+
+.ab-intraday-detail-row td {
+  padding: 0.85rem 1rem 1rem;
+  background: #09100c;
+}
+
+.ab-intraday-detail {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(86, 215, 173, 0.2);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, rgba(86, 215, 173, 0.08), transparent 38%),
+    #0d1510;
+}
+
+.ab-intraday-detail.is-empty {
+  color: rgba(243, 247, 238, 0.72);
+}
+
+.ab-intraday-detail-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ab-intraday-detail-head > div:first-child,
+.ab-intraday-detail-metrics {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.ab-intraday-detail-head strong {
+  color: #f3f7ee;
+  font-size: 1rem;
+}
+
+.ab-intraday-detail-head span,
+.ab-intraday-detail-metrics span {
+  color: rgba(243, 247, 238, 0.64);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+.ab-intraday-detail-metrics {
+  justify-items: end;
+  min-width: 5rem;
+}
+
+.ab-intraday-detail-metrics strong {
+  font-size: 1.05rem;
+}
+
+.ab-intraday-chart {
+  width: 100%;
+  min-height: 150px;
+  display: block;
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(rgba(86, 215, 173, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(86, 215, 173, 0.06) 1px, transparent 1px),
+    #050a07;
+  background-size: 22px 22px;
+}
+
+.ab-intraday-chart polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ab-intraday-chart circle {
+  fill: currentColor;
+  stroke: #050a07;
+  stroke-width: 1.6;
+}
+
+.ab-intraday-grid line {
+  stroke: rgba(243, 247, 238, 0.14);
+  stroke-dasharray: 4 5;
+}
+
+.ab-intraday-grid text,
+.ab-intraday-axis text {
+  fill: rgba(243, 247, 238, 0.54);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.ab-intraday-reason {
+  margin: 0.55rem 0 0;
+  color: rgba(243, 247, 238, 0.68);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
 @media (max-width: 1100px) {
   body[data-page="portal-home"] .site-card:nth-child(n) {
     grid-column: span 6;
