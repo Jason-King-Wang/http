@@ -615,6 +615,7 @@
         <nav class="nav" aria-label="頁面導覽">
           <a href="#next">Next.js</a>
           <a href="#final-mode">最終模式</a>
+          <a href="#model-extension">模型擴充</a>
           <a href="#map">系統地圖</a>
           <a href="#tools">工具</a>
           <a href="#build">怎麼做</a>
@@ -640,7 +641,7 @@
               </div>
               <div class="mini-point">
                 <strong>雲端保存什麼</strong>
-                <span>量化模型本體、模型版本、訊號輸出、回測說明、使用者權限與付款狀態。</span>
+                <span>量化模型本體、模型目錄、版本發布、訊號輸出、回測說明、使用者權限與付款狀態。</span>
               </div>
               <div class="mini-point">
                 <strong>本機保留什麼</strong>
@@ -730,7 +731,7 @@
               </div>
               <div class="node">
                 <h3><span class="tag violet">權限</span> 訂閱與模型授權</h3>
-                <p>買了哪一套模型，就能在 App 使用哪一套模型；權限由後端檢查，不靠前端藏按鈕。</p>
+                <p>買了哪一套模型，就能在 App 使用哪一套模型；新模型上架後由雲端權限開放，不靠前端藏按鈕。</p>
               </div>
             </div>
 
@@ -743,7 +744,7 @@
             <div class="stack">
               <div class="node">
                 <h3><span class="tag green">雲端</span> Quant Model Service</h3>
-                <p>保存研究過的量化模型、版本、訊號輸出、回測說明與風險提示。雲端不碰券商鑰匙。</p>
+                <p>保存研究過的量化模型、模型目錄、版本、訊號輸出、回測說明與風險提示。雲端不碰券商鑰匙。</p>
               </div>
               <div class="node">
                 <h3><span class="tag gold">佇列</span> Order Intent / Relay</h3>
@@ -774,6 +775,7 @@
               <h3>雲端可以保存</h3>
               <ul class="checklist">
                 <li>量化模型本體與模型版本</li>
+                <li>模型目錄、上架/下架狀態與版本發布紀錄</li>
                 <li>模型訊號、回測說明、限制提醒</li>
                 <li>使用者、訂閱、模型授權與付款狀態</li>
                 <li>App 送出的委託意圖 metadata</li>
@@ -790,6 +792,72 @@
                 <li>繞過使用者確認或本機 live gate 的下單命令</li>
               </ul>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="model-extension">
+        <div class="shell">
+          <div class="section-title">
+            <h2>模型要能一直上架，不是一次寫死</h2>
+            <p>你以後會一直新增量化模型，所以雲端和 App 必須支援「模型商品目錄」與「版本發布」，不能每加一套模型就重新改 App。</p>
+          </div>
+
+          <div class="screen-grid">
+            <article class="app-screen">
+              <h3>Model Catalog</h3>
+              <ul>
+                <li><code>model_id</code>、名稱、短介紹、分類</li>
+                <li>免費預覽、付費解鎖、內測模型</li>
+                <li>風險說明、回測摘要、適用市場</li>
+                <li>是否允許產生下單意圖</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Model Versioning</h3>
+              <ul>
+                <li>draft / staging / live / deprecated</li>
+                <li>每版模型有輸出 schema 與相容規則</li>
+                <li>可灰度發布、回滾、保留舊版紀錄</li>
+                <li>訊號必須標記使用哪個版本產生</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Entitlement Rules</h3>
+              <ul>
+                <li>使用者可以買單一模型或模型包</li>
+                <li>方案決定可看完整訊號或只看預覽</li>
+                <li>權限在 API 檢查，不寫死在 App</li>
+                <li>支援試用、到期、停用與退款後收回</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Dynamic App UI</h3>
+              <ul>
+                <li>App 開啟時讀雲端模型清單</li>
+                <li>新模型用同一套卡片和訊號頁呈現</li>
+                <li>不支援的模型功能要優雅隱藏</li>
+                <li>必要時用 minimum app version 提醒更新</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Admin Publish Flow</h3>
+              <ul>
+                <li>上傳模型包、回測報告、說明圖文</li>
+                <li>QA 通過後才切成 live</li>
+                <li>可一鍵下架或回滾到前一版</li>
+                <li>每次發布都留下 audit log</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Schema Contract</h3>
+              <ul>
+                <li>統一訊號欄位：標的、方向、理由、風險</li>
+                <li>統一下單意圖欄位：預算、模式、確認點</li>
+                <li>不同模型可有 extension fields</li>
+                <li>App 只依 contract 渲染，不猜模型內部</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
@@ -826,7 +894,7 @@
               </div>
               <div class="node">
                 <h3><span class="tag gold">資料</span> Database</h3>
-                <p>保存使用者、訂閱、模型授權、模型版本、訊號 run metadata、通知規則與委託意圖紀錄。</p>
+                <p>保存使用者、訂閱、模型授權、模型 catalog、模型版本、發布狀態、訊號 run metadata、通知規則與委託意圖紀錄。</p>
               </div>
               <div class="node">
                 <h3><span class="tag gold">倉庫</span> Object Storage</h3>
@@ -840,6 +908,7 @@
               <h3>可以上雲的東西</h3>
               <ul class="checklist">
                 <li>量化模型本體與版本</li>
+                <li>模型 catalog、發布狀態與相容 schema</li>
                 <li>模型訊號 snapshot JSON</li>
                 <li>策略說明與回測報告</li>
                 <li>資料健康狀態與模型 run metadata</li>
@@ -906,6 +975,19 @@
                 <dd>雲端倉庫，資料庫只記檔案位置和版本。</dd>
                 <dt>為什麼選它</dt>
                 <dd>產出的東西會愈來愈多，不能全塞資料庫。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag gold">第一階段</span>
+              <h3>Model Registry / Admin Publish</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>新增量化模型、切版本、設定上架/下架、綁定方案權限。</dd>
+                <dt>白話</dt>
+                <dd>模型商店的後台。你一直增加模型時，App 讀清單就會出現新模型。</dd>
+                <dt>為什麼要有</dt>
+                <dd>不然每上一個模型都要改 App、改 API、改權限，產品會長不大。</dd>
               </dl>
             </article>
 
@@ -1009,9 +1091,17 @@
             <div class="step">
               <div>
                 <h3>做雲端模型 registry 和權限帳本</h3>
-                <p>Object Storage 放模型包與報告；Postgres 記錄模型版本、訊號 run、訂閱方案、使用者授權與目前哪版是 live。</p>
+                <p>Object Storage 放模型包與報告；Postgres 記錄模型 catalog、版本、訊號 run、訂閱方案、使用者授權與目前哪版是 live。</p>
               </div>
               <span class="tag gold">資料層</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做模型上架後台</h3>
+                <p>新增模型時先建立 draft，填說明、上傳回測與訊號 schema，QA 通過才切 live；App 讀 catalog 後自動出現新模型。</p>
+              </div>
+              <span class="tag gold">擴充</span>
             </div>
 
             <div class="step">
@@ -1085,9 +1175,19 @@
               <h3>我的策略</h3>
               <ul>
                 <li>已購買模型列表</li>
+                <li>可加購的新模型入口</li>
                 <li>模擬 / 實盤模式標記</li>
                 <li>策略說明與教學影片入口</li>
                 <li>啟用、暫停與提醒設定</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>模型商店</h3>
+              <ul>
+                <li>雲端 catalog 動態載入模型清單</li>
+                <li>新模型、內測模型、已下架模型狀態</li>
+                <li>價格、方案、試用與付費解鎖</li>
+                <li>回測摘要、限制與適合對象</li>
               </ul>
             </article>
             <article class="app-screen">
@@ -1120,7 +1220,9 @@
             <article class="app-screen">
               <h3>Admin / 模型後台</h3>
               <ul>
+                <li>新增模型與模型包</li>
                 <li>目前 live 模型版本</li>
+                <li>draft / staging / live / deprecated 狀態</li>
                 <li>誰有哪套模型權限</li>
                 <li>訊號 run 與資料健康</li>
                 <li>委託意圖 audit log</li>
@@ -1148,11 +1250,11 @@
 
           <div class="phase-panel active" data-panel="0">
             <h3>Phase 0：產品契約、模型包、下單邊界</h3>
-            <p>決定模型包格式、手機主畫面、輔助下單流程、使用者確認點、哪些資料可以上雲、哪些券商秘密必須留本機。</p>
+            <p>決定模型包格式、模型 catalog 欄位、手機主畫面、輔助下單流程、使用者確認點、哪些資料可以上雲、哪些券商秘密必須留本機。</p>
           </div>
           <div class="phase-panel" data-panel="1">
             <h3>Phase 1：Cloud Model Registry / Entitlements</h3>
-            <p>做模型 registry、模型版本、訊號 API、使用者授權、付款權限與 Admin 檢查頁。能讓已購買使用者讀到正確模型訊號。</p>
+            <p>做模型 registry、上架/下架狀態、模型版本、訊號 API、使用者授權、付款權限與 Admin 發布頁。能讓新模型持續上架，並讓已購買使用者讀到正確模型訊號。</p>
           </div>
           <div class="phase-panel" data-panel="2">
             <h3>Phase 2：Mobile App Prototype</h3>
@@ -1186,7 +1288,7 @@
               <p>
                 <strong>手機 App</strong> 給使用者看策略、訊號與預算下單；
                 <strong>Cloud Model API</strong> 負責檢查權限和回傳已購買模型；
-                <strong>Database</strong> 記使用者、訂閱、模型授權和委託意圖；
+                <strong>Database</strong> 記使用者、訂閱、模型 catalog、模型授權和委託意圖；
                 <strong>Storage</strong> 放模型包、訊號 JSON、回測報告和策略說明；
                 <strong>Worker/Scheduler</strong> 定時更新模型訊號；
                 <strong>Stripe/Paddle</strong> 處理付款與權限開通；
