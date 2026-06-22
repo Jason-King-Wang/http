@@ -1,0 +1,1150 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>交易系統app地圖</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231f6fb2'/%3E%3Cpath d='M16 42h32M20 36l8-8 7 6 11-14' stroke='white' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <style>
+      :root {
+        --bg: #f5f3ef;
+        --paper: #ffffff;
+        --ink: #18202a;
+        --muted: #64707d;
+        --line: #d9d5cc;
+        --blue: #1f6fb2;
+        --blue-soft: #e8f2fb;
+        --green: #237a57;
+        --green-soft: #e7f3ed;
+        --gold: #9b6a10;
+        --gold-soft: #fff3cf;
+        --red: #a6423a;
+        --red-soft: #fbe8e5;
+        --violet: #6554a8;
+        --violet-soft: #eeeaf8;
+        --shadow: 0 18px 45px rgba(30, 34, 38, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          "Noto Sans TC",
+          "Microsoft JhengHei",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        line-height: 1.65;
+      }
+
+      a {
+        color: var(--blue);
+      }
+
+      .shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        border-bottom: 1px solid rgba(24, 32, 42, 0.1);
+        background: rgba(245, 243, 239, 0.92);
+        backdrop-filter: blur(14px);
+      }
+
+      .topbar-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        min-height: 64px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        letter-spacing: 0;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: white;
+        font-size: 18px;
+      }
+
+      .nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+
+      .nav a {
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 8px 10px;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .nav a:hover {
+        border-color: var(--line);
+        background: white;
+        color: var(--ink);
+      }
+
+      .hero {
+        padding: 52px 0 30px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        margin-bottom: 18px;
+        font-size: clamp(34px, 5vw, 58px);
+        line-height: 1.08;
+        letter-spacing: 0;
+      }
+
+      .lead {
+        max-width: 720px;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .answer-box {
+        border: 1px solid rgba(31, 111, 178, 0.22);
+        border-radius: 8px;
+        background: var(--blue-soft);
+        padding: 18px;
+      }
+
+      .answer-box h2 {
+        margin-bottom: 10px;
+        font-size: 22px;
+      }
+
+      .mini-points {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .mini-point {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 12px;
+        min-height: 110px;
+      }
+
+      .mini-point strong {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 15px;
+      }
+
+      .mini-point span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+      }
+
+      .panel-header {
+        border-bottom: 1px solid var(--line);
+        padding: 14px 16px;
+        font-weight: 900;
+      }
+
+      .phone {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .screen {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #111822;
+        color: white;
+      }
+
+      .screen-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px;
+        background: #182331;
+      }
+
+      .screen-body {
+        display: grid;
+        gap: 10px;
+        padding: 14px;
+      }
+
+      .metric-row {
+        display: grid;
+        grid-template-columns: 44px 1fr auto;
+        gap: 10px;
+        align-items: center;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 10px;
+      }
+
+      .rank {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        background: #f0b429;
+        color: #20150a;
+        font-weight: 900;
+      }
+
+      .screen small {
+        color: #9fb0c2;
+      }
+
+      section {
+        padding: 42px 0;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+
+      .section-title h2 {
+        margin-bottom: 0;
+        font-size: clamp(26px, 4vw, 38px);
+        line-height: 1.16;
+      }
+
+      .section-title p {
+        max-width: 520px;
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .map {
+        display: grid;
+        grid-template-columns: 1.2fr 0.85fr 1fr;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .stack {
+        display: grid;
+        gap: 14px;
+      }
+
+      .node {
+        position: relative;
+        min-height: 132px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 16px;
+      }
+
+      .node h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+        font-size: 19px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 999px;
+        padding: 3px 9px;
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .tag.blue {
+        background: var(--blue-soft);
+        color: var(--blue);
+      }
+
+      .tag.green {
+        background: var(--green-soft);
+        color: var(--green);
+      }
+
+      .tag.gold {
+        background: var(--gold-soft);
+        color: var(--gold);
+      }
+
+      .tag.red {
+        background: var(--red-soft);
+        color: var(--red);
+      }
+
+      .tag.violet {
+        background: var(--violet-soft);
+        color: var(--violet);
+      }
+
+      .node p,
+      .node li {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .arrow-col {
+        display: grid;
+        place-items: center;
+        gap: 12px;
+      }
+
+      .arrow {
+        width: 100%;
+        border: 1px dashed rgba(24, 32, 42, 0.28);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.6);
+        padding: 12px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 900;
+      }
+
+      .tool-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .tool-card {
+        display: grid;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 16px;
+      }
+
+      .tool-card h3 {
+        margin-bottom: 0;
+        font-size: 18px;
+      }
+
+      .tool-card dl {
+        display: grid;
+        gap: 8px;
+        margin: 0;
+      }
+
+      .tool-card dt {
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .tool-card dd {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .build-flow {
+        display: grid;
+        gap: 12px;
+        counter-reset: step;
+      }
+
+      .step {
+        display: grid;
+        grid-template-columns: 54px 1fr auto;
+        gap: 14px;
+        align-items: start;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 16px;
+      }
+
+      .step::before {
+        counter-increment: step;
+        content: counter(step);
+        display: grid;
+        place-items: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: white;
+        font-weight: 900;
+      }
+
+      .step h3 {
+        margin-bottom: 5px;
+      }
+
+      .step p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .screen-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .app-screen {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 16px;
+      }
+
+      .app-screen h3 {
+        margin-bottom: 8px;
+        font-size: 18px;
+      }
+
+      .app-screen ul {
+        padding-left: 20px;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+
+      .warning {
+        border: 1px solid rgba(166, 66, 58, 0.28);
+        border-radius: 8px;
+        background: var(--red-soft);
+        padding: 16px;
+      }
+
+      .safe {
+        border: 1px solid rgba(35, 122, 87, 0.25);
+        border-radius: 8px;
+        background: var(--green-soft);
+        padding: 16px;
+      }
+
+      .checklist {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .checklist li {
+        border: 1px solid rgba(24, 32, 42, 0.1);
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.68);
+        padding: 10px;
+      }
+
+      .phase-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .phase-tabs button {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        color: var(--muted);
+        cursor: pointer;
+        padding: 9px 12px;
+        font: inherit;
+        font-size: 14px;
+        font-weight: 900;
+      }
+
+      .phase-tabs button.active {
+        border-color: var(--blue);
+        background: var(--blue);
+        color: white;
+      }
+
+      .phase-panel {
+        display: none;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 18px;
+      }
+
+      .phase-panel.active {
+        display: block;
+      }
+
+      .source-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .source-list li {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--paper);
+        padding: 10px 12px;
+        font-size: 14px;
+      }
+
+      .footer {
+        padding: 30px 0 48px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .map,
+        .split {
+          grid-template-columns: 1fr;
+        }
+
+        .tool-grid,
+        .screen-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .arrow-col {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .topbar-inner,
+        .section-title {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .mini-points,
+        .tool-grid,
+        .screen-grid,
+        .checklist,
+        .source-list {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          grid-template-columns: 46px 1fr;
+        }
+
+        .step .tag {
+          grid-column: 2;
+          width: fit-content;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="shell topbar-inner">
+        <div class="brand">
+          <span class="brand-mark">A</span>
+          <span>交易系統app地圖</span>
+        </div>
+        <nav class="nav" aria-label="頁面導覽">
+          <a href="#next">Next.js</a>
+          <a href="#map">系統地圖</a>
+          <a href="#tools">工具</a>
+          <a href="#build">怎麼做</a>
+          <a href="#screens">App 內容</a>
+          <a href="#phases">階段</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell hero-grid">
+          <div>
+            <p class="eyebrow">Chairman Brief Translation</p>
+            <h1>交易系統app地圖：把「產出的東西」做成雲端 App。</h1>
+            <p class="lead">
+              可以先把它想成一個有登入、有資料庫、有雲端倉庫、有自動更新、有通知、有付款權限的產品。現在的雷達 JSON、歷史榜、報告、資料健康狀態，就是第一批要上雲的「貨」。
+            </p>
+            <div class="mini-points">
+              <div class="mini-point">
+                <strong>使用者看到什麼</strong>
+                <span>手機或網頁 App：今日雷達、歷史榜、提醒、報告、帳號方案。</span>
+              </div>
+              <div class="mini-point">
+                <strong>雲端保存什麼</strong>
+                <span>產出的 snapshot、報告檔、圖片、版本、誰能看、什麼時候更新。</span>
+              </div>
+              <div class="mini-point">
+                <strong>本機保留什麼</strong>
+                <span>券商 API key、CA、.env、下單 live gate，先不搬到雲端。</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="panel" aria-label="App 示意">
+            <div class="panel-header">第一版 App 可能長這樣</div>
+            <div class="phone">
+              <div class="screen">
+                <div class="screen-top">
+                  <strong>今日雷達</strong>
+                  <small>2026-06-22 17:10</small>
+                </div>
+                <div class="screen-body">
+                  <div class="metric-row">
+                    <span class="rank">1</span>
+                    <span>
+                      <strong>短線爆發雷達 Top 1</strong><br />
+                      <small>分數、理由、資料新鮮度</small>
+                    </span>
+                    <strong>67.9</strong>
+                  </div>
+                  <div class="metric-row">
+                    <span class="rank">2</span>
+                    <span>
+                      <strong>黃金榜追蹤</strong><br />
+                      <small>最近 10 個交易日</small>
+                    </span>
+                    <strong>新</strong>
+                  </div>
+                  <div class="metric-row">
+                    <span class="rank">3</span>
+                    <span>
+                      <strong>我的觀察清單命中</strong><br />
+                      <small>符合條件就通知</small>
+                    </span>
+                    <strong>4</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="next">
+        <div class="shell">
+          <div class="section-title">
+            <h2>先回答：Next.js 是背景跑的程式嗎？</h2>
+            <p>你問得對，這個名詞很容易誤會。它有時候會「跑起來」，但它不是我們說的那種每日自動更新資料的背景機器。</p>
+          </div>
+
+          <div class="answer-box">
+            <h2>白話版答案</h2>
+            <p>
+              <strong>Next.js 是做網站 / Web App 的框架。</strong>
+              它主要負責讓使用者打開瀏覽器時看到畫面，也可以在同一個專案裡放一些簡單 API，例如
+              <code>/api/latest-radar</code> 回傳最新雷達資料。
+            </p>
+            <p>
+              你在開發時執行 <code>next dev</code>，它會像一台本機小伺服器一樣跑在電腦裡，讓你預覽畫面。
+              上線後它會跑在 Vercel、自己的 Node 伺服器，或其他雲端平台上，負責「接收使用者請求、送出頁面或資料」。
+            </p>
+            <p>
+              但「每天 17:00 產生雷達 JSON、檢查資料、上傳雲端」這種比較像工廠排程的事，通常交給
+              <strong>Worker / Job / Scheduler</strong>，不是交給 Next.js 當主角。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="map">
+        <div class="shell">
+          <div class="section-title">
+            <h2>整套系統地圖</h2>
+            <p>把它想成一間店：App 是門面，API 是櫃台，資料庫是帳本，雲端儲存是倉庫，Worker 是每天補貨的人。</p>
+          </div>
+
+          <div class="map" aria-label="自動交易 App 雲端架構圖">
+            <div class="stack">
+              <div class="node">
+                <h3><span class="tag blue">前台</span> App / Web App</h3>
+                <p>使用者打開手機或瀏覽器看到的地方。看今日雷達、歷史榜、報告、通知、方案權限。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag violet">會員</span> 登入與付款權限</h3>
+                <p>判斷這個人是誰、付費了沒、能看哪些資料。不能只靠前端藏按鈕。</p>
+              </div>
+            </div>
+
+            <div class="arrow-col" aria-hidden="true">
+              <div class="arrow">使用者請求資料</div>
+              <div class="arrow">API 檢查權限</div>
+              <div class="arrow">回傳可看的內容</div>
+            </div>
+
+            <div class="stack">
+              <div class="node">
+                <h3><span class="tag green">後端</span> API 伺服器</h3>
+                <p>App 不直接亂拿檔案，而是問 API。API 檢查登入、權限、版本，再回傳資料。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag gold">資料</span> Database</h3>
+                <p>保存使用者、訂閱、權限、雷達 run metadata、上傳紀錄、通知規則。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag gold">倉庫</span> Object Storage</h3>
+                <p>放比較大的產出：snapshot JSON、報告、圖片、PDF、歷史檔案。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split" style="margin-top: 16px">
+            <div class="safe">
+              <h3>可以上雲的東西</h3>
+              <ul class="checklist">
+                <li>雷達 snapshot JSON</li>
+                <li>每日 Top20 / 黃金榜歷史</li>
+                <li>資料健康狀態摘要</li>
+                <li>回測與模型報告</li>
+                <li>使用者觀察清單</li>
+                <li>通知規則與方案權限</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <h3>第一階段不要上雲的東西</h3>
+              <ul class="checklist">
+                <li>券商 API key / secret</li>
+                <li>CA 憑證與密碼</li>
+                <li><code>.env</code></li>
+                <li>帳戶、資金、下單 raw state</li>
+                <li>private DB raw rows</li>
+                <li>直接繞過本機 live gate 的下單命令</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools">
+        <div class="shell">
+          <div class="section-title">
+            <h2>每個部分用什麼工具、是幹嘛的</h2>
+            <p>這不是唯一選擇，但這是一條適合從現有專案長出去的低摩擦路線。</p>
+          </div>
+
+          <div class="tool-grid">
+            <article class="tool-card">
+              <span class="tag blue">第一階段</span>
+              <h3>Next.js PWA</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>App 的 web 版和手機瀏覽器版。</dd>
+                <dt>白話</dt>
+                <dd>做畫面、頁面切換、登入後看資料，也能做薄 API。</dd>
+                <dt>為什麼選它</dt>
+                <dd>現有 New project 6 已經有 Next.js 雛形。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag green">第一階段</span>
+              <h3>Supabase Auth / Postgres / RLS</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>登入、資料庫、誰能看哪筆資料。</dd>
+                <dt>白話</dt>
+                <dd>會員系統加帳本，RLS 像每一列資料的門鎖。</dd>
+                <dt>為什麼選它</dt>
+                <dd>快速做出有權限控管的 SaaS app。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag gold">第一階段</span>
+              <h3>Storage / R2</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>放 JSON、PDF、報告、圖片、歷史輸出。</dd>
+                <dt>白話</dt>
+                <dd>雲端倉庫，資料庫只記檔案位置和版本。</dd>
+                <dt>為什麼選它</dt>
+                <dd>產出的東西會愈來愈多，不能全塞資料庫。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag green">第一階段</span>
+              <h3>FastAPI / Python Worker</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>模型、資料處理、產出檢查、上傳 API。</dd>
+                <dt>白話</dt>
+                <dd>後台工人，接住現在 Python 雷達和資料 pipeline。</dd>
+                <dt>為什麼選它</dt>
+                <dd>自動交易與雷達專案本來就很多 Python。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag violet">第二階段</span>
+              <h3>Cloud Run Jobs / Scheduler</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>每天定時產生或同步輸出。</dd>
+                <dt>白話</dt>
+                <dd>雲端鬧鐘加臨時工：時間到就跑，跑完就停。</dd>
+                <dt>備註</dt>
+                <dd>初期也可以先用本機排程上傳。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag violet">第二階段</span>
+              <h3>Stripe / Paddle</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>訂閱、付款、開通或取消權限。</dd>
+                <dt>白話</dt>
+                <dd>收銀台。付款成功後通知你的後端開門。</dd>
+                <dt>重要</dt>
+                <dd>付款結果要靠 webhook 回寫權限表。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag blue">第三階段</span>
+              <h3>Expo React Native</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>真正的 iOS / Android App。</dd>
+                <dt>白話</dt>
+                <dd>如果要上架 App Store、推播，就用它做手機 App。</dd>
+                <dt>為什麼晚點做</dt>
+                <dd>後端沒穩前，先做原生 App 會多一層麻煩。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag red">保留本機</span>
+              <h3>Local Broker Companion</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>券商登入、CA、live gate、下單安全檢查。</dd>
+                <dt>白話</dt>
+                <dd>放保險箱的本機小助手，不讓雲端拿到鑰匙。</dd>
+                <dt>第一階段</dt>
+                <dd>最多同步安全摘要，不讓雲端直接下單。</dd>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="build">
+        <div class="shell">
+          <div class="section-title">
+            <h2>這個 App 要怎麼做出來</h2>
+            <p>用小白版順序看，就是先做倉庫和帳本，再做櫃台，再做門面，最後再做手機原生版和本機券商橋。</p>
+          </div>
+
+          <div class="build-flow">
+            <div class="step">
+              <div>
+                <h3>先定義「產出的東西」長什麼樣</h3>
+                <p>例如：今日雷達 JSON、歷史榜 JSON、模型報告 PDF、資料健康摘要。每個輸出都要有 run_id、日期、版本、hash、能不能上雲。</p>
+              </div>
+              <span class="tag blue">產品契約</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做雲端倉庫和帳本</h3>
+                <p>Object Storage 放檔案；Postgres 記錄這是什麼檔、哪一天、哪個版本、誰能看、目前哪版是 live。</p>
+              </div>
+              <span class="tag gold">資料層</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做 Artifact Ingest API</h3>
+                <p>本機產出檔案後，不是直接丟上去，而是帶 manifest 上傳。API 檢查安全、格式、權限，再放進雲端倉庫。</p>
+              </div>
+              <span class="tag green">後端</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做登入和付費權限</h3>
+                <p>使用者登入後，API 檢查他是不是付費會員，決定回傳完整資料、延遲資料，或只給預覽。</p>
+              </div>
+              <span class="tag violet">會員</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做 Web App 第一版</h3>
+                <p>用 Next.js 做今日雷達、歷史榜、報告列表、提醒設定、帳號方案、Admin 狀態頁。先 PWA，不急著 App Store。</p>
+              </div>
+              <span class="tag blue">前台</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做自動更新排程</h3>
+                <p>每天收盤後產出新資料，驗證後上傳。初期可本機排程，穩定後搬到 Cloud Run Jobs / Scheduler。</p>
+              </div>
+              <span class="tag green">排程</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>做通知與觀察清單</h3>
+                <p>使用者設定股票或條件，新的雷達輸出命中時，在 App 內通知，之後再加 email 或手機 push。</p>
+              </div>
+              <span class="tag violet">通知</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>最後才接本機券商 Companion</h3>
+                <p>它只同步「安全摘要」和狀態到雲端，例如 last sync、dry-run/live gate、repair required。券商鑰匙仍留本機。</p>
+              </div>
+              <span class="tag red">安全邊界</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="screens">
+        <div class="shell">
+          <div class="section-title">
+            <h2>App 裡面會有哪些東西</h2>
+            <p>第一版不要做成空泛首頁，而是打開就能用的工作台。</p>
+          </div>
+
+          <div class="screen-grid">
+            <article class="app-screen">
+              <h3>登入 / 方案</h3>
+              <ul>
+                <li>Email / Google 登入</li>
+                <li>免費、付費、管理員權限</li>
+                <li>付款狀態與到期日</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>今日雷達</h3>
+              <ul>
+                <li>最新 as-of date</li>
+                <li>Top candidates</li>
+                <li>分數、理由、風險旗標</li>
+                <li>資料新鮮度</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>歷史榜</h3>
+              <ul>
+                <li>每日 Top20</li>
+                <li>黃金榜區域</li>
+                <li>日期卡片展開</li>
+                <li>分數變化</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>觀察清單 / 提醒</h3>
+              <ul>
+                <li>我的股票清單</li>
+                <li>進榜提醒</li>
+                <li>分數門檻提醒</li>
+                <li>資料異常提醒</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>報告中心</h3>
+              <ul>
+                <li>模型報告</li>
+                <li>回測摘要</li>
+                <li>資料來源狀態</li>
+                <li>版本紀錄</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Admin 後台</h3>
+              <ul>
+                <li>今天上傳成功嗎</li>
+                <li>目前 live run 是哪個</li>
+                <li>誰有權限</li>
+                <li>錯誤與審核紀錄</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="phases">
+        <div class="shell">
+          <div class="section-title">
+            <h2>分階段做，不會一次爆炸</h2>
+            <p>點下面的階段看每一輪交付什麼。第一輪的目標不是炫，是把資料上雲、權限打通、App 能穩定讀。</p>
+          </div>
+
+          <div class="phase-tabs" role="tablist" aria-label="開發階段">
+            <button class="active" data-phase="0" type="button">Phase 0</button>
+            <button data-phase="1" type="button">Phase 1</button>
+            <button data-phase="2" type="button">Phase 2</button>
+            <button data-phase="3" type="button">Phase 3</button>
+            <button data-phase="4" type="button">Phase 4</button>
+          </div>
+
+          <div class="phase-panel active" data-panel="0">
+            <h3>Phase 0：產品契約和雲端邊界</h3>
+            <p>決定第一批上雲的檔案、manifest 格式、會員權限、第一版畫面、哪些資料禁止上雲。這階段是避免做錯方向。</p>
+          </div>
+          <div class="phase-panel" data-panel="1">
+            <h3>Phase 1：Cloud Artifact Registry</h3>
+            <p>做資料庫、雲端儲存、上傳 API、Admin 檢查頁。能把一份雷達 snapshot 安全上傳，並由後端讀出。</p>
+          </div>
+          <div class="phase-panel" data-panel="2">
+            <h3>Phase 2：Next.js PWA App</h3>
+            <p>做登入後的今日雷達、歷史榜、報告中心、會員鎖定區。這時它已經像真正 App，不是靜態頁。</p>
+          </div>
+          <div class="phase-panel" data-panel="3">
+            <h3>Phase 3：自動更新與通知</h3>
+            <p>每天自動產生、驗證、上傳、通知。使用者可以設定觀察清單和提醒規則。</p>
+          </div>
+          <div class="phase-panel" data-panel="4">
+            <h3>Phase 4：手機原生 App / 本機券商 Companion</h3>
+            <p>如果需要 App Store、推播或手機體驗，再做 Expo 原生 App。本機券商 companion 只同步狀態，不讓雲端拿下單鑰匙。</p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell">
+          <div class="section-title">
+            <h2>最短白話總結</h2>
+            <p>如果只記一張圖，就記這個。</p>
+          </div>
+
+          <div class="panel">
+            <div class="panel-header">一句話版本</div>
+            <div style="padding: 18px">
+              <p>
+                <strong>Next.js</strong> 做使用者看到的 App；
+                <strong>API</strong> 負責檢查權限和拿資料；
+                <strong>Database</strong> 記誰、哪份資料、誰能看；
+                <strong>Storage</strong> 放產出的 JSON/報告/圖片；
+                <strong>Worker/Scheduler</strong> 定時產出和上傳；
+                <strong>Stripe/Paddle</strong> 處理付款；
+                <strong>Local Companion</strong> 保留券商鑰匙和下單安全。
+              </p>
+              <p>
+                第一版先做「雲端雷達資料產品」，不要直接做「雲端幫你下單」。前者快、可賣、風險低；後者要等產品和安全邊界都成熟。
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="shell">
+          <div class="section-title">
+            <h2>官方文件參考</h2>
+            <p>這些是用來確認每個工具定位的官方來源。</p>
+          </div>
+
+          <ul class="source-list">
+            <li><a href="https://nextjs.org/docs/app/getting-started/route-handlers">Next.js Route Handlers</a></li>
+            <li><a href="https://nextjs.org/docs/app">Next.js App Router</a></li>
+            <li><a href="https://supabase.com/docs/guides/database/postgres/row-level-security">Supabase Row Level Security</a></li>
+            <li><a href="https://supabase.com/docs">Supabase Auth / Database / Storage / Realtime</a></li>
+            <li><a href="https://developers.cloudflare.com/r2/">Cloudflare R2 Object Storage</a></li>
+            <li><a href="https://fastapi.tiangolo.com/deployment/docker/">FastAPI in Containers</a></li>
+            <li><a href="https://cloud.google.com/run">Google Cloud Run</a></li>
+            <li><a href="https://docs.cloud.google.com/scheduler/docs">Google Cloud Scheduler</a></li>
+            <li><a href="https://docs.expo.dev/push-notifications/overview/">Expo Push Notifications</a></li>
+            <li><a href="https://docs.stripe.com/billing/entitlements">Stripe Entitlements</a></li>
+            <li><a href="https://developer.paddle.com/build/subscriptions/provision-access-webhooks">Paddle subscription webhooks</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell">
+        <p>
+          Canonical 本體保存在交易系統 App project 的 hub/trading-system-app-map/index.html。
+          本頁是交易系統 App 的產品地圖，不是正式產品實作，也沒有連接任何券商、付款或雲端服務。
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      const buttons = document.querySelectorAll("[data-phase]");
+      const panels = document.querySelectorAll("[data-panel]");
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const phase = button.dataset.phase;
+          buttons.forEach((item) => item.classList.toggle("active", item === button));
+          panels.forEach((panel) => panel.classList.toggle("active", panel.dataset.panel === phase));
+        });
+      });
+    </script>
+  </body>
+</html>
