@@ -614,6 +614,7 @@
         </div>
         <nav class="nav" aria-label="頁面導覽">
           <a href="#next">Next.js</a>
+          <a href="#final-mode">最終模式</a>
           <a href="#map">系統地圖</a>
           <a href="#tools">工具</a>
           <a href="#build">怎麼做</a>
@@ -628,58 +629,58 @@
         <div class="shell hero-grid">
           <div>
             <p class="eyebrow">Chairman Brief Translation</p>
-            <h1>交易系統app地圖：把「產出的東西」做成雲端 App。</h1>
+            <h1>交易系統app地圖：手機 App 連雲端模型，本機永豐 Python 下單。</h1>
             <p class="lead">
-              可以先把它想成一個有登入、有資料庫、有雲端倉庫、有自動更新、有通知、有付款權限的產品。現在的雷達 JSON、歷史榜、報告、資料健康狀態，就是第一批要上雲的「貨」。
+              最終模式不是單純把網頁放上雲，而是做成可上架的手機 App。使用者購買雲端量化模型後，在 App 端看策略、訊號、回測與預算下單草稿；真正的委託送到客戶本機，再由客戶自己的永豐 Python 交易平台執行。
             </p>
             <div class="mini-points">
               <div class="mini-point">
-                <strong>使用者看到什麼</strong>
-                <span>手機或網頁 App：今日雷達、歷史榜、提醒、報告、帳號方案。</span>
+                <strong>手機 App 做什麼</strong>
+                <span>策略商店、我的模型、訊號提醒、預算下單、家中主機連線狀態。</span>
               </div>
               <div class="mini-point">
                 <strong>雲端保存什麼</strong>
-                <span>產出的 snapshot、報告檔、圖片、版本、誰能看、什麼時候更新。</span>
+                <span>量化模型本體、模型版本、訊號輸出、回測說明、使用者權限與付款狀態。</span>
               </div>
               <div class="mini-point">
                 <strong>本機保留什麼</strong>
-                <span>券商 API key、CA、.env、下單 live gate，先不搬到雲端。</span>
+                <span>永豐 API key、Secret、CA、交易帳號、模擬/實盤 gate 與真正下單程式。</span>
               </div>
             </div>
           </div>
 
           <aside class="panel" aria-label="App 示意">
-            <div class="panel-header">第一版 App 可能長這樣</div>
+            <div class="panel-header">手機端工作台</div>
             <div class="phone">
               <div class="screen">
                 <div class="screen-top">
-                  <strong>今日雷達</strong>
-                  <small>2026-06-22 17:10</small>
+                  <strong>我的策略</strong>
+                  <small>已連線 家中主機</small>
                 </div>
                 <div class="screen-body">
                   <div class="metric-row">
                     <span class="rank">1</span>
                     <span>
-                      <strong>短線爆發雷達 Top 1</strong><br />
-                      <small>分數、理由、資料新鮮度</small>
+                      <strong>穩定波段策略</strong><br />
+                      <small>模擬模式 / 零風險練習交易</small>
                     </span>
-                    <strong>67.9</strong>
+                    <strong>啟用</strong>
                   </div>
                   <div class="metric-row">
                     <span class="rank">2</span>
                     <span>
-                      <strong>黃金榜追蹤</strong><br />
-                      <small>最近 10 個交易日</small>
+                      <strong>黃金十字星策略</strong><br />
+                      <small>均線交叉 / 抓趨勢起點</small>
                     </span>
-                    <strong>新</strong>
+                    <strong>已購</strong>
                   </div>
                   <div class="metric-row">
                     <span class="rank">3</span>
                     <span>
-                      <strong>我的觀察清單命中</strong><br />
-                      <small>符合條件就通知</small>
+                      <strong>預算下單</strong><br />
+                      <small>2330 / 100,000 元 / 送到本機</small>
                     </span>
-                    <strong>4</strong>
+                    <strong>草稿</strong>
                   </div>
                 </div>
               </div>
@@ -714,43 +715,122 @@
         </div>
       </section>
 
+      <section id="final-mode">
+        <div class="shell">
+          <div class="section-title">
+            <h2>最終模式：手機 App、雲端模型、本機下單橋</h2>
+            <p>用一句話說：雲端賣模型和權限，手機負責操作，本機負責接券商與下單。</p>
+          </div>
+
+          <div class="map" aria-label="手機 App 到本機永豐 Python 交易平台流程">
+            <div class="stack">
+              <div class="node">
+                <h3><span class="tag blue">手機</span> App Store / Google Play App</h3>
+                <p>使用者登入、購買模型、看策略說明、看訊號、設定預算，產生「輔助下單」草稿。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag violet">權限</span> 訂閱與模型授權</h3>
+                <p>買了哪一套模型，就能在 App 使用哪一套模型；權限由後端檢查，不靠前端藏按鈕。</p>
+              </div>
+            </div>
+
+            <div class="arrow-col" aria-hidden="true">
+              <div class="arrow">App 請求模型</div>
+              <div class="arrow">雲端檢查權限</div>
+              <div class="arrow">送出委託意圖</div>
+            </div>
+
+            <div class="stack">
+              <div class="node">
+                <h3><span class="tag green">雲端</span> Quant Model Service</h3>
+                <p>保存研究過的量化模型、版本、訊號輸出、回測說明與風險提示。雲端不碰券商鑰匙。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag gold">佇列</span> Order Intent / Relay</h3>
+                <p>手機送出的不是直接下單指令，而是已授權、可追蹤、可取消的委託意圖，等本機 companion 取回處理。</p>
+              </div>
+            </div>
+
+            <div class="arrow-col" aria-hidden="true">
+              <div class="arrow">本機取回</div>
+              <div class="arrow">本機風控</div>
+              <div class="arrow">永豐 Python 下單</div>
+            </div>
+
+            <div class="stack">
+              <div class="node">
+                <h3><span class="tag red">本機</span> SinoPac Python Companion</h3>
+                <p>安裝在客戶自己的電腦，保存 API Key、Secret、CA 與交易帳號，做模擬/實盤 gate 和下單前檢查。</p>
+              </div>
+              <div class="node">
+                <h3><span class="tag red">券商</span> 客戶自己的永豐交易平台</h3>
+                <p>真正委託由客戶本機環境送出。App 是輔助工具，不是雲端直接代替客戶下單。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="split" style="margin-top: 16px">
+            <div class="safe">
+              <h3>雲端可以保存</h3>
+              <ul class="checklist">
+                <li>量化模型本體與模型版本</li>
+                <li>模型訊號、回測說明、限制提醒</li>
+                <li>使用者、訂閱、模型授權與付款狀態</li>
+                <li>App 送出的委託意圖 metadata</li>
+                <li>本機 companion 的健康狀態與最後同步時間</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <h3>雲端不能保存</h3>
+              <ul class="checklist">
+                <li>永豐 API Key / Secret Key</li>
+                <li>CA 憑證、CA 密碼與券商登入秘密</li>
+                <li><code>.env</code>、cookies、browser profile</li>
+                <li>帳戶資金與下單 raw state 的未授權副本</li>
+                <li>繞過使用者確認或本機 live gate 的下單命令</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="map">
         <div class="shell">
           <div class="section-title">
             <h2>整套系統地圖</h2>
-            <p>把它想成一間店：App 是門面，API 是櫃台，資料庫是帳本，雲端儲存是倉庫，Worker 是每天補貨的人。</p>
+            <p>把它想成三層：手機是方向盤，雲端是模型和權限中心，本機 companion 是真正接永豐 Python 的駕駛室。</p>
           </div>
 
           <div class="map" aria-label="自動交易 App 雲端架構圖">
             <div class="stack">
               <div class="node">
-                <h3><span class="tag blue">前台</span> App / Web App</h3>
-                <p>使用者打開手機或瀏覽器看到的地方。看今日雷達、歷史榜、報告、通知、方案權限。</p>
+                <h3><span class="tag blue">前台</span> Mobile App</h3>
+                <p>使用者打開手機看到的地方。看策略、模型訊號、回測說明、提醒、預算下單與家中主機狀態。</p>
               </div>
               <div class="node">
                 <h3><span class="tag violet">會員</span> 登入與付款權限</h3>
-                <p>判斷這個人是誰、付費了沒、能看哪些資料。不能只靠前端藏按鈕。</p>
+                <p>判斷這個人是誰、付費了沒、買了哪套模型、能不能使用該模型。不能只靠前端藏按鈕。</p>
               </div>
             </div>
 
             <div class="arrow-col" aria-hidden="true">
-              <div class="arrow">使用者請求資料</div>
+              <div class="arrow">請求模型訊號</div>
               <div class="arrow">API 檢查權限</div>
-              <div class="arrow">回傳可看的內容</div>
+              <div class="arrow">送出委託意圖</div>
             </div>
 
             <div class="stack">
               <div class="node">
                 <h3><span class="tag green">後端</span> API 伺服器</h3>
-                <p>App 不直接亂拿檔案，而是問 API。API 檢查登入、權限、版本，再回傳資料。</p>
+                <p>App 不直接亂拿檔案或模型，而是問 API。API 檢查登入、權限、模型版本，再回傳可用訊號。</p>
               </div>
               <div class="node">
                 <h3><span class="tag gold">資料</span> Database</h3>
-                <p>保存使用者、訂閱、權限、雷達 run metadata、上傳紀錄、通知規則。</p>
+                <p>保存使用者、訂閱、模型授權、模型版本、訊號 run metadata、通知規則與委託意圖紀錄。</p>
               </div>
               <div class="node">
                 <h3><span class="tag gold">倉庫</span> Object Storage</h3>
-                <p>放比較大的產出：snapshot JSON、報告、圖片、PDF、歷史檔案。</p>
+                <p>放比較大的模型資產與產出檔：snapshot JSON、回測報告、策略說明、PDF、圖片、歷史資料包。</p>
               </div>
             </div>
           </div>
@@ -759,23 +839,23 @@
             <div class="safe">
               <h3>可以上雲的東西</h3>
               <ul class="checklist">
-                <li>雷達 snapshot JSON</li>
-                <li>每日 Top20 / 黃金榜歷史</li>
-                <li>資料健康狀態摘要</li>
-                <li>回測與模型報告</li>
+                <li>量化模型本體與版本</li>
+                <li>模型訊號 snapshot JSON</li>
+                <li>策略說明與回測報告</li>
+                <li>資料健康狀態與模型 run metadata</li>
                 <li>使用者觀察清單</li>
-                <li>通知規則與方案權限</li>
+                <li>通知規則、方案權限與委託意圖 metadata</li>
               </ul>
             </div>
             <div class="warning">
               <h3>第一階段不要上雲的東西</h3>
               <ul class="checklist">
-                <li>券商 API key / secret</li>
+                <li>永豐 API key / secret</li>
                 <li>CA 憑證與密碼</li>
                 <li><code>.env</code></li>
                 <li>帳戶、資金、下單 raw state</li>
                 <li>private DB raw rows</li>
-                <li>直接繞過本機 live gate 的下單命令</li>
+                <li>直接繞過使用者確認或本機 live gate 的下單命令</li>
               </ul>
             </div>
           </div>
@@ -795,9 +875,9 @@
               <h3>Next.js PWA</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>App 的 web 版和手機瀏覽器版。</dd>
+                <dd>早期 web prototype、管理端、產品地圖和雲端後台頁。</dd>
                 <dt>白話</dt>
-                <dd>做畫面、頁面切換、登入後看資料，也能做薄 API。</dd>
+                <dd>先把流程和資料跑通；它不是最終上架手機 App 的唯一形態。</dd>
                 <dt>為什麼選它</dt>
                 <dd>現有 New project 6 已經有 Next.js 雛形。</dd>
               </dl>
@@ -808,11 +888,11 @@
               <h3>Supabase Auth / Postgres / RLS</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>登入、資料庫、誰能看哪筆資料。</dd>
+                <dd>登入、資料庫、誰買了哪套模型、誰能用哪個訊號。</dd>
                 <dt>白話</dt>
                 <dd>會員系統加帳本，RLS 像每一列資料的門鎖。</dd>
                 <dt>為什麼選它</dt>
-                <dd>快速做出有權限控管的 SaaS app。</dd>
+                <dd>快速做出模型授權、訂閱、使用者權限和後端保護。</dd>
               </dl>
             </article>
 
@@ -821,7 +901,7 @@
               <h3>Storage / R2</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>放 JSON、PDF、報告、圖片、歷史輸出。</dd>
+                <dd>放模型包、訊號 JSON、PDF、回測報告、圖片、歷史輸出。</dd>
                 <dt>白話</dt>
                 <dd>雲端倉庫，資料庫只記檔案位置和版本。</dd>
                 <dt>為什麼選它</dt>
@@ -834,9 +914,9 @@
               <h3>FastAPI / Python Worker</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>模型、資料處理、產出檢查、上傳 API。</dd>
+                <dd>量化模型服務、資料處理、訊號產生、產出檢查、上傳 API。</dd>
                 <dt>白話</dt>
-                <dd>後台工人，接住現在 Python 雷達和資料 pipeline。</dd>
+                <dd>雲端模型引擎和後台工人，接住現在 Python 雷達和資料 pipeline。</dd>
                 <dt>為什麼選它</dt>
                 <dd>自動交易與雷達專案本來就很多 Python。</dd>
               </dl>
@@ -847,7 +927,7 @@
               <h3>Cloud Run Jobs / Scheduler</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>每天定時產生或同步輸出。</dd>
+                <dd>每天定時產生模型訊號、同步輸出、更新資料健康狀態。</dd>
                 <dt>白話</dt>
                 <dd>雲端鬧鐘加臨時工：時間到就跑，跑完就停。</dd>
                 <dt>備註</dt>
@@ -873,24 +953,37 @@
               <h3>Expo React Native</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>真正的 iOS / Android App。</dd>
+                <dd>最終要上架的 iOS / Android App。</dd>
                 <dt>白話</dt>
-                <dd>如果要上架 App Store、推播，就用它做手機 App。</dd>
-                <dt>為什麼晚點做</dt>
-                <dd>後端沒穩前，先做原生 App 會多一層麻煩。</dd>
+                <dd>做策略列表、我的模型、預算下單、家中主機狀態、推播提醒。</dd>
+                <dt>備註</dt>
+                <dd>可先用 prototype 驗流程，再進 App Store / Google Play 上架 gate。</dd>
+              </dl>
+            </article>
+
+            <article class="tool-card">
+              <span class="tag gold">下單橋</span>
+              <h3>Order Intent Relay</h3>
+              <dl>
+                <dt>用在哪</dt>
+                <dd>手機 App 把已確認的委託意圖送給本機 companion。</dd>
+                <dt>白話</dt>
+                <dd>像傳一張有簽名、有紀錄、可取消的委託單，不是雲端直接按下單。</dd>
+                <dt>重要</dt>
+                <dd>必須有使用者確認、權限檢查、本機風控與完整 audit log。</dd>
               </dl>
             </article>
 
             <article class="tool-card">
               <span class="tag red">保留本機</span>
-              <h3>Local Broker Companion</h3>
+              <h3>SinoPac Python Companion</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>券商登入、CA、live gate、下單安全檢查。</dd>
+                <dd>永豐 API Key、Secret、CA、交易帳號、模擬/實盤 gate、下單安全檢查。</dd>
                 <dt>白話</dt>
-                <dd>放保險箱的本機小助手，不讓雲端拿到鑰匙。</dd>
-                <dt>第一階段</dt>
-                <dd>最多同步安全摘要，不讓雲端直接下單。</dd>
+                <dd>客戶電腦裡的保險箱和執行員，不讓雲端拿到券商鑰匙。</dd>
+                <dt>第一輪</dt>
+                <dd>先做 simulator / dry-run；真正接永豐 Python 可放後面做。</dd>
               </dl>
             </article>
           </div>
@@ -901,70 +994,70 @@
         <div class="shell">
           <div class="section-title">
             <h2>這個 App 要怎麼做出來</h2>
-            <p>用小白版順序看，就是先做倉庫和帳本，再做櫃台，再做門面，最後再做手機原生版和本機券商橋。</p>
+            <p>用小白版順序看，就是先定模型商品與權限，再做雲端模型服務，接著做手機 App，最後做本機永豐 Python companion。</p>
           </div>
 
           <div class="build-flow">
             <div class="step">
               <div>
-                <h3>先定義「產出的東西」長什麼樣</h3>
-                <p>例如：今日雷達 JSON、歷史榜 JSON、模型報告 PDF、資料健康摘要。每個輸出都要有 run_id、日期、版本、hash、能不能上雲。</p>
+                <h3>先定義「模型商品」長什麼樣</h3>
+                <p>例如：穩定波段策略、黃金十字星策略、短線雷達模型。每套模型都要有版本、訊號格式、回測說明、限制提醒、誰能使用。</p>
               </div>
               <span class="tag blue">產品契約</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做雲端倉庫和帳本</h3>
-                <p>Object Storage 放檔案；Postgres 記錄這是什麼檔、哪一天、哪個版本、誰能看、目前哪版是 live。</p>
+                <h3>做雲端模型 registry 和權限帳本</h3>
+                <p>Object Storage 放模型包與報告；Postgres 記錄模型版本、訊號 run、訂閱方案、使用者授權與目前哪版是 live。</p>
               </div>
               <span class="tag gold">資料層</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做 Artifact Ingest API</h3>
-                <p>本機產出檔案後，不是直接丟上去，而是帶 manifest 上傳。API 檢查安全、格式、權限，再放進雲端倉庫。</p>
+                <h3>做 Model Signal API</h3>
+                <p>App 要拿訊號時先問 API。API 檢查登入、付款、模型授權、版本，再回傳策略訊號與說明。</p>
               </div>
               <span class="tag green">後端</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做登入和付費權限</h3>
-                <p>使用者登入後，API 檢查他是不是付費會員，決定回傳完整資料、延遲資料，或只給預覽。</p>
+                <h3>做登入、付款和模型授權</h3>
+                <p>使用者登入後，API 檢查他買了哪套模型，決定回傳完整訊號、延遲資料，或只給策略預覽。</p>
               </div>
               <span class="tag violet">會員</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做 Web App 第一版</h3>
-                <p>用 Next.js 做今日雷達、歷史榜、報告列表、提醒設定、帳號方案、Admin 狀態頁。先 PWA，不急著 App Store。</p>
+                <h3>做手機 App prototype</h3>
+                <p>先做我的策略、模型訊號、策略說明、預算下單草稿、家中主機連線狀態。可先 prototype，再進原生 App 上架流程。</p>
               </div>
               <span class="tag blue">前台</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做自動更新排程</h3>
-                <p>每天收盤後產出新資料，驗證後上傳。初期可本機排程，穩定後搬到 Cloud Run Jobs / Scheduler。</p>
+                <h3>做模型訊號更新排程</h3>
+                <p>每天收盤後產生模型訊號、驗證資料、更新版本與權限可見狀態。初期可本機排程，穩定後搬到 Cloud Run Jobs / Scheduler。</p>
               </div>
               <span class="tag green">排程</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>做通知與觀察清單</h3>
-                <p>使用者設定股票或條件，新的雷達輸出命中時，在 App 內通知，之後再加 email 或手機 push。</p>
+                <h3>做通知、觀察清單與預算下單草稿</h3>
+                <p>使用者設定股票或條件，模型命中時在 App 內通知；使用者確認後才產生委託意圖，不直接雲端下單。</p>
               </div>
               <span class="tag violet">通知</span>
             </div>
 
             <div class="step">
               <div>
-                <h3>最後才接本機券商 Companion</h3>
-                <p>它只同步「安全摘要」和狀態到雲端，例如 last sync、dry-run/live gate、repair required。券商鑰匙仍留本機。</p>
+                <h3>接本機永豐 Python Companion</h3>
+                <p>先做 simulator / dry-run，之後再接永豐 Python。它取回委託意圖、做本機風控、檢查模擬/實盤 gate，券商鑰匙仍留本機。</p>
               </div>
               <span class="tag red">安全邊界</span>
             </div>
@@ -984,53 +1077,53 @@
               <h3>登入 / 方案</h3>
               <ul>
                 <li>Email / Google 登入</li>
-                <li>免費、付費、管理員權限</li>
+                <li>免費、付費、管理員與模型授權</li>
                 <li>付款狀態與到期日</li>
               </ul>
             </article>
             <article class="app-screen">
-              <h3>今日雷達</h3>
+              <h3>我的策略</h3>
               <ul>
-                <li>最新 as-of date</li>
-                <li>Top candidates</li>
-                <li>分數、理由、風險旗標</li>
-                <li>資料新鮮度</li>
+                <li>已購買模型列表</li>
+                <li>模擬 / 實盤模式標記</li>
+                <li>策略說明與教學影片入口</li>
+                <li>啟用、暫停與提醒設定</li>
               </ul>
             </article>
             <article class="app-screen">
-              <h3>歷史榜</h3>
+              <h3>模型訊號</h3>
               <ul>
-                <li>每日 Top20</li>
-                <li>黃金榜區域</li>
-                <li>日期卡片展開</li>
-                <li>分數變化</li>
+                <li>今日訊號與參考價</li>
+                <li>模型理由、限制、風險旗標</li>
+                <li>歷史訊號與回測摘要</li>
+                <li>資料新鮮度與版本</li>
               </ul>
             </article>
             <article class="app-screen">
-              <h3>觀察清單 / 提醒</h3>
+              <h3>預算下單</h3>
               <ul>
-                <li>我的股票清單</li>
-                <li>進榜提醒</li>
-                <li>分數門檻提醒</li>
-                <li>資料異常提醒</li>
+                <li>股票代號與預算金額</li>
+                <li>參考價與預估股數</li>
+                <li>送出委託意圖到本機</li>
+                <li>使用者確認與取消</li>
               </ul>
             </article>
             <article class="app-screen">
-              <h3>報告中心</h3>
+              <h3>家中主機 / Companion</h3>
               <ul>
-                <li>模型報告</li>
-                <li>回測摘要</li>
-                <li>資料來源狀態</li>
-                <li>版本紀錄</li>
+                <li>連線狀態與最後同步</li>
+                <li>模擬 / 實盤 gate</li>
+                <li>待處理委託意圖</li>
+                <li>本機錯誤與修復提醒</li>
               </ul>
             </article>
             <article class="app-screen">
-              <h3>Admin 後台</h3>
+              <h3>Admin / 模型後台</h3>
               <ul>
-                <li>今天上傳成功嗎</li>
-                <li>目前 live run 是哪個</li>
-                <li>誰有權限</li>
-                <li>錯誤與審核紀錄</li>
+                <li>目前 live 模型版本</li>
+                <li>誰有哪套模型權限</li>
+                <li>訊號 run 與資料健康</li>
+                <li>委託意圖 audit log</li>
               </ul>
             </article>
           </div>
@@ -1041,7 +1134,7 @@
         <div class="shell">
           <div class="section-title">
             <h2>分階段做，不會一次爆炸</h2>
-            <p>點下面的階段看每一輪交付什麼。第一輪的目標不是炫，是把資料上雲、權限打通、App 能穩定讀。</p>
+            <p>點下面的階段看每一輪交付什麼。最終目標是手機上架，但第一輪先把模型、權限、下單邊界定清楚。</p>
           </div>
 
           <div class="phase-tabs" role="tablist" aria-label="開發階段">
@@ -1050,27 +1143,32 @@
             <button data-phase="2" type="button">Phase 2</button>
             <button data-phase="3" type="button">Phase 3</button>
             <button data-phase="4" type="button">Phase 4</button>
+            <button data-phase="5" type="button">Phase 5</button>
           </div>
 
           <div class="phase-panel active" data-panel="0">
-            <h3>Phase 0：產品契約和雲端邊界</h3>
-            <p>決定第一批上雲的檔案、manifest 格式、會員權限、第一版畫面、哪些資料禁止上雲。這階段是避免做錯方向。</p>
+            <h3>Phase 0：產品契約、模型包、下單邊界</h3>
+            <p>決定模型包格式、手機主畫面、輔助下單流程、使用者確認點、哪些資料可以上雲、哪些券商秘密必須留本機。</p>
           </div>
           <div class="phase-panel" data-panel="1">
-            <h3>Phase 1：Cloud Artifact Registry</h3>
-            <p>做資料庫、雲端儲存、上傳 API、Admin 檢查頁。能把一份雷達 snapshot 安全上傳，並由後端讀出。</p>
+            <h3>Phase 1：Cloud Model Registry / Entitlements</h3>
+            <p>做模型 registry、模型版本、訊號 API、使用者授權、付款權限與 Admin 檢查頁。能讓已購買使用者讀到正確模型訊號。</p>
           </div>
           <div class="phase-panel" data-panel="2">
-            <h3>Phase 2：Next.js PWA App</h3>
-            <p>做登入後的今日雷達、歷史榜、報告中心、會員鎖定區。這時它已經像真正 App，不是靜態頁。</p>
+            <h3>Phase 2：Mobile App Prototype</h3>
+            <p>做我的策略、模型訊號、策略說明、預算下單草稿、家中主機狀態。可先用 PWA/prototype 驗流程，再進 Expo 原生 App。</p>
           </div>
           <div class="phase-panel" data-panel="3">
-            <h3>Phase 3：自動更新與通知</h3>
-            <p>每天自動產生、驗證、上傳、通知。使用者可以設定觀察清單和提醒規則。</p>
+            <h3>Phase 3：Order Intent / Companion Simulator</h3>
+            <p>手機送出的下單不是直接下券商，而是委託意圖。先做本機 simulator / dry-run，驗證權限、風控、audit log 和取消流程。</p>
           </div>
           <div class="phase-panel" data-panel="4">
-            <h3>Phase 4：手機原生 App / 本機券商 Companion</h3>
-            <p>如果需要 App Store、推播或手機體驗，再做 Expo 原生 App。本機券商 companion 只同步狀態，不讓雲端拿下單鑰匙。</p>
+            <h3>Phase 4：永豐 Python Companion</h3>
+            <p>在客戶本機接 API Key、Secret、CA、交易帳號、測試連線、模擬/實盤 gate。真正委託由本機透過客戶自己的永豐 Python 平台執行。</p>
+          </div>
+          <div class="phase-panel" data-panel="5">
+            <h3>Phase 5：App Store / Google Play 上架</h3>
+            <p>手機 App 完成登入、模型權限、推播、預算下單、主機連線狀態、說明與風險提示後，再進平台上架與正式使用者 onboarding。</p>
           </div>
         </div>
       </section>
@@ -1086,16 +1184,16 @@
             <div class="panel-header">一句話版本</div>
             <div style="padding: 18px">
               <p>
-                <strong>Next.js</strong> 做使用者看到的 App；
-                <strong>API</strong> 負責檢查權限和拿資料；
-                <strong>Database</strong> 記誰、哪份資料、誰能看；
-                <strong>Storage</strong> 放產出的 JSON/報告/圖片；
-                <strong>Worker/Scheduler</strong> 定時產出和上傳；
-                <strong>Stripe/Paddle</strong> 處理付款；
-                <strong>Local Companion</strong> 保留券商鑰匙和下單安全。
+                <strong>手機 App</strong> 給使用者看策略、訊號與預算下單；
+                <strong>Cloud Model API</strong> 負責檢查權限和回傳已購買模型；
+                <strong>Database</strong> 記使用者、訂閱、模型授權和委託意圖；
+                <strong>Storage</strong> 放模型包、訊號 JSON、回測報告和策略說明；
+                <strong>Worker/Scheduler</strong> 定時更新模型訊號；
+                <strong>Stripe/Paddle</strong> 處理付款與權限開通；
+                <strong>SinoPac Python Companion</strong> 留在客戶本機保管券商鑰匙並執行下單。
               </p>
               <p>
-                第一版先做「雲端雷達資料產品」，不要直接做「雲端幫你下單」。前者快、可賣、風險低；後者要等產品和安全邊界都成熟。
+                正確定位是「手機 App + 雲端量化模型/權限 + 本機永豐 Python companion」。App 可以輔助下單，但不是雲端直接代替客戶下單。
               </p>
             </div>
           </div>
