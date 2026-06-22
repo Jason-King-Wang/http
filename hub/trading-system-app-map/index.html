@@ -615,6 +615,7 @@
         <nav class="nav" aria-label="頁面導覽">
           <a href="#next">Next.js</a>
           <a href="#final-mode">最終模式</a>
+          <a href="#web-platform-start">起步平台</a>
           <a href="#model-extension">模型擴充</a>
           <a href="#map">系統地圖</a>
           <a href="#tools">工具</a>
@@ -796,6 +797,77 @@
         </div>
       </section>
 
+      <section id="web-platform-start">
+        <div class="shell">
+          <div class="section-title">
+            <h2>先從網路平台開始收費</h2>
+            <p>手機 App 是終極模式；第一步先做 web 平台，把帳號、付款、模型權限和付費方案跑通。</p>
+          </div>
+
+          <div class="screen-grid">
+            <article class="app-screen">
+              <h3>免費帳號</h3>
+              <ul>
+                <li>免費建立帳號</li>
+                <li>目前先不開放核心模型功能</li>
+                <li>預留未來試用、模型預覽、通知入口</li>
+                <li>可作為付費轉換前的會員池</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>短線雷達</h3>
+              <ul>
+                <li>NT$1,000 / 月</li>
+                <li>開通短線雷達頁面與訊號</li>
+                <li>包含短線雷達的更新與維護</li>
+                <li>不包含 AB 選股模型</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>AB 選股模型</h3>
+              <ul>
+                <li>NT$3,000 / 月</li>
+                <li>開通 AB 選股模型頁面與訊號</li>
+                <li>包含 AB 模型的更新與維護</li>
+                <li>不包含短線雷達</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>通吃方案</h3>
+              <ul>
+                <li>NT$3,500 / 月</li>
+                <li>包含 AB 選股模型與短線雷達</li>
+                <li>未來新增量化模型可納入此方案更新</li>
+                <li>是之後模型商店的核心套餐</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="split" style="margin-top: 16px">
+            <div class="safe">
+              <h3>第一版 web 平台要先做</h3>
+              <ul class="checklist">
+                <li>帳號登入與會員資料</li>
+                <li>方案表：free、short_radar、ab_model、all_access</li>
+                <li>付款成功後自動開通模型權限</li>
+                <li>到期、取消、退款後自動收回權限</li>
+                <li>依權限顯示 AB / 短線雷達頁面</li>
+              </ul>
+            </div>
+            <div class="warning">
+              <h3>第一版先不要做</h3>
+              <ul class="checklist">
+                <li>不要一開始就衝手機上架</li>
+                <li>不要先接本機永豐 Python 下單</li>
+                <li>不要把每個模型寫死在前端</li>
+                <li>不要讓免費帳號看到完整付費訊號</li>
+                <li>不要讓付款和權限用手動表格維護</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="model-extension">
         <div class="shell">
           <div class="section-title">
@@ -957,7 +1029,7 @@
               <h3>Supabase Auth / Postgres / RLS</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>登入、資料庫、誰買了哪套模型、誰能用哪個訊號。</dd>
+                <dd>登入、資料庫、free / 短線雷達 / AB / 通吃方案、誰能用哪個訊號。</dd>
                 <dt>白話</dt>
                 <dd>會員系統加帳本，RLS 像每一列資料的門鎖。</dd>
                 <dt>為什麼選它</dt>
@@ -1022,7 +1094,7 @@
               <h3>Stripe / Paddle</h3>
               <dl>
                 <dt>用在哪</dt>
-                <dd>訂閱、付款、開通或取消權限。</dd>
+                <dd>訂閱、付款、開通或取消權限；第一版方案是短線雷達 1000/月、AB 3000/月、通吃 3500/月。</dd>
                 <dt>白話</dt>
                 <dd>收銀台。付款成功後通知你的後端開門。</dd>
                 <dt>重要</dt>
@@ -1076,16 +1148,24 @@
         <div class="shell">
           <div class="section-title">
             <h2>這個 App 要怎麼做出來</h2>
-            <p>用小白版順序看，就是先定模型商品與權限，再做雲端模型服務，接著做手機 App，最後做本機永豐 Python companion。</p>
+            <p>用小白版順序看，就是先做網路平台收費與權限，再做雲端模型服務，接著做手機 App，最後做本機永豐 Python companion。</p>
           </div>
 
           <div class="build-flow">
             <div class="step">
               <div>
                 <h3>先定義「模型商品」長什麼樣</h3>
-                <p>例如：穩定波段策略、黃金十字星策略、短線雷達模型。每套模型都要有版本、訊號格式、回測說明、限制提醒、誰能使用。</p>
+                <p>第一版商品是短線雷達 1000/月、AB 選股 3000/月、通吃 3500/月。每套模型都要有版本、訊號格式、回測說明、限制提醒、誰能使用。</p>
               </div>
               <span class="tag blue">產品契約</span>
+            </div>
+
+            <div class="step">
+              <div>
+                <h3>先做網路平台與付費牆</h3>
+                <p>使用者可以免費創帳號，但付費後才看到 AB 或短線雷達。付款 webhook 要自動回寫權限，不靠人工開通。</p>
+              </div>
+              <span class="tag violet">起步平台</span>
             </div>
 
             <div class="step">
@@ -1167,8 +1247,17 @@
               <h3>登入 / 方案</h3>
               <ul>
                 <li>Email / Google 登入</li>
-                <li>免費、付費、管理員與模型授權</li>
+                <li>免費、短線雷達、AB、通吃方案</li>
                 <li>付款狀態與到期日</li>
+              </ul>
+            </article>
+            <article class="app-screen">
+              <h3>Web 平台 / 付費牆</h3>
+              <ul>
+                <li>免費帳號只能看預覽或等待後續功能</li>
+                <li>短線雷達會員看短線雷達</li>
+                <li>AB 會員看 AB 選股模型</li>
+                <li>通吃會員看目前兩套與未來更新模型</li>
               </ul>
             </article>
             <article class="app-screen">
@@ -1239,37 +1328,42 @@
             <p>點下面的階段看每一輪交付什麼。最終目標是手機上架，但第一輪先把模型、權限、下單邊界定清楚。</p>
           </div>
 
-          <div class="phase-tabs" role="tablist" aria-label="開發階段">
-            <button class="active" data-phase="0" type="button">Phase 0</button>
-            <button data-phase="1" type="button">Phase 1</button>
-            <button data-phase="2" type="button">Phase 2</button>
-            <button data-phase="3" type="button">Phase 3</button>
-            <button data-phase="4" type="button">Phase 4</button>
-            <button data-phase="5" type="button">Phase 5</button>
-          </div>
+            <div class="phase-tabs" role="tablist" aria-label="開發階段">
+              <button class="active" data-phase="0" type="button">Phase 0</button>
+              <button data-phase="1" type="button">Phase 1</button>
+              <button data-phase="2" type="button">Phase 2</button>
+              <button data-phase="3" type="button">Phase 3</button>
+              <button data-phase="4" type="button">Phase 4</button>
+              <button data-phase="5" type="button">Phase 5</button>
+              <button data-phase="6" type="button">Phase 6</button>
+            </div>
 
-          <div class="phase-panel active" data-panel="0">
-            <h3>Phase 0：產品契約、模型包、下單邊界</h3>
-            <p>決定模型包格式、模型 catalog 欄位、手機主畫面、輔助下單流程、使用者確認點、哪些資料可以上雲、哪些券商秘密必須留本機。</p>
+            <div class="phase-panel active" data-panel="0">
+            <h3>Phase 0：產品契約、價格、權限邊界</h3>
+            <p>決定免費帳號、短線雷達 1000/月、AB 3000/月、通吃 3500/月，以及模型包格式、model catalog 欄位、哪些資料可以上雲。</p>
           </div>
           <div class="phase-panel" data-panel="1">
-            <h3>Phase 1：Cloud Model Registry / Entitlements</h3>
-            <p>做模型 registry、上架/下架狀態、模型版本、訊號 API、使用者授權、付款權限與 Admin 發布頁。能讓新模型持續上架，並讓已購買使用者讀到正確模型訊號。</p>
+            <h3>Phase 1：Web Platform MVP / Paywall</h3>
+            <p>先做網路平台、登入、方案頁、付款 webhook、權限表與付費牆。使用者付費後才能進入 AB 或短線雷達。</p>
           </div>
           <div class="phase-panel" data-panel="2">
-            <h3>Phase 2：Mobile App Prototype</h3>
-            <p>做我的策略、模型訊號、策略說明、預算下單草稿、家中主機狀態。可先用 PWA/prototype 驗流程，再進 Expo 原生 App。</p>
+            <h3>Phase 2：Cloud Model Registry / Entitlements</h3>
+            <p>做模型 registry、上架/下架狀態、模型版本、訊號 API、使用者授權與 Admin 發布頁。讓新模型能持續上架，並讓已購買使用者讀到正確模型訊號。</p>
           </div>
           <div class="phase-panel" data-panel="3">
-            <h3>Phase 3：Order Intent / Companion Simulator</h3>
-            <p>手機送出的下單不是直接下券商，而是委託意圖。先做本機 simulator / dry-run，驗證權限、風控、audit log 和取消流程。</p>
+            <h3>Phase 3：Mobile App Prototype</h3>
+            <p>做我的策略、模型訊號、策略說明、預算下單草稿、家中主機狀態。可先用 PWA/prototype 驗流程，再進 Expo 原生 App。</p>
           </div>
           <div class="phase-panel" data-panel="4">
-            <h3>Phase 4：永豐 Python Companion</h3>
-            <p>在客戶本機接 API Key、Secret、CA、交易帳號、測試連線、模擬/實盤 gate。真正委託由本機透過客戶自己的永豐 Python 平台執行。</p>
+            <h3>Phase 4：Order Intent / Companion Simulator</h3>
+            <p>手機送出的下單不是直接下券商，而是委託意圖。先做本機 simulator / dry-run，驗證權限、風控、audit log 和取消流程。</p>
           </div>
           <div class="phase-panel" data-panel="5">
-            <h3>Phase 5：App Store / Google Play 上架</h3>
+            <h3>Phase 5：永豐 Python Companion</h3>
+            <p>在客戶本機接 API Key、Secret、CA、交易帳號、測試連線、模擬/實盤 gate。真正委託由本機透過客戶自己的永豐 Python 平台執行。</p>
+          </div>
+          <div class="phase-panel" data-panel="6">
+            <h3>Phase 6：App Store / Google Play 上架</h3>
             <p>手機 App 完成登入、模型權限、推播、預算下單、主機連線狀態、說明與風險提示後，再進平台上架與正式使用者 onboarding。</p>
           </div>
         </div>
@@ -1286,7 +1380,8 @@
             <div class="panel-header">一句話版本</div>
             <div style="padding: 18px">
               <p>
-                <strong>手機 App</strong> 給使用者看策略、訊號與預算下單；
+                <strong>Web 平台</strong> 先讓使用者免費註冊並付費開通 AB / 短線雷達；
+                <strong>手機 App</strong> 是終極模式，給使用者看策略、訊號與預算下單；
                 <strong>Cloud Model API</strong> 負責檢查權限和回傳已購買模型；
                 <strong>Database</strong> 記使用者、訂閱、模型 catalog、模型授權和委託意圖；
                 <strong>Storage</strong> 放模型包、訊號 JSON、回測報告和策略說明；
@@ -1295,7 +1390,7 @@
                 <strong>SinoPac Python Companion</strong> 留在客戶本機保管券商鑰匙並執行下單。
               </p>
               <p>
-                正確定位是「手機 App + 雲端量化模型/權限 + 本機永豐 Python companion」。App 可以輔助下單，但不是雲端直接代替客戶下單。
+                起步定位是「網路平台 + 付費模型權限」。終極定位才是「手機 App + 雲端量化模型/權限 + 本機永豐 Python companion」。App 可以輔助下單，但不是雲端直接代替客戶下單。
               </p>
             </div>
           </div>
