@@ -4,7 +4,7 @@ This folder is the unified external-ready site that combines:
 
 - `sell-model-dashboard-public`
 - `SinoPac Auto Trading` report outputs
-- `C:\Users\User\Documents\New project 6\hub\trading-system-app-map`
+- `交易系統app地圖` product-project canonical HTML
 
 Main entrypoints:
 
@@ -37,7 +37,7 @@ Linked publish path:
 Current deployment reality:
 
 - The local site structure is still kept in `market-dashboard-site`.
-- `交易系統app地圖` canonical HTML is kept in `C:\Users\User\Documents\New project 6\hub\trading-system-app-map\index.html`; this public site only carries the synced display copy.
+- `交易系統app地圖` canonical HTML is kept in the trading system app product project; this public site only carries the synced display copy.
 - The live public route is now published through the existing `sell-model-dashboard-public` repo under `hub/`.
 - Public URL: `https://jason-king-wang.github.io/http/hub/`
 
