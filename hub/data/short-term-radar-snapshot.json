@@ -1,30 +1,30 @@
 {
-  "asOfDate": "2026-06-22",
-  "createdAt": "2026-06-22T17:12:26+08:00",
-  "sourceReport": "reports/short_term_radar/current_explosive_radar_v2_2026-06-11/current_explosive_radar_v2_top50_2026-06-22.csv",
+  "asOfDate": "2026-06-23",
+  "createdAt": "2026-06-23T17:08:50+08:00",
+  "sourceReport": "reports/short_term_radar/current_explosive_radar_v2_2026-06-11/current_explosive_radar_v2_top50_2026-06-23.csv",
   "summary": {
     "totalCandidates": 50,
-    "universeCandidates": 1231,
+    "universeCandidates": 1226,
     "mode": "explosive_radar_v2_current",
     "modelLabel": "爆發短線雷達 v2",
     "selector": "v2_close_research_score",
-    "topScore": 66.91,
+    "topScore": 68.53,
     "averageScoreCoverage": 1.0,
     "averageSlotCoverage": 1.0,
     "coreReadyCount": 50,
     "stageCounts": {
-      "S2": 26,
-      "S1": 17,
-      "S3": 7
+      "S2": 28,
+      "S1": 16,
+      "S3": 6
     },
     "entryZoneCounts": {
-      "early_watch": 26,
-      "watch_only": 17,
-      "confirm_required": 7
+      "early_watch": 28,
+      "watch_only": 16,
+      "confirm_required": 6
     },
-    "historyWindowDays": 367,
+    "historyWindowDays": 368,
     "historyWindowStart": "2024-12-12",
-    "historyWindowEnd": "2026-06-22",
+    "historyWindowEnd": "2026-06-23",
     "goldenTop5Count": 2,
     "goldenTop10Count": 2,
     "goldenTop20Count": 10,
@@ -44,89 +44,39 @@
   "candidates": [
     {
       "rank": 1,
-      "symbol": "3131",
-      "name": "弘塑",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 66.91,
-      "explosiveScoreV2": 0.6691,
-      "explosiveScoreV1": 0.837,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 80.28,
-        "priceVolume": 77.63,
-        "themeGroup": 84.21,
-        "chip": 45.0,
-        "catalyst": 78.27
-      },
-      "riskPenalty": 0.03,
-      "stage": "S3",
-      "entryZone": "confirm_required",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 48.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 43.0 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 3585.0,
-      "ret20d": 0.27127659574468077,
-      "ret60d": 0.48140495867768585,
-      "volumeZ20": 0.59,
-      "volumeExpansionRatio": 1.38,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 2,
       "symbol": "6223",
       "name": "旺矽",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 66.69,
-      "explosiveScoreV2": 0.6669,
-      "explosiveScoreV1": 0.7869,
+      "scoreTotal": 68.53,
+      "explosiveScoreV2": 0.6853,
+      "explosiveScoreV1": 0.9037,
       "scores": {
         "revenue": 70.0,
-        "expectationGap": 77.3,
-        "priceVolume": 72.68,
-        "themeGroup": 84.21,
-        "chip": 10.0,
-        "catalyst": 56.51
+        "expectationGap": 86.02,
+        "priceVolume": 80.24,
+        "themeGroup": 80.32,
+        "chip": 65.0,
+        "catalyst": 74.83
       },
       "riskPenalty": 0.03,
       "stage": "S3",
       "entryZone": "confirm_required",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 75.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 70.0 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 78.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 75.4 個百分點。",
+        "營收或營收加速分數達高分區。",
+        "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 6425.0,
-      "ret20d": 0.06462303231151623,
-      "ret60d": 0.7506811989100817,
-      "volumeZ20": -0.58,
-      "volumeExpansionRatio": 0.41,
+      "lastClose": 6680.0,
+      "ret20d": 0.07741935483870965,
+      "ret60d": 0.7813333333333334,
+      "volumeZ20": -0.14,
+      "volumeExpansionRatio": 0.87,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -142,41 +92,41 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 3,
+      "rank": 2,
       "symbol": "4973",
       "name": "廣穎",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 66.5,
-      "explosiveScoreV2": 0.665,
-      "explosiveScoreV1": 0.8436,
+      "scoreTotal": 66.69,
+      "explosiveScoreV2": 0.6669,
+      "explosiveScoreV1": 0.8691,
       "scores": {
         "revenue": 55.0,
-        "expectationGap": 85.18,
-        "priceVolume": 88.49,
-        "themeGroup": 84.21,
+        "expectationGap": 86.09,
+        "priceVolume": 89.14,
+        "themeGroup": 80.32,
         "chip": 0.0,
-        "catalyst": 78.93
+        "catalyst": 84.99
       },
       "riskPenalty": 0.03,
       "stage": "S3",
       "entryZone": "confirm_required",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 167.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 162.0 個百分點。",
+        "60 日動能 158.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 155.4 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 191.5,
-      "ret20d": 0.6652173913043478,
-      "ret60d": 1.6708507670850765,
-      "volumeZ20": -0.43,
+      "lastClose": 183.0,
+      "ret20d": 0.5508474576271187,
+      "ret60d": 1.5811001410437235,
+      "volumeZ20": -0.42,
       "volumeExpansionRatio": 0.71,
       "breakoutFlag": false,
       "breakout120dFlag": false,
@@ -193,144 +143,41 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 4,
-      "symbol": "6693",
-      "name": "廣閎科",
+      "rank": 3,
+      "symbol": "3131",
+      "name": "弘塑",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 66.4,
-      "explosiveScoreV2": 0.664,
-      "explosiveScoreV1": 0.8992,
+      "scoreTotal": 66.57,
+      "explosiveScoreV2": 0.6657,
+      "explosiveScoreV1": 0.8417,
       "scores": {
-        "revenue": 70.0,
-        "expectationGap": 89.96,
-        "priceVolume": 90.84,
-        "themeGroup": 84.21,
-        "chip": 55.0,
-        "catalyst": 83.53
-      },
-      "riskPenalty": 0.03,
-      "stage": "S3",
-      "entryZone": "confirm_required",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 130.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 125.6 個百分點。",
-        "營收或營收加速分數達高分區。",
-        "籌碼支撐分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 236.5,
-      "ret20d": 0.6198630136986301,
-      "ret60d": 1.3073170731707315,
-      "volumeZ20": -0.73,
-      "volumeExpansionRatio": 0.59,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 5,
-      "symbol": "6187",
-      "name": "萬潤",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 66.21,
-      "explosiveScoreV2": 0.6621,
-      "explosiveScoreV1": 0.8175,
-      "scores": {
-        "revenue": 70.0,
-        "expectationGap": 77.32,
-        "priceVolume": 70.78,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 62.65
-      },
-      "riskPenalty": 0.03,
-      "stage": "S3",
-      "entryZone": "confirm_required",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 45.0%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 39.9 個百分點。",
-        "營收或營收加速分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 1260.0,
-      "ret20d": 0.10526315789473695,
-      "ret60d": 0.4499424626006905,
-      "volumeZ20": -1.31,
-      "volumeExpansionRatio": 0.34,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 6,
-      "symbol": "5274",
-      "name": "信驊",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 65.67,
-      "explosiveScoreV2": 0.6567,
-      "explosiveScoreV1": 0.851,
-      "scores": {
-        "revenue": 70.0,
-        "expectationGap": 78.34,
-        "priceVolume": 76.97,
-        "themeGroup": 84.21,
+        "revenue": 0.0,
+        "expectationGap": 78.72,
+        "priceVolume": 73.95,
+        "themeGroup": 80.32,
         "chip": 45.0,
-        "catalyst": 66.43
+        "catalyst": 77.14
       },
       "riskPenalty": 0.03,
       "stage": "S3",
       "entryZone": "confirm_required",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 76.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 71.6 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 31.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 28.6 個百分點。"
       ],
       "riskFlags": [
-        "近期有注意股相關風險。"
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 19275.0,
-      "ret20d": 0.0840832395950506,
-      "ret60d": 0.7667277726856094,
-      "volumeZ20": -0.39,
+      "lastClose": 3495.0,
+      "ret20d": 0.19691780821917804,
+      "ret60d": 0.31390977443609014,
+      "volumeZ20": -0.25,
       "volumeExpansionRatio": 0.84,
       "breakoutFlag": false,
       "breakout120dFlag": false,
@@ -347,143 +194,43 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 7,
-      "symbol": "2454",
-      "name": "聯發科",
+      "rank": 4,
+      "symbol": "6693",
+      "name": "廣閎科",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 65.58,
-      "explosiveScoreV2": 0.6558,
-      "explosiveScoreV1": 0.7849,
+      "scoreTotal": 66.13,
+      "explosiveScoreV2": 0.6613,
+      "explosiveScoreV1": 0.9451,
       "scores": {
-        "revenue": 0.0,
-        "expectationGap": 84.71,
-        "priceVolume": 83.81,
-        "themeGroup": 84.21,
-        "chip": 45.0,
-        "catalyst": 66.59
+        "revenue": 70.0,
+        "expectationGap": 88.74,
+        "priceVolume": 91.21,
+        "themeGroup": 80.32,
+        "chip": 55.0,
+        "catalyst": 96.27
       },
       "riskPenalty": 0.03,
       "stage": "S3",
       "entryZone": "confirm_required",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 175.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 170.5 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 4465.0,
-      "ret20d": 0.15673575129533668,
-      "ret60d": 1.7561728395061729,
-      "volumeZ20": -0.6,
-      "volumeExpansionRatio": 0.81,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 8,
-      "symbol": "6291",
-      "name": "沛亨",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 64.43,
-      "explosiveScoreV2": 0.6443,
-      "explosiveScoreV1": 0.7491,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 78.62,
-        "priceVolume": 76.13,
-        "themeGroup": 84.21,
-        "chip": 10.0,
-        "catalyst": 56.43
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 74.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 69.5 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 591.0,
-      "ret20d": 0.09242144177449174,
-      "ret60d": 0.7459379615952733,
-      "volumeZ20": -0.04,
-      "volumeExpansionRatio": 0.96,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 9,
-      "symbol": "6147",
-      "name": "頎邦",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 64.22,
-      "explosiveScoreV2": 0.6422,
-      "explosiveScoreV1": 0.8631,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 88.73,
-        "priceVolume": 85.57,
-        "themeGroup": 84.21,
-        "chip": 55.0,
-        "catalyst": 71.38
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 329.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 324.4 個百分點。",
+        "60 日動能 124.2%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 121.4 個百分點。",
+        "營收或營收加速分數達高分區。",
         "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 277.0,
-      "ret20d": 0.2853828306264501,
-      "ret60d": 3.2945736434108523,
-      "volumeZ20": -1.62,
-      "volumeExpansionRatio": 0.21,
+      "lastClose": 236.5,
+      "ret20d": 0.597972972972973,
+      "ret60d": 1.241706161137441,
+      "volumeZ20": 2.17,
+      "volumeExpansionRatio": 2.25,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -499,7 +246,262 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 5,
+      "symbol": "5274",
+      "name": "信驊",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 65.82,
+      "explosiveScoreV2": 0.6582,
+      "explosiveScoreV1": 0.8888,
+      "scores": {
+        "revenue": 70.0,
+        "expectationGap": 79.02,
+        "priceVolume": 75.62,
+        "themeGroup": 80.32,
+        "chip": 65.0,
+        "catalyst": 68.44
+      },
+      "riskPenalty": 0.03,
+      "stage": "S3",
+      "entryZone": "confirm_required",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 60.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 58.2 個百分點。",
+        "營收或營收加速分數達高分區。",
+        "籌碼支撐分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 18505.0,
+      "ret20d": 0.04400564174894228,
+      "ret60d": 0.6091304347826088,
+      "volumeZ20": -0.57,
+      "volumeExpansionRatio": 0.76,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 6,
+      "symbol": "2454",
+      "name": "聯發科",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 65.63,
+      "explosiveScoreV2": 0.6563,
+      "explosiveScoreV1": 0.8219,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 85.0,
+        "priceVolume": 84.57,
+        "themeGroup": 80.32,
+        "chip": 45.0,
+        "catalyst": 74.36
+      },
+      "riskPenalty": 0.03,
+      "stage": "S3",
+      "entryZone": "confirm_required",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 179.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 177.2 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 4535.0,
+      "ret20d": 0.0683156654888104,
+      "ret60d": 1.799382716049383,
+      "volumeZ20": 0.82,
+      "volumeExpansionRatio": 1.22,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 7,
+      "symbol": "6683",
+      "name": "雍智科技",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 64.85,
+      "explosiveScoreV2": 0.6485,
+      "explosiveScoreV1": 0.7419,
+      "scores": {
+        "revenue": 15.0,
+        "expectationGap": 73.66,
+        "priceVolume": 66.8,
+        "themeGroup": 80.32,
+        "chip": 30.0,
+        "catalyst": 64.59
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 49.6%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 46.8 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 1765.0,
+      "ret20d": -0.02754820936639113,
+      "ret60d": 0.4957627118644068,
+      "volumeZ20": 2.14,
+      "volumeExpansionRatio": 1.88,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 8,
+      "symbol": "6187",
+      "name": "萬潤",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 64.51,
+      "explosiveScoreV2": 0.6451,
+      "explosiveScoreV1": 0.7367,
+      "scores": {
+        "revenue": 70.0,
+        "expectationGap": 69.29,
+        "priceVolume": 59.12,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 45.88
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 22.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 19.8 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 1170.0,
+      "ret20d": -0.03305785123966942,
+      "ret60d": 0.2251308900523561,
+      "volumeZ20": -1.14,
+      "volumeExpansionRatio": 0.39,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 9,
+      "symbol": "3264",
+      "name": "欣銓",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 64.33,
+      "explosiveScoreV2": 0.6433,
+      "explosiveScoreV1": 0.8909,
+      "scores": {
+        "revenue": 70.0,
+        "expectationGap": 75.74,
+        "priceVolume": 75.42,
+        "themeGroup": 80.32,
+        "chip": 45.0,
+        "catalyst": 72.93
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 51.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 48.4 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 233.5,
+      "ret20d": 0.04241071428571419,
+      "ret60d": 0.5113268608414239,
+      "volumeZ20": 0.29,
+      "volumeExpansionRatio": 1.16,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 10,
@@ -509,32 +511,32 @@
       "industryCode": "24",
       "scoreTotal": 64.18,
       "explosiveScoreV2": 0.6418,
-      "explosiveScoreV1": 0.6088,
+      "explosiveScoreV1": 0.6378,
       "scores": {
         "revenue": 30.0,
-        "expectationGap": 70.81,
-        "priceVolume": 61.25,
-        "themeGroup": 84.21,
+        "expectationGap": 70.8,
+        "priceVolume": 60.14,
+        "themeGroup": 80.32,
         "chip": 5.0,
-        "catalyst": 23.02
+        "catalyst": 28.75
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 146.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 141.4 個百分點。"
+        "60 日動能 108.0%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 105.2 個百分點。"
       ],
       "riskFlags": [
         "20 日跌幅較大，可能仍在回檔段。",
         "近期有注意股相關風險。"
       ],
-      "lastClose": 178.0,
-      "ret20d": -0.282258064516129,
-      "ret60d": 1.4653739612188366,
-      "volumeZ20": -0.64,
-      "volumeExpansionRatio": 0.37,
+      "lastClose": 162.0,
+      "ret20d": -0.40550458715596327,
+      "ret60d": 1.0795892169448007,
+      "volumeZ20": -0.7,
+      "volumeExpansionRatio": 0.33,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -550,93 +552,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 11,
-      "symbol": "3264",
-      "name": "欣銓",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 64.15,
-      "explosiveScoreV2": 0.6415,
-      "explosiveScoreV1": 0.8812,
-      "scores": {
-        "revenue": 70.0,
-        "expectationGap": 74.84,
-        "priceVolume": 77.38,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 72.74
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 66.3%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 61.2 個百分點。",
-        "營收或營收加速分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 242.0,
-      "ret20d": 0.09255079006772005,
-      "ret60d": 0.6632302405498283,
-      "volumeZ20": 0.43,
-      "volumeExpansionRatio": 1.25,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 12,
       "symbol": "3105",
       "name": "穩懋",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 63.99,
-      "explosiveScoreV2": 0.6399,
-      "explosiveScoreV1": 0.7821,
+      "scoreTotal": 63.92,
+      "explosiveScoreV2": 0.6392,
+      "explosiveScoreV1": 0.8651,
       "scores": {
         "revenue": 70.0,
-        "expectationGap": 72.33,
-        "priceVolume": 72.41,
-        "themeGroup": 84.21,
-        "chip": 25.0,
-        "catalyst": 53.04
+        "expectationGap": 72.02,
+        "priceVolume": 70.94,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 67.39
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 72.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 67.5 個百分點。",
+        "60 日動能 51.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 48.8 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 541.0,
-      "ret20d": 0.01883239171374762,
-      "ret60d": 0.7256778309409888,
-      "volumeZ20": -0.21,
-      "volumeExpansionRatio": 0.93,
+      "lastClose": 522.0,
+      "ret20d": -0.03867403314917128,
+      "ret60d": 0.5152394775036284,
+      "volumeZ20": 1.18,
+      "volumeExpansionRatio": 1.38,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -652,42 +603,93 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 12,
+      "symbol": "3374",
+      "name": "精材",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 63.49,
+      "explosiveScoreV2": 0.6349,
+      "explosiveScoreV1": 0.9227,
+      "scores": {
+        "revenue": 55.0,
+        "expectationGap": 83.56,
+        "priceVolume": 89.37,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 89.66
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 83.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 81.2 個百分點。",
+        "營收或營收加速分數達高分區。",
+        "收盤價突破前 120 日高點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 303.5,
+      "ret20d": 0.1763565891472869,
+      "ret60d": 0.8393939393939394,
+      "volumeZ20": 1.69,
+      "volumeExpansionRatio": 2.3,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 13,
-      "symbol": "8299",
-      "name": "群聯",
+      "symbol": "6147",
+      "name": "頎邦",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 63.87,
-      "explosiveScoreV2": 0.6387,
-      "explosiveScoreV1": 0.7838,
+      "scoreTotal": 63.33,
+      "explosiveScoreV2": 0.6333,
+      "explosiveScoreV1": 0.8634,
       "scores": {
-        "revenue": 70.0,
-        "expectationGap": 67.54,
-        "priceVolume": 71.43,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 59.93
+        "revenue": 15.0,
+        "expectationGap": 84.6,
+        "priceVolume": 86.11,
+        "themeGroup": 80.32,
+        "chip": 30.0,
+        "catalyst": 71.18
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 53.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 48.0 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 264.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 261.7 個百分點。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 2580.0,
-      "ret20d": 0.06172839506172845,
-      "ret60d": 0.5311572700296736,
-      "volumeZ20": -0.06,
-      "volumeExpansionRatio": 0.98,
+      "lastClose": 258.0,
+      "ret20d": 0.08860759493670889,
+      "ret60d": 2.6440677966101696,
+      "volumeZ20": 0.08,
+      "volumeExpansionRatio": 1.04,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -703,24 +705,24 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 14,
-      "symbol": "3265",
-      "name": "台星科",
+      "symbol": "6291",
+      "name": "沛亨",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 63.77,
-      "explosiveScoreV2": 0.6377,
-      "explosiveScoreV1": 0.866,
+      "scoreTotal": 63.2,
+      "explosiveScoreV2": 0.632,
+      "explosiveScoreV1": 0.6766,
       "scores": {
-        "revenue": 30.0,
-        "expectationGap": 73.85,
-        "priceVolume": 67.77,
-        "themeGroup": 84.21,
-        "chip": 75.0,
-        "catalyst": 65.61
+        "revenue": 15.0,
+        "expectationGap": 72.84,
+        "priceVolume": 66.49,
+        "themeGroup": 80.32,
+        "chip": 10.0,
+        "catalyst": 53.65
       },
       "riskPenalty": 0.03,
       "stage": "S2",
@@ -728,119 +730,16 @@
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
         "60 日動能 46.0%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 40.9 個百分點。",
-        "籌碼支撐分數達高分區。"
+        "60 日相對強度優於市場中位數 43.2 個百分點。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 193.5,
-      "ret20d": 0.040322580645161255,
-      "ret60d": 0.46037735849056594,
-      "volumeZ20": 0.55,
-      "volumeExpansionRatio": 1.23,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 15,
-      "symbol": "6138",
-      "name": "茂達",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 63.54,
-      "explosiveScoreV2": 0.6354,
-      "explosiveScoreV1": 0.8791,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 85.18,
-        "priceVolume": 84.84,
-        "themeGroup": 84.21,
-        "chip": 55.0,
-        "catalyst": 83.62
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 77.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 72.4 個百分點。",
-        "籌碼支撐分數達高分區。",
-        "收盤價突破前 120 日高點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 394.0,
-      "ret20d": 0.2370486656200943,
-      "ret60d": 0.7747747747747749,
-      "volumeZ20": 0.69,
-      "volumeExpansionRatio": 1.53,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 16,
-      "symbol": "6683",
-      "name": "雍智科技",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 62.96,
-      "explosiveScoreV2": 0.6296,
-      "explosiveScoreV1": 0.6001,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 64.72,
-        "priceVolume": 59.19,
-        "themeGroup": 84.21,
-        "chip": 20.0,
-        "catalyst": 31.07
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 45.9%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 40.8 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 1605.0,
-      "ret20d": -0.027272727272727226,
-      "ret60d": 0.459090909090909,
-      "volumeZ20": -0.6,
-      "volumeExpansionRatio": 0.77,
+      "lastClose": 543.0,
+      "ret20d": 0.016853932584269593,
+      "ret60d": 0.45967741935483875,
+      "volumeZ20": -0.04,
+      "volumeExpansionRatio": 0.95,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -856,43 +755,94 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 17,
-      "symbol": "6488",
-      "name": "環球晶",
+      "rank": 15,
+      "symbol": "8299",
+      "name": "群聯",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 62.94,
-      "explosiveScoreV2": 0.6294,
-      "explosiveScoreV1": 0.885,
+      "scoreTotal": 62.83,
+      "explosiveScoreV2": 0.6283,
+      "explosiveScoreV1": 0.6737,
       "scores": {
-        "revenue": 0.0,
-        "expectationGap": 92.1,
-        "priceVolume": 84.68,
-        "themeGroup": 84.21,
-        "chip": 65.0,
-        "catalyst": 75.57
+        "revenue": 70.0,
+        "expectationGap": 62.62,
+        "priceVolume": 61.95,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 48.75
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 158.4%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 153.3 個百分點。",
+        "60 日動能 40.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 38.1 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 2430.0,
+      "ret20d": -0.020161290322580627,
+      "ret60d": 0.4086956521739131,
+      "volumeZ20": -0.33,
+      "volumeExpansionRatio": 0.91,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 16,
+      "symbol": "6488",
+      "name": "環球晶",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 62.79,
+      "explosiveScoreV2": 0.6279,
+      "explosiveScoreV1": 0.8905,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 91.45,
+        "priceVolume": 82.9,
+        "themeGroup": 80.32,
+        "chip": 65.0,
+        "catalyst": 76.78
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 124.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 121.7 個百分點。",
         "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。",
         "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 1115.0,
-      "ret20d": 0.5550906555090656,
-      "ret60d": 1.5840092699884125,
-      "volumeZ20": -0.74,
-      "volumeExpansionRatio": 0.27,
+      "lastClose": 1010.0,
+      "ret20d": 0.281725888324873,
+      "ret60d": 1.2444444444444445,
+      "volumeZ20": -0.69,
+      "volumeExpansionRatio": 0.28,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -908,43 +858,43 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 18,
-      "symbol": "5351",
-      "name": "鈺創",
+      "rank": 17,
+      "symbol": "6435",
+      "name": "大中",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 62.8,
-      "explosiveScoreV2": 0.628,
-      "explosiveScoreV1": 0.9005,
+      "scoreTotal": 62.61,
+      "explosiveScoreV2": 0.6261,
+      "explosiveScoreV1": 0.8869,
       "scores": {
-        "revenue": 70.0,
-        "expectationGap": 82.66,
-        "priceVolume": 82.39,
-        "themeGroup": 84.21,
-        "chip": 75.0,
-        "catalyst": 85.5
+        "revenue": 0.0,
+        "expectationGap": 86.7,
+        "priceVolume": 93.81,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 87.41
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 42.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 37.5 個百分點。",
-        "營收或營收加速分數達高分區。",
-        "籌碼支撐分數達高分區。"
+        "60 日動能 112.3%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 109.6 個百分點。",
+        "收盤價突破前 120 日高點。"
       ],
       "riskFlags": [
-        "近期有注意股相關風險。"
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 99.8,
-      "ret20d": 0.23975155279503113,
-      "ret60d": 0.4257142857142857,
-      "volumeZ20": 1.36,
-      "volumeExpansionRatio": 1.47,
+      "lastClose": 362.0,
+      "ret20d": 0.4251968503937007,
+      "ret60d": 1.1231671554252198,
+      "volumeZ20": 3.14,
+      "volumeExpansionRatio": 3.5,
       "breakoutFlag": true,
       "breakout120dFlag": true,
       "maAlignmentBullFlag": true,
@@ -960,7 +910,58 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 18,
+      "symbol": "3234",
+      "name": "光環",
+      "industry": "通信網路",
+      "industryCode": "27",
+      "scoreTotal": 62.5,
+      "explosiveScoreV2": 0.625,
+      "explosiveScoreV1": 0.6887,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 72.97,
+        "priceVolume": 78.2,
+        "themeGroup": 40.27,
+        "chip": 10.0,
+        "catalyst": 49.33
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 45.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 42.8 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 139.0,
+      "ret20d": 0.2990654205607477,
+      "ret60d": 0.45549738219895297,
+      "volumeZ20": 0.5,
+      "volumeExpansionRatio": 1.33,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 19,
@@ -968,35 +969,35 @@
       "name": "環宇-KY",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 62.7,
-      "explosiveScoreV2": 0.627,
-      "explosiveScoreV1": 0.6021,
+      "scoreTotal": 62.42,
+      "explosiveScoreV2": 0.6242,
+      "explosiveScoreV1": 0.6275,
       "scores": {
         "revenue": 55.0,
-        "expectationGap": 57.63,
-        "priceVolume": 51.43,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 25.85
+        "expectationGap": 56.31,
+        "priceVolume": 47.5,
+        "themeGroup": 80.32,
+        "chip": 10.0,
+        "catalyst": 32.33
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 41.9%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 36.8 個百分點。",
+        "60 日動能 22.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 19.9 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "20 日跌幅較大，可能仍在回檔段。",
         "近期有注意股相關風險。"
       ],
-      "lastClose": 564.0,
-      "ret20d": -0.30712530712530717,
-      "ret60d": 0.4188679245283018,
-      "volumeZ20": -2.12,
-      "volumeExpansionRatio": 0.15,
+      "lastClose": 536.0,
+      "ret20d": -0.36190476190476195,
+      "ret60d": 0.22654462242562934,
+      "volumeZ20": -1.65,
+      "volumeExpansionRatio": 0.25,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -1012,199 +1013,93 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 20,
-      "symbol": "3234",
-      "name": "光環",
-      "industry": "通信網路",
-      "industryCode": "27",
-      "scoreTotal": 62.56,
-      "explosiveScoreV2": 0.6256,
-      "explosiveScoreV1": 0.6869,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 73.25,
-        "priceVolume": 78.39,
-        "themeGroup": 43.9,
-        "chip": 10.0,
-        "catalyst": 47.52
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 58.9%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 53.8 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 139.0,
-      "ret20d": 0.33653846153846145,
-      "ret60d": 0.5885714285714285,
-      "volumeZ20": 2.18,
-      "volumeExpansionRatio": 2.46,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 21,
-      "symbol": "5347",
-      "name": "世界",
+      "symbol": "6548",
+      "name": "長科*",
       "industry": "半導體",
       "industryCode": "24",
       "scoreTotal": 62.4,
       "explosiveScoreV2": 0.624,
-      "explosiveScoreV1": 0.8414,
+      "explosiveScoreV1": 0.9387,
       "scores": {
-        "revenue": 0.0,
-        "expectationGap": 80.48,
-        "priceVolume": 79.5,
-        "themeGroup": 84.21,
+        "revenue": 70.0,
+        "expectationGap": 88.15,
+        "priceVolume": 87.55,
+        "themeGroup": 80.32,
+        "chip": 45.0,
+        "catalyst": 96.6
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 87.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 84.9 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 92.7,
+      "ret20d": 0.6885245901639345,
+      "ret60d": 0.8765182186234819,
+      "volumeZ20": 1.93,
+      "volumeExpansionRatio": 2.54,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 21,
+      "symbol": "3265",
+      "name": "台星科",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 62.2,
+      "explosiveScoreV2": 0.622,
+      "explosiveScoreV1": 0.7053,
+      "scores": {
+        "revenue": 30.0,
+        "expectationGap": 66.5,
+        "priceVolume": 55.32,
+        "themeGroup": 80.32,
         "chip": 65.0,
-        "catalyst": 70.0
+        "catalyst": 50.18
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 69.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 64.4 個百分點。",
-        "籌碼支撐分數達高分區。",
-        "收盤價突破前 120 日高點。"
+        "60 日動能 27.8%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 25.1 個百分點。",
+        "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
+        "近期有注意股相關風險。"
       ],
-      "lastClose": 191.5,
-      "ret20d": 0.18209876543209869,
-      "ret60d": 0.6946902654867257,
-      "volumeZ20": -1.26,
-      "volumeExpansionRatio": 0.49,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 22,
-      "symbol": "6435",
-      "name": "大中",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 62.12,
-      "explosiveScoreV2": 0.6212,
-      "explosiveScoreV1": 0.8252,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 84.31,
-        "priceVolume": 87.4,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 69.57
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 107.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 102.0 個百分點。",
-        "收盤價突破前 120 日高點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 349.0,
-      "ret20d": 0.5108225108225108,
-      "ret60d": 1.0712166172106823,
-      "volumeZ20": -1.25,
-      "volumeExpansionRatio": 0.21,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 23,
-      "symbol": "4971",
-      "name": "IET-KY",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 62.1,
-      "explosiveScoreV2": 0.621,
-      "explosiveScoreV1": 0.5424,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 55.29,
-        "priceVolume": 47.15,
-        "themeGroup": 84.21,
-        "chip": 10.0,
-        "catalyst": 31.7
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 31.1%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 26.0 個百分點。"
-      ],
-      "riskFlags": [
-        "20 日跌幅較大，可能仍在回檔段。",
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 571.0,
-      "ret20d": -0.22100954979536158,
-      "ret60d": 0.31113662456946045,
-      "volumeZ20": 0.59,
-      "volumeExpansionRatio": 1.39,
+      "lastClose": 181.5,
+      "ret20d": -0.04221635883905017,
+      "ret60d": 0.278169014084507,
+      "volumeZ20": -0.19,
+      "volumeExpansionRatio": 0.92,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -1220,7 +1115,109 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 22,
+      "symbol": "6138",
+      "name": "茂達",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 61.93,
+      "explosiveScoreV2": 0.6193,
+      "explosiveScoreV1": 0.8716,
+      "scores": {
+        "revenue": 15.0,
+        "expectationGap": 77.64,
+        "priceVolume": 72.63,
+        "themeGroup": 80.32,
+        "chip": 55.0,
+        "catalyst": 77.56
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 60.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 57.3 個百分點。",
+        "籌碼支撐分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 361.0,
+      "ret20d": 0.03142857142857136,
+      "ret60d": 0.6008869179600886,
+      "volumeZ20": 2.13,
+      "volumeExpansionRatio": 2.72,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 23,
+      "symbol": "3675",
+      "name": "德微",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 61.92,
+      "explosiveScoreV2": 0.6192,
+      "explosiveScoreV1": 0.8944,
+      "scores": {
+        "revenue": 30.0,
+        "expectationGap": 88.46,
+        "priceVolume": 94.37,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 89.5
+      },
+      "riskPenalty": 0.03,
+      "stage": "S2",
+      "entryZone": "early_watch",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 117.3%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 114.6 個百分點。",
+        "收盤價突破前 120 日高點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 445.5,
+      "ret20d": 0.3338323353293413,
+      "ret60d": 1.1731707317073172,
+      "volumeZ20": 3.98,
+      "volumeExpansionRatio": 5.15,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 24,
@@ -1228,34 +1225,34 @@
       "name": "博士旺",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 61.71,
-      "explosiveScoreV2": 0.6171,
-      "explosiveScoreV1": 0.572,
+      "scoreTotal": 61.88,
+      "explosiveScoreV2": 0.6188,
+      "explosiveScoreV1": 0.6111,
       "scores": {
         "revenue": 55.0,
-        "expectationGap": 52.47,
-        "priceVolume": 44.5,
-        "themeGroup": 84.21,
+        "expectationGap": 53.28,
+        "priceVolume": 46.4,
+        "themeGroup": 80.32,
         "chip": 0.0,
-        "catalyst": 27.42
+        "catalyst": 37.12
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 21.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 16.6 個百分點。",
+        "60 日動能 16.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 13.3 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
       "lastClose": 202.0,
-      "ret20d": -0.1422505307855626,
-      "ret60d": 0.2168674698795181,
-      "volumeZ20": -0.72,
-      "volumeExpansionRatio": 0.28,
+      "ret20d": -0.13490364025695933,
+      "ret60d": 0.16091954022988508,
+      "volumeZ20": -0.39,
+      "volumeExpansionRatio": 0.6,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -1271,42 +1268,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 25,
-      "symbol": "3081",
-      "name": "聯亞",
-      "industry": "通信網路",
-      "industryCode": "27",
-      "scoreTotal": 61.66,
-      "explosiveScoreV2": 0.6166,
-      "explosiveScoreV1": 0.501,
+      "symbol": "6510",
+      "name": "精測",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 61.62,
+      "explosiveScoreV2": 0.6162,
+      "explosiveScoreV1": 0.741,
       "scores": {
         "revenue": 55.0,
-        "expectationGap": 61.22,
-        "priceVolume": 59.59,
-        "themeGroup": 43.9,
-        "chip": 10.0,
-        "catalyst": 14.69
+        "expectationGap": 56.12,
+        "priceVolume": 57.03,
+        "themeGroup": 80.32,
+        "chip": 20.0,
+        "catalyst": 77.39
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
-        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 69.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 64.6 個百分點。",
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 14.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 12.0 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 2375.0,
-      "ret20d": -0.12361623616236161,
-      "ret60d": 0.6964285714285714,
-      "volumeZ20": -0.66,
-      "volumeExpansionRatio": 0.76,
+      "lastClose": 3665.0,
+      "ret20d": 0.06078147612156304,
+      "ret60d": 0.14710485133020335,
+      "volumeZ20": 1.14,
+      "volumeExpansionRatio": 1.5,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -1322,42 +1319,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 26,
-      "symbol": "3260",
-      "name": "威剛",
+      "symbol": "8091",
+      "name": "翔名",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 61.59,
-      "explosiveScoreV2": 0.6159,
-      "explosiveScoreV1": 0.72,
+      "scoreTotal": 61.58,
+      "explosiveScoreV2": 0.6158,
+      "explosiveScoreV1": 0.8674,
       "scores": {
         "revenue": 70.0,
-        "expectationGap": 58.39,
-        "priceVolume": 56.4,
-        "themeGroup": 84.21,
-        "chip": 45.0,
-        "catalyst": 58.82
+        "expectationGap": 73.73,
+        "priceVolume": 77.7,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 73.2
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 12.3%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 7.2 個百分點。",
+        "60 日動能 83.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 81.2 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 434.0,
-      "ret20d": 0.03952095808383227,
-      "ret60d": 0.12289780077619672,
-      "volumeZ20": -0.19,
-      "volumeExpansionRatio": 0.88,
+      "lastClose": 280.5,
+      "ret20d": 0.025594149908592323,
+      "ret60d": 0.839344262295082,
+      "volumeZ20": 1.08,
+      "volumeExpansionRatio": 1.91,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -1373,144 +1370,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
       "rank": 27,
-      "symbol": "6548",
-      "name": "長科*",
+      "symbol": "5347",
+      "name": "世界",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 61.59,
-      "explosiveScoreV2": 0.6159,
-      "explosiveScoreV1": 0.8346,
-      "scores": {
-        "revenue": 70.0,
-        "expectationGap": 84.24,
-        "priceVolume": 82.61,
-        "themeGroup": 84.21,
-        "chip": 20.0,
-        "catalyst": 81.54
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 104.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 99.4 個百分點。",
-        "營收或營收加速分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 94.7,
-      "ret20d": 0.8246628131021196,
-      "ret60d": 1.0453563714902812,
-      "volumeZ20": -0.59,
-      "volumeExpansionRatio": 0.53,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 28,
-      "symbol": "3374",
-      "name": "精材",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 61.53,
-      "explosiveScoreV2": 0.6153,
-      "explosiveScoreV1": 0.825,
-      "scores": {
-        "revenue": 55.0,
-        "expectationGap": 74.22,
-        "priceVolume": 74.81,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 66.18
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 75.8%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 70.7 個百分點。",
-        "營收或營收加速分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 276.0,
-      "ret20d": 0.09090909090909083,
-      "ret60d": 0.7579617834394905,
-      "volumeZ20": -0.13,
-      "volumeExpansionRatio": 0.9,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 29,
-      "symbol": "6182",
-      "name": "合晶",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 61.01,
-      "explosiveScoreV2": 0.6101,
-      "explosiveScoreV1": 0.8882,
+      "scoreTotal": 61.26,
+      "explosiveScoreV2": 0.6126,
+      "explosiveScoreV1": 0.8653,
       "scores": {
         "revenue": 0.0,
-        "expectationGap": 90.58,
-        "priceVolume": 91.2,
-        "themeGroup": 84.21,
-        "chip": 30.0,
-        "catalyst": 82.62
+        "expectationGap": 75.14,
+        "priceVolume": 76.14,
+        "themeGroup": 80.32,
+        "chip": 45.0,
+        "catalyst": 81.76
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 245.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 240.6 個百分點。"
+        "60 日動能 50.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 47.7 個百分點。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。",
         "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 116.5,
-      "ret20d": 0.6666666666666665,
-      "ret60d": 2.4569732937685456,
-      "volumeZ20": 0.75,
-      "volumeExpansionRatio": 2.13,
+      "lastClose": 186.5,
+      "ret20d": 0.10682492581602365,
+      "ret60d": 0.5040322580645162,
+      "volumeZ20": 2.28,
+      "volumeExpansionRatio": 2.01,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -1526,42 +1421,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 30,
-      "symbol": "8091",
-      "name": "翔名",
+      "rank": 28,
+      "symbol": "6182",
+      "name": "合晶",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 60.7,
-      "explosiveScoreV2": 0.607,
-      "explosiveScoreV1": 0.8138,
+      "scoreTotal": 61.21,
+      "explosiveScoreV2": 0.6121,
+      "explosiveScoreV1": 0.896,
       "scores": {
-        "revenue": 70.0,
-        "expectationGap": 69.53,
-        "priceVolume": 73.56,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 66.16
+        "revenue": 0.0,
+        "expectationGap": 91.6,
+        "priceVolume": 91.03,
+        "themeGroup": 80.32,
+        "chip": 30.0,
+        "catalyst": 86.87
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 76.4%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 71.3 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 230.9%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 228.2 個百分點。"
       ],
       "riskFlags": [
-        "近期有注意股相關風險。"
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 272.5,
-      "ret20d": 0.020599250936329527,
-      "ret60d": 0.7637540453074434,
-      "volumeZ20": 1.42,
-      "volumeExpansionRatio": 2.24,
+      "lastClose": 114.5,
+      "ret20d": 0.49088541666666674,
+      "ret60d": 2.3092485549132946,
+      "volumeZ20": 0.44,
+      "volumeExpansionRatio": 1.61,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -1577,142 +1472,43 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 31,
-      "symbol": "3675",
-      "name": "德微",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 60.5,
-      "explosiveScoreV2": 0.605,
-      "explosiveScoreV1": 0.7808,
-      "scores": {
-        "revenue": 30.0,
-        "expectationGap": 81.7,
-        "priceVolume": 80.67,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 65.67
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 101.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 96.4 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 405.0,
-      "ret20d": 0.267605633802817,
-      "ret60d": 1.0149253731343282,
-      "volumeZ20": -1.3,
-      "volumeExpansionRatio": 0.29,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 32,
-      "symbol": "6788",
-      "name": "華景電",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 60.26,
-      "explosiveScoreV2": 0.6026,
-      "explosiveScoreV1": 0.6117,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 56.32,
-        "priceVolume": 52.47,
-        "themeGroup": 84.21,
-        "chip": 10.0,
-        "catalyst": 47.65
-      },
-      "riskPenalty": 0.03,
-      "stage": "S2",
-      "entryZone": "early_watch",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 17.5%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 12.4 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 443.5,
-      "ret20d": 0.04722550177095641,
-      "ret60d": 0.1748344370860928,
-      "volumeZ20": -0.34,
-      "volumeExpansionRatio": 0.75,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 33,
-      "symbol": "4908",
-      "name": "前鼎",
+      "rank": 29,
+      "symbol": "3081",
+      "name": "聯亞",
       "industry": "通信網路",
       "industryCode": "27",
-      "scoreTotal": 60.26,
-      "explosiveScoreV2": 0.6026,
-      "explosiveScoreV1": 0.4806,
+      "scoreTotal": 61.18,
+      "explosiveScoreV2": 0.6118,
+      "explosiveScoreV1": 0.541,
       "scores": {
-        "revenue": 40.0,
-        "expectationGap": 64.15,
-        "priceVolume": 58.08,
-        "themeGroup": 43.9,
+        "revenue": 55.0,
+        "expectationGap": 58.96,
+        "priceVolume": 57.09,
+        "themeGroup": 40.27,
         "chip": 10.0,
-        "catalyst": 16.98
+        "catalyst": 18.79
       },
       "riskPenalty": 0.03,
       "stage": "S2",
       "entryZone": "early_watch",
       "reasons": [
         "通信網路 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 84.4%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 79.3 個百分點。"
+        "60 日動能 48.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 45.6 個百分點。",
+        "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "20 日跌幅較大，可能仍在回檔段。",
         "近期有注意股相關風險。"
       ],
-      "lastClose": 201.0,
-      "ret20d": -0.2471910112359551,
-      "ret60d": 0.8440366972477065,
-      "volumeZ20": 0.25,
-      "volumeExpansionRatio": 1.13,
+      "lastClose": 2285.0,
+      "ret20d": -0.2188034188034188,
+      "ret60d": 0.48376623376623384,
+      "volumeZ20": -0.79,
+      "volumeExpansionRatio": 0.7,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -1728,194 +1524,43 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 34,
-      "symbol": "4979",
-      "name": "華星光",
-      "industry": "通信網路",
-      "industryCode": "27",
-      "scoreTotal": 59.68,
-      "explosiveScoreV2": 0.5968,
-      "explosiveScoreV1": 0.421,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 52.03,
-        "priceVolume": 51.31,
-        "themeGroup": 43.9,
-        "chip": 0.0,
-        "catalyst": 13.83
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 42.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 37.5 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 552.0,
-      "ret20d": -0.12380952380952381,
-      "ret60d": 0.4263565891472869,
-      "volumeZ20": 0.37,
-      "volumeExpansionRatio": 1.38,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": false,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 35,
-      "symbol": "8088",
-      "name": "品安",
+      "rank": 30,
+      "symbol": "5351",
+      "name": "鈺創",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 59.67,
-      "explosiveScoreV2": 0.5967,
-      "explosiveScoreV1": 0.7734,
+      "scoreTotal": 61.11,
+      "explosiveScoreV2": 0.6111,
+      "explosiveScoreV1": 0.8936,
       "scores": {
-        "revenue": 40.0,
-        "expectationGap": 62.68,
-        "priceVolume": 66.9,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 74.93
+        "revenue": 70.0,
+        "expectationGap": 74.75,
+        "priceVolume": 70.56,
+        "themeGroup": 80.32,
+        "chip": 75.0,
+        "catalyst": 81.7
       },
       "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
+      "stage": "S2",
+      "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 26.4%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 21.3 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 68.5,
-      "ret20d": 0.20386643233743418,
-      "ret60d": 0.26383763837638363,
-      "volumeZ20": 0.62,
-      "volumeExpansionRatio": 1.42,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 36,
-      "symbol": "6510",
-      "name": "精測",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 59.47,
-      "explosiveScoreV2": 0.5947,
-      "explosiveScoreV1": 0.5856,
-      "scores": {
-        "revenue": 55.0,
-        "expectationGap": 45.94,
-        "priceVolume": 42.39,
-        "themeGroup": 84.21,
-        "chip": 20.0,
-        "catalyst": 49.74
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 10.2%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 5.1 個百分點。",
-        "營收或營收加速分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 3525.0,
-      "ret20d": 0.03524229074889873,
-      "ret60d": 0.1015625,
-      "volumeZ20": -0.97,
-      "volumeExpansionRatio": 0.55,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": false,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 37,
-      "symbol": "5236",
-      "name": "凌陽創新",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 59.3,
-      "explosiveScoreV2": 0.593,
-      "explosiveScoreV1": 0.7489,
-      "scores": {
-        "revenue": 30.0,
-        "expectationGap": 65.95,
-        "priceVolume": 58.47,
-        "themeGroup": 84.21,
-        "chip": 55.0,
-        "catalyst": 55.69
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 38.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 33.5 個百分點。",
+        "60 日動能 22.8%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 20.1 個百分點。",
+        "營收或營收加速分數達高分區。",
         "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 176.0,
-      "ret20d": -0.027624309392265234,
-      "ret60d": 0.3858267716535433,
-      "volumeZ20": 0.79,
-      "volumeExpansionRatio": 1.35,
+      "lastClose": 91.0,
+      "ret20d": 0.10840438489646775,
+      "ret60d": 0.22807017543859653,
+      "volumeZ20": 0.5,
+      "volumeExpansionRatio": 1.17,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -1931,45 +1576,46 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 38,
-      "symbol": "6651",
-      "name": "全宇昕",
+      "rank": 31,
+      "symbol": "4971",
+      "name": "IET-KY",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 59.15,
-      "explosiveScoreV2": 0.5915,
-      "explosiveScoreV1": 0.8197,
+      "scoreTotal": 60.74,
+      "explosiveScoreV2": 0.6074,
+      "explosiveScoreV1": 0.517,
       "scores": {
-        "revenue": 15.0,
-        "expectationGap": 77.59,
-        "priceVolume": 84.43,
-        "themeGroup": 84.21,
+        "revenue": 0.0,
+        "expectationGap": 48.89,
+        "priceVolume": 40.72,
+        "themeGroup": 80.32,
         "chip": 0.0,
-        "catalyst": 77.2
+        "catalyst": 30.02
       },
       "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
+      "stage": "S2",
+      "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 77.9%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 72.9 個百分點。",
-        "收盤價突破前 120 日高點。"
+        "60 日動能 12.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 10.0 個百分點。"
       ],
       "riskFlags": [
-        "近期有注意股相關風險。"
+        "20 日跌幅較大，可能仍在回檔段。",
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
       ],
-      "lastClose": 163.0,
-      "ret20d": 0.18545454545454554,
-      "ret60d": 0.7794759825327513,
-      "volumeZ20": 1.54,
-      "volumeExpansionRatio": 2.31,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
+      "lastClose": 540.0,
+      "ret20d": -0.2751677852348994,
+      "ret60d": 0.12734864300626314,
+      "volumeZ20": 0.1,
+      "volumeExpansionRatio": 1.06,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
       "mode": "explosive_radar_v2_current",
       "scoreDataCoverageRatio": 1.0,
       "robotSlotCoverageRatio": 1.0,
@@ -1982,45 +1628,46 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 39,
-      "symbol": "8086",
-      "name": "宏捷科",
+      "rank": 32,
+      "symbol": "8054",
+      "name": "安國",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 58.99,
-      "explosiveScoreV2": 0.5899,
-      "explosiveScoreV1": 0.6971,
+      "scoreTotal": 60.63,
+      "explosiveScoreV2": 0.6063,
+      "explosiveScoreV1": 0.8122,
       "scores": {
         "revenue": 55.0,
-        "expectationGap": 63.37,
-        "priceVolume": 61.06,
-        "themeGroup": 84.21,
-        "chip": 25.0,
-        "catalyst": 54.78
+        "expectationGap": 54.34,
+        "priceVolume": 49.38,
+        "themeGroup": 80.32,
+        "chip": 55.0,
+        "catalyst": 86.48
       },
       "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
+      "stage": "S2",
+      "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 36.8%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 31.7 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 26.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 23.8 個百分點。",
+        "營收或營收加速分數達高分區。",
+        "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 165.5,
-      "ret20d": 0.037617554858934144,
-      "ret60d": 0.3677685950413223,
-      "volumeZ20": -0.37,
-      "volumeExpansionRatio": 0.81,
+      "lastClose": 124.5,
+      "ret20d": 0.07327586206896552,
+      "ret60d": 0.2652439024390243,
+      "volumeZ20": 3.91,
+      "volumeExpansionRatio": 4.98,
       "breakoutFlag": false,
       "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
+      "maAlignmentBullFlag": false,
       "mode": "explosive_radar_v2_current",
       "scoreDataCoverageRatio": 1.0,
       "robotSlotCoverageRatio": 1.0,
@@ -2033,39 +1680,39 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 40,
-      "symbol": "3228",
-      "name": "金麗科",
+      "rank": 33,
+      "symbol": "8088",
+      "name": "品安",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 58.97,
-      "explosiveScoreV2": 0.5897,
-      "explosiveScoreV1": 0.6746,
+      "scoreTotal": 60.42,
+      "explosiveScoreV2": 0.6042,
+      "explosiveScoreV1": 0.7986,
       "scores": {
         "revenue": 40.0,
-        "expectationGap": 63.74,
-        "priceVolume": 57.19,
-        "themeGroup": 84.21,
-        "chip": 30.0,
-        "catalyst": 38.38
+        "expectationGap": 66.29,
+        "priceVolume": 67.35,
+        "themeGroup": 80.32,
+        "chip": 10.0,
+        "catalyst": 75.75
       },
       "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
+      "stage": "S2",
+      "entryZone": "early_watch",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 57.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 52.6 個百分點。"
+        "60 日動能 25.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 22.4 個百分點。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 195.5,
-      "ret20d": -0.07565011820330969,
-      "ret60d": 0.5766129032258065,
+      "lastClose": 68.2,
+      "ret20d": 0.1404682274247493,
+      "ret60d": 0.2513761467889908,
       "volumeZ20": -0.02,
       "volumeExpansionRatio": 0.99,
       "breakoutFlag": false,
@@ -2083,195 +1730,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 41,
-      "symbol": "3317",
-      "name": "尼克森",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.9,
-      "explosiveScoreV2": 0.589,
-      "explosiveScoreV1": 0.876,
+      "rank": 34,
+      "symbol": "4908",
+      "name": "前鼎",
+      "industry": "通信網路",
+      "industryCode": "27",
+      "scoreTotal": 60.26,
+      "explosiveScoreV2": 0.6026,
+      "explosiveScoreV1": 0.5402,
       "scores": {
-        "revenue": 0.0,
-        "expectationGap": 85.8,
-        "priceVolume": 89.32,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 81.45
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 119.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 114.6 個百分點。",
-        "收盤價突破前 120 日高點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 97.1,
-      "ret20d": 0.27595269382391585,
-      "ret60d": 1.19683257918552,
-      "volumeZ20": 0.91,
-      "volumeExpansionRatio": 1.53,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 42,
-      "symbol": "5425",
-      "name": "台半",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.71,
-      "explosiveScoreV2": 0.5871,
-      "explosiveScoreV1": 0.8241,
-      "scores": {
-        "revenue": 15.0,
-        "expectationGap": 85.68,
-        "priceVolume": 86.92,
-        "themeGroup": 84.21,
+        "revenue": 40.0,
+        "expectationGap": 64.2,
+        "priceVolume": 60.81,
+        "themeGroup": 40.27,
         "chip": 0.0,
-        "catalyst": 71.77
+        "catalyst": 33.22
       },
       "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
+      "stage": "S2",
+      "entryZone": "early_watch",
       "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 120.3%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 115.2 個百分點。",
-        "收盤價突破前 120 日高點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 130.0,
-      "ret20d": 0.4925373134328359,
-      "ret60d": 1.2033898305084745,
-      "volumeZ20": -1.53,
-      "volumeExpansionRatio": 0.14,
-      "breakoutFlag": true,
-      "breakout120dFlag": true,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 43,
-      "symbol": "3680",
-      "name": "家登",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.58,
-      "explosiveScoreV2": 0.5858,
-      "explosiveScoreV1": 0.6605,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 61.1,
-        "priceVolume": 57.73,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 45.81
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 41.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 36.6 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 547.0,
-      "ret20d": -0.0369718309859155,
-      "ret60d": 0.41709844559585485,
-      "volumeZ20": 0.66,
-      "volumeExpansionRatio": 1.27,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 44,
-      "symbol": "6640",
-      "name": "均華",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.36,
-      "explosiveScoreV2": 0.5836,
-      "explosiveScoreV1": 0.5227,
-      "scores": {
-        "revenue": 30.0,
-        "expectationGap": 38.91,
-        "priceVolume": 30.71,
-        "themeGroup": 84.21,
-        "chip": 30.0,
-        "catalyst": 27.12
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 2.3%，屬於 v2 主要排序訊號。"
+        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 85.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 82.8 個百分點。"
       ],
       "riskFlags": [
         "20 日跌幅較大，可能仍在回檔段。",
         "近期有注意股相關風險。"
       ],
-      "lastClose": 1100.0,
-      "ret20d": -0.19117647058823528,
-      "ret60d": 0.023255813953488413,
-      "volumeZ20": -1.14,
-      "volumeExpansionRatio": 0.54,
+      "lastClose": 211.5,
+      "ret20d": -0.27938671209540034,
+      "ret60d": 0.855263157894737,
+      "volumeZ20": 1.88,
+      "volumeExpansionRatio": 1.96,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": false,
@@ -2287,196 +1781,93 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 45,
-      "symbol": "3438",
-      "name": "類比科",
+      "rank": 35,
+      "symbol": "5425",
+      "name": "台半",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 58.25,
-      "explosiveScoreV2": 0.5825,
-      "explosiveScoreV1": 0.7738,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 72.17,
-        "priceVolume": 71.69,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 69.68
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 73.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 68.6 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 78.5,
-      "ret20d": 0.09943977591036401,
-      "ret60d": 0.736725663716814,
-      "volumeZ20": 1.17,
-      "volumeExpansionRatio": 1.81,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 46,
-      "symbol": "8054",
-      "name": "安國",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.23,
-      "explosiveScoreV2": 0.5823,
-      "explosiveScoreV1": 0.6641,
-      "scores": {
-        "revenue": 55.0,
-        "expectationGap": 42.98,
-        "priceVolume": 36.28,
-        "themeGroup": 84.21,
-        "chip": 55.0,
-        "catalyst": 70.77
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 17.0%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 11.9 個百分點。",
-        "營收或營收加速分數達高分區。",
-        "籌碼支撐分數達高分區。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。"
-      ],
-      "lastClose": 113.5,
-      "ret20d": 0.017937219730941756,
-      "ret60d": 0.17010309278350522,
-      "volumeZ20": 2.15,
-      "volumeExpansionRatio": 2.41,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": false,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 47,
-      "symbol": "7556",
-      "name": "意德士",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 58.18,
-      "explosiveScoreV2": 0.5818,
-      "explosiveScoreV1": 0.7888,
-      "scores": {
-        "revenue": 0.0,
-        "expectationGap": 73.46,
-        "priceVolume": 72.29,
-        "themeGroup": 84.21,
-        "chip": 35.0,
-        "catalyst": 68.8
-      },
-      "riskPenalty": 0.03,
-      "stage": "S1",
-      "entryZone": "watch_only",
-      "reasons": [
-        "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 72.9%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 67.8 個百分點。"
-      ],
-      "riskFlags": [
-        "近期有注意股相關風險。",
-        "營收分數不足，需人工確認基本面。"
-      ],
-      "lastClose": 293.0,
-      "ret20d": 0.061594202898550776,
-      "ret60d": 0.7286135693215339,
-      "volumeZ20": 2.39,
-      "volumeExpansionRatio": 2.16,
-      "breakoutFlag": false,
-      "breakout120dFlag": false,
-      "maAlignmentBullFlag": true,
-      "mode": "explosive_radar_v2_current",
-      "scoreDataCoverageRatio": 1.0,
-      "robotSlotCoverageRatio": 1.0,
-      "availableRadars": [
-        "price_rs",
-        "revenue",
-        "chip",
-        "theme",
-        "winner_prior"
-      ],
-      "degradedRadars": [],
-      "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
-    },
-    {
-      "rank": 48,
-      "symbol": "3227",
-      "name": "原相",
-      "industry": "半導體",
-      "industryCode": "24",
-      "scoreTotal": 57.91,
-      "explosiveScoreV2": 0.5791,
-      "explosiveScoreV1": 0.7275,
+      "scoreTotal": 60.0,
+      "explosiveScoreV2": 0.6,
+      "explosiveScoreV1": 0.9289,
       "scores": {
         "revenue": 15.0,
-        "expectationGap": 55.19,
-        "priceVolume": 48.07,
-        "themeGroup": 84.21,
-        "chip": 65.0,
-        "catalyst": 62.42
+        "expectationGap": 91.73,
+        "priceVolume": 94.39,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 94.3
       },
       "riskPenalty": 0.03,
       "stage": "S1",
       "entryZone": "watch_only",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 21.7%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 16.6 個百分點。",
+        "60 日動能 114.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 111.3 個百分點。",
+        "收盤價突破前 120 日高點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 134.0,
+      "ret20d": 0.4628820960698692,
+      "ret60d": 1.1405750798722045,
+      "volumeZ20": 3.12,
+      "volumeExpansionRatio": 3.2,
+      "breakoutFlag": true,
+      "breakout120dFlag": true,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 36,
+      "symbol": "5236",
+      "name": "凌陽創新",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 59.67,
+      "explosiveScoreV2": 0.5967,
+      "explosiveScoreV1": 0.7617,
+      "scores": {
+        "revenue": 30.0,
+        "expectationGap": 67.8,
+        "priceVolume": 59.57,
+        "themeGroup": 80.32,
+        "chip": 55.0,
+        "catalyst": 57.31
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 33.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 31.0 個百分點。",
         "籌碼支撐分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 230.0,
-      "ret20d": -0.012875536480686733,
-      "ret60d": 0.21693121693121697,
-      "volumeZ20": 1.68,
-      "volumeExpansionRatio": 1.9,
+      "lastClose": 176.5,
+      "ret20d": -0.0536193029490617,
+      "ret60d": 0.33712121212121215,
+      "volumeZ20": 0.24,
+      "volumeExpansionRatio": 1.11,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -2492,45 +1883,44 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 49,
-      "symbol": "6829",
-      "name": "千附精密",
+      "rank": 37,
+      "symbol": "6788",
+      "name": "華景電",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 57.63,
-      "explosiveScoreV2": 0.5763,
-      "explosiveScoreV1": 0.6482,
+      "scoreTotal": 59.56,
+      "explosiveScoreV2": 0.5956,
+      "explosiveScoreV1": 0.6455,
       "scores": {
-        "revenue": 55.0,
-        "expectationGap": 66.5,
-        "priceVolume": 62.16,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 36.23
+        "revenue": 15.0,
+        "expectationGap": 53.04,
+        "priceVolume": 48.33,
+        "themeGroup": 80.32,
+        "chip": 10.0,
+        "catalyst": 52.55
       },
       "riskPenalty": 0.03,
       "stage": "S1",
       "entryZone": "watch_only",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 88.6%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 83.5 個百分點。",
-        "營收或營收加速分數達高分區。"
+        "60 日動能 7.0%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 4.2 個百分點。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 207.5,
-      "ret20d": -0.01891252955082745,
-      "ret60d": 0.8863636363636365,
-      "volumeZ20": -0.25,
-      "volumeExpansionRatio": 0.8,
+      "lastClose": 429.0,
+      "ret20d": 0.011792452830188704,
+      "ret60d": 0.06982543640897765,
+      "volumeZ20": -0.4,
+      "volumeExpansionRatio": 0.71,
       "breakoutFlag": false,
       "breakout120dFlag": false,
-      "maAlignmentBullFlag": false,
+      "maAlignmentBullFlag": true,
       "mode": "explosive_radar_v2_current",
       "scoreDataCoverageRatio": 1.0,
       "robotSlotCoverageRatio": 1.0,
@@ -2543,42 +1933,42 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
     },
     {
-      "rank": 50,
+      "rank": 38,
       "symbol": "8040",
       "name": "九暘",
       "industry": "半導體",
       "industryCode": "24",
-      "scoreTotal": 57.47,
-      "explosiveScoreV2": 0.5747,
-      "explosiveScoreV1": 0.737,
+      "scoreTotal": 59.23,
+      "explosiveScoreV2": 0.5923,
+      "explosiveScoreV1": 0.8533,
       "scores": {
         "revenue": 70.0,
-        "expectationGap": 68.34,
-        "priceVolume": 64.71,
-        "themeGroup": 84.21,
-        "chip": 0.0,
-        "catalyst": 35.13
+        "expectationGap": 76.74,
+        "priceVolume": 74.75,
+        "themeGroup": 80.32,
+        "chip": 25.0,
+        "catalyst": 71.91
       },
       "riskPenalty": 0.03,
       "stage": "S1",
       "entryZone": "watch_only",
       "reasons": [
         "半導體 歷史 winner prior 與本輪題材分數支撐。",
-        "60 日動能 109.3%，屬於 v2 主要排序訊號。",
-        "60 日相對強度優於市場中位數 104.2 個百分點。",
+        "60 日動能 128.2%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 125.5 個百分點。",
         "營收或營收加速分數達高分區。"
       ],
       "riskFlags": [
         "近期有注意股相關風險。"
       ],
-      "lastClose": 104.0,
-      "ret20d": -0.12605042016806722,
-      "ret60d": 1.0925553319919517,
-      "volumeZ20": -0.37,
-      "volumeExpansionRatio": 0.75,
+      "lastClose": 114.0,
+      "ret20d": -0.06938775510204087,
+      "ret60d": 1.2822822822822824,
+      "volumeZ20": 3.32,
+      "volumeExpansionRatio": 3.31,
       "breakoutFlag": false,
       "breakout120dFlag": false,
       "maAlignmentBullFlag": true,
@@ -2594,7 +1984,617 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-22T17:13:05+08:00"
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 39,
+      "symbol": "3228",
+      "name": "金麗科",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 59.03,
+      "explosiveScoreV2": 0.5903,
+      "explosiveScoreV1": 0.6973,
+      "scores": {
+        "revenue": 40.0,
+        "expectationGap": 64.11,
+        "priceVolume": 55.83,
+        "themeGroup": 80.32,
+        "chip": 30.0,
+        "catalyst": 41.42
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 52.0%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 49.3 個百分點。"
+      ],
+      "riskFlags": [
+        "20 日跌幅較大，可能仍在回檔段。",
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 187.0,
+      "ret20d": -0.18695652173913047,
+      "ret60d": 0.5203252032520325,
+      "volumeZ20": -0.39,
+      "volumeExpansionRatio": 0.83,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 40,
+      "symbol": "3260",
+      "name": "威剛",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 58.88,
+      "explosiveScoreV2": 0.5888,
+      "explosiveScoreV1": 0.6305,
+      "scores": {
+        "revenue": 70.0,
+        "expectationGap": 45.61,
+        "priceVolume": 45.24,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 56.81
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 1.7%，屬於 v2 主要排序訊號。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 412.0,
+      "ret20d": 0.01104294478527601,
+      "ret60d": 0.01728395061728394,
+      "volumeZ20": -0.37,
+      "volumeExpansionRatio": 0.77,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 41,
+      "symbol": "4979",
+      "name": "華星光",
+      "industry": "通信網路",
+      "industryCode": "27",
+      "scoreTotal": 58.84,
+      "explosiveScoreV2": 0.5884,
+      "explosiveScoreV1": 0.3998,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 48.06,
+        "priceVolume": 46.76,
+        "themeGroup": 40.27,
+        "chip": 0.0,
+        "catalyst": 13.28
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "通信網路 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 23.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 20.6 個百分點。"
+      ],
+      "riskFlags": [
+        "20 日跌幅較大，可能仍在回檔段。",
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 525.0,
+      "ret20d": -0.1984732824427481,
+      "ret60d": 0.23384253819036438,
+      "volumeZ20": 0.1,
+      "volumeExpansionRatio": 1.09,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 42,
+      "symbol": "6651",
+      "name": "全宇昕",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 58.47,
+      "explosiveScoreV2": 0.5847,
+      "explosiveScoreV1": 0.8233,
+      "scores": {
+        "revenue": 15.0,
+        "expectationGap": 74.44,
+        "priceVolume": 73.95,
+        "themeGroup": 80.32,
+        "chip": 20.0,
+        "catalyst": 69.38
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 66.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 63.4 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 153.0,
+      "ret20d": 0.03728813559322042,
+      "ret60d": 0.6612377850162867,
+      "volumeZ20": 0.75,
+      "volumeExpansionRatio": 1.63,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 43,
+      "symbol": "3227",
+      "name": "原相",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 58.4,
+      "explosiveScoreV2": 0.584,
+      "explosiveScoreV1": 0.7088,
+      "scores": {
+        "revenue": 15.0,
+        "expectationGap": 57.53,
+        "priceVolume": 49.19,
+        "themeGroup": 80.32,
+        "chip": 65.0,
+        "catalyst": 58.39
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 18.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 15.4 個百分點。",
+        "籌碼支撐分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 228.0,
+      "ret20d": -0.01935483870967747,
+      "ret60d": 0.18134715025906734,
+      "volumeZ20": 0.16,
+      "volumeExpansionRatio": 1.09,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 44,
+      "symbol": "3680",
+      "name": "家登",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 58.38,
+      "explosiveScoreV2": 0.5838,
+      "explosiveScoreV1": 0.6593,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 60.23,
+        "priceVolume": 54.18,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 38.01
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 30.2%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 27.4 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 537.0,
+      "ret20d": -0.09747899159663864,
+      "ret60d": 0.30181818181818176,
+      "volumeZ20": -0.68,
+      "volumeExpansionRatio": 0.74,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 45,
+      "symbol": "8086",
+      "name": "宏捷科",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 58.09,
+      "explosiveScoreV2": 0.5809,
+      "explosiveScoreV1": 0.6423,
+      "scores": {
+        "revenue": 55.0,
+        "expectationGap": 59.18,
+        "priceVolume": 52.63,
+        "themeGroup": 80.32,
+        "chip": 25.0,
+        "catalyst": 48.34
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 26.1%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 23.3 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 159.5,
+      "ret20d": -0.021472392638036797,
+      "ret60d": 0.26086956521739135,
+      "volumeZ20": -0.49,
+      "volumeExpansionRatio": 0.74,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 46,
+      "symbol": "3438",
+      "name": "類比科",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 57.96,
+      "explosiveScoreV2": 0.5796,
+      "explosiveScoreV1": 0.7889,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 70.92,
+        "priceVolume": 70.01,
+        "themeGroup": 80.32,
+        "chip": 25.0,
+        "catalyst": 70.41
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 65.7%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 63.0 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 75.4,
+      "ret20d": 0.04576976421636636,
+      "ret60d": 0.6571428571428573,
+      "volumeZ20": 1.11,
+      "volumeExpansionRatio": 1.77,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 47,
+      "symbol": "3317",
+      "name": "尼克森",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 57.94,
+      "explosiveScoreV2": 0.5794,
+      "explosiveScoreV1": 0.8688,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 81.17,
+        "priceVolume": 80.95,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 81.71
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 96.0%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 93.2 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 92.0,
+      "ret20d": 0.09916367980884111,
+      "ret60d": 0.9595314164004258,
+      "volumeZ20": 3.29,
+      "volumeExpansionRatio": 3.44,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 48,
+      "symbol": "6829",
+      "name": "千附精密",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 57.71,
+      "explosiveScoreV2": 0.5771,
+      "explosiveScoreV1": 0.6576,
+      "scores": {
+        "revenue": 55.0,
+        "expectationGap": 66.96,
+        "priceVolume": 61.48,
+        "themeGroup": 80.32,
+        "chip": 0.0,
+        "catalyst": 40.6
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 84.8%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 82.0 個百分點。",
+        "營收或營收加速分數達高分區。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 206.0,
+      "ret20d": -0.0864745011086474,
+      "ret60d": 0.8475336322869955,
+      "volumeZ20": -0.3,
+      "volumeExpansionRatio": 0.76,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 49,
+      "symbol": "7556",
+      "name": "意德士",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 57.6,
+      "explosiveScoreV2": 0.576,
+      "explosiveScoreV1": 0.7107,
+      "scores": {
+        "revenue": 0.0,
+        "expectationGap": 70.79,
+        "priceVolume": 64.19,
+        "themeGroup": 80.32,
+        "chip": 35.0,
+        "catalyst": 42.85
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 54.5%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 51.8 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。",
+        "營收分數不足，需人工確認基本面。"
+      ],
+      "lastClose": 282.0,
+      "ret20d": -0.02083333333333337,
+      "ret60d": 0.5452054794520549,
+      "volumeZ20": -0.6,
+      "volumeExpansionRatio": 0.7,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": true,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
+    },
+    {
+      "rank": 50,
+      "symbol": "3529",
+      "name": "力旺",
+      "industry": "半導體",
+      "industryCode": "24",
+      "scoreTotal": 57.26,
+      "explosiveScoreV2": 0.5726,
+      "explosiveScoreV1": 0.5941,
+      "scores": {
+        "revenue": 15.0,
+        "expectationGap": 51.85,
+        "priceVolume": 45.04,
+        "themeGroup": 80.32,
+        "chip": 30.0,
+        "catalyst": 37.45
+      },
+      "riskPenalty": 0.03,
+      "stage": "S1",
+      "entryZone": "watch_only",
+      "reasons": [
+        "半導體 歷史 winner prior 與本輪題材分數支撐。",
+        "60 日動能 14.4%，屬於 v2 主要排序訊號。",
+        "60 日相對強度優於市場中位數 11.6 個百分點。"
+      ],
+      "riskFlags": [
+        "近期有注意股相關風險。"
+      ],
+      "lastClose": 3185.0,
+      "ret20d": -0.14150943396226412,
+      "ret60d": 0.14362657091561948,
+      "volumeZ20": -0.24,
+      "volumeExpansionRatio": 0.89,
+      "breakoutFlag": false,
+      "breakout120dFlag": false,
+      "maAlignmentBullFlag": false,
+      "mode": "explosive_radar_v2_current",
+      "scoreDataCoverageRatio": 1.0,
+      "robotSlotCoverageRatio": 1.0,
+      "availableRadars": [
+        "price_rs",
+        "revenue",
+        "chip",
+        "theme",
+        "winner_prior"
+      ],
+      "degradedRadars": [],
+      "coreDataReady": true,
+      "createdAt": "2026-06-23T17:09:15+08:00"
     }
   ],
   "golden": {
@@ -2602,9 +2602,9 @@
     "rule": "連續 10 個交易日都進 Top20；若每天都進 Top5/Top10，升級標示。",
     "windowDays": 10,
     "topN": 20,
-    "asOfDate": "2026-06-22",
-    "windowStart": "2026-06-08",
-    "windowEnd": "2026-06-22",
+    "asOfDate": "2026-06-23",
+    "windowStart": "2026-06-09",
+    "windowEnd": "2026-06-23",
     "candidates": [
       {
         "symbol": "6223",
@@ -2613,13 +2613,12 @@
         "tier": "top5",
         "tierN": 5,
         "windowDays": 10,
-        "latestRank": 1,
-        "latestScore": 67.93,
+        "latestRank": 2,
+        "latestScore": 66.68,
         "bestRank": 1,
         "worstRank": 3,
-        "averageRank": 1.5,
+        "averageRank": 1.6,
         "rankPath": [
-          1,
           1,
           2,
           3,
@@ -2628,7 +2627,8 @@
           2,
           1,
           1,
-          1
+          1,
+          2
         ],
         "top5Days": 10,
         "top10Days": 10,
@@ -2642,12 +2642,11 @@
         "tierN": 5,
         "windowDays": 10,
         "latestRank": 3,
-        "latestScore": 66.37,
+        "latestScore": 66.49,
         "bestRank": 1,
         "worstRank": 3,
-        "averageRank": 1.8,
+        "averageRank": 1.9,
         "rankPath": [
-          2,
           2,
           1,
           1,
@@ -2656,6 +2655,7 @@
           1,
           3,
           2,
+          3,
           3
         ],
         "top5Days": 10,
@@ -2669,13 +2669,12 @@
         "tier": "top10",
         "tierN": 10,
         "windowDays": 10,
-        "latestRank": 4,
-        "latestScore": 66.3,
+        "latestRank": 5,
+        "latestScore": 66.2,
         "bestRank": 3,
         "worstRank": 7,
-        "averageRank": 4.4,
+        "averageRank": 4.6,
         "rankPath": [
-          3,
           3,
           3,
           4,
@@ -2684,7 +2683,8 @@
           5,
           4,
           5,
-          4
+          4,
+          5
         ],
         "top5Days": 8,
         "top10Days": 10,
@@ -2698,12 +2698,11 @@
         "tierN": 10,
         "windowDays": 10,
         "latestRank": 7,
-        "latestScore": 65.37,
+        "latestScore": 65.57,
         "bestRank": 4,
         "worstRank": 10,
-        "averageRank": 6.7,
+        "averageRank": 6.6,
         "rankPath": [
-          8,
           10,
           6,
           5,
@@ -2712,6 +2711,7 @@
           7,
           6,
           6,
+          7,
           7
         ],
         "top5Days": 2,
@@ -2725,13 +2725,12 @@
         "tier": "top20",
         "tierN": 20,
         "windowDays": 10,
-        "latestRank": 2,
-        "latestScore": 66.89,
-        "bestRank": 2,
+        "latestRank": 1,
+        "latestScore": 66.9,
+        "bestRank": 1,
         "worstRank": 12,
-        "averageRank": 4.4,
+        "averageRank": 3.5,
         "rankPath": [
-          10,
           12,
           4,
           2,
@@ -2740,38 +2739,11 @@
           3,
           2,
           3,
-          2
+          2,
+          1
         ],
-        "top5Days": 8,
+        "top5Days": 9,
         "top10Days": 9,
-        "top20Days": 10
-      },
-      {
-        "symbol": "4991",
-        "name": "環宇-KY",
-        "industry": "24",
-        "tier": "top20",
-        "tierN": 20,
-        "windowDays": 10,
-        "latestRank": 15,
-        "latestScore": 63.18,
-        "bestRank": 5,
-        "worstRank": 15,
-        "averageRank": 7.9,
-        "rankPath": [
-          6,
-          6,
-          7,
-          6,
-          5,
-          5,
-          10,
-          7,
-          12,
-          15
-        ],
-        "top5Days": 2,
-        "top10Days": 8,
         "top20Days": 10
       },
       {
@@ -2782,12 +2754,11 @@
         "tierN": 20,
         "windowDays": 10,
         "latestRank": 6,
-        "latestScore": 66.04,
+        "latestScore": 65.66,
         "bestRank": 4,
-        "worstRank": 14,
-        "averageRank": 8.5,
+        "worstRank": 13,
+        "averageRank": 7.7,
         "rankPath": [
-          14,
           13,
           11,
           11,
@@ -2796,10 +2767,11 @@
           6,
           5,
           4,
+          6,
           6
         ],
         "top5Days": 2,
-        "top10Days": 6,
+        "top10Days": 7,
         "top20Days": 10
       },
       {
@@ -2809,13 +2781,12 @@
         "tier": "top20",
         "tierN": 20,
         "windowDays": 10,
-        "latestRank": 12,
-        "latestScore": 63.8,
+        "latestRank": 9,
+        "latestScore": 64.42,
         "bestRank": 4,
         "worstRank": 12,
-        "averageRank": 8.6,
+        "averageRank": 9.0,
         "rankPath": [
-          5,
           4,
           5,
           8,
@@ -2824,10 +2795,39 @@
           8,
           12,
           11,
-          12
+          12,
+          9
         ],
-        "top5Days": 3,
+        "top5Days": 2,
         "top10Days": 6,
+        "top20Days": 10
+      },
+      {
+        "symbol": "4991",
+        "name": "環宇-KY",
+        "industry": "24",
+        "tier": "top20",
+        "tierN": 20,
+        "windowDays": 10,
+        "latestRank": 19,
+        "latestScore": 62.69,
+        "bestRank": 5,
+        "worstRank": 19,
+        "averageRank": 9.2,
+        "rankPath": [
+          6,
+          7,
+          6,
+          5,
+          5,
+          10,
+          7,
+          12,
+          15,
+          19
+        ],
+        "top5Days": 2,
+        "top10Days": 7,
         "top20Days": 10
       },
       {
@@ -2837,13 +2837,12 @@
         "tier": "top20",
         "tierN": 20,
         "windowDays": 10,
-        "latestRank": 9,
-        "latestScore": 64.16,
+        "latestRank": 11,
+        "latestScore": 64.17,
         "bestRank": 7,
         "worstRank": 12,
         "averageRank": 9.5,
         "rankPath": [
-          11,
           9,
           10,
           7,
@@ -2852,38 +2851,39 @@
           12,
           8,
           9,
-          9
+          9,
+          11
         ],
         "top5Days": 0,
         "top10Days": 8,
         "top20Days": 10
       },
       {
-        "symbol": "3081",
-        "name": "聯亞",
-        "industry": "27",
+        "symbol": "6693",
+        "name": "廣閎科",
+        "industry": "24",
         "tier": "top20",
         "tierN": 20,
         "windowDays": 10,
-        "latestRank": 20,
-        "latestScore": 62.35,
-        "bestRank": 11,
-        "worstRank": 20,
-        "averageRank": 16.3,
+        "latestRank": 4,
+        "latestScore": 66.39,
+        "bestRank": 4,
+        "worstRank": 18,
+        "averageRank": 11.4,
         "rankPath": [
-          16,
+          14,
+          14,
           17,
           18,
           16,
-          13,
-          11,
-          17,
-          19,
-          16,
-          20
+          9,
+          10,
+          7,
+          5,
+          4
         ],
-        "top5Days": 0,
-        "top10Days": 0,
+        "top5Days": 2,
+        "top10Days": 5,
         "top20Days": 10
       }
     ],
@@ -2896,13 +2896,13 @@
   "effectiveness": {
     "label": "黃金榜成效追蹤",
     "status": "research_only",
-    "generatedAt": "2026-06-22T17:11:43+08:00",
+    "generatedAt": "2026-06-23T17:08:24+08:00",
     "range": {
       "start": "2024-12-12",
-      "end": "2026-06-22",
+      "end": "2026-06-23",
       "firstSignalDate": "2024-12-25",
-      "lastSignalDate": "2026-06-22",
-      "dailyRows": 358
+      "lastSignalDate": "2026-06-23",
+      "dailyRows": 359
     },
     "method": {
       "internalComparison": "golden list versus same-day ordinary Top20",
@@ -2924,13 +2924,13 @@
       "20d": {
         "label": "20 交易日",
         "internal": {
-          "days": 338,
-          "goldenAvgPct": 6.67,
-          "top20AvgPct": 6.39,
+          "days": 339,
+          "goldenAvgPct": 6.63,
+          "top20AvgPct": 6.34,
           "goldenMinusTop20Pct": 0.28,
-          "goldenMedianPct": 4.94,
-          "top20MedianPct": 5.28,
-          "goldenBeatTop20DailyPct": 50.3
+          "goldenMedianPct": 4.91,
+          "top20MedianPct": 5.27,
+          "goldenBeatTop20DailyPct": 50.44
         },
         "external": {
           "days": 333,
@@ -2968,13 +2968,13 @@
       "60d": {
         "label": "60 交易日",
         "internal": {
-          "days": 298,
-          "goldenAvgPct": 28.15,
-          "top20AvgPct": 25.77,
+          "days": 299,
+          "goldenAvgPct": 28.17,
+          "top20AvgPct": 25.79,
           "goldenMinusTop20Pct": 2.37,
-          "goldenMedianPct": 18.11,
-          "top20MedianPct": 17.04,
-          "goldenBeatTop20DailyPct": 59.73
+          "goldenMedianPct": 18.14,
+          "top20MedianPct": 17.07,
+          "goldenBeatTop20DailyPct": 59.87
         },
         "external": {
           "days": 293,
@@ -3012,13 +3012,13 @@
       "120d": {
         "label": "120 交易日",
         "internal": {
-          "days": 238,
-          "goldenAvgPct": 66.33,
-          "top20AvgPct": 61.88,
-          "goldenMinusTop20Pct": 4.45,
-          "goldenMedianPct": 41.84,
-          "top20MedianPct": 42.38,
-          "goldenBeatTop20DailyPct": 66.39
+          "days": 239,
+          "goldenAvgPct": 66.67,
+          "top20AvgPct": 62.18,
+          "goldenMinusTop20Pct": 4.49,
+          "goldenMedianPct": 41.86,
+          "top20MedianPct": 42.45,
+          "goldenBeatTop20DailyPct": 66.53
         },
         "external": {
           "days": 233,
@@ -3056,15 +3056,6 @@
     },
     "curves": {
       "20d": [
-        {
-          "date": "2025-08-21",
-          "golden": 9.33,
-          "top20": 7.08,
-          "bestExternal": 12.72,
-          "etf0050": 10.05,
-          "tsmc2330": 12.72,
-          "taiex": 8.55
-        },
         {
           "date": "2025-08-22",
           "golden": 9.41,
@@ -4675,18 +4666,18 @@
           "etf0050": null,
           "tsmc2330": null,
           "taiex": null
+        },
+        {
+          "date": "2026-05-25",
+          "golden": -8.05,
+          "top20": -9.24,
+          "bestExternal": null,
+          "etf0050": null,
+          "tsmc2330": null,
+          "taiex": null
         }
       ],
       "60d": [
-        {
-          "date": "2025-06-26",
-          "golden": 18.07,
-          "top20": 16.23,
-          "bestExternal": 19.53,
-          "etf0050": 17.91,
-          "tsmc2330": 19.53,
-          "taiex": 14.91
-        },
         {
           "date": "2025-06-27",
           "golden": 18.09,
@@ -6297,18 +6288,18 @@
           "etf0050": null,
           "tsmc2330": null,
           "taiex": null
+        },
+        {
+          "date": "2026-03-25",
+          "golden": 33.83,
+          "top20": 31.9,
+          "bestExternal": null,
+          "etf0050": null,
+          "tsmc2330": null,
+          "taiex": null
         }
       ],
       "120d": [
-        {
-          "date": "2025-03-28",
-          "golden": 11.48,
-          "top20": 8.23,
-          "bestExternal": 35.84,
-          "etf0050": -67.51,
-          "tsmc2330": 35.84,
-          "taiex": 18.01
-        },
         {
           "date": "2025-03-31",
           "golden": 22.39,
@@ -7919,6 +7910,15 @@
           "etf0050": null,
           "tsmc2330": null,
           "taiex": null
+        },
+        {
+          "date": "2025-12-17",
+          "golden": 147.29,
+          "top20": 134.26,
+          "bestExternal": null,
+          "etf0050": null,
+          "tsmc2330": null,
+          "taiex": null
         }
       ]
     },
@@ -7952,11 +7952,237 @@
     }
   },
   "history": {
-    "windowDays": 367,
+    "windowDays": 368,
     "topN": 20,
     "startDate": "2024-12-12",
-    "endDate": "2026-06-22",
+    "endDate": "2026-06-23",
     "daily": [
+      {
+        "asOfDate": "2026-06-23",
+        "count": 20,
+        "candidates": [
+          {
+            "rank": 1,
+            "symbol": "3131",
+            "name": "弘塑",
+            "industry": "24",
+            "scoreTotal": 66.9,
+            "explosiveScoreV2": 0.669,
+            "lastClose": 3585.0,
+            "ret20d": 0.27,
+            "ret60d": 0.48
+          },
+          {
+            "rank": 2,
+            "symbol": "6223",
+            "name": "旺矽",
+            "industry": "24",
+            "scoreTotal": 66.68,
+            "explosiveScoreV2": 0.6668,
+            "lastClose": 6425.0,
+            "ret20d": 0.06,
+            "ret60d": 0.75
+          },
+          {
+            "rank": 3,
+            "symbol": "4973",
+            "name": "廣穎",
+            "industry": "24",
+            "scoreTotal": 66.49,
+            "explosiveScoreV2": 0.6649,
+            "lastClose": 191.5,
+            "ret20d": 0.67,
+            "ret60d": 1.67
+          },
+          {
+            "rank": 4,
+            "symbol": "6693",
+            "name": "廣閎科",
+            "industry": "24",
+            "scoreTotal": 66.39,
+            "explosiveScoreV2": 0.6639,
+            "lastClose": 236.5,
+            "ret20d": 0.62,
+            "ret60d": 1.31
+          },
+          {
+            "rank": 5,
+            "symbol": "6187",
+            "name": "萬潤",
+            "industry": "24",
+            "scoreTotal": 66.2,
+            "explosiveScoreV2": 0.662,
+            "lastClose": 1260.0,
+            "ret20d": 0.11,
+            "ret60d": 0.45
+          },
+          {
+            "rank": 6,
+            "symbol": "5274",
+            "name": "信驊",
+            "industry": "24",
+            "scoreTotal": 65.66,
+            "explosiveScoreV2": 0.6566,
+            "lastClose": 19275.0,
+            "ret20d": 0.08,
+            "ret60d": 0.77
+          },
+          {
+            "rank": 7,
+            "symbol": "2454",
+            "name": "聯發科",
+            "industry": "24",
+            "scoreTotal": 65.57,
+            "explosiveScoreV2": 0.6557,
+            "lastClose": 4465.0,
+            "ret20d": 0.16,
+            "ret60d": 1.76
+          },
+          {
+            "rank": 8,
+            "symbol": "3264",
+            "name": "欣銓",
+            "industry": "24",
+            "scoreTotal": 64.47,
+            "explosiveScoreV2": 0.6447,
+            "lastClose": 242.0,
+            "ret20d": 0.09,
+            "ret60d": 0.66
+          },
+          {
+            "rank": 9,
+            "symbol": "6291",
+            "name": "沛亨",
+            "industry": "24",
+            "scoreTotal": 64.42,
+            "explosiveScoreV2": 0.6442,
+            "lastClose": 591.0,
+            "ret20d": 0.09,
+            "ret60d": 0.75
+          },
+          {
+            "rank": 10,
+            "symbol": "6147",
+            "name": "頎邦",
+            "industry": "24",
+            "scoreTotal": 64.26,
+            "explosiveScoreV2": 0.6426,
+            "lastClose": 277.0,
+            "ret20d": 0.29,
+            "ret60d": 3.29
+          },
+          {
+            "rank": 11,
+            "symbol": "3581",
+            "name": "博磊",
+            "industry": "24",
+            "scoreTotal": 64.17,
+            "explosiveScoreV2": 0.6417,
+            "lastClose": 178.0,
+            "ret20d": -0.28,
+            "ret60d": 1.47
+          },
+          {
+            "rank": 12,
+            "symbol": "3105",
+            "name": "穩懋",
+            "industry": "24",
+            "scoreTotal": 63.98,
+            "explosiveScoreV2": 0.6398,
+            "lastClose": 541.0,
+            "ret20d": 0.02,
+            "ret60d": 0.73
+          },
+          {
+            "rank": 13,
+            "symbol": "8299",
+            "name": "群聯",
+            "industry": "24",
+            "scoreTotal": 63.86,
+            "explosiveScoreV2": 0.6386,
+            "lastClose": 2580.0,
+            "ret20d": 0.06,
+            "ret60d": 0.53
+          },
+          {
+            "rank": 14,
+            "symbol": "3265",
+            "name": "台星科",
+            "industry": "24",
+            "scoreTotal": 63.76,
+            "explosiveScoreV2": 0.6376,
+            "lastClose": 193.5,
+            "ret20d": 0.04,
+            "ret60d": 0.46
+          },
+          {
+            "rank": 15,
+            "symbol": "6138",
+            "name": "茂達",
+            "industry": "24",
+            "scoreTotal": 63.53,
+            "explosiveScoreV2": 0.6353,
+            "lastClose": 394.0,
+            "ret20d": 0.24,
+            "ret60d": 0.77
+          },
+          {
+            "rank": 16,
+            "symbol": "6683",
+            "name": "雍智科技",
+            "industry": "24",
+            "scoreTotal": 62.95,
+            "explosiveScoreV2": 0.6295,
+            "lastClose": 1605.0,
+            "ret20d": -0.03,
+            "ret60d": 0.46
+          },
+          {
+            "rank": 17,
+            "symbol": "6488",
+            "name": "環球晶",
+            "industry": "24",
+            "scoreTotal": 62.93,
+            "explosiveScoreV2": 0.6293,
+            "lastClose": 1115.0,
+            "ret20d": 0.56,
+            "ret60d": 1.58
+          },
+          {
+            "rank": 18,
+            "symbol": "5351",
+            "name": "鈺創",
+            "industry": "24",
+            "scoreTotal": 62.79,
+            "explosiveScoreV2": 0.6279,
+            "lastClose": 99.8,
+            "ret20d": 0.24,
+            "ret60d": 0.43
+          },
+          {
+            "rank": 19,
+            "symbol": "4991",
+            "name": "環宇-KY",
+            "industry": "24",
+            "scoreTotal": 62.69,
+            "explosiveScoreV2": 0.6269,
+            "lastClose": 564.0,
+            "ret20d": -0.31,
+            "ret60d": 0.42
+          },
+          {
+            "rank": 20,
+            "symbol": "3234",
+            "name": "光環",
+            "industry": "27",
+            "scoreTotal": 62.55,
+            "explosiveScoreV2": 0.6255,
+            "lastClose": 139.0,
+            "ret20d": 0.34,
+            "ret60d": 0.59
+          }
+        ]
+      },
       {
         "asOfDate": "2026-06-22",
         "count": 20,
@@ -90905,9 +91131,9 @@
       "rule": "連續 10 個交易日都進 Top20；若每天都進 Top5/Top10，升級標示。",
       "windowDays": 10,
       "topN": 20,
-      "asOfDate": "2026-06-22",
-      "windowStart": "2026-06-08",
-      "windowEnd": "2026-06-22",
+      "asOfDate": "2026-06-23",
+      "windowStart": "2026-06-09",
+      "windowEnd": "2026-06-23",
       "candidates": [
         {
           "symbol": "6223",
@@ -90916,13 +91142,12 @@
           "tier": "top5",
           "tierN": 5,
           "windowDays": 10,
-          "latestRank": 1,
-          "latestScore": 67.93,
+          "latestRank": 2,
+          "latestScore": 66.68,
           "bestRank": 1,
           "worstRank": 3,
-          "averageRank": 1.5,
+          "averageRank": 1.6,
           "rankPath": [
-            1,
             1,
             2,
             3,
@@ -90931,7 +91156,8 @@
             2,
             1,
             1,
-            1
+            1,
+            2
           ],
           "top5Days": 10,
           "top10Days": 10,
@@ -90945,12 +91171,11 @@
           "tierN": 5,
           "windowDays": 10,
           "latestRank": 3,
-          "latestScore": 66.37,
+          "latestScore": 66.49,
           "bestRank": 1,
           "worstRank": 3,
-          "averageRank": 1.8,
+          "averageRank": 1.9,
           "rankPath": [
-            2,
             2,
             1,
             1,
@@ -90959,6 +91184,7 @@
             1,
             3,
             2,
+            3,
             3
           ],
           "top5Days": 10,
@@ -90972,13 +91198,12 @@
           "tier": "top10",
           "tierN": 10,
           "windowDays": 10,
-          "latestRank": 4,
-          "latestScore": 66.3,
+          "latestRank": 5,
+          "latestScore": 66.2,
           "bestRank": 3,
           "worstRank": 7,
-          "averageRank": 4.4,
+          "averageRank": 4.6,
           "rankPath": [
-            3,
             3,
             3,
             4,
@@ -90987,7 +91212,8 @@
             5,
             4,
             5,
-            4
+            4,
+            5
           ],
           "top5Days": 8,
           "top10Days": 10,
@@ -91001,12 +91227,11 @@
           "tierN": 10,
           "windowDays": 10,
           "latestRank": 7,
-          "latestScore": 65.37,
+          "latestScore": 65.57,
           "bestRank": 4,
           "worstRank": 10,
-          "averageRank": 6.7,
+          "averageRank": 6.6,
           "rankPath": [
-            8,
             10,
             6,
             5,
@@ -91015,6 +91240,7 @@
             7,
             6,
             6,
+            7,
             7
           ],
           "top5Days": 2,
@@ -91028,13 +91254,12 @@
           "tier": "top20",
           "tierN": 20,
           "windowDays": 10,
-          "latestRank": 2,
-          "latestScore": 66.89,
-          "bestRank": 2,
+          "latestRank": 1,
+          "latestScore": 66.9,
+          "bestRank": 1,
           "worstRank": 12,
-          "averageRank": 4.4,
+          "averageRank": 3.5,
           "rankPath": [
-            10,
             12,
             4,
             2,
@@ -91043,38 +91268,11 @@
             3,
             2,
             3,
-            2
+            2,
+            1
           ],
-          "top5Days": 8,
+          "top5Days": 9,
           "top10Days": 9,
-          "top20Days": 10
-        },
-        {
-          "symbol": "4991",
-          "name": "環宇-KY",
-          "industry": "24",
-          "tier": "top20",
-          "tierN": 20,
-          "windowDays": 10,
-          "latestRank": 15,
-          "latestScore": 63.18,
-          "bestRank": 5,
-          "worstRank": 15,
-          "averageRank": 7.9,
-          "rankPath": [
-            6,
-            6,
-            7,
-            6,
-            5,
-            5,
-            10,
-            7,
-            12,
-            15
-          ],
-          "top5Days": 2,
-          "top10Days": 8,
           "top20Days": 10
         },
         {
@@ -91085,12 +91283,11 @@
           "tierN": 20,
           "windowDays": 10,
           "latestRank": 6,
-          "latestScore": 66.04,
+          "latestScore": 65.66,
           "bestRank": 4,
-          "worstRank": 14,
-          "averageRank": 8.5,
+          "worstRank": 13,
+          "averageRank": 7.7,
           "rankPath": [
-            14,
             13,
             11,
             11,
@@ -91099,10 +91296,11 @@
             6,
             5,
             4,
+            6,
             6
           ],
           "top5Days": 2,
-          "top10Days": 6,
+          "top10Days": 7,
           "top20Days": 10
         },
         {
@@ -91112,13 +91310,12 @@
           "tier": "top20",
           "tierN": 20,
           "windowDays": 10,
-          "latestRank": 12,
-          "latestScore": 63.8,
+          "latestRank": 9,
+          "latestScore": 64.42,
           "bestRank": 4,
           "worstRank": 12,
-          "averageRank": 8.6,
+          "averageRank": 9.0,
           "rankPath": [
-            5,
             4,
             5,
             8,
@@ -91127,10 +91324,39 @@
             8,
             12,
             11,
-            12
+            12,
+            9
           ],
-          "top5Days": 3,
+          "top5Days": 2,
           "top10Days": 6,
+          "top20Days": 10
+        },
+        {
+          "symbol": "4991",
+          "name": "環宇-KY",
+          "industry": "24",
+          "tier": "top20",
+          "tierN": 20,
+          "windowDays": 10,
+          "latestRank": 19,
+          "latestScore": 62.69,
+          "bestRank": 5,
+          "worstRank": 19,
+          "averageRank": 9.2,
+          "rankPath": [
+            6,
+            7,
+            6,
+            5,
+            5,
+            10,
+            7,
+            12,
+            15,
+            19
+          ],
+          "top5Days": 2,
+          "top10Days": 7,
           "top20Days": 10
         },
         {
@@ -91140,13 +91366,12 @@
           "tier": "top20",
           "tierN": 20,
           "windowDays": 10,
-          "latestRank": 9,
-          "latestScore": 64.16,
+          "latestRank": 11,
+          "latestScore": 64.17,
           "bestRank": 7,
           "worstRank": 12,
           "averageRank": 9.5,
           "rankPath": [
-            11,
             9,
             10,
             7,
@@ -91155,38 +91380,39 @@
             12,
             8,
             9,
-            9
+            9,
+            11
           ],
           "top5Days": 0,
           "top10Days": 8,
           "top20Days": 10
         },
         {
-          "symbol": "3081",
-          "name": "聯亞",
-          "industry": "27",
+          "symbol": "6693",
+          "name": "廣閎科",
+          "industry": "24",
           "tier": "top20",
           "tierN": 20,
           "windowDays": 10,
-          "latestRank": 20,
-          "latestScore": 62.35,
-          "bestRank": 11,
-          "worstRank": 20,
-          "averageRank": 16.3,
+          "latestRank": 4,
+          "latestScore": 66.39,
+          "bestRank": 4,
+          "worstRank": 18,
+          "averageRank": 11.4,
           "rankPath": [
-            16,
+            14,
+            14,
             17,
             18,
             16,
-            13,
-            11,
-            17,
-            19,
-            16,
-            20
+            9,
+            10,
+            7,
+            5,
+            4
           ],
-          "top5Days": 0,
-          "top10Days": 0,
+          "top5Days": 2,
+          "top10Days": 5,
           "top20Days": 10
         }
       ],
@@ -91198,6 +91424,7 @@
     },
     "dailyOrder": "desc",
     "highlightLatestDays": [
+      "2026-06-23",
       "2026-06-22",
       "2026-06-18",
       "2026-06-17",
@@ -91206,10 +91433,304 @@
       "2026-06-12",
       "2026-06-11",
       "2026-06-10",
-      "2026-06-09",
-      "2026-06-08"
+      "2026-06-09"
     ],
     "goldenHistory": [
+      {
+        "asOfDate": "2026-06-23",
+        "windowStart": "2026-06-09",
+        "windowEnd": "2026-06-23",
+        "windowDays": 10,
+        "topN": 20,
+        "count": 10,
+        "tierCounts": {
+          "top5": 2,
+          "top10": 2,
+          "top20": 6
+        },
+        "candidates": [
+          {
+            "symbol": "6223",
+            "name": "旺矽",
+            "industry": "24",
+            "tier": "top5",
+            "tierN": 5,
+            "windowDays": 10,
+            "latestRank": 2,
+            "latestScore": 66.68,
+            "bestRank": 1,
+            "worstRank": 3,
+            "averageRank": 1.6,
+            "rankPath": [
+              1,
+              2,
+              3,
+              2,
+              1,
+              2,
+              1,
+              1,
+              1,
+              2
+            ],
+            "top5Days": 10,
+            "top10Days": 10,
+            "top20Days": 10
+          },
+          {
+            "symbol": "4973",
+            "name": "廣穎",
+            "industry": "24",
+            "tier": "top5",
+            "tierN": 5,
+            "windowDays": 10,
+            "latestRank": 3,
+            "latestScore": 66.49,
+            "bestRank": 1,
+            "worstRank": 3,
+            "averageRank": 1.9,
+            "rankPath": [
+              2,
+              1,
+              1,
+              1,
+              2,
+              1,
+              3,
+              2,
+              3,
+              3
+            ],
+            "top5Days": 10,
+            "top10Days": 10,
+            "top20Days": 10
+          },
+          {
+            "symbol": "6187",
+            "name": "萬潤",
+            "industry": "24",
+            "tier": "top10",
+            "tierN": 10,
+            "windowDays": 10,
+            "latestRank": 5,
+            "latestScore": 66.2,
+            "bestRank": 3,
+            "worstRank": 7,
+            "averageRank": 4.6,
+            "rankPath": [
+              3,
+              3,
+              4,
+              6,
+              7,
+              5,
+              4,
+              5,
+              4,
+              5
+            ],
+            "top5Days": 8,
+            "top10Days": 10,
+            "top20Days": 10
+          },
+          {
+            "symbol": "2454",
+            "name": "聯發科",
+            "industry": "24",
+            "tier": "top10",
+            "tierN": 10,
+            "windowDays": 10,
+            "latestRank": 7,
+            "latestScore": 65.57,
+            "bestRank": 4,
+            "worstRank": 10,
+            "averageRank": 6.6,
+            "rankPath": [
+              10,
+              6,
+              5,
+              4,
+              8,
+              7,
+              6,
+              6,
+              7,
+              7
+            ],
+            "top5Days": 2,
+            "top10Days": 10,
+            "top20Days": 10
+          },
+          {
+            "symbol": "3131",
+            "name": "弘塑",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 1,
+            "latestScore": 66.9,
+            "bestRank": 1,
+            "worstRank": 12,
+            "averageRank": 3.5,
+            "rankPath": [
+              12,
+              4,
+              2,
+              3,
+              3,
+              3,
+              2,
+              3,
+              2,
+              1
+            ],
+            "top5Days": 9,
+            "top10Days": 9,
+            "top20Days": 10
+          },
+          {
+            "symbol": "5274",
+            "name": "信驊",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 6,
+            "latestScore": 65.66,
+            "bestRank": 4,
+            "worstRank": 13,
+            "averageRank": 7.7,
+            "rankPath": [
+              13,
+              11,
+              11,
+              9,
+              6,
+              6,
+              5,
+              4,
+              6,
+              6
+            ],
+            "top5Days": 2,
+            "top10Days": 7,
+            "top20Days": 10
+          },
+          {
+            "symbol": "6291",
+            "name": "沛亨",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 9,
+            "latestScore": 64.42,
+            "bestRank": 4,
+            "worstRank": 12,
+            "averageRank": 9.0,
+            "rankPath": [
+              4,
+              5,
+              8,
+              12,
+              9,
+              8,
+              12,
+              11,
+              12,
+              9
+            ],
+            "top5Days": 2,
+            "top10Days": 6,
+            "top20Days": 10
+          },
+          {
+            "symbol": "4991",
+            "name": "環宇-KY",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 19,
+            "latestScore": 62.69,
+            "bestRank": 5,
+            "worstRank": 19,
+            "averageRank": 9.2,
+            "rankPath": [
+              6,
+              7,
+              6,
+              5,
+              5,
+              10,
+              7,
+              12,
+              15,
+              19
+            ],
+            "top5Days": 2,
+            "top10Days": 7,
+            "top20Days": 10
+          },
+          {
+            "symbol": "3581",
+            "name": "博磊",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 11,
+            "latestScore": 64.17,
+            "bestRank": 7,
+            "worstRank": 12,
+            "averageRank": 9.5,
+            "rankPath": [
+              9,
+              10,
+              7,
+              10,
+              10,
+              12,
+              8,
+              9,
+              9,
+              11
+            ],
+            "top5Days": 0,
+            "top10Days": 8,
+            "top20Days": 10
+          },
+          {
+            "symbol": "6693",
+            "name": "廣閎科",
+            "industry": "24",
+            "tier": "top20",
+            "tierN": 20,
+            "windowDays": 10,
+            "latestRank": 4,
+            "latestScore": 66.39,
+            "bestRank": 4,
+            "worstRank": 18,
+            "averageRank": 11.4,
+            "rankPath": [
+              14,
+              14,
+              17,
+              18,
+              16,
+              9,
+              10,
+              7,
+              5,
+              4
+            ],
+            "top5Days": 2,
+            "top10Days": 5,
+            "top20Days": 10
+          }
+        ]
+      },
       {
         "asOfDate": "2026-06-22",
         "windowStart": "2026-06-08",
@@ -233008,9 +233529,9 @@
     "kind": "weekly_ohlcv_from_local_daily_prices",
     "weekEnding": "Friday",
     "lookbackWeeks": 52,
-    "generatedAt": "2026-06-22T17:13:11+08:00",
+    "generatedAt": "2026-06-23T17:09:19+08:00",
     "priceStartDate": "2021-04-22",
-    "priceLastDate": "2026-06-22",
+    "priceLastDate": "2026-06-23",
     "symbolCount": 78,
     "requestedSymbolCount": 78,
     "missingSymbols": [],
@@ -233023,9 +233544,9 @@
         "symbol": "2454",
         "name": "聯發科",
         "firstSelectedDate": "2024-12-13",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 161,
+        "selectedDateCount": 162,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -234072,10 +234593,10 @@
           {
             "week": "2026-06-26",
             "open": 4385.0,
-            "high": 4565.0,
+            "high": 4785.0,
             "low": 4380.0,
-            "close": 4465.0,
-            "volume": 11596124
+            "close": 4535.0,
+            "volume": 29734096
           }
         ]
       },
@@ -234083,9 +234604,9 @@
         "symbol": "3081",
         "name": "聯亞",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 332,
+        "selectedDateCount": 333,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -235133,9 +235654,9 @@
             "week": "2026-06-26",
             "open": 2480.0,
             "high": 2480.0,
-            "low": 2365.0,
-            "close": 2375.0,
-            "volume": 1883000
+            "low": 2285.0,
+            "close": 2285.0,
+            "volume": 3599000
           }
         ]
       },
@@ -235143,9 +235664,9 @@
         "symbol": "3105",
         "name": "穩懋",
         "firstSelectedDate": "2026-02-11",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 49,
+        "selectedDateCount": 50,
         "startDate": "2025-02-14",
         "lastDate": "2026-06-26",
         "candles": [
@@ -235712,10 +236233,10 @@
           {
             "week": "2026-06-26",
             "open": 545.0,
-            "high": 550.0,
+            "high": 573.0,
             "low": 522.0,
-            "close": 541.0,
-            "volume": 27340000
+            "close": 522.0,
+            "volume": 67624000
           }
         ]
       },
@@ -235723,9 +236244,9 @@
         "symbol": "3131",
         "name": "弘塑",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 241,
+        "selectedDateCount": 242,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -236773,9 +237294,9 @@
             "week": "2026-06-26",
             "open": 3640.0,
             "high": 3815.0,
-            "low": 3480.0,
-            "close": 3585.0,
-            "volume": 780000
+            "low": 3410.0,
+            "close": 3495.0,
+            "volume": 1260000
           }
         ]
       },
@@ -237809,9 +238330,9 @@
             "week": "2026-06-26",
             "open": 895.0,
             "high": 895.0,
-            "low": 870.0,
-            "close": 870.0,
-            "volume": 1342000
+            "low": 868.0,
+            "close": 868.0,
+            "volume": 2284000
           }
         ]
       },
@@ -237819,7 +238340,7 @@
         "symbol": "3227",
         "name": "原相",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 107,
         "startDate": "2023-12-15",
@@ -238869,9 +239390,9 @@
             "week": "2026-06-26",
             "open": 228.0,
             "high": 235.5,
-            "low": 228.0,
-            "close": 230.0,
-            "volume": 3801000
+            "low": 227.5,
+            "close": 228.0,
+            "volume": 5945000
           }
         ]
       },
@@ -238879,7 +239400,7 @@
         "symbol": "3228",
         "name": "金麗科",
         "firstSelectedDate": "2025-04-28",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 12,
         "startDate": "2024-05-03",
@@ -239770,8 +240291,8 @@
             "open": 191.0,
             "high": 200.0,
             "low": 187.0,
-            "close": 195.5,
-            "volume": 705000
+            "close": 187.0,
+            "volume": 1263000
           }
         ]
       },
@@ -239779,9 +240300,9 @@
         "symbol": "3234",
         "name": "光環",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 100,
+        "selectedDateCount": 101,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -240831,7 +241352,7 @@
             "high": 151.0,
             "low": 130.5,
             "close": 139.0,
-            "volume": 10770000
+            "volume": 16776000
           }
         ]
       },
@@ -240839,7 +241360,7 @@
         "symbol": "3260",
         "name": "威剛",
         "firstSelectedDate": "2025-03-11",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 233,
         "startDate": "2024-03-15",
@@ -241785,9 +242306,9 @@
             "week": "2026-06-26",
             "open": 434.0,
             "high": 443.0,
-            "low": 427.5,
-            "close": 434.0,
-            "volume": 15594000
+            "low": 410.0,
+            "close": 412.0,
+            "volume": 29043000
           }
         ]
       },
@@ -241795,9 +242316,9 @@
         "symbol": "3264",
         "name": "欣銓",
         "firstSelectedDate": "2025-01-14",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 241,
+        "selectedDateCount": 242,
         "startDate": "2024-01-19",
         "lastDate": "2026-06-26",
         "candles": [
@@ -242804,10 +243325,10 @@
           {
             "week": "2026-06-26",
             "open": 238.0,
-            "high": 248.0,
-            "low": 238.0,
-            "close": 242.0,
-            "volume": 14378000
+            "high": 251.5,
+            "low": 233.0,
+            "close": 233.5,
+            "volume": 28073000
           }
         ]
       },
@@ -242815,9 +243336,9 @@
         "symbol": "3265",
         "name": "台星科",
         "firstSelectedDate": "2024-12-20",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 126,
+        "selectedDateCount": 127,
         "startDate": "2023-12-22",
         "lastDate": "2026-06-26",
         "candles": [
@@ -243857,9 +244378,9 @@
             "week": "2026-06-26",
             "open": 193.0,
             "high": 201.0,
-            "low": 193.0,
-            "close": 193.5,
-            "volume": 2357000
+            "low": 179.0,
+            "close": 181.5,
+            "volume": 4079000
           }
         ]
       },
@@ -244612,18 +245133,18 @@
           {
             "week": "2026-06-26",
             "open": 48.5,
-            "high": 49.75,
+            "high": 49.95,
             "low": 48.3,
-            "close": 49.35,
-            "volume": 374000
+            "close": 48.7,
+            "volume": 672000
           }
         ]
       },
       "3317": {
         "symbol": "3317",
         "name": "尼克森",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -245040,10 +245561,10 @@
           {
             "week": "2026-06-26",
             "open": 95.0,
-            "high": 97.1,
-            "low": 94.8,
-            "close": 97.1,
-            "volume": 8283000
+            "high": 103.5,
+            "low": 90.5,
+            "close": 92.0,
+            "volume": 28495000
           }
         ]
       },
@@ -246100,10 +246621,10 @@
           {
             "week": "2026-06-26",
             "open": 718.0,
-            "high": 721.0,
-            "low": 704.0,
-            "close": 712.0,
-            "volume": 1730000
+            "high": 739.0,
+            "low": 685.0,
+            "close": 685.0,
+            "volume": 3978000
           }
         ]
       },
@@ -246111,7 +246632,7 @@
         "symbol": "3374",
         "name": "精材",
         "firstSelectedDate": "2024-12-24",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 14,
         "startDate": "2023-12-29",
@@ -247144,18 +247665,18 @@
           {
             "week": "2026-06-26",
             "open": 263.0,
-            "high": 276.0,
+            "high": 303.5,
             "low": 263.0,
-            "close": 276.0,
-            "volume": 10681000
+            "close": 303.5,
+            "volume": 39279000
           }
         ]
       },
       "3438": {
         "symbol": "3438",
         "name": "類比科",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -247572,10 +248093,10 @@
           {
             "week": "2026-06-26",
             "open": 72.8,
-            "high": 79.0,
+            "high": 79.9,
             "low": 72.6,
-            "close": 78.5,
-            "volume": 1253000
+            "close": 75.4,
+            "volume": 2467000
           }
         ]
       },
@@ -248633,9 +249154,9 @@
             "week": "2026-06-26",
             "open": 1555.0,
             "high": 1555.0,
-            "low": 1470.0,
-            "close": 1470.0,
-            "volume": 2758000
+            "low": 1355.0,
+            "close": 1355.0,
+            "volume": 5877000
           }
         ]
       },
@@ -248643,9 +249164,9 @@
         "symbol": "3529",
         "name": "力旺",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-05-12",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 50,
+        "selectedDateCount": 51,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -249694,8 +250215,8 @@
             "open": 3400.0,
             "high": 3450.0,
             "low": 3150.0,
-            "close": 3180.0,
-            "volume": 452000
+            "close": 3185.0,
+            "volume": 1051000
           }
         ]
       },
@@ -249703,7 +250224,7 @@
         "symbol": "3555",
         "name": "博士旺",
         "firstSelectedDate": "2026-03-17",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 62,
         "startDate": "2025-03-21",
@@ -250232,10 +250753,10 @@
           {
             "week": "2026-06-26",
             "open": 204.0,
-            "high": 204.0,
-            "low": 199.0,
+            "high": 214.0,
+            "low": 196.0,
             "close": 202.0,
-            "volume": 88000
+            "volume": 252000
           }
         ]
       },
@@ -251221,9 +251742,9 @@
             "week": "2026-06-26",
             "open": 136.5,
             "high": 136.5,
-            "low": 133.5,
-            "close": 133.5,
-            "volume": 144000
+            "low": 129.0,
+            "close": 129.0,
+            "volume": 291000
           }
         ]
       },
@@ -252065,9 +252586,9 @@
             "week": "2026-06-26",
             "open": 48.5,
             "high": 48.5,
-            "low": 47.3,
-            "close": 47.35,
-            "volume": 185000
+            "low": 45.3,
+            "close": 45.45,
+            "volume": 500000
           }
         ]
       },
@@ -252075,9 +252596,9 @@
         "symbol": "3581",
         "name": "博磊",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 123,
+        "selectedDateCount": 124,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -253125,9 +253646,9 @@
             "week": "2026-06-26",
             "open": 185.0,
             "high": 187.5,
-            "low": 178.0,
-            "close": 178.0,
-            "volume": 414000
+            "low": 161.0,
+            "close": 162.0,
+            "volume": 789000
           }
         ]
       },
@@ -254057,17 +254578,17 @@
             "week": "2026-06-26",
             "open": 193.5,
             "high": 193.5,
-            "low": 188.0,
-            "close": 188.0,
-            "volume": 2104443
+            "low": 179.5,
+            "close": 181.0,
+            "volume": 6708784
           }
         ]
       },
       "3675": {
         "symbol": "3675",
         "name": "德微",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -254484,10 +255005,10 @@
           {
             "week": "2026-06-26",
             "open": 405.0,
-            "high": 405.0,
+            "high": 445.5,
             "low": 405.0,
-            "close": 405.0,
-            "volume": 423000
+            "close": 445.5,
+            "volume": 10110000
           }
         ]
       },
@@ -254495,7 +255016,7 @@
         "symbol": "3680",
         "name": "家登",
         "firstSelectedDate": "2026-01-06",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 11,
         "startDate": "2025-01-10",
@@ -255097,9 +255618,9 @@
             "week": "2026-06-26",
             "open": 553.0,
             "high": 567.0,
-            "low": 540.0,
-            "close": 547.0,
-            "volume": 2548000
+            "low": 529.0,
+            "close": 537.0,
+            "volume": 3958000
           }
         ]
       },
@@ -256156,10 +256677,10 @@
           {
             "week": "2026-06-26",
             "open": 39.2,
-            "high": 41.1,
+            "high": 41.75,
             "low": 39.0,
-            "close": 40.25,
-            "volume": 2154000
+            "close": 39.0,
+            "volume": 4484000
           }
         ]
       },
@@ -256167,7 +256688,7 @@
         "symbol": "4908",
         "name": "前鼎",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 122,
         "startDate": "2023-12-15",
@@ -257216,10 +257737,10 @@
           {
             "week": "2026-06-26",
             "open": 212.5,
-            "high": 213.5,
+            "high": 221.0,
             "low": 199.0,
-            "close": 201.0,
-            "volume": 2965000
+            "close": 211.5,
+            "volume": 8552000
           }
         ]
       },
@@ -258276,10 +258797,10 @@
           {
             "week": "2026-06-26",
             "open": 49.95,
-            "high": 50.7,
-            "low": 49.8,
-            "close": 49.85,
-            "volume": 794000
+            "high": 50.9,
+            "low": 48.05,
+            "close": 48.05,
+            "volume": 1723000
           }
         ]
       },
@@ -258287,9 +258808,9 @@
         "symbol": "4971",
         "name": "IET-KY",
         "firstSelectedDate": "2025-01-21",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 288,
+        "selectedDateCount": 289,
         "startDate": "2024-01-26",
         "lastDate": "2026-06-26",
         "candles": [
@@ -259289,9 +259810,9 @@
             "week": "2026-06-26",
             "open": 605.0,
             "high": 610.0,
-            "low": 565.0,
-            "close": 571.0,
-            "volume": 1588000
+            "low": 539.0,
+            "close": 540.0,
+            "volume": 2851000
           }
         ]
       },
@@ -259299,9 +259820,9 @@
         "symbol": "4973",
         "name": "廣穎",
         "firstSelectedDate": "2025-03-17",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 107,
+        "selectedDateCount": 108,
         "startDate": "2024-03-22",
         "lastDate": "2026-06-26",
         "candles": [
@@ -260237,9 +260758,9 @@
             "week": "2026-06-26",
             "open": 195.5,
             "high": 197.0,
-            "low": 190.0,
-            "close": 191.5,
-            "volume": 3803000
+            "low": 180.5,
+            "close": 183.0,
+            "volume": 7499000
           }
         ]
       },
@@ -260247,7 +260768,7 @@
         "symbol": "4979",
         "name": "華星光",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 339,
         "startDate": "2023-12-15",
@@ -261297,9 +261818,9 @@
             "week": "2026-06-26",
             "open": 579.0,
             "high": 585.0,
-            "low": 547.0,
-            "close": 552.0,
-            "volume": 6462000
+            "low": 525.0,
+            "close": 525.0,
+            "volume": 11818000
           }
         ]
       },
@@ -261307,9 +261828,9 @@
         "symbol": "4991",
         "name": "環宇-KY",
         "firstSelectedDate": "2024-12-23",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 322,
+        "selectedDateCount": 323,
         "startDate": "2023-12-29",
         "lastDate": "2026-06-26",
         "candles": [
@@ -262341,9 +262862,9 @@
             "week": "2026-06-26",
             "open": 566.0,
             "high": 566.0,
-            "low": 555.0,
-            "close": 564.0,
-            "volume": 742000
+            "low": 520.0,
+            "close": 536.0,
+            "volume": 1944000
           }
         ]
       },
@@ -262351,7 +262872,7 @@
         "symbol": "5236",
         "name": "凌陽創新",
         "firstSelectedDate": "2025-03-05",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 11,
         "startDate": "2024-03-08",
@@ -263304,10 +263825,10 @@
           {
             "week": "2026-06-26",
             "open": 168.0,
-            "high": 176.0,
+            "high": 178.5,
             "low": 168.0,
-            "close": 176.0,
-            "volume": 602000
+            "close": 176.5,
+            "volume": 1087000
           }
         ]
       },
@@ -263315,9 +263836,9 @@
         "symbol": "5274",
         "name": "信驊",
         "firstSelectedDate": "2025-04-14",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 274,
+        "selectedDateCount": 275,
         "startDate": "2024-04-19",
         "lastDate": "2026-06-26",
         "candles": [
@@ -264221,9 +264742,9 @@
             "week": "2026-06-26",
             "open": 19850.0,
             "high": 19880.0,
-            "low": 19120.0,
-            "close": 19275.0,
-            "volume": 207000
+            "low": 18505.0,
+            "close": 18505.0,
+            "volume": 394000
           }
         ]
       },
@@ -264231,7 +264752,7 @@
         "symbol": "5347",
         "name": "世界",
         "firstSelectedDate": "2025-03-31",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 21,
         "startDate": "2024-04-05",
@@ -265152,10 +265673,10 @@
           {
             "week": "2026-06-26",
             "open": 191.5,
-            "high": 191.5,
-            "low": 191.5,
-            "close": 191.5,
-            "volume": 15116000
+            "high": 201.5,
+            "low": 183.5,
+            "close": 186.5,
+            "volume": 78845000
           }
         ]
       },
@@ -265163,7 +265684,7 @@
         "symbol": "5351",
         "name": "鈺創",
         "firstSelectedDate": "2026-06-02",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 2,
         "startDate": "2025-06-06",
@@ -265605,17 +266126,17 @@
             "week": "2026-06-26",
             "open": 97.1,
             "high": 103.0,
-            "low": 97.1,
-            "close": 99.8,
-            "volume": 47900000
+            "low": 90.9,
+            "close": 91.0,
+            "volume": 86512000
           }
         ]
       },
       "5425": {
         "symbol": "5425",
         "name": "台半",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -266032,10 +266553,10 @@
           {
             "week": "2026-06-26",
             "open": 130.0,
-            "high": 130.0,
-            "low": 130.0,
-            "close": 130.0,
-            "volume": 4637000
+            "high": 143.0,
+            "low": 129.5,
+            "close": 134.0,
+            "volume": 121183000
           }
         ]
       },
@@ -267093,9 +267614,9 @@
             "week": "2026-06-26",
             "open": 109.5,
             "high": 112.5,
-            "low": 108.5,
-            "close": 111.0,
-            "volume": 1969000
+            "low": 106.5,
+            "close": 107.0,
+            "volume": 3873000
           }
         ]
       },
@@ -268152,10 +268673,10 @@
           {
             "week": "2026-06-26",
             "open": 105.0,
-            "high": 110.5,
-            "low": 105.0,
-            "close": 108.5,
-            "volume": 5713000
+            "high": 111.0,
+            "low": 104.0,
+            "close": 105.5,
+            "volume": 9323000
           }
         ]
       },
@@ -268163,7 +268684,7 @@
         "symbol": "6138",
         "name": "茂達",
         "firstSelectedDate": "2025-07-08",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 60,
         "startDate": "2024-07-12",
@@ -268972,10 +269493,10 @@
           {
             "week": "2026-06-26",
             "open": 389.0,
-            "high": 394.0,
-            "low": 389.0,
-            "close": 394.0,
-            "volume": 2195000
+            "high": 422.0,
+            "low": 360.0,
+            "close": 361.0,
+            "volume": 6321000
           }
         ]
       },
@@ -270000,10 +270521,10 @@
           {
             "week": "2026-06-26",
             "open": 90.8,
-            "high": 90.9,
-            "low": 89.8,
-            "close": 90.1,
-            "volume": 395000
+            "high": 91.1,
+            "low": 88.6,
+            "close": 89.1,
+            "volume": 712000
           }
         ]
       },
@@ -270011,7 +270532,7 @@
         "symbol": "6147",
         "name": "頎邦",
         "firstSelectedDate": "2025-04-01",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 31,
         "startDate": "2024-04-05",
@@ -270932,10 +271453,10 @@
           {
             "week": "2026-06-26",
             "open": 275.0,
-            "high": 277.0,
-            "low": 273.5,
-            "close": 277.0,
-            "volume": 10155000
+            "high": 278.0,
+            "low": 256.5,
+            "close": 258.0,
+            "volume": 60189000
           }
         ]
       },
@@ -271905,9 +272426,9 @@
             "week": "2026-06-26",
             "open": 52.9,
             "high": 53.2,
-            "low": 52.2,
-            "close": 52.7,
-            "volume": 237000
+            "low": 52.0,
+            "close": 52.1,
+            "volume": 524000
           }
         ]
       },
@@ -271915,7 +272436,7 @@
         "symbol": "6182",
         "name": "合晶",
         "firstSelectedDate": "2026-06-17",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 3,
         "startDate": "2025-06-20",
@@ -272341,9 +272862,9 @@
             "week": "2026-06-26",
             "open": 121.0,
             "high": 123.0,
-            "low": 115.0,
-            "close": 116.5,
-            "volume": 81366000
+            "low": 109.0,
+            "close": 114.5,
+            "volume": 147257000
           }
         ]
       },
@@ -272351,9 +272872,9 @@
         "symbol": "6187",
         "name": "萬潤",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 231,
+        "selectedDateCount": 232,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -273401,9 +273922,9 @@
             "week": "2026-06-26",
             "open": 1290.0,
             "high": 1290.0,
-            "low": 1260.0,
-            "close": 1260.0,
-            "volume": 999000
+            "low": 1160.0,
+            "close": 1170.0,
+            "volume": 2114000
           }
         ]
       },
@@ -274349,9 +274870,9 @@
             "week": "2026-06-26",
             "open": 83.5,
             "high": 85.5,
-            "low": 82.3,
-            "close": 83.7,
-            "volume": 8767000
+            "low": 81.0,
+            "close": 81.7,
+            "volume": 13194000
           }
         ]
       },
@@ -274359,9 +274880,9 @@
         "symbol": "6223",
         "name": "旺矽",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 335,
+        "selectedDateCount": 336,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -275408,10 +275929,10 @@
           {
             "week": "2026-06-26",
             "open": 6595.0,
-            "high": 6595.0,
+            "high": 6820.0,
             "low": 6275.0,
-            "close": 6425.0,
-            "volume": 543000
+            "close": 6680.0,
+            "volume": 1710000
           }
         ]
       },
@@ -276445,9 +276966,9 @@
             "week": "2026-06-26",
             "open": 82.0,
             "high": 83.5,
-            "low": 82.0,
-            "close": 82.1,
-            "volume": 733000
+            "low": 80.2,
+            "close": 80.6,
+            "volume": 1453000
           }
         ]
       },
@@ -277369,9 +277890,9 @@
             "week": "2026-06-26",
             "open": 167.0,
             "high": 167.0,
-            "low": 162.5,
-            "close": 163.0,
-            "volume": 283000
+            "low": 155.5,
+            "close": 158.0,
+            "volume": 604000
           }
         ]
       },
@@ -277379,9 +277900,9 @@
         "symbol": "6291",
         "name": "沛亨",
         "firstSelectedDate": "2026-05-15",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 25,
+        "selectedDateCount": 26,
         "startDate": "2025-05-16",
         "lastDate": "2026-06-26",
         "candles": [
@@ -277845,17 +278366,17 @@
             "week": "2026-06-26",
             "open": 557.0,
             "high": 598.0,
-            "low": 557.0,
-            "close": 591.0,
-            "volume": 1350000
+            "low": 535.0,
+            "close": 543.0,
+            "volume": 2621000
           }
         ]
       },
       "6435": {
         "symbol": "6435",
         "name": "大中",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -278272,10 +278793,10 @@
           {
             "week": "2026-06-26",
             "open": 349.0,
-            "high": 349.0,
+            "high": 383.5,
             "low": 349.0,
-            "close": 349.0,
-            "volume": 195000
+            "close": 362.0,
+            "volume": 3782000
           }
         ]
       },
@@ -279116,10 +279637,10 @@
           {
             "week": "2026-06-26",
             "open": 116.0,
-            "high": 122.5,
+            "high": 128.0,
             "low": 115.5,
             "close": 122.0,
-            "volume": 2214000
+            "volume": 6470000
           }
         ]
       },
@@ -279127,9 +279648,9 @@
         "symbol": "6488",
         "name": "環球晶",
         "firstSelectedDate": "2025-10-13",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 5,
+        "selectedDateCount": 6,
         "startDate": "2024-10-18",
         "lastDate": "2026-06-26",
         "candles": [
@@ -279825,9 +280346,9 @@
             "week": "2026-06-26",
             "open": 1170.0,
             "high": 1170.0,
-            "low": 1110.0,
-            "close": 1115.0,
-            "volume": 1760000
+            "low": 1010.0,
+            "close": 1010.0,
+            "volume": 3586000
           }
         ]
       },
@@ -279835,7 +280356,7 @@
         "symbol": "6510",
         "name": "精測",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 273,
         "startDate": "2023-12-15",
@@ -280884,10 +281405,10 @@
           {
             "week": "2026-06-26",
             "open": 3640.0,
-            "high": 3710.0,
+            "high": 3775.0,
             "low": 3430.0,
-            "close": 3525.0,
-            "volume": 410000
+            "close": 3665.0,
+            "volume": 1586000
           }
         ]
       },
@@ -281945,9 +282466,9 @@
             "week": "2026-06-26",
             "open": 99.4,
             "high": 100.5,
-            "low": 98.3,
-            "close": 99.7,
-            "volume": 800000
+            "low": 94.4,
+            "close": 94.4,
+            "volume": 1530000
           }
         ]
       },
@@ -282989,9 +283510,9 @@
             "week": "2026-06-26",
             "open": 75.5,
             "high": 77.5,
-            "low": 74.7,
-            "close": 76.0,
-            "volume": 511000
+            "low": 72.0,
+            "close": 73.0,
+            "volume": 1058000
           }
         ]
       },
@@ -282999,7 +283520,7 @@
         "symbol": "6548",
         "name": "長科*",
         "firstSelectedDate": "2026-06-05",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 8,
         "startDate": "2025-06-06",
@@ -283440,10 +283961,10 @@
           {
             "week": "2026-06-26",
             "open": 93.8,
-            "high": 94.7,
-            "low": 93.8,
-            "close": 94.7,
-            "volume": 6908000
+            "high": 104.0,
+            "low": 92.2,
+            "close": 92.7,
+            "volume": 44005000
           }
         ]
       },
@@ -284366,8 +284887,8 @@
             "open": 339.5,
             "high": 344.0,
             "low": 338.5,
-            "close": 342.0,
-            "volume": 107000
+            "close": 340.0,
+            "volume": 186000
           }
         ]
       },
@@ -284375,9 +284896,9 @@
         "symbol": "6640",
         "name": "均華",
         "firstSelectedDate": "2024-12-12",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-03",
         "lookbackWeeks": 52,
-        "selectedDateCount": 214,
+        "selectedDateCount": 213,
         "startDate": "2023-12-15",
         "lastDate": "2026-06-26",
         "candles": [
@@ -285425,9 +285946,9 @@
             "week": "2026-06-26",
             "open": 1170.0,
             "high": 1170.0,
-            "low": 1100.0,
-            "close": 1100.0,
-            "volume": 188000
+            "low": 1035.0,
+            "close": 1050.0,
+            "volume": 376000
           }
         ]
       },
@@ -286406,8 +286927,8 @@
             "open": 508.0,
             "high": 524.0,
             "low": 490.0,
-            "close": 500.0,
-            "volume": 743000
+            "close": 490.5,
+            "volume": 1118000
           }
         ]
       },
@@ -286415,7 +286936,7 @@
         "symbol": "6651",
         "name": "全宇昕",
         "firstSelectedDate": "2025-03-10",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 15,
         "startDate": "2024-03-15",
@@ -287361,9 +287882,9 @@
             "week": "2026-06-26",
             "open": 161.5,
             "high": 170.5,
-            "low": 159.5,
-            "close": 163.0,
-            "volume": 1272000
+            "low": 150.5,
+            "close": 153.0,
+            "volume": 2144000
           }
         ]
       },
@@ -287371,9 +287892,9 @@
         "symbol": "6683",
         "name": "雍智科技",
         "firstSelectedDate": "2024-12-26",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 187,
+        "selectedDateCount": 188,
         "startDate": "2023-12-29",
         "lastDate": "2026-06-26",
         "candles": [
@@ -288404,10 +288925,10 @@
           {
             "week": "2026-06-26",
             "open": 1665.0,
-            "high": 1700.0,
+            "high": 1765.0,
             "low": 1585.0,
-            "close": 1605.0,
-            "volume": 959000
+            "close": 1765.0,
+            "volume": 3449000
           }
         ]
       },
@@ -288415,9 +288936,9 @@
         "symbol": "6693",
         "name": "廣閎科",
         "firstSelectedDate": "2026-06-09",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 9,
+        "selectedDateCount": 10,
         "startDate": "2025-06-13",
         "lastDate": "2026-06-26",
         "candles": [
@@ -288848,10 +289369,10 @@
           {
             "week": "2026-06-26",
             "open": 236.5,
-            "high": 236.5,
-            "low": 233.0,
+            "high": 258.5,
+            "low": 231.0,
             "close": 236.5,
-            "volume": 1179000
+            "volume": 6082000
           }
         ]
       },
@@ -288859,7 +289380,7 @@
         "symbol": "6788",
         "name": "華景電",
         "firstSelectedDate": "2024-12-13",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 157,
         "startDate": "2023-12-15",
@@ -289909,9 +290430,9 @@
             "week": "2026-06-26",
             "open": 443.0,
             "high": 449.0,
-            "low": 436.5,
-            "close": 443.5,
-            "volume": 919000
+            "low": 428.0,
+            "close": 429.0,
+            "volume": 1797000
           }
         ]
       },
@@ -289919,7 +290440,7 @@
         "symbol": "6829",
         "name": "千附精密",
         "firstSelectedDate": "2025-03-19",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 33,
         "startDate": "2024-03-22",
@@ -290856,10 +291377,10 @@
           {
             "week": "2026-06-26",
             "open": 205.5,
-            "high": 209.5,
-            "low": 202.0,
-            "close": 207.5,
-            "volume": 697000
+            "high": 214.0,
+            "low": 201.0,
+            "close": 206.0,
+            "volume": 1358000
           }
         ]
       },
@@ -291565,17 +292086,17 @@
             "week": "2026-06-26",
             "open": 161.0,
             "high": 167.5,
-            "low": 161.0,
-            "close": 162.5,
-            "volume": 97000
+            "low": 152.0,
+            "close": 155.0,
+            "volume": 293000
           }
         ]
       },
       "7556": {
         "symbol": "7556",
         "name": "意德士",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -291994,8 +292515,8 @@
             "open": 276.5,
             "high": 302.5,
             "low": 276.5,
-            "close": 293.0,
-            "volume": 313000
+            "close": 282.0,
+            "volume": 411000
           }
         ]
       },
@@ -292765,17 +293286,17 @@
             "week": "2026-06-26",
             "open": 23.45,
             "high": 23.55,
-            "low": 23.25,
-            "close": 23.35,
-            "volume": 200000
+            "low": 23.0,
+            "close": 23.0,
+            "volume": 544000
           }
         ]
       },
       "8040": {
         "symbol": "8040",
         "name": "九暘",
-        "firstSelectedDate": "2026-06-22",
-        "latestSelectedDate": "2026-06-22",
+        "firstSelectedDate": "2026-06-23",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 1,
         "startDate": "2025-06-27",
@@ -293192,10 +293713,10 @@
           {
             "week": "2026-06-26",
             "open": 97.5,
-            "high": 104.0,
+            "high": 114.0,
             "low": 97.2,
-            "close": 104.0,
-            "volume": 1814000
+            "close": 114.0,
+            "volume": 9917000
           }
         ]
       },
@@ -293203,7 +293724,7 @@
         "symbol": "8054",
         "name": "安國",
         "firstSelectedDate": "2024-12-17",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 141,
         "startDate": "2023-12-22",
@@ -294244,10 +294765,10 @@
           {
             "week": "2026-06-26",
             "open": 106.0,
-            "high": 113.5,
+            "high": 124.5,
             "low": 105.5,
-            "close": 113.5,
-            "volume": 5390000
+            "close": 124.5,
+            "volume": 18132000
           }
         ]
       },
@@ -295298,8 +295819,8 @@
             "open": 17.35,
             "high": 17.45,
             "low": 16.75,
-            "close": 17.1,
-            "volume": 588000
+            "close": 16.9,
+            "volume": 881000
           }
         ]
       },
@@ -295307,7 +295828,7 @@
         "symbol": "8086",
         "name": "宏捷科",
         "firstSelectedDate": "2025-01-07",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 57,
         "startDate": "2024-01-12",
@@ -296325,9 +296846,9 @@
             "week": "2026-06-26",
             "open": 169.0,
             "high": 171.5,
-            "low": 164.0,
-            "close": 165.5,
-            "volume": 5160000
+            "low": 159.0,
+            "close": 159.5,
+            "volume": 9675000
           }
         ]
       },
@@ -296335,7 +296856,7 @@
         "symbol": "8088",
         "name": "品安",
         "firstSelectedDate": "2025-03-19",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
         "selectedDateCount": 67,
         "startDate": "2024-03-22",
@@ -297273,9 +297794,9 @@
             "week": "2026-06-26",
             "open": 69.0,
             "high": 72.5,
-            "low": 68.1,
-            "close": 68.5,
-            "volume": 11696000
+            "low": 67.2,
+            "close": 68.2,
+            "volume": 19463000
           }
         ]
       },
@@ -298301,9 +298822,9 @@
             "week": "2026-06-26",
             "open": 21.25,
             "high": 21.25,
-            "low": 20.55,
-            "close": 20.8,
-            "volume": 366000
+            "low": 20.4,
+            "close": 20.4,
+            "volume": 592000
           }
         ]
       },
@@ -298311,9 +298832,9 @@
         "symbol": "8091",
         "name": "翔名",
         "firstSelectedDate": "2025-03-25",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 14,
+        "selectedDateCount": 15,
         "startDate": "2024-03-29",
         "lastDate": "2026-06-26",
         "candles": [
@@ -299241,9 +299762,9 @@
             "week": "2026-06-26",
             "open": 290.5,
             "high": 291.0,
-            "low": 272.0,
-            "close": 272.5,
-            "volume": 2349000
+            "low": 266.0,
+            "close": 280.5,
+            "volume": 4486000
           }
         ]
       },
@@ -300300,10 +300821,10 @@
           {
             "week": "2026-06-26",
             "open": 60.5,
-            "high": 61.6,
-            "low": 60.5,
-            "close": 61.0,
-            "volume": 220000
+            "high": 62.7,
+            "low": 60.0,
+            "close": 60.8,
+            "volume": 433000
           }
         ]
       },
@@ -300311,9 +300832,9 @@
         "symbol": "8299",
         "name": "群聯",
         "firstSelectedDate": "2024-12-31",
-        "latestSelectedDate": "2026-06-22",
+        "latestSelectedDate": "2026-06-23",
         "lookbackWeeks": 52,
-        "selectedDateCount": 230,
+        "selectedDateCount": 231,
         "startDate": "2024-01-05",
         "lastDate": "2026-06-26",
         "candles": [
@@ -301337,9 +301858,9 @@
             "week": "2026-06-26",
             "open": 2600.0,
             "high": 2670.0,
-            "low": 2570.0,
-            "close": 2580.0,
-            "volume": 6874000
+            "low": 2430.0,
+            "close": 2430.0,
+            "volume": 13215000
           }
         ]
       },
@@ -302277,9 +302798,9 @@
             "week": "2026-06-26",
             "open": 61.2,
             "high": 62.8,
-            "low": 60.9,
-            "close": 61.7,
-            "volume": 1916000
+            "low": 59.6,
+            "close": 59.6,
+            "volume": 3126000
           }
         ]
       }
@@ -302293,12 +302814,12 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-22",
+      "latest": "2026-06-23",
       "freshness": "fresh",
       "freshnessBreakdown": {
         "fresh": 1
       },
-      "actualCount": 717524,
+      "actualCount": 719877,
       "expectedCount": 0
     },
     {
@@ -302323,12 +302844,12 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-22",
+      "latest": "2026-06-23",
       "freshness": "historical",
       "freshnessBreakdown": {
         "historical": 1
       },
-      "actualCount": 2463258,
+      "actualCount": 2465519,
       "expectedCount": 0
     },
     {
@@ -302338,12 +302859,12 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-18",
+      "latest": "2026-06-22",
       "freshness": "historical",
       "freshnessBreakdown": {
         "historical": 1
       },
-      "actualCount": 2453231,
+      "actualCount": 2455426,
       "expectedCount": 0
     },
     {
@@ -302353,12 +302874,12 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-18",
+      "latest": "2026-06-22",
       "freshness": "historical",
       "freshnessBreakdown": {
         "historical": 1
       },
-      "actualCount": 39148,
+      "actualCount": 39252,
       "expectedCount": 0
     },
     {
@@ -302368,12 +302889,12 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-22",
+      "latest": "2026-06-23",
       "freshness": "historical",
       "freshnessBreakdown": {
         "historical": 1
       },
-      "actualCount": 2274686,
+      "actualCount": 2275574,
       "expectedCount": 0
     },
     {
@@ -302383,7 +302904,7 @@
         "TPEX",
         "TWSE"
       ],
-      "latest": "2026-06-22",
+      "latest": "2026-06-23",
       "freshness": "historical",
       "freshnessBreakdown": {
         "historical": 1
