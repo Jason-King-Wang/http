@@ -373,6 +373,88 @@ function q60Pct(row) {
   return firstPresentValue(row?.pred_sell_target_pct, row?.pred_peak_q60_pct, row?.pred_remaining_upside_from_now);
 }
 
+function getV4Comparison(entry = null) {
+  return entry?.v4_comparison || state.data?.v4_comparison || state.data?.summary?.v4_comparison || {};
+}
+
+function hasV4ActualComparison(comparison) {
+  return hasNumericValue(comparison?.v3_q60_abs_error_mean) && hasNumericValue(comparison?.v4_q60_abs_error_mean);
+}
+
+function formatV4SummaryValue(comparison) {
+  if (hasV4ActualComparison(comparison)) {
+    if (comparison.v4_better === true || comparison.winner === "v4") {
+      return "V4 better";
+    }
+    if (comparison.valid_for_promotion === true || comparison.winner === "v3") {
+      return "V3 better";
+    }
+    return "Tracking";
+  }
+  if (comparison?.forecast_available) {
+    return "Shadow run";
+  }
+  return "No data";
+}
+
+function buildV4SummaryNote(comparison) {
+  if (hasV4ActualComparison(comparison)) {
+    const streak = hasNumericValue(comparison.consecutive_better_days) && hasNumericValue(comparison.gate_consecutive_days)
+      ? ` / gate ${formatInteger(comparison.consecutive_better_days)}/${formatInteger(comparison.gate_consecutive_days)}`
+      : "";
+    return `q60 MAPE v3 ${formatPercentFromPoints(comparison.v3_q60_abs_error_mean)} / v4 ${formatPercentFromPoints(comparison.v4_q60_abs_error_mean)}${streak}`;
+  }
+  if (comparison?.forecast_available) {
+    return `v4 applied ${formatInteger(comparison.v4_applied_count)} / fallback ${formatInteger(comparison.v4_fallback_count)}`;
+  }
+  return comparison?.reason || "v4 comparison file is not available yet";
+}
+
+function buildV4Tone(comparison) {
+  if (!hasV4ActualComparison(comparison)) {
+    return "metric-compare-flat";
+  }
+  if (comparison.v4_better === true || comparison.winner === "v4") {
+    return "metric-compare-positive";
+  }
+  if (comparison.valid_for_promotion === true || comparison.winner === "v3") {
+    return "metric-compare-negative";
+  }
+  return "metric-compare-flat";
+}
+
+function renderV4ComparisonCell(entry) {
+  const comparison = getV4Comparison(entry);
+  return `
+    <div class="stacked accuracy-cell">
+      <span class="status-badge ${escapeHtml(buildV4Tone(comparison))}">${escapeHtml(formatV4SummaryValue(comparison))}</span>
+      <span class="metric-sub">${escapeHtml(buildV4SummaryNote(comparison))}</span>
+    </div>
+  `;
+}
+
+function renderV4StockCell(row) {
+  const v3Q60 = firstPresentValue(row?.v3_q60_pct, row?.pred_peak_q60_pct, row?.pred_sell_target_pct);
+  const v4Q60 = firstPresentValue(row?.v4_q60_pct);
+  const hasError = hasNumericValue(row?.v3_q60_abs_error) && hasNumericValue(row?.v4_q60_abs_error);
+  const delta = hasNumericValue(row?.v4_q60_error_delta)
+    ? `delta ${formatSignedPoints(row.v4_q60_error_delta)}`
+    : hasNumericValue(row?.v4_q60_delta_pct)
+      ? `q60 ${formatSignedPoints(row.v4_q60_delta_pct)}`
+      : row?.v4_fallback_reason || "";
+  const label = row?.v4_applied === true || row?.v4_applied === 1 || String(row?.v4_applied) === "1"
+    ? "v4 applied"
+    : row?.v4_fallback_reason
+      ? "v4 fallback"
+      : "v4 pending";
+  return `
+    <div class="stacked">
+      <strong>${escapeHtml(formatPercentFromPoints(v3Q60))} / ${escapeHtml(formatPercentFromPoints(v4Q60))}</strong>
+      <span class="metric-sub">${escapeHtml(label)}${hasError ? ` / v3 ${escapeHtml(formatPercentFromPoints(row.v3_q60_abs_error))} v4 ${escapeHtml(formatPercentFromPoints(row.v4_q60_abs_error))}` : ""}${delta ? ` / ${escapeHtml(delta)}` : ""}</span>
+    </div>
+  `;
+}
+
 function q80Pct(row) {
   return firstPresentValue(row?.pred_peak_upper_pct, row?.pred_peak_q80_pct, row?.pred_peak_p80_pct);
 }
@@ -522,6 +604,7 @@ function renderPublicScope() {
 function renderSummaryCards() {
   const summary = state.data.summary || {};
   const history = getDailyHistory();
+  const v4Comparison = getV4Comparison();
   const metrics = [
     {
       label: "峰值命中率",
@@ -548,6 +631,16 @@ function renderSummaryCards() {
         ? `q60 hit ${formatPercent(summary.sell_target_hit_rate)} / q50 MAPE ${formatPercentFromPoints(summary.q50_mape)}`
         : "待驗證日會在收盤後補 q80 coverage",
       comparison: buildSummaryMetricComparison(summary, history, "q80_coverage_rate", "percent")
+    },
+    {
+      label: "V4 vs V3",
+      value: formatV4SummaryValue(v4Comparison),
+      note: buildV4SummaryNote(v4Comparison),
+      comparison: {
+        label: "10-day gate",
+        value: `${formatInteger(v4Comparison.consecutive_better_days)}/${formatInteger(v4Comparison.gate_consecutive_days || 10)}`,
+        tone: buildV4Tone(v4Comparison)
+      }
     },
     {
       label: "時間命中率",
@@ -796,7 +889,7 @@ function renderDailyComparisonTable() {
   if (!history.length) {
     elements.dailyCompareTableBody.innerHTML = `
       <tr>
-        <td colspan="10">
+        <td colspan="11">
           <div class="empty-state">目前沒有逐日比較資料。</div>
         </td>
       </tr>
@@ -815,6 +908,7 @@ function renderDailyComparisonTable() {
         </td>
         <td><span class="status-badge ${escapeHtml(resolveStatusClass(entry.status))}">${escapeHtml(entry.status_label || "未提供")}</span></td>
         <td>${renderAccuracyCell(entry)}</td>
+        <td>${renderV4ComparisonCell(entry)}</td>
         <td>${escapeHtml(formatInteger(entry.verified_stock_count ?? entry.stock_count))}</td>
         <td>${renderHistoryMetricCell(entry, "peak_hit_rate", "percent")}</td>
         <td>${renderHistoryMetricCell(entry, "under_rate", "percent")}</td>
@@ -944,7 +1038,7 @@ function renderTable(rows) {
   if (!rows.length) {
     elements.stockTableBody.innerHTML = `
       <tr>
-        <td colspan="8">
+        <td colspan="9">
           <div class="empty-state">目前沒有符合篩選條件的股票。</div>
         </td>
       </tr>
@@ -974,6 +1068,7 @@ function renderTable(rows) {
             <span class="metric-sub">q60 ${escapeHtml(formatPercentFromPoints(q60Pct(row)))} / q80 ${escapeHtml(formatPercentFromPoints(q80Pct(row)))} / ${escapeHtml(row.pred_peak_time_bucket || "未提供")}</span>
           </div>
         </td>
+        <td>${renderV4StockCell(row)}</td>
         <td>
           <div class="stacked">
             <strong>${escapeHtml(formatNumber(row.actual_high))}</strong>
