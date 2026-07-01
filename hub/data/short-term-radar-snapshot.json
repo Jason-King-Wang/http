@@ -1,6 +1,6 @@
 {
   "asOfDate": "2026-06-30",
-  "createdAt": "2026-06-30T17:10:18+08:00",
+  "createdAt": "2026-07-01T12:46:46+08:00",
   "sourceReport": "reports/short_term_radar/current_explosive_radar_v2_2026-06-11/current_explosive_radar_v2_top50_2026-06-30.csv",
   "summary": {
     "totalCandidates": 50,
@@ -91,7 +91,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 2,
@@ -142,7 +142,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 3,
@@ -193,7 +193,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 4,
@@ -244,7 +244,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 5,
@@ -294,7 +294,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 6,
@@ -345,7 +345,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 7,
@@ -396,7 +396,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 8,
@@ -448,7 +448,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 9,
@@ -499,7 +499,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 10,
@@ -551,7 +551,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 11,
@@ -601,7 +601,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 12,
@@ -652,7 +652,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 13,
@@ -703,7 +703,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 14,
@@ -754,7 +754,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 15,
@@ -805,7 +805,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 16,
@@ -856,7 +856,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 17,
@@ -907,7 +907,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 18,
@@ -957,7 +957,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 19,
@@ -1008,7 +1008,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 20,
@@ -1059,7 +1059,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 21,
@@ -1110,7 +1110,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 22,
@@ -1161,7 +1161,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 23,
@@ -1212,7 +1212,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 24,
@@ -1262,7 +1262,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 25,
@@ -1312,7 +1312,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 26,
@@ -1362,7 +1362,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 27,
@@ -1413,7 +1413,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 28,
@@ -1464,7 +1464,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 29,
@@ -1515,7 +1515,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 30,
@@ -1567,7 +1567,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 31,
@@ -1618,7 +1618,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 32,
@@ -1670,7 +1670,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 33,
@@ -1721,7 +1721,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 34,
@@ -1772,7 +1772,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 35,
@@ -1823,7 +1823,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 36,
@@ -1874,7 +1874,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 37,
@@ -1925,7 +1925,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 38,
@@ -1975,7 +1975,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 39,
@@ -2025,7 +2025,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 40,
@@ -2077,7 +2077,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 41,
@@ -2128,7 +2128,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 42,
@@ -2179,7 +2179,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 43,
@@ -2230,7 +2230,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 44,
@@ -2280,7 +2280,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 45,
@@ -2330,7 +2330,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 46,
@@ -2381,7 +2381,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 47,
@@ -2432,7 +2432,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 48,
@@ -2483,7 +2483,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 49,
@@ -2534,7 +2534,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     },
     {
       "rank": 50,
@@ -2585,7 +2585,7 @@
       ],
       "degradedRadars": [],
       "coreDataReady": true,
-      "createdAt": "2026-06-30T17:10:44+08:00"
+      "createdAt": "2026-07-01T12:47:17+08:00"
     }
   ],
   "golden": {
@@ -2915,7 +2915,7 @@
   "effectiveness": {
     "label": "黃金榜成效追蹤",
     "status": "research_only",
-    "generatedAt": "2026-06-30T17:09:49+08:00",
+    "generatedAt": "2026-07-01T12:46:08+08:00",
     "range": {
       "start": "2024-12-12",
       "end": "2026-06-30",
@@ -2952,34 +2952,34 @@
           "goldenBeatTop20DailyPct": 50.87
         },
         "external": {
-          "days": 333,
-          "bestExternalAvgPct": 6.34,
-          "goldenMinusBestExternalPct": 0.45,
-          "goldenBeatBestExternalDailyPct": 44.14,
+          "days": 344,
+          "bestExternalAvgPct": 6.42,
+          "goldenMinusBestExternalPct": -0.12,
+          "goldenBeatBestExternalDailyPct": 42.73,
           "benchmarks": {
             "0050": {
               "label": "0050",
-              "days": 333,
-              "avgPct": -0.01,
-              "medianPct": 4.89,
-              "goldenMinusAvgPct": 6.79,
-              "goldenBeatDailyPct": 53.75
+              "days": 344,
+              "avgPct": 0.26,
+              "medianPct": 4.97,
+              "goldenMinusAvgPct": 6.04,
+              "goldenBeatDailyPct": 52.03
             },
             "2330": {
               "label": "台積電",
-              "days": 333,
-              "avgPct": 4.92,
-              "medianPct": 5.78,
-              "goldenMinusAvgPct": 1.87,
-              "goldenBeatDailyPct": 52.55
+              "days": 344,
+              "avgPct": 4.94,
+              "medianPct": 5.86,
+              "goldenMinusAvgPct": 1.36,
+              "goldenBeatDailyPct": 50.87
             },
             "TAIEX": {
               "label": "台股加權",
-              "days": 333,
-              "avgPct": 4.2,
-              "medianPct": 4.51,
-              "goldenMinusAvgPct": 2.59,
-              "goldenBeatDailyPct": 52.25
+              "days": 344,
+              "avgPct": 4.34,
+              "medianPct": 4.64,
+              "goldenMinusAvgPct": 1.96,
+              "goldenBeatDailyPct": 50.58
             }
           }
         }
@@ -2996,34 +2996,34 @@
           "goldenBeatTop20DailyPct": 59.21
         },
         "external": {
-          "days": 293,
-          "bestExternalAvgPct": 18.07,
-          "goldenMinusBestExternalPct": 10.05,
-          "goldenBeatBestExternalDailyPct": 43.69,
+          "days": 304,
+          "bestExternalAvgPct": 18.94,
+          "goldenMinusBestExternalPct": 9.12,
+          "goldenBeatBestExternalDailyPct": 42.11,
           "benchmarks": {
             "0050": {
               "label": "0050",
-              "days": 293,
-              "avgPct": -3.1,
-              "medianPct": 15.33,
-              "goldenMinusAvgPct": 31.21,
-              "goldenBeatDailyPct": 64.16
+              "days": 304,
+              "avgPct": -1.47,
+              "medianPct": 15.68,
+              "goldenMinusAvgPct": 29.52,
+              "goldenBeatDailyPct": 61.84
             },
             "2330": {
               "label": "台積電",
-              "days": 293,
-              "avgPct": 16.56,
-              "medianPct": 20.63,
-              "goldenMinusAvgPct": 11.56,
-              "goldenBeatDailyPct": 45.39
+              "days": 304,
+              "avgPct": 17.08,
+              "medianPct": 21.09,
+              "goldenMinusAvgPct": 10.97,
+              "goldenBeatDailyPct": 46.05
             },
             "TAIEX": {
               "label": "台股加權",
-              "days": 293,
-              "avgPct": 12.24,
-              "medianPct": 14.43,
-              "goldenMinusAvgPct": 15.88,
-              "goldenBeatDailyPct": 53.58
+              "days": 304,
+              "avgPct": 13.2,
+              "medianPct": 14.66,
+              "goldenMinusAvgPct": 14.86,
+              "goldenBeatDailyPct": 51.64
             }
           }
         }
@@ -3040,34 +3040,34 @@
           "goldenBeatTop20DailyPct": 66.8
         },
         "external": {
-          "days": 233,
-          "bestExternalAvgPct": 41.32,
-          "goldenMinusBestExternalPct": 23.38,
-          "goldenBeatBestExternalDailyPct": 42.92,
+          "days": 244,
+          "bestExternalAvgPct": 42.59,
+          "goldenMinusBestExternalPct": 25.09,
+          "goldenBeatBestExternalDailyPct": 45.49,
           "benchmarks": {
             "0050": {
               "label": "0050",
-              "days": 233,
-              "avgPct": -8.12,
-              "medianPct": 30.36,
-              "goldenMinusAvgPct": 72.82,
-              "goldenBeatDailyPct": 96.14
+              "days": 244,
+              "avgPct": -4.62,
+              "medianPct": 31.86,
+              "goldenMinusAvgPct": 72.3,
+              "goldenBeatDailyPct": 96.31
             },
             "2330": {
               "label": "台積電",
-              "days": 233,
-              "avgPct": 40.95,
-              "medianPct": 46.32,
-              "goldenMinusAvgPct": 23.75,
-              "goldenBeatDailyPct": 42.92
+              "days": 244,
+              "avgPct": 42.01,
+              "medianPct": 47.37,
+              "goldenMinusAvgPct": 25.68,
+              "goldenBeatDailyPct": 45.49
             },
             "TAIEX": {
               "label": "台股加權",
-              "days": 233,
-              "avgPct": 28.31,
-              "medianPct": 31.02,
-              "goldenMinusAvgPct": 36.39,
-              "goldenBeatDailyPct": 69.96
+              "days": 244,
+              "avgPct": 29.94,
+              "medianPct": 31.67,
+              "goldenMinusAvgPct": 37.75,
+              "goldenBeatDailyPct": 71.31
             }
           }
         }
@@ -4600,100 +4600,100 @@
           "date": "2026-05-18",
           "golden": -5.84,
           "top20": 0.47,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 11.97,
+          "etf0050": 11.97,
+          "tsmc2330": 6.74,
+          "taiex": 10.47
         },
         {
           "date": "2026-05-19",
           "golden": -5.85,
           "top20": -1.95,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 12.24,
+          "etf0050": 12.24,
+          "tsmc2330": 8.11,
+          "taiex": 12.05
         },
         {
           "date": "2026-05-20",
           "golden": 3.76,
           "top20": 2.89,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 14.11,
+          "etf0050": 13.98,
+          "tsmc2330": 8.16,
+          "taiex": 14.11
         },
         {
           "date": "2026-05-21",
           "golden": 2.62,
           "top20": 3.18,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 15.4,
+          "etf0050": 13.19,
+          "tsmc2330": 7.59,
+          "taiex": 15.4
         },
         {
           "date": "2026-05-22",
           "golden": -1.09,
           "top20": -0.31,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 15.42,
+          "etf0050": 15.42,
+          "tsmc2330": 11.8,
+          "taiex": 15.18
         },
         {
           "date": "2026-05-25",
           "golden": -8.05,
           "top20": -9.24,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 10.6,
+          "etf0050": 10.6,
+          "tsmc2330": 9.45,
+          "taiex": 10.39
         },
         {
           "date": "2026-05-26",
           "golden": -11.62,
           "top20": -11.71,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 5.46,
+          "etf0050": 5.46,
+          "tsmc2330": 3.02,
+          "taiex": 5.34
         },
         {
           "date": "2026-05-27",
           "golden": -14.36,
           "top20": -16.84,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 5.5,
+          "etf0050": 4.69,
+          "tsmc2330": 3.46,
+          "taiex": 5.5
         },
         {
           "date": "2026-05-28",
           "golden": -18.15,
           "top20": -18.85,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 0.75,
+          "etf0050": -0.87,
+          "tsmc2330": -0.43,
+          "taiex": 0.75
         },
         {
           "date": "2026-05-29",
           "golden": -19.75,
           "top20": -19.91,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 2.7,
+          "etf0050": 1.21,
+          "tsmc2330": 1.28,
+          "taiex": 2.7
         },
         {
           "date": "2026-06-01",
           "golden": -15.57,
           "top20": -15.18,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 2.79,
+          "etf0050": 2.42,
+          "tsmc2330": 2.34,
+          "taiex": 2.79
         }
       ],
       "60d": [
@@ -6222,100 +6222,100 @@
           "date": "2026-03-18",
           "golden": 27.03,
           "top20": 31.8,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 35.37,
+          "etf0050": 35.37,
+          "tsmc2330": 25.0,
+          "taiex": 33.8
         },
         {
           "date": "2026-03-19",
           "golden": 28.29,
           "top20": 29.09,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 38.25,
+          "etf0050": 38.25,
+          "tsmc2330": 28.0,
+          "taiex": 33.64
         },
         {
           "date": "2026-03-20",
           "golden": 22.52,
           "top20": 24.35,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 39.11,
+          "etf0050": 39.11,
+          "tsmc2330": 28.23,
+          "taiex": 36.05
         },
         {
           "date": "2026-03-23",
           "golden": 34.81,
           "top20": 40.58,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 45.99,
+          "etf0050": 45.99,
+          "tsmc2330": 34.64,
+          "taiex": 39.39
         },
         {
           "date": "2026-03-24",
           "golden": 37.73,
           "top20": 33.18,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 47.22,
+          "etf0050": 47.22,
+          "tsmc2330": 35.68,
+          "taiex": 44.4
         },
         {
           "date": "2026-03-25",
           "golden": 33.83,
           "top20": 31.9,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 44.2,
+          "etf0050": 44.2,
+          "tsmc2330": 33.51,
+          "taiex": 43.93
         },
         {
           "date": "2026-03-26",
           "golden": 32.97,
           "top20": 31.63,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 40.43,
+          "etf0050": 40.43,
+          "tsmc2330": 29.19,
+          "taiex": 37.13
         },
         {
           "date": "2026-03-27",
           "golden": 38.54,
           "top20": 39.15,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 43.99,
+          "etf0050": 43.99,
+          "tsmc2330": 32.41,
+          "taiex": 39.04
         },
         {
           "date": "2026-03-30",
           "golden": 10.39,
           "top20": 15.04,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 40.65,
+          "etf0050": 40.65,
+          "tsmc2330": 31.46,
+          "taiex": 35.03
         },
         {
           "date": "2026-03-31",
           "golden": 11.39,
           "top20": 21.17,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 42.4,
+          "etf0050": 42.4,
+          "tsmc2330": 33.52,
+          "taiex": 38.81
         },
         {
           "date": "2026-04-01",
           "golden": 12.93,
           "top20": 22.68,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 44.63,
+          "etf0050": 43.73,
+          "tsmc2330": 30.98,
+          "taiex": 44.63
         }
       ],
       "120d": [
@@ -7844,124 +7844,124 @@
           "date": "2025-12-10",
           "golden": 134.71,
           "top20": 124.89,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 65.23,
+          "etf0050": 65.23,
+          "tsmc2330": 59.4,
+          "taiex": 61.03
         },
         {
           "date": "2025-12-11",
           "golden": 135.79,
           "top20": 129.8,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 64.7,
+          "etf0050": 64.7,
+          "tsmc2330": 58.94,
+          "taiex": 61.38
         },
         {
           "date": "2025-12-12",
           "golden": 137.1,
           "top20": 142.11,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 66.8,
+          "etf0050": 66.8,
+          "tsmc2330": 61.69,
+          "taiex": 63.28
         },
         {
           "date": "2025-12-15",
           "golden": 157.06,
           "top20": 155.04,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 71.68,
+          "etf0050": 71.68,
+          "tsmc2330": 66.21,
+          "taiex": 65.24
         },
         {
           "date": "2025-12-16",
           "golden": 147.09,
           "top20": 138.4,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 78.99,
+          "etf0050": 78.99,
+          "tsmc2330": 74.91,
+          "taiex": 72.22
         },
         {
           "date": "2025-12-17",
           "golden": 147.29,
           "top20": 134.26,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 77.15,
+          "etf0050": 77.15,
+          "tsmc2330": 73.52,
+          "taiex": 70.68
         },
         {
           "date": "2025-12-18",
           "golden": 150.86,
           "top20": 133.01,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 73.38,
+          "etf0050": 73.38,
+          "tsmc2330": 68.31,
+          "taiex": 67.75
         },
         {
           "date": "2025-12-19",
           "golden": 128.04,
           "top20": 129.48,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 71.79,
+          "etf0050": 71.79,
+          "tsmc2330": 64.26,
+          "taiex": 67.07
         },
         {
           "date": "2025-12-22",
           "golden": 105.57,
           "top20": 91.68,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 62.88,
+          "etf0050": 62.88,
+          "tsmc2330": 59.73,
+          "taiex": 59.26
         },
         {
           "date": "2025-12-23",
           "golden": 96.14,
           "top20": 92.6,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 64.49,
+          "etf0050": 64.49,
+          "tsmc2330": 60.68,
+          "taiex": 59.27
         },
         {
           "date": "2025-12-24",
           "golden": 100.5,
           "top20": 76.93,
-          "bestExternal": null,
-          "etf0050": null,
-          "tsmc2330": null,
-          "taiex": null
+          "bestExternal": 68.57,
+          "etf0050": 68.57,
+          "tsmc2330": 61.2,
+          "taiex": 62.51
         }
       ]
     },
     "benchmarkStatus": {
       "0050": {
         "label": "0050",
-        "rows": 357,
+        "rows": 368,
         "firstDate": "2024-12-12",
-        "lastDate": "2026-06-12",
-        "source": "TWSE official monthly endpoints"
+        "lastDate": "2026-06-30",
+        "source": "TWSE official monthly endpoints + local prices_daily fallback"
       },
       "2330": {
         "label": "台積電",
-        "rows": 362,
+        "rows": 373,
         "firstDate": "2024-12-12",
-        "lastDate": "2026-06-12",
-        "source": "TWSE official monthly endpoints"
+        "lastDate": "2026-06-30",
+        "source": "TWSE official monthly endpoints + local prices_daily fallback"
       },
       "TAIEX": {
         "label": "台股加權",
-        "rows": 348,
+        "rows": 359,
         "firstDate": "2025-01-02",
-        "lastDate": "2026-06-12",
-        "source": "TWSE official monthly endpoints"
+        "lastDate": "2026-06-30",
+        "source": "TWSE official monthly endpoints + local prices_daily fallback"
       }
     },
     "sourceFiles": {
@@ -236265,7 +236265,7 @@
     "kind": "weekly_ohlcv_from_local_daily_prices",
     "weekEnding": "Friday",
     "lookbackWeeks": 52,
-    "generatedAt": "2026-06-30T17:10:49+08:00",
+    "generatedAt": "2026-07-01T12:47:22+08:00",
     "priceStartDate": "2021-04-22",
     "priceLastDate": "2026-06-30",
     "symbolCount": 79,
@@ -306634,7 +306634,7 @@
       "freshnessBreakdown": {
         "historical": 1
       },
-      "actualCount": 2284326,
+      "actualCount": 2285404,
       "expectedCount": 0
     },
     {
