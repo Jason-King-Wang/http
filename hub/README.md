@@ -11,12 +11,14 @@ Main entrypoints:
 - `index.html`
 - `sell-model/index.html`
 - `auto-trading/index.html`
+- `zero-sum-wheel/index.html`
 - `trading-system-app-map/index.html`
 
 The embed content is synced into:
 
 - `sell-model-embed/`
 - `auto-trading-embed/`
+- `zero-sum-wheel/`
 - `trading-system-app-map/`
 - `data/portal-manifest.json`
 - `data/portal-manifest.js`

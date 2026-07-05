@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T07:00:08+08:00",
+  "generated_at": "2026-07-06T07:24:13+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-07-03",
@@ -62,6 +62,13 @@
     "page_path": "trading-system-app-map/index.html",
     "source_scope": "product_project_canonical_html",
     "status": "research_map"
+  },
+  "zero_sum_wheel": {
+    "title": "Zero-Sum Wheel Theme Liquidity Ring",
+    "page_path": "zero-sum-wheel/index.html",
+    "source_scope": "D-drive local daily K-line price/volume research output",
+    "status": "research_monitoring_page",
+    "language_toggle": true
   },
   "short_term_radar": {
     "as_of_date": "2026-07-03",
