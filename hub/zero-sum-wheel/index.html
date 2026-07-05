@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:," />
   <title>台股零和輪流動性儀表板 2026-07-03</title>
   <style>
     :root { --bg:#f4f1eb; --ink:#18212b; --muted:#65707a; --line:#ded7ca; --panel:#fffdfa; --green:#0f8f6e; --red:#c84b31; --amber:#d89614; --blue:#2f6fb0; }
@@ -17,9 +18,10 @@
     .btn { border:1px solid #cfc7b8; border-radius:8px; background:#fff; padding:9px 12px; font-weight:700; text-decoration:none; cursor:pointer; }
     main { width:min(1440px, calc(100% - 32px)); margin:0 auto; padding:22px 0 46px; }
     .hero-grid { display:grid; grid-template-columns:minmax(360px,.82fr) minmax(520px,1.18fr); gap:18px; align-items:start; }
-    .panel, .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .panel, .card { background:var(--panel); border:1px solid var(--line); border-radius:8px; box-shadow:0 1px 2px rgba(0,0,0,.04); min-width:0; }
     .panel { padding:18px; }
     .card { padding:16px; }
+    .hero-grid > *, .wide-grid > *, .split > * { min-width:0; }
     h2 { margin:0 0 12px; font-size:18px; }
     h3 { margin:0 0 8px; font-size:15px; }
     .metric-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:12px; margin-bottom:18px; }
@@ -57,7 +59,7 @@
     .compact-table { width:100%; border-collapse:collapse; font-size:13px; margin-top:8px; }
     .compact-table th, .compact-table td { border-bottom:1px solid #eee8dc; padding:8px; text-align:left; white-space:nowrap; }
     .compact-table th { background:#faf8f2; position:sticky; top:0; }
-    .table-wrap { overflow:auto; border:1px solid #eee8dc; border-radius:8px; }
+    .table-wrap { overflow:auto; max-width:100%; border:1px solid #eee8dc; border-radius:8px; }
     .empty { color:var(--muted); line-height:1.6; }
     .risk-note { border-left:4px solid var(--amber); padding:10px 12px; background:#fff8e6; line-height:1.65; }
     @media (max-width:1040px) { .hero-grid,.wide-grid,.split { grid-template-columns:1fr; } .metric-grid { grid-template-columns:repeat(2,1fr); } }
@@ -255,7 +257,7 @@
         <li>短週期 8 日適合看加速；主週期 25 日適合判斷是否該把資金從舊題材移到新題材。</li>
         <li>release_truth: daily_signal_board_built_research_only_not_signal_not_order_system</li>
       </ul>
-      <p class="subtle">generated_at: 2026-07-06T07:50:58+08:00</p>
+      <p class="subtle">generated_at: 2026-07-06T07:54:34+08:00</p>
     </article>
   </section>
 </main>
