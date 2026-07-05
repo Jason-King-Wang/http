@@ -28,7 +28,7 @@
     .metric strong { display:block; font-size:23px; margin:4px 0; }
     .metric span, .subtle, small { color:var(--muted); }
     .split { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-    .donut { width:100%; max-width:620px; display:block; margin:auto; }
+    .donut { width:100%; max-width:620px; display:block; margin:auto; overflow:hidden; }
     .donut text { font-size:10px; fill:#2a2d30; }
     .donut-kicker { font-size:12px !important; fill:#6b7077 !important; }
     .donut-main { font-size:17px !important; font-weight:800; fill:#18212b !important; }
@@ -63,7 +63,7 @@
     .empty { color:var(--muted); line-height:1.6; }
     .risk-note { border-left:4px solid var(--amber); padding:10px 12px; background:#fff8e6; line-height:1.65; }
     @media (max-width:1040px) { .hero-grid,.wide-grid,.split { grid-template-columns:1fr; } .metric-grid { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:640px) { main { width:min(100% - 18px, 1440px); } header { padding:18px 14px; } h1{font-size:24px;} .metric-grid{grid-template-columns:1fr;} .bar-row,.trail-row{grid-template-columns:1fr;} .bar-value,.trail-num{text-align:left;} }
+    @media (max-width:640px) { main { width:min(100% - 18px, 1440px); } header { padding:18px 14px; } h1{font-size:24px;} .metric-grid{grid-template-columns:1fr;} .bar-row,.trail-row{grid-template-columns:1fr;} .bar-value,.trail-num{text-align:left;} .donut text:not(.donut-kicker):not(.donut-main){display:none;} }
     </style>
 </head>
 <body>
@@ -257,7 +257,7 @@
         <li>短週期 8 日適合看加速；主週期 25 日適合判斷是否該把資金從舊題材移到新題材。</li>
         <li>release_truth: daily_signal_board_built_research_only_not_signal_not_order_system</li>
       </ul>
-      <p class="subtle">generated_at: 2026-07-06T07:54:34+08:00</p>
+      <p class="subtle">generated_at: 2026-07-06T07:56:07+08:00</p>
     </article>
   </section>
 </main>
