@@ -47,17 +47,17 @@
     .bar-track .positive { background:var(--green); }
     .bar-track .negative { background:var(--red); }
     .bar-value { text-align:right; font-variant-numeric:tabular-nums; }
-    .theme-stock-panel { grid-column:1 / -1; border:1px solid #eadfcd; background:#fffaf2; border-radius:8px; padding:12px; display:grid; gap:10px; }
+    .theme-stock-panel { grid-column:1 / -1; width:100%; min-width:0; margin-top:12px; border:1px solid #eadfcd; background:#fffaf2; border-radius:8px; padding:12px; display:grid; gap:10px; overflow:hidden; }
     .theme-stock-head { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; }
     .theme-stock-head strong { font-size:15px; }
-    .stock-list { display:grid; gap:8px; }
+    .stock-list { display:grid; gap:8px; grid-template-columns:1fr; min-width:0; }
     .stock-item { border:1px solid #eee3d2; border-radius:8px; background:#fff; overflow:hidden; }
-    .stock-trigger { width:100%; border:0; background:transparent; color:inherit; display:grid; grid-template-columns:minmax(150px,1.2fr) repeat(4,minmax(72px,.6fr)); gap:10px; align-items:center; padding:10px; text-align:left; cursor:pointer; }
+    .stock-trigger { width:100%; min-width:0; border:0; background:transparent; color:inherit; display:grid; grid-template-columns:minmax(190px,1.3fr) repeat(4,minmax(108px,.7fr)); gap:12px; align-items:center; padding:10px; text-align:left; cursor:pointer; }
     .stock-trigger:hover, .stock-trigger.is-active { background:#f8f3e8; }
     .stock-name { display:grid; gap:2px; min-width:0; }
     .stock-name strong { overflow-wrap:anywhere; }
-    .stock-metric { display:grid; gap:2px; font-size:12px; color:var(--muted); }
-    .stock-metric b { color:var(--ink); font-size:13px; font-variant-numeric:tabular-nums; }
+    .stock-metric { display:grid; gap:2px; min-width:0; font-size:12px; color:var(--muted); line-height:1.35; }
+    .stock-metric b { color:var(--ink); font-size:13px; font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
     .ret-pos { color:#b23a2c !important; }
     .ret-neg { color:#0f8f6e !important; }
     .weekly-chart { border-top:1px solid #eee3d2; padding:12px; display:grid; gap:10px; background:#fbfaf7; }
@@ -92,7 +92,8 @@
     .empty { color:var(--muted); line-height:1.6; }
     .risk-note { border-left:4px solid var(--amber); padding:10px 12px; background:#fff8e6; line-height:1.65; }
     @media (max-width:1040px) { .hero-grid,.wide-grid,.split { grid-template-columns:1fr; } .metric-grid { grid-template-columns:repeat(2,1fr); } }
-    @media (max-width:720px) { main { width:min(100% - 18px, 1440px); } header { padding:18px 14px; } h1{font-size:24px;} .metric-grid{grid-template-columns:1fr;} .bar-row,.trail-row{grid-template-columns:1fr;} .bar-value,.trail-num{text-align:left;} .donut text:not(.donut-kicker):not(.donut-main){display:none;} .stock-trigger{grid-template-columns:1fr 1fr;} .stock-name{grid-column:1/-1;} }
+    @media (max-width:860px) { .stock-trigger { grid-template-columns:minmax(170px,1.2fr) repeat(2,minmax(110px,1fr)); } .stock-name { grid-column:1/-1; } }
+    @media (max-width:720px) { main { width:min(100% - 18px, 1440px); } header { padding:18px 14px; } h1{font-size:24px;} .metric-grid{grid-template-columns:1fr;} .bar-row,.trail-row{grid-template-columns:1fr;} .bar-value,.trail-num{text-align:left;} .donut text:not(.donut-kicker):not(.donut-main){display:none;} .stock-trigger{grid-template-columns:1fr 1fr;} .stock-name{grid-column:1/-1;} .panel,.card,.boundary-panel li{overflow-wrap:anywhere;} }
     </style>
 </head>
 <body>
@@ -292,7 +293,7 @@
         <li>短週期 8 日適合看加速；主週期 25 日適合判斷是否該把資金從舊題材移到新題材。</li>
         <li>release_truth: daily_signal_board_built_research_only_not_signal_not_order_system</li>
       </ul>
-      <p class="subtle">generated_at: 2026-07-07T11:55:25+08:00</p>
+      <p class="subtle">generated_at: 2026-07-07T12:19:43+08:00</p>
     </article>
   </section>
 </main>
@@ -432,11 +433,16 @@ window.ZERO_SUM_DRILLDOWN = {"latestDate":"2026-07-06","sortKey":"amount","sortL
       event.preventDefault();
       var row = themeButton.closest('.bar-row');
       var wasActive = themeButton.classList.contains('is-active');
-      var root = row.closest('.bar-list') || document;
+      var splitRoot = row && row.closest('.split.section');
+      var root = splitRoot || (row && row.closest('.bar-list')) || document;
       closePanels(root);
       if (wasActive) return;
       themeButton.classList.add('is-active');
-      row.insertAdjacentHTML('afterend', renderStockPanel(themeButton.dataset.themeId || ''));
+      if (splitRoot) {
+        splitRoot.insertAdjacentHTML('afterend', renderStockPanel(themeButton.dataset.themeId || ''));
+      } else {
+        row.insertAdjacentHTML('afterend', renderStockPanel(themeButton.dataset.themeId || ''));
+      }
       return;
     }
     var stockButton = event.target.closest('.stock-trigger');
