@@ -572,11 +572,11 @@ function renderRotationStatusBand(entry) {
   }
 
   const applied = rotationAppliedToDaily(entry);
-  const headline = applied ? "AB 快速輪動 shadow 已套用到今日 AB" : "AB 快速輪動本日未套用";
+  const headline = applied ? "AB 快速輪動影子觀察已套用到今日資料" : "AB 快速輪動本日未套用";
   const conclusion = rotationConclusionText(entry);
   const note = entry?.rotation_mode_switch_note || (
     applied
-      ? "今日為週一，ROT-PRE / ROT-FIN shadow 欄位已顯示在每日 AB。"
+      ? "今日為週一，輪動觀察欄位已顯示在 AB 選股追蹤。"
       : "今日非週一；weekly rotation regime 只作參考，不切換今日 AB 預選 / 定版。"
   );
   const details = [
@@ -805,7 +805,7 @@ function renderPortalHome(manifest, radar) {
 
   if (meta) {
     meta.innerHTML = [
-      `每日 AB 日期 ${fallbackText(ab.trade_date)}`,
+      `AB 資料日期 ${fallbackText(ab.trade_date)}`,
       `賣價模型日期 ${fallbackText(sell.target_trade_date)}`,
       `短線雷達日期 ${fallbackText(radar?.asOfDate)}`,
       `自動交易日期 ${fallbackText(auto.trade_date)}`,
@@ -1203,7 +1203,7 @@ function renderAbRow(row, pool, tradeDate) {
       <td data-label="漲跌幅%">${escapeHtml(formatSignedPctPoints(row.change_pct))}</td>
       <td data-label="漲跌實際">${escapeHtml(formatSignedNumber(row.change_amount))}</td>
       <td data-label="一張損益">${escapeHtml(formatSignedMoney(row.lot_pnl_twd))}</td>
-      <td data-label="LLM 理由" class="reason-cell">${escapeHtml(reasonForPool(row, pool) || "--")}</td>
+      <td data-label="規則理由" class="reason-cell">${escapeHtml(reasonForPool(row, pool) || "--")}</td>
     </tr>
   `;
 }
@@ -1253,7 +1253,7 @@ function renderPoolTable(title, pool, rows, options = {}) {
               <th>漲跌幅%</th>
               <th>漲跌實際</th>
               <th>一張損益</th>
-              <th>LLM 理由</th>
+              <th>規則理由</th>
             </tr>
           </thead>
           <tbody>${body}</tbody>
@@ -1323,7 +1323,7 @@ function isAbSourceMissing(entry) {
 }
 
 function sourceMissingText(entry) {
-  return entry?.source_missing_message || `${fallbackText(entry?.trade_date)} 的 AB LLM 預選來源尚未產生；公開頁先顯示缺口，不沿用舊資料。`;
+  return entry?.source_missing_message || `${fallbackText(entry?.trade_date)} 的正式模型預選來源尚未產生；公開頁先顯示缺口，不沿用舊資料。`;
 }
 
 function renderSourceMissingPanel(entry) {
@@ -1457,10 +1457,10 @@ function renderAbDailyHistorySummaryTable(history) {
 
   return `
     <div class="ab-history-summary-head">
-      <strong>每日 A/B 摘要表</strong>
-      <span class="mini-note">每天只看 A 預選、B 預選、各買一張與週一 9:10 兩組損益。</span>
+      <strong>A/B 歷史摘要表</strong>
+      <span class="mini-note">名單以合法交易週一凍結；週內只更新定版結果與損益追蹤。</span>
     </div>
-    <div class="ab-history-mobile-summary" aria-label="每日 A/B 手機摘要">
+    <div class="ab-history-mobile-summary" aria-label="A/B 歷史手機摘要">
       ${history.map((entry, index) => renderAbDailyHistorySummaryCard(entry, index === 0)).join("")}
     </div>
     <div class="table-wrap ab-history-table-wrap">
@@ -1609,7 +1609,7 @@ function setHistorySummaryOnly(toggleButton, historyList, history, enabled) {
   historyList.classList.toggle("is-summary-only", enabled);
   historyList.classList.toggle("is-summary-table", enabled);
   toggleButton.classList.toggle("is-active", enabled);
-  toggleButton.textContent = enabled ? "顯示 A/B 明細" : "只看每日 A/B 摘要";
+  toggleButton.textContent = enabled ? "顯示 A/B 明細" : "只看 A/B 摘要";
   toggleButton.setAttribute("aria-pressed", enabled ? "true" : "false");
   historyList.innerHTML = enabled ? renderAbDailyHistorySummaryTable(rows) : renderAbHistoryCards(rows);
 }
@@ -1677,14 +1677,14 @@ function renderAbDailyPage(payload) {
 
   if (!history.length) {
     pageMeta.innerHTML = '<span class="pill">目前沒有資料</span>';
-    latestSummary.textContent = "目前還沒有每日版本的 A/B 預選資料。";
+    latestSummary.textContent = "目前還沒有正式的 A/B 預選資料。";
     latestPills.innerHTML = "";
     latestPools.innerHTML = "";
     historyList.innerHTML = '<div class="empty-state">目前還沒有歷史資料。</div>';
     if (historySummaryToggle) {
       historySummaryToggle.disabled = true;
       historySummaryToggle.classList.remove("is-active");
-      historySummaryToggle.textContent = "只看每日 A/B 摘要";
+      historySummaryToggle.textContent = "只看 A/B 摘要";
       historySummaryToggle.setAttribute("aria-pressed", "false");
     }
     if (latestToggle) {
@@ -1703,17 +1703,20 @@ function renderAbDailyPage(payload) {
     syncLatestToggle(latestToggle, latestShell, latestShell?.classList.contains("is-collapsed"));
   }
 
+  const isFormalV4 = Boolean(latest.profile_id) || String(latest.source || "").startsWith("ab_product_v4");
   const sourceLabel = latestSourceMissing
     ? "來源缺失"
+    : isFormalV4
+    ? "正式第四版規則"
     : latest.rows?.some((row) => row.preselect_source === "llm_rules_preselect")
-    ? "LLM 規則預選"
-    : "LLM 預選";
+    ? "歷史規則預選"
+    : "歷史相容資料";
 
   pageMeta.innerHTML = [
     `最後同步 ${fallbackText(payload.generated_at)}`,
     `最新交易日 ${fallbackText(latest.trade_date)}`,
     `${fallbackText(latest.phase_label)}`,
-    latestSourceMissing ? "AB 預選來源缺失" : `輪動 ${rotationActionLabel(latest.rotation_shadow_action)}`,
+    latestSourceMissing ? "AB 預選來源缺失" : isFormalV4 ? "週一凍結名單" : `輪動 ${rotationActionLabel(latest.rotation_shadow_action)}`,
     latestSourceMissing ? "" : `週一 ${fallbackText(latest.rotation_trade_week_monday)}`,
     sourceLabel,
   ]
@@ -1723,7 +1726,9 @@ function renderAbDailyPage(payload) {
 
   latestSummary.textContent = latestSourceMissing
     ? sourceMissingText(latest)
-    : `${latest.trade_date} 的 ${latest.phase_label} 已更新。輪動結論：${rotationConclusionText(latest)}。這版只保留 A 預選與 B 預選兩池，不收斂成 AB 定版。`;
+    : isFormalV4
+    ? `${latest.trade_date} 的 ${latest.phase_label} 已更新。名單以合法交易週一凍結，週內只更新定版結果與損益追蹤。`
+    : `${latest.trade_date} 的 ${latest.phase_label} 已更新。輪動結論：${rotationConclusionText(latest)}。此筆為歷史相容資料。`;
 
   latestPills.innerHTML = buildAbPills(latest)
     .map((item) => `<span class="pill">${item}</span>`)
@@ -1733,7 +1738,7 @@ function renderAbDailyPage(payload) {
     ? renderSourceMissingPanel(latest)
     : `${renderRotationStatusBand(latest)}${renderPoolGrid(latest)}`;
 
-  historyList.innerHTML = '<div class="empty-state">正在整理每日 A/B 摘要...</div>';
+  historyList.innerHTML = '<div class="empty-state">正在整理 A/B 歷史摘要...</div>';
   const renderHistory = () => {
     wireAbHistoryToggles(historyList);
     wireAbHistorySummaryToggle(historySummaryToggle, historyList, history);

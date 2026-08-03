@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="每日版本的 AB 選股模型輸出頁面，整合進交易儀表板總入口。" />
-    <title>每日 AB | 交易儀表板總入口</title>
+    <meta name="description" content="正式 AB 選股模型的週一選股、定版與週內追蹤頁面。" />
+    <title>AB 選股追蹤 | 交易儀表板總入口</title>
     <link rel="icon" href="../sell-model-embed/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="../assets/portal.css?v=20260615-ab-art-polish" />
+    <link rel="stylesheet" href="../assets/portal.css?v=20260802-ab-v4-contract" />
   </head>
   <body data-page="ab-daily-wrapper">
     <div class="page-shell">
@@ -18,11 +18,11 @@
         <header class="topbar">
           <div class="brand">
             <strong>交易儀表板總入口</strong>
-            <span>每日版本的 AB 選股模型輸出</span>
+            <span>AB 選股模型輸出與追蹤</span>
           </div>
           <nav class="nav-links" aria-label="主站導覽">
             <a href="../index.html">首頁</a>
-            <a class="active" href="./index.html">每日 AB</a>
+            <a class="active" href="./index.html">AB 選股</a>
             <a href="../sell-model/index.html">賣價模型</a>
             <a href="../short-term-radar/index.html">短線雷達</a>
             <a href="../auto-trading/index.html">自動交易</a>
@@ -34,17 +34,17 @@
         <section class="hero">
           <div>
             <p class="eyebrow">AB Daily</p>
-            <h1>每日版本的 AB 選股模型輸出</h1>
+            <h1>AB 選股模型輸出與週內追蹤</h1>
             <p>
-              這頁專門看每天的 LLM A 預選與 B 預選。最新一天放最上面，下面保留逐日歷史；
-              這裡同步保留 AB 預選池、定版標記、定版時漲幅；點股名可展開當時走勢。
+              這頁顯示正式規則引擎產生的 A、B 預選與定版。名單在合法交易週一凍結，
+              週內只更新價格與結果追蹤；點股名可展開當時走勢。
             </p>
             <div class="pill-row" id="ab-page-meta"></div>
           </div>
           <aside class="hero-panel">
             <p class="eyebrow">更新節點</p>
-            <h2>自動更新</h2>
-            <p class="meta-line">每天早上先產生 A/B 預選；休盤日若有資料照樣更新，價格欄位顯示 NA。</p>
+            <h2>週一選股・週內追蹤</h2>
+            <p class="meta-line">只在合法交易週一產生名單；休市日不建立新名單，也不沿用過期資料冒充本週結果。</p>
             <div class="frame-actions">
               <a class="action-link" href="../sell-model/index.html">回賣價模型</a>
               <a class="action-link" href="../index.html">回入口首頁</a>
@@ -56,7 +56,7 @@
           <div class="section-head">
             <div>
               <p class="eyebrow">Latest</p>
-              <h2>最新一天</h2>
+              <h2>最新進度</h2>
             </div>
             <button
               class="history-toggle latest-toggle"
@@ -88,7 +88,7 @@
               aria-controls="ab-history-list"
               aria-pressed="false"
             >
-              只看每日 A/B 摘要
+              只看 A/B 歷史摘要
             </button>
           </div>
           <div class="history-stack" id="ab-history-list"></div>
@@ -97,6 +97,6 @@
     </div>
 
     <script src="../data/portal-manifest.js?v=20260615-ab-art-polish"></script>
-    <script src="../assets/portal.js?v=20260615-ab-art-polish"></script>
+    <script src="../assets/portal.js?v=20260802-ab-v4-contract"></script>
   </body>
 </html>
