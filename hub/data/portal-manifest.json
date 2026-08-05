@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-05T14:31:48+08:00",
+  "generated_at": "2026-08-05T17:12:24+08:00",
   "deployment_note": "公開入口站已上線，並透過 sell-model-dashboard-public 的 GitHub Pages 發佈在 /hub/ 路徑；AI 作品集發佈在 /portfolio/ 路徑。",
   "sell_model": {
     "target_trade_date": "2026-07-27",
@@ -71,8 +71,8 @@
     "language_toggle": true
   },
   "short_term_radar": {
-    "as_of_date": "2026-08-04",
-    "created_at": "2026-08-04T17:10:30+08:00",
+    "as_of_date": "2026-08-05",
+    "created_at": "2026-08-05T17:11:51+08:00",
     "total_candidates": 50,
     "mode": "explosive_radar_v2_current",
     "early_watch_count": 7,
