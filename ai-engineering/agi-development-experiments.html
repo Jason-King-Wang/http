@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cost-Controlled AGI Development Experiments | AI Engineering Portfolio</title>
+<meta name="description" content="Ongoing research into autonomous software development with cost and AI-capacity limits, explicit tasks, checkpoint recovery and candidate verification.">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/agi-development-experiments.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Engineering Portfolio">
+<meta property="og:title" content="Cost-Controlled AGI Development Experiments">
+<meta property="og:description" content="Ongoing research into autonomous software development with cost and AI-capacity limits, explicit tasks, checkpoint recovery and candidate verification.">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/agi-development-experiments.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/03-agi-experiments.png">
+<meta property="og:image:alt" content="Cost-Controlled AGI Development Experiments — concept illustration">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cost-Controlled AGI Development Experiments">
+<meta name="twitter:description" content="Ongoing research into autonomous software development with cost and AI-capacity limits, explicit tasks, checkpoint recovery and candidate verification.">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/03-agi-experiments.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI Engineering Portfolio home"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI engineering portfolio</small></span></a>
+<nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#background">Background</a><a href="index.html#work-arrangements">Work arrangements</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">All projects</a><span aria-hidden="true">/</span><span>Project 03</span></div>
+<header class="project-hero">
+<p class="eyebrow">03 / Research &amp; experimentation</p>
+<h1>Cost-Controlled AGI Development Experiments</h1>
+<p class="lead">Researching how autonomous software development can stay within resource limits, preserve continuity and produce work that can be independently checked.</p>
+<ul class="tags" aria-label="Project areas"><li>Python</li><li>SQLite</li><li>Resource budgets</li><li>Checkpoints</li><li>Candidate verification</li></ul>
+</header>
+<figure class="project-art"><img src="assets/03-agi-experiments.png" alt="Cost-Controlled AGI Development Experiments — concept illustration" width="1733" height="908"><figcaption>Concept illustration for this development project.</figcaption></figure>
+<div class="case-layout"><div class="case-content"><section class="prose"><h2>The research question</h2><p>How can an AI development process choose bounded work, account for its resources, recover after interruption and verify a candidate before it proceeds?</p><p>AGI names the research direction of this project. The present work is an experimental software-development platform; it has not achieved AGI. It is also separate from the deployment methods used for protected enterprise application environments.</p></section>
+<section class="prose"><h2>Cost and available AI capacity</h2><p>The experiments treat time, cash, attention and AI subscription capacity as constraints on task selection and implementation. I use “Fuel” to describe that available AI capacity, including quota windows, reset timing and estimated reservations.</p><p>An interrupted call can leave usage uncertain. The experimental accounting preserves that uncertainty instead of treating it as unused capacity. Reservations are planning estimates rather than guarantees from a model provider.</p></section>
+<section class="prose"><h2>What I have implemented</h2><ul><li>Python/SQLite task leases and explicit work boundaries.</li><li>Workspace checkpoints and recovery after interrupted work.</li><li>Subscription-capacity monitoring and conservative accounting for uncertain usage.</li><li>Candidate-verification controls tied to immutable Git snapshots.</li><li>An interface for running candidate acceptance independently of the developing agent.</li></ul></section>
+<section class="prose"><h2>Learning from a candidate</h2><p>The task definition, implementation evidence and acceptance result are kept distinct. A change that passes an isolated check still needs the appropriate host and operating context before it can be considered ready for unattended work.</p><p>This approach makes failure useful for the next decision: whether to revise the task, change the implementation, investigate an environment issue or stop the affected path.</p></section>
+<section class="status-panel"><p class="eyebrow">Current stage</p><h2>Offline checks completed for a candidate; experimentation continues</h2><p>A frozen candidate completed offline regression and reproducibility checks. Host qualification and unattended operation remain unverified. There is no claim of achieved AGI, continuous autonomous earnings or a measured cost-reduction result.</p></section></div><aside class="case-aside"><p class="eyebrow">Explore</p><ul class="link-list"><li><a href="local-llm-tools.html">Local LLM development methods <span aria-hidden="true">↗</span></a></li><li><a href="luna-agent-workflow.html">Luna delegation and review <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>Development perspective</h2><p>This portfolio describes requirements, application design, AI-assisted implementation and integration work with existing models and tools.</p></div></aside></div>
+<nav class="project-pagination" aria-label="Project navigation"><a href="luna-agent-workflow.html"><small>Previous project</small>Luna agent workflow</a><a href="huoke.html"><small>Next project</small>Huoke product marketing <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI-assisted development · Existing models and tools · Clear project boundaries</p><a href="index.html">Project overview ↑</a></footer>
+</body>
+</html>
