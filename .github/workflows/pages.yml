@@ -30,6 +30,7 @@ jobs:
           cp index.html app.js styles.css favicon.svg latest-date.txt manifest.webmanifest pages-root/
           cp service-worker.js service-worker-v12.js pages-root/
           cp -R data hub ai-database resume portfolio pages-root/
+          cp -R multifactor-scoring pages-root/
           cp -R auto-quant/* pages-root/auto-quant/
           cp -R job-apply-service/* pages-root/job-apply-service/
           cp -R ip-universe-studio/* pages-root/ip-universe-studio/

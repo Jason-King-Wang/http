@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yu Wang's independent public demo of nonlinear multifactor scoring: transparent rules, live rankings, sensitivity analysis and repeatable checks.">
+  <meta name="theme-color" content="#142b40">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23142b40'/%3E%3Cpath d='M14 48V16M14 48H50' fill='none' stroke='%23ffffff' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M18 42C26 24 34 20 49 18' fill='none' stroke='%2377d7c7' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <title>Nonlinear Multifactor Scoring | Yu Wang</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">Skip to calculator</a>
+  <header class="site-header wrap">
+    <a class="brand" href="https://www.linkedin.com/in/yu-wang-b40080415/" aria-label="Yu Wang on LinkedIn"><span class="brand-mark" aria-hidden="true">YW</span> Yu Wang <span class="brand-label">/ Selected work</span></a>
+    <a class="download" href="./Yu_Wang_Nonlinear_Multifactor_Portfolio_EN.pdf" download>Download portfolio <span aria-hidden="true">↗</span><span class="file-type">PDF</span></a>
+  </header>
+  <main class="wrap">
+    <section class="intro" aria-labelledby="page-title">
+      <p class="eyebrow">AI-assisted rules-to-code development</p>
+      <h1 id="page-title">Make the scoring rules <em>visible.</em></h1>
+      <p class="lead">Nonlinear Multifactor Scoring. Explore how benefit, readiness, cost, risk, data quality and age shape a candidate's priority.</p>
+      <div class="facts"><span><i aria-hidden="true"></i> Deterministic JavaScript</span><span>Local calculation · no AI or API calls</span><span>Independent public demo</span></div>
+    </section>
+
+    <section id="workspace" class="workspace" aria-label="Interactive scoring calculator">
+      <form id="candidate-form" class="panel input-panel" novalidate>
+        <div class="panel-heading"><div><p class="eyebrow">01 / Candidate</p><h2>Explore the inputs</h2></div><button id="reset" class="text-button" type="button">Reset all</button></div>
+        <fieldset class="case-picker"><legend>Choose an illustrative case</legend><div id="case-buttons" class="segmented"></div></fieldset>
+        <p id="case-note" class="hint"></p>
+        <div id="input-fields" class="input-grid"></div>
+        <label class="checkbox"><input id="prerequisites" name="prerequisites" type="checkbox" checked><span>Prerequisites are met</span></label>
+        <p class="gate-note">Eligibility also requires quality ≥ 60 and risk ≤ 80. Ineligible candidates receive no score and stay out of the ranking.</p>
+        <details class="policy"><summary>Scoring policy <span>Adjust parameters</span></summary><div id="policy-fields" class="input-grid"></div><p class="hint">Illustrative settings, not learned or calibrated parameters. Changes apply to every case.</p></details>
+        <noscript><p class="error">JavaScript is required for the local interactive calculator.</p></noscript>
+      </form>
+
+      <div class="result-column">
+        <section class="panel score-panel" aria-labelledby="result-title">
+          <div class="panel-heading"><div><p class="eyebrow">02 / Result</p><h2 id="result-title">Case C</h2></div><span id="eligibility" class="badge">Eligible</span></div>
+          <div id="result-status" role="status" aria-live="polite" aria-atomic="true"></div>
+          <p id="error" class="error" role="alert" hidden></p>
+          <div class="score-line"><output id="score" aria-label="Priority score">—</output><div><strong>Priority score</strong><span>Policy-defined index / 100</span></div></div>
+          <p id="score-context" class="score-context"></p>
+          <div class="meter" aria-hidden="true"><div id="score-meter"></div></div>
+          <div class="result-footnote">A priority index, not a probability of success.</div>
+        </section>
+
+        <section class="panel ranking-panel" aria-labelledby="ranking-title">
+          <div class="panel-heading"><div><p class="eyebrow">03 / Compare</p><h2 id="ranking-title">Candidate ranking</h2></div><span class="hint">Current policy</span></div>
+          <div class="table-scroll"><table><caption class="sr-only">Candidate ranking under the current scoring policy</caption><thead><tr><th scope="col">Rank</th><th scope="col">Case</th><th scope="col">Priority</th><th scope="col">Eligibility</th></tr></thead><tbody id="ranking"></tbody></table></div>
+          <p class="hint ranking-note">Editing a case updates its row. Ties use case ID order.</p>
+        </section>
+      </div>
+    </section>
+
+    <section class="panel trace-panel" aria-labelledby="trace-title">
+      <div class="panel-heading"><div><p class="eyebrow">04 / Explain</p><h2 id="trace-title">Follow the calculation</h2></div><span id="trace-case" class="hint">Case C</span></div>
+      <div id="trace" class="trace-grid"></div>
+      <div class="contribution-heading"><h3>Arithmetic contributions</h3><span class="hint">A decomposition of the score, not causal attribution.</span></div>
+      <div id="contributions" class="contributions"></div>
+    </section>
+
+    <section class="section-intro"><p class="eyebrow">05 / Test the assumptions</p><h2>Small policy changes. Different priorities.</h2><p>These views use your current cases and policy, varying one parameter at a time. Sensitivity shows how the rules behave; it does not prove better real-world decisions.</p></section>
+    <div class="sensitivity-grid">
+      <section class="panel" aria-labelledby="half-life-title"><div class="panel-heading"><div><h3 id="half-life-title">Time half-life</h3><p class="hint">Compare B and C at 7, 14 and 30 days.</p></div><span class="parameter">H</span></div><div id="half-life-chart" class="chart"></div><div class="table-scroll"><table><caption class="sr-only">Half-life sensitivity for B and C</caption><thead><tr><th scope="col">Half-life</th><th scope="col">B</th><th scope="col">C</th><th scope="col">Higher score</th></tr></thead><tbody id="half-life-table"></tbody></table></div></section>
+      <section class="panel" aria-labelledby="gamma-title"><div class="panel-heading"><div><h3 id="gamma-title">Interaction coefficient</h3><p class="hint">Current case, with gamma varied from 0 to 1.</p></div><span class="parameter">γ</span></div><div id="gamma-chart" class="chart"></div><div id="gamma-comparison" class="comparison"></div><p class="hint">Increasing gamma also increases the denominator Z. An interaction term does not guarantee a score increase.</p></section>
+    </div>
+
+    <section class="panel verification" aria-labelledby="checks-title">
+      <div class="panel-heading"><div><p class="eyebrow">06 / Verify</p><h2 id="checks-title">Repeatable checks</h2></div><button id="run-checks" class="primary-button" type="button">Run self-checks <span aria-hidden="true">↻</span></button></div>
+      <p>Run this version's fixed-example, boundary, validation and mathematical behavior checks in your browser. They use the same evaluation function as the calculator.</p>
+      <p id="checks-status" class="check-status" role="status" aria-live="polite">Checks have not been run in this session.</p>
+      <details id="checks-details" hidden><summary>View every check</summary><ol id="checks-list" class="checks-list"></ol></details>
+      <p class="hint">Passing checks demonstrate the tested behavior of this implementation. They do not establish predictive accuracy, production readiness or a full security audit.</p>
+    </section>
+
+    <details class="panel specification"><summary>Read the formulas and project scope</summary><div class="spec-grid"><div><h3>Explicit calculation</h3><p>Normalize benefit, readiness, cost, risk and quality from 0–100 into u, m, c, r and q. Age t is measured in days.</p><pre>U = (1 − exp(−k·u)) / (1 − exp(−k))
+D = exp(−ln(2)·t/H)
+P = exp(−beta·r²)
+Z = w_u + w_m + w_c + gamma
+B = (w_u·U + w_m·m + w_c·(1−c)
+     + gamma·U·m) / Z
+S = 100 · B · D · P · q</pre><p class="hint">Validate inputs and policy before checking eligibility. k: 0.1–10; H: 0.25–365 days; other parameters: finite, non-negative; Z must be finite and positive. The first five inputs are 0–100; age is 0–365 days.</p></div><div><h3>Rules-to-code collaboration</h3><p>My role is to define needs, rules and acceptance criteria, guide AI-assisted implementation and revisions, and review behavior. AI assists in creating code, tests and documentation; it does not make runtime scoring decisions.</p><p>This independent public demo uses separately constructed rules, parameters and illustrative cases. It excludes private original model details and data.</p><p>No model training, calibrated success probabilities, demonstrated predictive accuracy or production deployment is claimed.</p><a class="inline-link" href="./Yu_Wang_Nonlinear_Multifactor_Portfolio_EN.pdf" download>Read the English portfolio PDF ↗</a></div></div></details>
+  </main>
+  <footer class="wrap"><div><strong>Yu Wang</strong><p>Fully remote · Part-time / project-based<br>Weekdays 19:00–22:00 Taiwan time (UTC+8)</p></div><div><strong>No English-only meetings for now.</strong><p>I am not currently accepting engagements that require meetings conducted entirely in English.</p></div><a href="https://www.linkedin.com/in/yu-wang-b40080415/">LinkedIn ↗</a></footer>
+</body>
+</html>
