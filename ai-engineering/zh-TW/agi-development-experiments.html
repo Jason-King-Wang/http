@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成本受控的 AGI 開發實驗 | AI 工程作品集</title>
+<meta name="description" content="持續研究自主軟體開發中的成本與 AI 額度限制、明確任務、檢查點復原及候選版本驗證；尚未達成 AGI。">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/agi-development-experiments.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/agi-development-experiments.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/agi-development-experiments.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI 工程作品集">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="成本受控的 AGI 開發實驗">
+<meta property="og:description" content="持續研究自主軟體開發中的成本與 AI 額度限制、明確任務、檢查點復原及候選版本驗證；尚未達成 AGI。">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/agi-development-experiments.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/03-agi-experiments.png">
+<meta property="og:image:alt" content="成本受控的 AGI 開發實驗・概念示意圖">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="成本受控的 AGI 開發實驗">
+<meta name="twitter:description" content="持續研究自主軟體開發中的成本與 AI 額度限制、明確任務、檢查點復原及候選版本驗證；尚未達成 AGI。">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/03-agi-experiments.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI 工程作品集首頁"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI 工程作品集</small></span></a>
+<nav aria-label="主要導覽"><a href="index.html#projects">作品</a><a href="index.html#background">經歷</a><a href="index.html#work-arrangements">合作方式</a><a href="agi-development-experiments.html" lang="zh-Hant" aria-current="page">繁體中文</a><a href="../agi-development-experiments.html" lang="en" hreflang="en">English</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">全部作品</a><span aria-hidden="true">/</span><span>作品 03</span></div>
+<header class="project-hero"><p class="eyebrow">03 / 進行中</p><h1>成本受控的 AGI 開發實驗</h1><p class="lead">研究自主軟體開發如何在資源限制內持續運作，保留中斷後的接續能力，並產出可獨立檢查的成果。</p><ul class="tags" aria-label="專案領域"><li>Python</li><li>SQLite</li><li>資源預算</li><li>檢查點</li><li>候選版本驗證</li></ul></header>
+<figure class="project-art"><img src="../assets/zh-TW/03-agi-experiments.png" alt="成本受控的 AGI 開發實驗・概念示意圖" width="1734" height="907"><figcaption>本開發專案的概念示意圖，非實際系統畫面。</figcaption></figure>
+<div class="case-layout"><div class="case-content">
+<section class="prose"><h2>研究的問題</h2><p>AI 開發流程如何選擇範圍明確的工作、核算所用資源、在中斷後復原，並在繼續之前驗證候選版本？</p><p>AGI 是本專案的研究方向。目前的成果是實驗性的軟體開發平台，尚未達成 AGI；它也與受保護企業應用環境使用的部署方法分開。</p></section>
+<section class="prose"><h2>成本與可用 AI 額度</h2><p>實驗把時間、現金、注意力及 AI 訂閱額度視為任務選擇與實作的限制。我用「Fuel」描述可用 AI 額度，包含配額視窗、重置時間及估計保留量。</p><p>中斷的呼叫可能留下不確定的用量。實驗中的核算會保留這份不確定性，而非直接當成未使用額度。保留量是規劃估計，不是模型供應商的額度保證。</p></section>
+<section class="prose"><h2>已實作的內容</h2><ul><li>以 Python／SQLite 管理任務租約及明確工作邊界。</li><li>工作區檢查點，以及工作中斷後的復原。</li><li>訂閱額度監測，以及不確定用量的保守核算。</li><li>與不可變 Git 快照綁定的候選版本驗證控制。</li><li>讓候選版本驗收獨立於開發代理執行的介面。</li></ul></section>
+<section class="prose"><h2>從候選版本取得下一步依據</h2><p>任務定義、實作證據及驗收結果分別記錄。通過隔離檢查的變更，仍需在適當主機與運作情境中驗證，才能判斷是否適合無人值守。</p><p>這樣的流程使失敗能支持下一個決策：修訂任務、調整實作、調查環境問題，或停止受影響的執行路徑。</p></section>
+<section class="status-panel"><p class="eyebrow">目前階段</p><h2>進行中</h2><p>一個凍結的候選版本已完成離線回歸及可重現性檢查。主機適用性與無人值守運作的驗證進行中；沒有宣稱已達成 AGI、持續自主獲利，或已量測證實成本降低。</p></section></div><aside class="case-aside"><p class="eyebrow">延伸了解</p><ul class="link-list"><li><a href="local-llm-tools.html">地端 LLM 開發方法 <span aria-hidden="true">↗</span></a></li><li><a href="luna-agent-workflow.html">Luna 任務分派與審查 <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>開發觀點</h2><p>本作品集介紹使用既有模型與工具進行需求整理、應用設計、AI 協助實作與整合的工作。</p></div></aside></div>
+<nav class="project-pagination" aria-label="作品導覽"><a href="luna-agent-workflow.html"><small>上一個作品</small>Luna 子代理工作流程</a><a href="huoke.html"><small>下一個作品</small>貨客 Huoke：產品行銷與潛在客戶開發 <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI 協助開發・運用既有模型與工具・明確的專案邊界</p><a href="index.html">作品總覽 ↑</a></footer>
+</body>
+</html>

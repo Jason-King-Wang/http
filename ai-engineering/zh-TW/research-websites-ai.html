@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>研究導向網站、互動工具與地端 AI | AI 工程作品集</title>
+<meta name="description" content="以研究支援的 CSV 與計算工具，以及獨立的塔羅網站；塔羅可在使用者同意及地端後端可用時，選用繁體中文 Local LLM／RAG 解讀與追問。">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/research-websites-ai.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/research-websites-ai.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/research-websites-ai.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI 工程作品集">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="研究導向網站、互動工具與地端 AI">
+<meta property="og:description" content="以研究支援的 CSV 與計算工具，以及獨立的塔羅網站；塔羅可在使用者同意及地端後端可用時，選用繁體中文 Local LLM／RAG 解讀與追問。">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/research-websites-ai.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/05-websites-ai.png">
+<meta property="og:image:alt" content="研究導向網站、互動工具與地端 AI・概念示意圖">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="研究導向網站、互動工具與地端 AI">
+<meta name="twitter:description" content="以研究支援的 CSV 與計算工具，以及獨立的塔羅網站；塔羅可在使用者同意及地端後端可用時，選用繁體中文 Local LLM／RAG 解讀與追問。">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/05-websites-ai.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI 工程作品集首頁"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI 工程作品集</small></span></a>
+<nav aria-label="主要導覽"><a href="index.html#projects">作品</a><a href="index.html#background">經歷</a><a href="index.html#work-arrangements">合作方式</a><a href="research-websites-ai.html" lang="zh-Hant" aria-current="page">繁體中文</a><a href="../research-websites-ai.html" lang="en" hreflang="en">English</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">全部作品</a><span aria-hidden="true">/</span><span>作品 05</span></div>
+<header class="project-hero"><p class="eyebrow">05 / 公開案例・進行中</p><h1>研究導向網站、互動工具與地端 AI</h1><p class="lead">將研究過的使用者問題轉化為實用網頁互動，包含依明確規則運算的工具，以及另一條結合地端 LLM／RAG 的塔羅應用流程。</p><ul class="tags" aria-label="專案領域"><li>互動工具</li><li>確定性計算</li><li>地端 LLM</li><li>RAG</li><li>內容研究</li></ul></header>
+<figure class="project-art"><img src="../assets/zh-TW/05-websites-ai.png" alt="研究導向網站、互動工具與地端 AI・概念示意圖" width="1734" height="907"><figcaption>本開發專案的概念示意圖，非實際系統畫面。</figcaption></figure>
+<div class="case-layout"><div class="case-content">
+<section class="prose"><h2>讓研究成果改變操作介面</h2><p>我從具體問題出發：被試算表改寫的長識別碼、需要反推的拼布尺寸，或需要換用不同烤模的食譜。</p><p>開發的工具會清楚呈現輸入、假設、計算步驟與限制。完整示例讓使用者先理解結果，再套用到自己的資料。</p></section>
+<section class="prose"><h2>依明確規則運算的工具</h2><ul><li><strong>CSV 原值檢查室：</strong>以完整文字比對前導零、長識別碼，以及顯示值和原始值之間的差異；不會重建已經遺失的數字。</li><li><strong>拼布尺寸工具：</strong>反推拼布尺寸，搭配幾何說明、縫份及裁切資訊。</li><li><strong>烤模比例工具：</strong>依明確尺寸、單位及假設進行烤模大小換算。</li></ul><p>這些工具的計算與比對採確定性邏輯。開發時使用 AI 協助，不表示結果由模型生成。</p></section>
+<section class="prose"><h2>塔羅閱讀中的選用地端 AI</h2><p>塔羅網站展示另一種地端語言模型與檢索增強生成（RAG）的應用。抽牌及最初依規則產生的解讀在前端完成；使用者同意後，網站可為同一組固定牌面增加 AI 解讀，或回答後續問題。</p><p>選用 AI 功能目前僅支援繁體中文，且需地端後端可用。英文、西班牙文及印地語提供固定牌義與反思提示，不宣稱與中文流程具有相同的自由文字理解或 AI 支援。</p><p>整合使用地端模型與檢索層。本作品介紹的是應用流程及整合工作，不揭露內部網路細節，也不把每次生成回答都當成已驗證的結論。</p></section>
+<section class="prose"><h2>內容與衡量方式</h2><p>SEO、AEO 與 GEO 研究用於安排先回答問題的說明、可讀的 HTML 及完整示例。網站提供繁體中文、英文、西班牙文及印地語頁面，各語言有對應內容與可抓取的語言連結。</p><p>衡量時會區分示例操作與有意義的工具使用，搜尋能見度另行觀察。公開介面及歷史整合檢查可支持開發經驗；搜尋表現與回答品質仍持續評估。</p></section>
+<section class="status-panel"><p class="eyebrow">目前階段</p><h2>進行中</h2><p>已有公開案例，後續評估進行中。計算可依明確規則與示例核對。塔羅的選用 AI 則需要另外評估檢索、回答及使用體驗；既有整合紀錄使用合成情境，不能據此推論廣泛的回答品質或實際使用成效。</p></section></div><aside class="case-aside"><p class="eyebrow">延伸了解</p><ul class="link-list"><li><a href="https://csv-integrity-lab.pages.dev/">CSV 原值檢查室 <span aria-hidden="true">↗</span></a></li><li><a href="https://quilt-square-lab.pages.dev/">拼布尺寸工具 <span aria-hidden="true">↗</span></a></li><li><a href="https://pan-ratio-lab.pages.dev/">烤模比例工具 <span aria-hidden="true">↗</span></a></li><li><a href="https://tarot-reading-room.pages.dev/">塔羅閱讀室・可選繁中 AI 解讀 <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>開發觀點</h2><p>本作品集介紹使用既有模型與工具進行需求整理、應用設計、AI 協助實作與整合的工作。</p></div></aside></div>
+<nav class="project-pagination" aria-label="作品導覽"><a href="huoke.html"><small>上一個作品</small>貨客 Huoke：產品行銷與潛在客戶開發</a><a href="document-processing-experiments.html"><small>下一個作品</small>超大型文件處理研究 <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI 協助開發・運用既有模型與工具・明確的專案邊界</p><a href="index.html">作品總覽 ↑</a></footer>
+</body>
+</html>

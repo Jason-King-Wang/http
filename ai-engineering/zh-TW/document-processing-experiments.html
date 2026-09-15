@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>超大型文件處理研究 | AI 工程作品集</title>
+<meta name="description" content="文件擷取、敏感資訊遮蔽及批次流程進行中。目前以小樣本原型為基礎，持續進行大規模驗證與端到端整合。">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/document-processing-experiments.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/document-processing-experiments.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/document-processing-experiments.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI 工程作品集">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="超大型文件處理研究">
+<meta property="og:description" content="文件擷取、敏感資訊遮蔽及批次流程進行中。目前以小樣本原型為基礎，持續進行大規模驗證與端到端整合。">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/document-processing-experiments.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/06-document-experiments.png">
+<meta property="og:image:alt" content="超大型文件處理研究・概念示意圖">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="超大型文件處理研究">
+<meta name="twitter:description" content="文件擷取、敏感資訊遮蔽及批次流程進行中。目前以小樣本原型為基礎，持續進行大規模驗證與端到端整合。">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/06-document-experiments.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI 工程作品集首頁"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI 工程作品集</small></span></a>
+<nav aria-label="主要導覽"><a href="index.html#projects">作品</a><a href="index.html#background">經歷</a><a href="index.html#work-arrangements">合作方式</a><a href="document-processing-experiments.html" lang="zh-Hant" aria-current="page">繁體中文</a><a href="../document-processing-experiments.html" lang="en" hreflang="en">English</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">全部作品</a><span aria-hidden="true">/</span><span>作品 06</span></div>
+<header class="project-hero"><p class="eyebrow">06 / 進行中</p><h1>超大型文件處理研究</h1><p class="lead">面向可能的超大型工作量，探索文件擷取、敏感資訊遮蔽及批次流程。目前以個別工具與小樣本原型為基礎，大規模驗證進行中。</p><ul class="tags" aria-label="專案領域"><li>文件擷取</li><li>OCR／ASR</li><li>資訊遮蔽</li><li>批次流程</li><li>進行中</li></ul></header>
+<figure class="project-art"><img src="../assets/zh-TW/06-document-experiments.png" alt="超大型文件處理研究・概念示意圖" width="1734" height="907"><figcaption>本開發專案的概念示意圖，非實際系統畫面。</figcaption></figure>
+<div class="case-layout"><div class="case-content">
+<section class="prose"><h2>正在探索的問題</h2><p>文件集的格式、長度、結構與品質各不相同。從少量可讀範例擴展到更大的工作量，會帶來資源使用、部分失敗、輸出檢查及復原等問題。</p><p>目前透過個別工具與小樣本原型探索這些問題；端到端整合與大規模驗證進行中。</p></section>
+<section class="prose"><h2>已探索的元件</h2><ul><li>針對支援的輸入類型進行文字擷取，以及 OCR／ASR 輔助處理。</li><li>結合模型協助與規則方法的敏感資訊遮蔽及分類。</li><li>結構化輸出、來源引用，以及不支援或失敗輸入的檢查。</li><li>將失敗檔案隔離、同時保留其他工作的批次流程實驗。</li><li>摘要與交接報告原型，真實環境整合進行中。</li></ul></section>
+<section class="prose"><h2>仍待解決的工程問題</h2><p>下一步的問題在於超出小樣本後的行為：資源需求如何增加、部分工作如何復原、如何偵測不完整輸出，以及不同文件類型的品質差異。</p><p>元件在小範圍內成功運作，不代表可直接擴大到更多資料。規模、品質及運作成本都需要各自的證據。</p></section>
+<section class="status-panel"><p class="eyebrow">目前階段</p><h2>進行中</h2><p>目前的證據來自個別工具與小樣本原型，端到端整合及規模驗證進行中。沒有經驗證的 TB 級規模、吞吐量或全格式成功基準。</p></section></div><aside class="case-aside"><p class="eyebrow">延伸了解</p><ul class="link-list"><li><a href="index.html#projects">回到作品總覽 <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>開發觀點</h2><p>本作品集介紹使用既有模型與工具進行需求整理、應用設計、AI 協助實作與整合的工作。</p></div></aside></div>
+<nav class="project-pagination" aria-label="作品導覽"><a href="research-websites-ai.html"><small>上一個作品</small>研究導向網站、互動工具與地端 AI</a><a href="index.html#work-arrangements"><small>繼續了解</small>合作方式 <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI 協助開發・運用既有模型與工具・明確的專案邊界</p><a href="index.html">作品總覽 ↑</a></footer>
+</body>
+</html>

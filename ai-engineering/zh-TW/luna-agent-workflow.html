@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luna 子代理工作流程 | AI 工程作品集</title>
+<meta name="description" content="個人開發使用的 Codex skill：完整任務說明、限定範圍的 Luna 子代理、獨立驗收、結構化失敗檢討與修訂後的任務分派。">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/luna-agent-workflow.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/luna-agent-workflow.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/luna-agent-workflow.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI 工程作品集">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="Luna 子代理工作流程">
+<meta property="og:description" content="個人開發使用的 Codex skill：完整任務說明、限定範圍的 Luna 子代理、獨立驗收、結構化失敗檢討與修訂後的任務分派。">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/luna-agent-workflow.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/02-luna.png">
+<meta property="og:image:alt" content="Luna 子代理工作流程・概念示意圖">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Luna 子代理工作流程">
+<meta name="twitter:description" content="個人開發使用的 Codex skill：完整任務說明、限定範圍的 Luna 子代理、獨立驗收、結構化失敗檢討與修訂後的任務分派。">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/02-luna.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI 工程作品集首頁"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI 工程作品集</small></span></a>
+<nav aria-label="主要導覽"><a href="index.html#projects">作品</a><a href="index.html#background">經歷</a><a href="index.html#work-arrangements">合作方式</a><a href="luna-agent-workflow.html" lang="zh-Hant" aria-current="page">繁體中文</a><a href="../luna-agent-workflow.html" lang="en" hreflang="en">English</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">全部作品</a><span aria-hidden="true">/</span><span>作品 02</span></div>
+<header class="project-hero"><p class="eyebrow">02 / 已用於個人開發</p><h1>Luna 子代理工作流程</h1><p class="lead">可重複使用的 Codex 工作流程：將範圍明確的工作分派給子代理，同時由主代理保留規劃、驗收及整合責任。</p><ul class="tags" aria-label="專案領域"><li>Codex skills</li><li>任務設計</li><li>代理角色</li><li>驗收</li><li>失敗檢討</li></ul></header>
+<figure class="project-art"><img src="../assets/zh-TW/02-luna.png" alt="Luna 子代理工作流程・概念示意圖" width="1734" height="907"><figcaption>本開發專案的概念示意圖，非實際系統畫面。</figcaption></figure>
+<div class="case-layout"><div class="case-content">
+<section class="prose"><h2>子代理開始前，先提供完整任務</h2><p>我以一個簡單要求設計這套流程：子代理應取得足夠資訊，完成一項範圍明確的任務，不必繼承整段對話，也不必猜測尚未交代的決策。</p><p>主代理先選定方向、解決依賴關係並定義成果。每個新子代理都收到可獨立理解的任務說明，包含明確輸入、已確定的決策、範圍限制、預期輸出及與工作規模相稱的驗證方式。</p></section>
+<section class="prose"><h2>從分派到驗收</h2><ol class="steps"><li><strong>準備完整任務說明。</strong>確認目標、輸入位置、允許的工作及通過條件清楚明確。</li><li><strong>啟動範圍受限的子代理。</strong>使用指定的子代理設定，並核對可取得的執行資訊；只有互相獨立的工作才平行執行。</li><li><strong>審查結果。</strong>將子代理回報視為待核對的證據，由主代理獨立評估原始目標、工作邊界及整合需求。</li><li><strong>修訂後再嘗試。</strong>若工作受阻或未通過驗收，先找出原因，再將完整且修訂過的任務說明交給新子代理。</li></ol></section>
+<section class="prose"><h2>失敗檢討要能決定下一步</h2><p>檢討會區分任務規格問題、任務與模型不匹配、執行缺陷、環境阻礙，以及主代理的整合問題。這讓下一步有明確方向，而不只是要求同一個子代理「再努力一次」。</p><p>只有反覆出現的結構性缺口，才列為通用 skill 的改進候選；單一任務的細節仍留在該任務中。</p></section>
+<section class="prose"><h2>取得第二意見的延伸流程</h2><p>配套的 <em>ask-web-pro</em> skill 定義了透過瀏覽器轉交問題、取得第二意見的流程。它確認選用的網頁模型與模式，保留問題，等待完整回答，再回傳回答及對話網址。主代理會先以本機證據檢查這些建議，才決定是否採用。</p></section>
+<section class="status-panel"><p class="eyebrow">目前階段</p><h2>已用於個人 AI 協助開發的工作流程</h2><p>公開專案包含 skill 與自訂子代理設定。這是建立在既有模型與工具上的流程及設定設計；目前沒有建立成本、速度或成功率改善的基準測試結論。</p></section></div><aside class="case-aside"><p class="eyebrow">延伸了解</p><ul class="link-list"><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/delegate-luna/SKILL.md">查看公開 Luna skill <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/delegate-luna/assets/luna-worker.toml">子代理設定 <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/ask-web-pro/SKILL.md">第二意見 skill <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>開發觀點</h2><p>本作品集介紹使用既有模型與工具進行需求整理、應用設計、AI 協助實作與整合的工作。</p></div></aside></div>
+<nav class="project-pagination" aria-label="作品導覽"><a href="local-llm-tools.html"><small>上一個作品</small>以 AI 開發代理打造地端 LLM 工具與 Harness</a><a href="agi-development-experiments.html"><small>下一個作品</small>成本受控的 AGI 開發實驗 <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI 協助開發・運用既有模型與工具・明確的專案邊界</p><a href="index.html">作品總覽 ↑</a></footer>
+</body>
+</html>

@@ -4,18 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Large-Scale Document Processing Experiments | AI Engineering Portfolio</title>
-<meta name="description" content="Early experiments in document extraction, redaction and batch workflows, with small-sample prototypes and unresolved large-scale behavior.">
+<meta name="description" content="Document processing research in progress, with small-sample prototypes for extraction, redaction and batch workflows.">
 <link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/document-processing-experiments.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/document-processing-experiments.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/document-processing-experiments.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AI Engineering Portfolio">
 <meta property="og:title" content="Large-Scale Document Processing Experiments">
-<meta property="og:description" content="Early experiments in document extraction, redaction and batch workflows, with small-sample prototypes and unresolved large-scale behavior.">
+<meta property="og:description" content="Document processing research in progress, with small-sample prototypes for extraction, redaction and batch workflows.">
 <meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/document-processing-experiments.html">
 <meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/06-document-experiments.png">
 <meta property="og:image:alt" content="Large-Scale Document Processing Experiments — concept illustration">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Large-Scale Document Processing Experiments">
-<meta name="twitter:description" content="Early experiments in document extraction, redaction and batch workflows, with small-sample prototypes and unresolved large-scale behavior.">
+<meta name="twitter:description" content="Document processing research in progress, with small-sample prototypes for extraction, redaction and batch workflows.">
 <meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/06-document-experiments.png">
 <meta name="color-scheme" content="light">
 <link rel="stylesheet" href="styles.css">
@@ -24,21 +26,21 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header wrap">
 <a class="brand" href="index.html" aria-label="AI Engineering Portfolio home"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI engineering portfolio</small></span></a>
-<nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#background">Background</a><a href="index.html#work-arrangements">Work arrangements</a></nav>
+<nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#background">Background</a><a href="index.html#work-arrangements">Work arrangements</a><a href="document-processing-experiments.html" lang="en" aria-current="page">English</a><a href="zh-TW/document-processing-experiments.html" lang="zh-Hant" hreflang="zh-Hant">繁體中文</a></nav>
 </header>
 <main id="main" class="wrap">
 <div class="breadcrumb"><a href="index.html">All projects</a><span aria-hidden="true">/</span><span>Project 06</span></div>
 <header class="project-hero">
-<p class="eyebrow">06 / Early stage · Least mature</p>
+<p class="eyebrow">06 / In progress</p>
 <h1>Large-Scale Document Processing Experiments</h1>
-<p class="lead">Early experiments with document extraction, redaction and batch workflows for potentially large workloads. This is the least mature area of my portfolio.</p>
-<ul class="tags" aria-label="Project areas"><li>Document extraction</li><li>OCR / ASR</li><li>Redaction</li><li>Batch workflows</li><li>Early research</li></ul>
+<p class="lead">Document extraction, redaction and batch workflows for potentially large workloads. The work uses individual tools and small-sample prototypes, with large-scale validation in progress.</p>
+<ul class="tags" aria-label="Project areas"><li>Document extraction</li><li>OCR / ASR</li><li>Redaction</li><li>Batch workflows</li><li>In progress</li></ul>
 </header>
 <figure class="project-art"><img src="assets/06-document-experiments.png" alt="Large-Scale Document Processing Experiments — concept illustration" width="1734" height="907"><figcaption>Concept illustration for this development project.</figcaption></figure>
-<div class="case-layout"><div class="case-content"><section class="prose"><h2>The problem being explored</h2><p>Document collections vary in format, length, structure and quality. Moving from a few readable examples to a much larger workload raises additional questions about resource use, partial failures, output checks and recovery.</p><p>This work explores those questions through individual tools and small-sample prototypes. A complete large-scale processing system remains unfinished.</p></section>
-<section class="prose"><h2>Components explored</h2><ul><li>Text extraction and OCR/ASR-assisted processing for supported input types.</li><li>Redaction and classification using model-assisted and rule-based approaches.</li><li>Structured outputs, source references and checks for unsupported or failed inputs.</li><li>Batch-flow experiments that isolate a failed file while preserving other work.</li><li>Summary and handover-report prototypes with incomplete live integration.</li></ul></section>
+<div class="case-layout"><div class="case-content"><section class="prose"><h2>The problem being explored</h2><p>Document collections vary in format, length, structure and quality. Moving from a few readable examples to a much larger workload raises additional questions about resource use, partial failures, output checks and recovery.</p><p>This work explores those questions through individual tools and small-sample prototypes. End-to-end integration and validation at larger scale are in progress.</p></section>
+<section class="prose"><h2>Components explored</h2><ul><li>Text extraction and OCR/ASR-assisted processing for supported input types.</li><li>Redaction and classification using model-assisted and rule-based approaches.</li><li>Structured outputs, source references and checks for unsupported or failed inputs.</li><li>Batch-flow experiments that isolate a failed file while preserving other work.</li><li>Summary and handover-report prototypes, with live integration in progress.</li></ul></section>
 <section class="prose"><h2>Open engineering questions</h2><p>The next questions concern behavior beyond small samples: how resource needs grow, how partial work can be recovered, how to detect incomplete outputs and how quality varies across document types.</p><p>Successful component behavior cannot be assumed to carry over unchanged to a larger workload. Scale, quality and operating cost need their own evidence.</p></section>
-<section class="status-panel"><p class="eyebrow">Current stage</p><h2>Incomplete experiments, with scale still unvalidated</h2><p>Individual tools and prototypes exist, but end-to-end large-scale processing has not been completed. There is no validated terabyte-scale, throughput or all-format success benchmark. The work is presented as early research rather than a completed large-scale result.</p></section></div><aside class="case-aside"><p class="eyebrow">Explore</p><ul class="link-list"><li><a href="index.html#projects">Return to the project overview <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>Development perspective</h2><p>This portfolio describes requirements, application design, AI-assisted implementation and integration work with existing models and tools.</p></div></aside></div>
+<section class="status-panel"><p class="eyebrow">Current stage</p><h2>In progress</h2><p>Individual tools and small-sample prototypes provide the current evidence. End-to-end integration and scale validation are in progress. There is no validated terabyte-scale, throughput or all-format success benchmark.</p></section></div><aside class="case-aside"><p class="eyebrow">Explore</p><ul class="link-list"><li><a href="index.html#projects">Return to the project overview <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>Development perspective</h2><p>This portfolio describes requirements, application design, AI-assisted implementation and integration work with existing models and tools.</p></div></aside></div>
 <nav class="project-pagination" aria-label="Project navigation"><a href="research-websites-ai.html"><small>Previous project</small>Research-led websites &amp; local AI</a><a href="index.html#work-arrangements"><small>Continue to</small>Work arrangements <span aria-hidden="true">→</span></a></nav>
 </main>
 <footer class="site-footer wrap"><p>AI-assisted development · Existing models and tools · Clear project boundaries</p><a href="index.html">Project overview ↑</a></footer>
