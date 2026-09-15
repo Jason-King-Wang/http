@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luna Agent Workflow | AI Engineering Portfolio</title>
+<meta name="description" content="A personal Codex skill for self-contained task packets, bounded Luna workers, independent acceptance, structured failure review and revised delegation.">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/luna-agent-workflow.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/luna-agent-workflow.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/luna-agent-workflow.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Engineering Portfolio">
+<meta property="og:title" content="Luna Agent Workflow">
+<meta property="og:description" content="A personal Codex skill for self-contained task packets, bounded Luna workers, independent acceptance, structured failure review and revised delegation.">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/luna-agent-workflow.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/02-luna.png">
+<meta property="og:image:alt" content="Luna Agent Workflow — concept illustration">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Luna Agent Workflow">
+<meta name="twitter:description" content="A personal Codex skill for self-contained task packets, bounded Luna workers, independent acceptance, structured failure review and revised delegation.">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/02-luna.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI Engineering Portfolio home"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI engineering portfolio</small></span></a>
+<nav aria-label="Main navigation"><a href="index.html#projects">Projects</a><a href="index.html#background">Background</a><a href="index.html#work-arrangements">Work arrangements</a><a href="luna-agent-workflow.html" lang="en" aria-current="page">English</a><a href="zh-TW/luna-agent-workflow.html" lang="zh-Hant" hreflang="zh-Hant">繁體中文</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">All projects</a><span aria-hidden="true">/</span><span>Project 02</span></div>
+<header class="project-hero">
+<p class="eyebrow">02 / Used in personal development</p>
+<h1>Luna Agent Workflow</h1>
+<p class="lead">A reusable Codex workflow for delegating bounded work while keeping planning, acceptance and integration with the parent agent.</p>
+<ul class="tags" aria-label="Project areas"><li>Codex skills</li><li>Task design</li><li>Agent roles</li><li>Acceptance</li><li>Failure review</li></ul>
+</header>
+<figure class="project-art"><img src="assets/02-luna.png" alt="Luna Agent Workflow — concept illustration" width="1733" height="907"><figcaption>Concept illustration for this development project.</figcaption></figure>
+<div class="case-layout"><div class="case-content"><section class="prose"><h2>A complete task before a worker starts</h2><p>I designed this workflow around a simple requirement: a worker should receive enough information to complete one bounded task without inheriting an entire conversation or guessing the missing decisions.</p><p>The parent agent first chooses the direction, resolves dependencies and defines the outcome. Each new worker receives a self-contained task packet with exact inputs, fixed decisions, scope limits, expected outputs and a proportionate verification method.</p></section>
+<section class="prose"><h2>From delegation to acceptance</h2><ol class="steps"><li><strong>Prepare the task packet.</strong> Check that the goal, input locations, permitted work and pass conditions are clear.</li><li><strong>Start a bounded worker.</strong> Use the designated worker configuration and verify the available runtime metadata. Only independent work should run in parallel.</li><li><strong>Review the result.</strong> Treat the worker's report as evidence to check. The parent agent independently assesses the original goal, boundaries and integration needs.</li><li><strong>Revise before retrying.</strong> If the result is blocked or fails acceptance, identify the cause and give a fresh worker a complete, revised task packet.</li></ol></section>
+<section class="prose"><h2>Failure review with a specific next step</h2><p>The review distinguishes task-specification problems, task–model mismatch, execution defects, environment blockers and parent-agent integration problems. This makes the next action more specific than asking the same worker to “try harder.”</p><p>Only recurring structural gaps become candidates for improving the general skill. Task-specific details stay with the task.</p></section>
+<section class="prose"><h2>A second-opinion extension</h2><p>The companion <em>ask-web-pro</em> skill defines a browser-based relay for a second opinion. It checks the selected web model and mode, preserves the question, waits for the complete response and returns the response and conversation URL. The parent agent reviews that advice against local evidence before acting.</p></section>
+<section class="status-panel"><p class="eyebrow">Current stage</p><h2>A workflow I use in personal AI-assisted development</h2><p>The public project contains the skill and custom worker configuration. It is a workflow and configuration design built around existing models and tools. I have not established benchmarked improvements in cost, speed or success rate.</p></section></div><aside class="case-aside"><p class="eyebrow">Explore</p><ul class="link-list"><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/delegate-luna/SKILL.md">View the public Luna skill <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/delegate-luna/assets/luna-worker.toml">Worker configuration <span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/Jason-King-Wang/skill-any-way/blob/main/ask-web-pro/SKILL.md">Second-opinion skill <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>Development perspective</h2><p>This portfolio describes requirements, application design, AI-assisted implementation and integration work with existing models and tools.</p></div></aside></div>
+<nav class="project-pagination" aria-label="Project navigation"><a href="local-llm-tools.html"><small>Previous project</small>Local LLM tools &amp; harnesses</a><a href="agi-development-experiments.html"><small>Next project</small>Cost-controlled AGI experiments <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI-assisted development · Existing models and tools · Clear project boundaries</p><a href="index.html">Project overview ↑</a></footer>
+</body>
+</html>

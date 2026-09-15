@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>以 AI 開發代理打造地端 LLM 工具與 Harness | AI 工程作品集</title>
+<meta name="description" content="使用 Codex 等由雲端模型支援的 AI 開發代理，在本機隔離環境開發地端 LLM 工具，涵蓋來源處理、任務路由、驗證與受保護環境的部署。">
+<link rel="canonical" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/local-llm-tools.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/local-llm-tools.html">
+<link rel="alternate" hreflang="en" href="https://jason-king-wang.github.io/http/ai-engineering/local-llm-tools.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI 工程作品集">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:title" content="以 AI 開發代理打造地端 LLM 工具與 Harness">
+<meta property="og:description" content="使用 Codex 等由雲端模型支援的 AI 開發代理，在本機隔離環境開發地端 LLM 工具，涵蓋來源處理、任務路由、驗證與受保護環境的部署。">
+<meta property="og:url" content="https://jason-king-wang.github.io/http/ai-engineering/zh-TW/local-llm-tools.html">
+<meta property="og:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/01-local-tools.png">
+<meta property="og:image:alt" content="以 AI 開發代理打造地端 LLM 工具與 Harness・概念示意圖">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="以 AI 開發代理打造地端 LLM 工具與 Harness">
+<meta name="twitter:description" content="使用 Codex 等由雲端模型支援的 AI 開發代理，在本機隔離環境開發地端 LLM 工具，涵蓋來源處理、任務路由、驗證與受保護環境的部署。">
+<meta name="twitter:image" content="https://jason-king-wang.github.io/http/ai-engineering/assets/zh-TW/01-local-tools.png">
+<meta name="color-scheme" content="light">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<a class="skip-link" href="#main">跳至主要內容</a>
+<header class="site-header wrap">
+<a class="brand" href="index.html" aria-label="AI 工程作品集首頁"><span class="brand-mark" aria-hidden="true">AI</span><span>Yu Wang<small>AI 工程作品集</small></span></a>
+<nav aria-label="主要導覽"><a href="index.html#projects">作品</a><a href="index.html#background">經歷</a><a href="index.html#work-arrangements">合作方式</a><a href="local-llm-tools.html" lang="zh-Hant" aria-current="page">繁體中文</a><a href="../local-llm-tools.html" lang="en" hreflang="en">English</a></nav>
+</header>
+<main id="main" class="wrap">
+<div class="breadcrumb"><a href="index.html">全部作品</a><span aria-hidden="true">/</span><span>作品 01</span></div>
+<header class="project-hero"><p class="eyebrow">01 / 進行中</p><h1>以 AI 開發代理打造地端 LLM 工具與 Harness</h1><p class="lead">我使用 Codex 等由雲端模型支援的 AI 開發代理，將工程需求轉化為地端 LLM 工具、應用流程與檢查機制。</p><ul class="tags" aria-label="專案領域"><li>Codex</li><li>Open WebUI</li><li>Python</li><li>JavaScript</li><li>SQLite</li><li>REST API</li></ul></header>
+<figure class="project-art"><img src="../assets/zh-TW/01-local-tools.png" alt="以 AI 開發代理打造地端 LLM 工具與 Harness・概念示意圖" width="1734" height="907"><figcaption>本開發專案的概念示意圖，非實際系統畫面。</figcaption></figure>
+<div class="case-layout"><div class="case-content">
+<section class="prose"><h2>釐清雲端模型與本機執行的邊界</h2><p>AI 開發代理透過雲端模型進行推理與開發協助；開發環境、工具執行及授權範圍內的測試則位於本機隔離環境。我在開發過程使用安全資料或合成資料，再將完成的變更準備部署至受保護的地端環境。</p><p>這套做法的核心，是將雲端 Token 投入轉化為可重複使用的地端 Harness 能力，包括工具、任務路由、檢索與驗證。我的工作重點在模型周邊的應用系統。</p></section>
+<section class="prose"><h2>開發方式</h2><ol class="steps"><li><strong>定義任務與邊界。</strong>確認輸入、預期結果、允許的操作及驗收標準。</li><li><strong>由 AI 開發代理協助本機開發。</strong>在隔離工作環境中，使用 Codex 與安全或合成輸入來實作及修訂工具。</li><li><strong>部署前檢查行為。</strong>在授權測試範圍內檢查路由、輸出格式、失敗處理與復原能力。</li><li><strong>準備受控部署。</strong>確認版本及環境需求，保留快照與復原程序，並依目標環境訂定驗收方式。</li></ol></section>
+<section class="prose"><h2>已開發的內容</h2><ul><li>Open WebUI 工具與過濾器，處理知識來源、文件附件、引用及明確的研究路由。</li><li>受限的公開研究橋接，以及結構化摘要、文字比較、事實／風險／行動整理流程。</li><li>顧問應用 Harness，包含任務路由、快取摘要檢索、案例狀態更新及生成後檢查。</li><li>可重播的評估流程，協助定位路由、模型整合、格式及狀態更新中的問題。</li><li>受保護應用環境的部署檢查、本機模擬、版本化快照與復原程序。</li></ul></section>
+<section class="status-panel"><p class="eyebrow">目前階段</p><h2>進行中</h2><p>已有實作元件，各環境的驗證進行中。Open WebUI 整合已有實際工具使用的歷史紀錄。另一套顧問 Harness 仍是原型，最近一次整合評估使用模擬模型；真實模型的回答品質，以及受保護環境的驗收，仍須分別確認。</p><p>這項工作不涉及模型權重訓練，也沒有宣稱經量測證實的推論速度提升。</p></section></div><aside class="case-aside"><p class="eyebrow">延伸了解</p><ul class="link-list"><li><a href="luna-agent-workflow.html">Luna 子代理工作流程 <span aria-hidden="true">↗</span></a></li><li><a href="agi-development-experiments.html">成本受控的開發實驗 <span aria-hidden="true">↗</span></a></li></ul><div class="aside-note"><h2>開發觀點</h2><p>本作品集介紹使用既有模型與工具進行需求整理、應用設計、AI 協助實作與整合的工作。</p></div></aside></div>
+<nav class="project-pagination" aria-label="作品導覽"><a href="index.html"><small>返回</small>作品總覽</a><a href="luna-agent-workflow.html"><small>下一個作品</small>Luna 子代理工作流程 <span aria-hidden="true">→</span></a></nav>
+</main>
+<footer class="site-footer wrap"><p>AI 協助開發・運用既有模型與工具・明確的專案邊界</p><a href="index.html">作品總覽 ↑</a></footer>
+</body>
+</html>
